@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  meta?: string;
+  defaultOpen?: boolean;
+}
+
+const { title, meta, defaultOpen = false } = Astro.props;
+---
+
+<details class="accordion" open={defaultOpen || undefined}>
+  <summary class="accordion-summary">
+    <span class="accordion-title">{title}</span>
+    <span class="accordion-right">
+      {meta && <span class="accordion-meta">{meta}</span>}
+      <span class="accordion-icon" aria-hidden="true">+</span>
+    </span>
+  </summary>
+  <div class="accordion-body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .accordion {
+    border-bottom: 1px solid #2a2a2a;
+    transition: border-color 0.2s ease;
+  }
+
+  .accordion:hover {
+    border-color: #3a3a3a;
+  }
+
+  /* Eliminar triángulo nativo en todos los navegadores */
+  .accordion-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem 1.5rem 0;
+    cursor: pointer;
+    list-style: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .accordion-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-summary:focus-visible {
+    outline: 1px solid rgba(240, 240, 240, 0.25);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .accordion-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    transition: color 0.2s ease;
+    line-height: 1.3;
+  }
+
+  .accordion-summary:hover .accordion-title {
+    color: #ffffff;
+  }
+
+  .accordion-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .accordion-meta {
+    font-size: 0.75rem;
+    color: #555;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .accordion-icon {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1;
+    width: 1rem;
+    text-align: center;
+    transition: transform 0.25s ease, color 0.2s ease;
+    display: inline-block;
+  }
+
+  .accordion-summary:hover .accordion-icon {
+    color: #888;
+  }
+
+  details[open] .accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .accordion-body {
+    padding: 0.25rem 0 2rem;
+  }
+</style>
