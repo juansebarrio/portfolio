@@ -1,17 +1,307 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const marqueeText = 'Data · People · Tech · AI · Design · ';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Juanse Barrio — Inicio" description="Portafolio de Juan Segundo Barrio, AI Product Designer.">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+
+    <!-- Marquee fantasma de fondo -->
+    <div class="hero-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {[...Array(3)].map(() => (
+          <span class="marquee-bg-item">{marqueeText}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="hero-content">
+
+      <div class="hero-heading">
+        <h1 class="hero-title">AI Product Designer</h1>
+        <p class="hero-subtitle">NGO Vice President&nbsp;·&nbsp;Diversity &amp; Inclusion</p>
+      </div>
+
+      <p class="hero-bio">
+        La tecnología siempre fue parte de mi historia. Hoy diseño productos digitales
+        que nacen de esa misma pasión: crear experiencias útiles, humanas y significativas.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/portfolio" class="btn-primary">Ver portfolio</a>
+        <a href="/experiencia" class="btn-text">Mi experiencia →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SECCIÓN TALLER ── -->
+  <section class="taller-section">
+    <div class="taller-grid">
+
+      <figure class="taller-foto fade-in">
+        <img src="/images/taller.png" alt="Foto de taller de trabajo" />
+      </figure>
+
+      <div class="taller-texto fade-in">
+        <blockquote class="taller-frase">
+          Diseño con foco en IA. Research, experimentación y entrega de productos que usan personas reales, cada día.
+        </blockquote>
+        <p class="taller-rol">
+          Actualmente Product Designer en Banco Galicia&nbsp;·&nbsp;Vicepresidente en Impulse Buenos Aires (AHF)
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ─────────────────────────────
+     HERO
+  ───────────────────────────── */
+  .hero {
+    position: relative;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Marquee fantasma */
+  .hero-marquee {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.08;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 28s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-bg-item {
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #f0f0f0;
+    padding-right: 2rem;
+  }
+
+  /* Contenido hero */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding-left: 4rem;
+    padding-right: 2rem;
+    max-width: 56rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif !important;
+    font-size: clamp(2.5rem, 6vw, 5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-weight: 500;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .hero-bio {
+    color: #a0a0a0;
+    line-height: 1.75;
+    font-size: 1rem;
+    max-width: 38ch;
+    margin: 0;
+  }
+
+  .hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #f0f0f0;
+    background-color: #141414;
+    border: 1px solid rgba(240, 240, 240, 0.15);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    border-color: rgba(240, 240, 240, 0.4);
+  }
+
+  .btn-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b6b6b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .btn-text:hover {
+    color: #f0f0f0;
+  }
+
+  /* ─────────────────────────────
+     SECCIÓN TALLER
+  ───────────────────────────── */
+  .taller-section {
+    padding: 6rem 0;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
+  .taller-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .taller-foto {
+    margin: 0;
+  }
+
+  .taller-foto img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 70vh;
+    object-fit: cover;
+    filter: grayscale(100%);
+    display: block;
+  }
+
+  .taller-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .taller-frase {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #e0e0e0;
+    margin: 0;
+    quotes: none;
+  }
+
+  .taller-rol {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #555;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  /* ─────────────────────────────
+     FADE-IN con Intersection Observer
+  ───────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─────────────────────────────
+     ANIMACIÓN MARQUEE
+  ───────────────────────────── */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-33.333%); }
+  }
+
+  /* ─────────────────────────────
+     RESPONSIVE
+  ───────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-content {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .taller-section {
+      padding: 4rem 0;
+      min-height: auto;
+    }
+
+    .taller-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 0 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Fade-in con Intersection Observer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>

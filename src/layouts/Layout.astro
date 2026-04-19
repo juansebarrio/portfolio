@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Juanse Barrio', description = 'Portafolio de Juanse Barrio' } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/experiencia', label: 'Experiencia' },
+  { href: '/portfolio', label: 'Portfolio' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 border-b border-white/5" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(12px);">
+      <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+
+        <div class="flex items-center gap-8 flex-1">
+          <a
+            href="/"
+            class="text-sm tracking-wide transition-colors duration-200"
+            style={currentPath === '/' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+          >
+            Inicio
+          </a>
+        </div>
+
+        <a href="/" class="font-heading text-base font-semibold tracking-tight whitespace-nowrap" style="font-family: 'Syne', system-ui, sans-serif;">
+          Juanse Barrio
+        </a>
+
+        <div class="flex items-center gap-8 flex-1 justify-end">
+          <a
+            href="/experiencia"
+            class="text-sm tracking-wide transition-colors duration-200"
+            style={currentPath === '/experiencia' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+          >
+            Experiencia
+          </a>
+          <a
+            href="/portfolio"
+            class="text-sm tracking-wide transition-colors duration-200"
+            style={currentPath === '/portfolio' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+          >
+            Portfolio
+          </a>
+        </div>
+
+      </nav>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/5 py-8 px-6">
+      <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+        <span class="text-xs" style="color: #6b6b6b;">
+          © {new Date().getFullYear()} Juanse Barrio
+        </span>
+        <span class="text-xs" style="color: #6b6b6b;">
+          Diseñado y desarrollado con cuidado
+        </span>
+      </div>
+    </footer>
+
+  </body>
+</html>
