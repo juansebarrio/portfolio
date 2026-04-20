@@ -10,6 +10,20 @@
 }
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  *, *::before, *::after {
+    max-width: 100%;
+  }
+
+  img, video, iframe, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
   html {
     background-color: #0a0a0a;
     color: #f0f0f0;
