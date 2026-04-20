@@ -1,0 +1,448 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="El upgrade más rápido del sistema financiero argentino — Juanse Barrio" description="Caso de estudio: rediseño del flujo de upgrade de paquetes de Banco Galicia. De una webview inconsistente a una experiencia nativa sin fricción.">
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">CASO DE ESTUDIO · BANCO GALICIA · 2026</p>
+      <h1 class="hero-title">El upgrade más rápido del sistema financiero argentino</h1>
+      <p class="hero-sub">Rediseño del flujo de upgrade de paquetes del banco: de una webview inconsistente a una experiencia nativa que elimina la fricción desde el primer paso.</p>
+    </section>
+
+    <!-- ── RESUMEN EN 30 SEGUNDOS ── -->
+    <div class="resumen">
+      <div class="resumen-col">
+        <p class="resumen-eyebrow">EL PROBLEMA</p>
+        <p class="resumen-frase">El 70% de los usuarios que entraba al funnel no tenía ninguna oferta disponible.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="resumen-eyebrow">LA SOLUCIÓN</p>
+        <p class="resumen-frase">Evaluación de oferta como prerequisito y flujo nativo de 3 pasos.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="resumen-eyebrow">EL IMPACTO</p>
+        <p class="resumen-frase">Métricas confiables, experiencia consistente con el design system y cero fricción técnica.</p>
+      </div>
+    </div>
+
+    <!-- ── EL PROBLEMA ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL PROBLEMA</p>
+      <h2 class="seccion-titulo">Una webview que contaminaba todo</h2>
+      <p class="body-text">El flujo de upgrade de Banco Galicia vivía dentro de una SPA embebida como webview en la app. Esto generaba una experiencia visualmente degradada, inconsistente con el design system nativo, y con métricas imposibles de confiar: el 70% de los usuarios que entraba al funnel no tenía ninguna oferta disponible, lo que contaminaba la tasa de conversión real y generaba ruido operativo.</p>
+      <p class="body-text">El conversion rate oficial del flujo era del 6%. Pero ese número mentía: incluía usuarios sin oferta, usuarios explorando sin intención de compra, y fricción técnica propia de una webview. No había forma de saber cuántos usuarios con oferta real efectivamente convertían. Además, el flujo no existía como experiencia nativa, lo que lo dejaba fuera del design system, sin acceso a componentes actualizados y con limitaciones de performance.</p>
+    </section>
+
+    <!-- ── LAS DECISIONES DE DISEÑO ── -->
+    <section class="seccion">
+      <p class="eyebrow">LAS DECISIONES</p>
+      <h2 class="seccion-titulo">Cuatro decisiones que cambiaron el producto</h2>
+      <p class="intro-text">Diseñé el flujo completo de manera independiente: desde el mapeo del problema y definición del scope hasta los prototipos de alta fidelidad. Trabajé en coordinación con producto y tecnología para definir las restricciones técnicas y las reglas de negocio.</p>
+
+      <div class="decisiones">
+
+        <div class="decision">
+          <span class="decision-num">01</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Evaluación de oferta como prerequisito</h3>
+            <p class="decision-texto">La decisión más importante no fue visual: fue estructural. El nuevo flujo no le muestra el comparador de planes a todos los usuarios. Primero evalúa si el cliente tiene oferta disponible. Si no la tiene, no ingresa al funnel. Esto limpia las métricas y elimina la fuente de mayor ruido.</p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">02</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Sin comparador de planes</h3>
+            <p class="decision-texto">El flujo anterior intentaba mostrar todos los paquetes disponibles como una tienda. La nueva versión presenta directamente la oferta del cliente, sin distracciones. Menos opciones, más claridad, más intención.</p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">03</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Flujo de 3 pasos</h3>
+            <p class="decision-texto">Evaluación → Selección → Confirmación de éxito. Sin desvíos innecesarios. El foco está en que el usuario que llegó con oferta, convierta.</p>
+          </div>
+        </div>
+
+        <div class="decision last">
+          <span class="decision-num">04</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">100% nativo</h3>
+            <p class="decision-texto">Migrar a componentes nativos no fue solo una mejora estética: habilitó el uso del design system actualizado, mejor performance y trazabilidad real de eventos.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── EL FLUJO EN PANTALLAS ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL FLUJO</p>
+      <h2 class="seccion-titulo">Tres pasos, sin desvíos</h2>
+      <div class="pantallas-wrapper">
+        <div class="pantallas">
+          <figure class="pantalla">
+            <img src="/images/portfolio/upgrade/02-ingreso-flujo.png" alt="Ingreso desde home" loading="lazy" />
+            <figcaption>INGRESO DESDE HOME</figcaption>
+          </figure>
+          <figure class="pantalla">
+            <img src="/images/portfolio/upgrade/03-animacion-flujo.png" alt="Evaluación de oferta" loading="lazy" />
+            <figcaption>EVALUACIÓN DE OFERTA</figcaption>
+          </figure>
+          <figure class="pantalla">
+            <img src="/images/portfolio/upgrade/04-carrousel-flujo.png" alt="Selección de paquete" loading="lazy" />
+            <figcaption>SELECCIÓN DE PAQUETE</figcaption>
+          </figure>
+          <figure class="pantalla">
+            <img src="/images/portfolio/upgrade/05-seleccion-flujo.png" alt="Condiciones y beneficios" loading="lazy" />
+            <figcaption>CONDICIONES Y BENEFICIOS</figcaption>
+          </figure>
+          <figure class="pantalla">
+            <img src="/images/portfolio/upgrade/06-feedback-flujo.png" alt="Confirmación de éxito" loading="lazy" />
+            <figcaption>CONFIRMACIÓN DE ÉXITO</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROTOTIPO FUNCIONAL ── -->
+    <section class="seccion">
+      <p class="eyebrow">PROTOTIPO</p>
+      <h2 class="seccion-titulo">El flujo completo, en movimiento</h2>
+      <p class="intro-text">Prototipo de alta fidelidad construido en Figma, usado para validación interna con producto, tecnología y stakeholders antes de pasar a desarrollo.</p>
+      <div class="video-wrapper">
+        <video
+          src="/images/portfolio/upgrade/07-video-final.mov"
+          autoplay
+          muted
+          loop
+          playsinline
+          loading="lazy"
+        ></video>
+      </div>
+    </section>
+
+    <!-- ── IMPACTO Y APRENDIZAJES ── -->
+    <section class="seccion">
+      <p class="eyebrow">IMPACTO</p>
+      <h2 class="seccion-titulo">Lo que cambió</h2>
+      <ul class="bullets">
+        <li><span class="bullet-dash">—</span>Métricas limpias y confiables: la conversión ahora refleja solo a usuarios con oferta real disponible.</li>
+        <li><span class="bullet-dash">—</span>Experiencia consistente con el design system nativo del banco.</li>
+        <li><span class="bullet-dash">—</span>Mejor performance y trazabilidad de eventos para producto y data.</li>
+        <li><span class="bullet-dash">—</span>Base sólida para iterar sobre el funnel sin ruido técnico.</li>
+      </ul>
+    </section>
+
+    <!-- ── NAVEGACIÓN ── -->
+    <nav class="nav-casos">
+      <a href="/portfolio" class="nav-link">← Ver todos los casos</a>
+      <a href="/portfolio/csat-semantico" class="nav-link">Siguiente caso: CSAT con IA →</a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-sub {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.25rem;
+    color: #a0a0a0;
+    max-width: 50rem;
+    line-height: 1.5;
+    margin: 2rem 0 0;
+  }
+
+  /* ── RESUMEN ── */
+  .resumen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    background: #141414;
+    border-radius: 16px;
+    padding: 3rem;
+    margin-top: 6rem;
+  }
+
+  .resumen-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  .resumen-frase {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ── SECCIONES ── */
+  .seccion {
+    margin-top: 8rem;
+  }
+
+  .seccion .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .seccion-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 2.5rem;
+  }
+
+  .body-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    max-width: 50rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .intro-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    max-width: 50rem;
+    margin: 0 0 3rem;
+  }
+
+  /* ── DECISIONES ── */
+  .decisiones {
+    margin-top: 0;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    align-items: start;
+  }
+
+  .decision.last {
+    border-bottom: none;
+  }
+
+  .decision-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #6b6b6b;
+    line-height: 1;
+  }
+
+  .decision-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  .decision-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    margin: 0;
+  }
+
+  /* ── PANTALLAS ── */
+  .pantallas-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 0;
+  }
+
+  .pantallas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    min-width: 900px;
+  }
+
+  .pantalla {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pantalla img {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+    background: #141414;
+  }
+
+  .pantalla figcaption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    text-align: center;
+  }
+
+  /* ── VIDEO ── */
+  .video-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0a0a0a;
+  }
+
+  .video-wrapper video {
+    height: max(85vh, 800px);
+    width: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  /* ── BULLETS ── */
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 55rem;
+  }
+
+  .bullets li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .bullet-dash {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 500;
+    color: #6b6b6b;
+    flex-shrink: 0;
+  }
+
+  /* ── NAVEGACIÓN ── */
+  .nav-casos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10rem;
+    margin-bottom: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .nav-link {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #f0f0f0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .resumen {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .pantallas-wrapper {
+      padding-bottom: 1rem;
+    }
+
+    .pantallas {
+      scroll-snap-type: x mandatory;
+      gap: 0.75rem;
+    }
+
+    .pantalla {
+      scroll-snap-align: start;
+      min-width: 200px;
+    }
+
+    .decision {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .decision-num {
+      font-size: 2rem;
+    }
+
+    .nav-casos {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+  }
+</style>

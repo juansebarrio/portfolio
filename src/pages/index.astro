@@ -44,7 +44,7 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     <div class="taller-grid">
 
       <figure class="taller-foto fade-in">
-        <img src="/images/taller.png" alt="Foto de taller de trabajo" />
+        <img src="/images/about/galicia-taller.png" alt="Foto de taller de trabajo" />
       </figure>
 
       <div class="taller-texto fade-in">
@@ -52,10 +52,99 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
           Diseño con foco en IA. Research, experimentación y entrega de productos que usan personas reales, cada día.
         </blockquote>
         <p class="taller-rol">
-          Actualmente Product Designer en Banco Galicia&nbsp;·&nbsp;Vicepresidente en Impulse Buenos Aires (AHF)
+          Creo que la simbiosis entre humanos y tecnología refleja nuestro innato deseo de evolución. Mi aporte es diseñar productos que usen esa mezcla para mejorar la vida real de las personas.
         </p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ── CASOS DESTACADOS ── -->
+  <section class="casos-section">
+    <div class="home-container">
+
+      <div class="casos-header">
+        <div>
+          <p class="section-eyebrow">Casos destacados</p>
+          <h2 class="casos-title">Trabajo reciente</h2>
+        </div>
+        <a href="/portfolio" class="btn-text">Ver todos →</a>
+      </div>
+
+      <div class="casos-grid">
+
+        <a href="/portfolio/csat-semantico" class="caso-card">
+          <div class="caso-img">
+            <span class="caso-placeholder">Imagen próximamente</span>
+          </div>
+          <p class="caso-meta">Banco Galicia · 2026 · IA + Research</p>
+          <p class="caso-titulo">
+            De 10.000 opiniones a un backlog priorizado
+            <span class="caso-arrow" aria-hidden="true">→</span>
+          </p>
+        </a>
+
+        <a href="/portfolio/upgrade" class="caso-card">
+          <div class="caso-img">
+            <span class="caso-placeholder">Imagen próximamente</span>
+          </div>
+          <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
+          <p class="caso-titulo">
+            El upgrade más rápido del sistema financiero argentino
+            <span class="caso-arrow" aria-hidden="true">→</span>
+          </p>
+        </a>
+
+        <a href="/portfolio/rediseno-cuentas" class="caso-card">
+          <div class="caso-img">
+            <span class="caso-placeholder">Imagen próximamente</span>
+          </div>
+          <p class="caso-meta">Banco Galicia · 2025 · Rediseño</p>
+          <p class="caso-titulo">
+            Reescribiendo el corazón del banco
+            <span class="caso-arrow" aria-hidden="true">→</span>
+          </p>
+        </a>
+
+        <a href="/portfolio/pfm" class="caso-card">
+          <div class="caso-img">
+            <span class="caso-placeholder">Imagen próximamente</span>
+          </div>
+          <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
+          <p class="caso-titulo">
+            El primer PFM argentino hecho por un banco
+            <span class="caso-arrow" aria-hidden="true">→</span>
+          </p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA CONTACTO ── -->
+  <section class="cta-section">
+    <div class="home-container">
+      <p class="section-eyebrow">Contacto</p>
+      <h2 class="cta-title">¿Conversamos?</h2>
+      <p class="cta-body">
+        Estoy abierto a oportunidades como Product Designer con foco en IA,
+        especialmente en Europa. También me interesan colaboraciones con organizaciones
+        sociales y proyectos que mezclen tecnología y propósito.
+      </p>
+      <div class="cta-links">
+        <a href="mailto:contacto@juansebarrio.com" class="cta-link">
+          contacto@juansebarrio.com&nbsp;↗
+        </a>
+        <span class="cta-sep" aria-hidden="true">·</span>
+        <a
+          href="https://www.linkedin.com/in/juansebarrio"
+          class="cta-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn&nbsp;↗
+        </a>
+      </div>
     </div>
   </section>
 
@@ -208,6 +297,8 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
 
   .taller-foto {
     margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .taller-foto img {
@@ -268,6 +359,175 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
   }
 
   /* ─────────────────────────────
+     CASOS DESTACADOS
+  ───────────────────────────── */
+  .casos-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
+  .cta-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+  }
+
+  .home-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .section-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  .casos-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .casos-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .casos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .caso-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .caso-img {
+    aspect-ratio: 4 / 3;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    transition: filter 300ms ease, border-color 300ms ease;
+  }
+
+  .caso-card:hover .caso-img {
+    filter: brightness(1.1);
+    border-color: #3a3a3a;
+  }
+
+  .caso-placeholder {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  .caso-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .caso-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.2;
+    margin: 0;
+    transition: color 300ms ease;
+  }
+
+  .caso-card:hover .caso-titulo {
+    color: #ffffff;
+  }
+
+  .caso-arrow {
+    opacity: 0;
+    margin-left: 0.5rem;
+    display: inline-block;
+    transition: opacity 300ms ease;
+  }
+
+  .caso-card:hover .caso-arrow {
+    opacity: 1;
+  }
+
+  /* ─────────────────────────────
+     CTA CONTACTO
+  ───────────────────────────── */
+  .cta-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 2rem;
+  }
+
+  .cta-body {
+    font-size: 1.125rem;
+    color: #a0a0a0;
+    max-width: 40rem;
+    line-height: 1.6;
+    margin: 0 0 3rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .cta-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .cta-link:hover {
+    color: #ffffff;
+  }
+
+  .cta-sep {
+    color: #6b6b6b;
+    font-size: 1.25rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ─────────────────────────────
      RESPONSIVE
   ───────────────────────────── */
   @media (max-width: 768px) {
@@ -285,6 +545,17 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
       grid-template-columns: 1fr;
       gap: 2.5rem;
       padding: 0 1.5rem;
+    }
+
+    .casos-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .casos-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
