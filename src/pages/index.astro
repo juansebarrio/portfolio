@@ -2,6 +2,36 @@
 import Layout from '../layouts/Layout.astro';
 
 const marqueeText = 'Data · People · Tech · AI · Design · ';
+
+// YouTube — Reconocimiento en la Legislatura
+const legislaturaVideoId = 'cLVTwzJwieo';
+
+// Casos corporativos bajo NDA (detrás de candado)
+const casosGalicia = [
+  {
+    href: '/portfolio/csat-semantico',
+    meta: 'Banco Galicia · 2026 · IA + Research',
+    titulo: 'De 10.000 opiniones a un backlog priorizado',
+  },
+  {
+    href: '/portfolio/upgrade',
+    meta: 'Banco Galicia · 2026 · Product Design',
+    titulo: 'El upgrade más rápido del sistema financiero argentino',
+  },
+  {
+    href: '/portfolio/rediseno-cuentas',
+    meta: 'Banco Galicia · 2025 · Rediseño',
+    titulo: 'Reescribiendo el corazón del banco',
+  },
+  {
+    href: '/portfolio/pfm',
+    meta: 'Banco Galicia · 2024 · Product Design',
+    titulo: 'El primer PFM argentino hecho por un banco',
+  },
+];
+
+// Subject del mailto de "Solicitar acceso"
+const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURIComponent('Acceso al portfolio completo')}&body=${encodeURIComponent('Hola Juanse,\n\nMe gustaría ver los casos bajo NDA del portfolio.\n\nGracias,\n')}`;
 ---
 
 <Layout title="Juanse Barrio — Inicio" description="Portafolio de Juan Segundo Barrio, AI Product Designer.">
@@ -59,65 +89,160 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     </div>
   </section>
 
-  <!-- ── CASOS DESTACADOS ── -->
-  <section class="casos-section">
+  <!-- ── TRABAJO PÚBLICO ── -->
+  <section class="publico-section">
     <div class="home-container">
 
-      <div class="casos-header">
-        <div>
-          <p class="section-eyebrow">Casos destacados</p>
-          <h2 class="casos-title">Trabajo reciente</h2>
+      <div class="publico-header fade-in">
+        <p class="section-eyebrow">Trabajo público</p>
+        <h2 class="casos-title">Más allá del banco</h2>
+        <p class="publico-intro">
+          Proyectos abiertos donde diseño, comunicación y propósito se cruzan. Impulse (AHF) y docencia en UdeSA.
+        </p>
+      </div>
+
+      <!-- PIEZA DESTACADA: Legislatura -->
+      <article class="destacado fade-in">
+        <div class="destacado-media">
+          <img
+            src="/images/impulse/legislatura-diploma.jpg"
+            alt="Diploma de reconocimiento de la Legislatura de la Ciudad Autónoma de Buenos Aires por participación en la exposición Celebramos el Orgullo"
+            loading="lazy"
+          />
         </div>
-        <a href="/portfolio" class="btn-text">Ver todos →</a>
+
+        <div class="destacado-texto">
+          <p class="destacado-eyebrow">Legislatura CABA · 2024 · Reconocimiento institucional</p>
+          <h3 class="destacado-titulo">Celebramos el Orgullo</h3>
+          <p class="destacado-bajada">
+            Serie fotográfica seleccionada para la exposición institucional de la Legislatura Porteña durante la Semana del Orgullo. Reconocida por la Dirección General de Derechos Humanos.
+          </p>
+
+          <ul class="destacado-meta">
+            <li><strong>4</strong><span>obras exhibidas</span></li>
+            <li><strong>Oficial</strong><span>Legislatura CABA</span></li>
+            <li><strong>DDHH</strong><span>Dirección General</span></li>
+          </ul>
+
+          <details class="destacado-reveal">
+            <summary>
+              <span class="reveal-label-open">Ver obras y video del reconocimiento</span>
+              <span class="reveal-label-close">Ocultar</span>
+              <span class="reveal-arrow" aria-hidden="true">↓</span>
+            </summary>
+
+            <div class="reveal-content">
+              <div class="reveal-video">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${legislaturaVideoId}`}
+                  title="Reconocimiento en la Legislatura CABA — Juan Segundo Barrio"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+
+              <p class="reveal-obras-label">Obras exhibidas · Serie VIH/VIR</p>
+              <div class="reveal-obras">
+                <img src="/images/impulse/obra-1-vihvir.jpg" alt="Obra 1 — VIH/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-2-vihvir.jpg" alt="Obra 2 — VIH/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-3-vihvir.jpg" alt="Obra 3 — VIH/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-4-vihvir.jpg" alt="Obra 4 — VIH/VIR" loading="lazy" />
+              </div>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <!-- GRILLA SECUNDARIA: Marcha · Chatbot · UdeSA -->
+      <div class="publico-grid">
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/impulse/pride-congreso-noche.jpg"
+              alt="Carroza de Impulse en la Marcha del Orgullo 2025 con el Congreso de fondo"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Marcha del Orgullo 2025 · Impulse</p>
+          <h3 class="caso-titulo">Hablemos de VIH</h3>
+          <p class="publico-bajada">
+            Dirección creativa de carroza y campaña de concientización en la Marcha del Orgullo CABA.
+          </p>
+        </article>
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/impulse/chatbot-presentacion.jpg"
+              alt="Juanse presentando el chatbot Indetectable = Intransmisible"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Producto digital · Impulse</p>
+          <h3 class="caso-titulo">Indetectable = Intransmisible</h3>
+          <p class="publico-bajada">
+            Chatbot de información sobre VIH y acceso a la red de prevención de Impulse.
+          </p>
+        </article>
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/udesa/udesa-ux-day.jpg"
+              alt="Juanse dando clase en la UdeSA"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Docencia · 2023–2024</p>
+          <h3 class="caso-titulo">Diseño UX en UdeSA</h3>
+          <p class="publico-bajada">
+            Profesor adjunto de Diseño UX para la Lic. en Negocios Digitales. 20–30 alumnos por camada.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASOS CORPORATIVOS · GALICIA (con candado) ── -->
+  <section class="corp-section">
+    <div class="home-container">
+
+      <div class="corp-header fade-in">
+        <p class="section-eyebrow">Casos corporativos</p>
+        <h2 class="casos-title">Proyectos bajo NDA</h2>
+        <p class="corp-intro">
+          Cuatro casos de Banco Galicia con acceso restringido por confidencialidad. Escribime si querés revisarlos y te comparto el acceso.
+        </p>
       </div>
 
-      <div class="casos-grid">
-
-        <a href="/portfolio/csat-semantico" class="caso-card">
-          <div class="caso-img">
-            <span class="caso-placeholder">Imagen próximamente</span>
-          </div>
-          <p class="caso-meta">Banco Galicia · 2026 · IA + Research</p>
-          <p class="caso-titulo">
-            De 10.000 opiniones a un backlog priorizado
-            <span class="caso-arrow" aria-hidden="true">→</span>
-          </p>
-        </a>
-
-        <a href="/portfolio/upgrade" class="caso-card">
-          <div class="caso-img">
-            <span class="caso-placeholder">Imagen próximamente</span>
-          </div>
-          <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
-          <p class="caso-titulo">
-            El upgrade más rápido del sistema financiero argentino
-            <span class="caso-arrow" aria-hidden="true">→</span>
-          </p>
-        </a>
-
-        <a href="/portfolio/rediseno-cuentas" class="caso-card">
-          <div class="caso-img">
-            <span class="caso-placeholder">Imagen próximamente</span>
-          </div>
-          <p class="caso-meta">Banco Galicia · 2025 · Rediseño</p>
-          <p class="caso-titulo">
-            Reescribiendo el corazón del banco
-            <span class="caso-arrow" aria-hidden="true">→</span>
-          </p>
-        </a>
-
-        <a href="/portfolio/pfm" class="caso-card">
-          <div class="caso-img">
-            <span class="caso-placeholder">Imagen próximamente</span>
-          </div>
-          <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
-          <p class="caso-titulo">
-            El primer PFM argentino hecho por un banco
-            <span class="caso-arrow" aria-hidden="true">→</span>
-          </p>
-        </a>
-
+      <div class="corp-grid">
+        {casosGalicia.map((c) => (
+          <a href={c.href} class="caso-card caso-card-locked fade-in" aria-label={`${c.titulo} — acceso restringido`}>
+            <div class="caso-img corp-img">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+              </svg>
+              <span class="caso-placeholder lock-label">Acceso restringido</span>
+            </div>
+            <p class="caso-meta">{c.meta}</p>
+            <p class="caso-titulo">
+              {c.titulo}
+              <span class="caso-arrow" aria-hidden="true">→</span>
+            </p>
+          </a>
+        ))}
       </div>
+
+      <div class="corp-cta fade-in">
+        <a href={mailtoAcceso} class="btn-primary">Solicitar acceso al portfolio completo</a>
+        <a href="/portfolio" class="btn-text">Ir al índice →</a>
+      </div>
+
     </div>
   </section>
 
@@ -163,7 +288,6 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     justify-content: center;
   }
 
-  /* Marquee fantasma */
   .hero-marquee {
     position: absolute;
     inset: 0;
@@ -193,7 +317,6 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     padding-right: 2rem;
   }
 
-  /* Contenido hero */
   .hero-content {
     position: relative;
     z-index: 10;
@@ -359,17 +482,8 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
   }
 
   /* ─────────────────────────────
-     CASOS DESTACADOS
+     TOKENS COMUNES (casos + público + corp)
   ───────────────────────────── */
-  .casos-section {
-    padding: clamp(4rem, 10vw, 8rem) 0;
-    border-top: 1px solid rgba(240, 240, 240, 0.06);
-  }
-
-  .cta-section {
-    padding: clamp(4rem, 10vw, 8rem) 0;
-  }
-
   .home-container {
     max-width: 80rem;
     margin: 0 auto;
@@ -386,13 +500,6 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     margin: 0 0 1rem;
   }
 
-  .casos-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-  }
-
   .casos-title {
     font-family: 'Syne', system-ui, sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -401,45 +508,6 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     line-height: 1;
     letter-spacing: -0.02em;
     margin: 0;
-  }
-
-  .casos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .caso-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
-
-  .caso-img {
-    aspect-ratio: 4 / 3;
-    background: #141414;
-    border: 1px solid #2a2a2a;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    overflow: hidden;
-    transition: filter 300ms ease, border-color 300ms ease;
-  }
-
-  .caso-card:hover .caso-img {
-    filter: brightness(1.1);
-    border-color: #3a3a3a;
-  }
-
-  .caso-placeholder {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #6b6b6b;
   }
 
   .caso-meta {
@@ -462,8 +530,32 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     transition: color 300ms ease;
   }
 
-  .caso-card:hover .caso-titulo {
-    color: #ffffff;
+  .caso-placeholder {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  .caso-img {
+    aspect-ratio: 4 / 3;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    transition: filter 300ms ease, border-color 300ms ease;
+  }
+
+  .caso-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .caso-arrow {
@@ -473,13 +565,353 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
     transition: opacity 300ms ease;
   }
 
+  /* ─────────────────────────────
+     TRABAJO PÚBLICO
+  ───────────────────────────── */
+  .publico-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
+  .publico-header {
+    max-width: 48rem;
+    margin-bottom: 4rem;
+  }
+
+  .publico-intro {
+    font-size: 1rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 1.25rem 0 0;
+    max-width: 42rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* Pieza destacada: Legislatura */
+  .destacado {
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+    gap: 4rem;
+    align-items: start;
+    padding: 3rem;
+    margin-bottom: 5rem;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+  }
+
+  .destacado-media {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  .destacado-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .destacado-eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  .destacado-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+
+  .destacado-bajada {
+    font-size: 1rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .destacado-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 2.5rem;
+    padding: 0;
+    margin: 0 0 2rem;
+    list-style: none;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+    padding-block: 1.25rem;
+  }
+
+  .destacado-meta li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .destacado-meta strong {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    letter-spacing: -0.01em;
+  }
+
+  .destacado-meta span {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  /* Reveal de obras + video */
+  .destacado-reveal {
+    margin-top: 0.5rem;
+  }
+
+  .destacado-reveal > summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.25rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #f0f0f0;
+    background-color: #0a0a0a;
+    border: 1px solid rgba(240, 240, 240, 0.15);
+    border-radius: 2px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .destacado-reveal > summary::-webkit-details-marker { display: none; }
+
+  .destacado-reveal > summary:hover {
+    border-color: rgba(240, 240, 240, 0.4);
+  }
+
+  .reveal-label-close { display: none; }
+  .destacado-reveal[open] .reveal-label-open { display: none; }
+  .destacado-reveal[open] .reveal-label-close { display: inline; }
+
+  .reveal-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .destacado-reveal[open] .reveal-arrow {
+    transform: rotate(180deg);
+  }
+
+  .reveal-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .reveal-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+  }
+
+  .reveal-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .reveal-obras-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0.5rem 0 0;
+  }
+
+  .reveal-obras {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .reveal-obras img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    background: #0a0a0a;
+  }
+
+  /* Grilla secundaria: Marcha · Chatbot · UdeSA */
+  .publico-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .publico-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .publico-img {
+    aspect-ratio: 4 / 3;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    transition: border-color 300ms ease;
+  }
+
+  .publico-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms ease;
+  }
+
+  .publico-card:hover .publico-img {
+    border-color: #3a3a3a;
+  }
+
+  .publico-card:hover .publico-img img {
+    transform: scale(1.02);
+  }
+
+  .publico-bajada {
+    font-size: 0.9375rem;
+    color: #a0a0a0;
+    line-height: 1.5;
+    margin: 0.75rem 0 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─────────────────────────────
+     CASOS CORPORATIVOS · GALICIA (candado)
+  ───────────────────────────── */
+  .corp-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
+  .corp-header {
+    max-width: 48rem;
+    margin-bottom: 4rem;
+  }
+
+  .corp-intro {
+    font-size: 1rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 1.25rem 0 0;
+    max-width: 42rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .corp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .caso-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .caso-card:hover .caso-titulo {
+    color: #ffffff;
+  }
+
   .caso-card:hover .caso-arrow {
     opacity: 1;
+  }
+
+  /* Variante con candado */
+  .caso-card-locked .corp-img {
+    flex-direction: column;
+    gap: 0.875rem;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(240,240,240,0.04), transparent 60%),
+      #141414;
+    position: relative;
+  }
+
+  .caso-card-locked .corp-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(2px);
+    pointer-events: none;
+  }
+
+  .lock-icon {
+    width: 32px;
+    height: 32px;
+    color: #6b6b6b;
+    transition: color 300ms ease, transform 300ms ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .lock-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .caso-card-locked:hover .corp-img {
+    border-color: #3a3a3a;
+  }
+
+  .caso-card-locked:hover .lock-icon {
+    color: #a0a0a0;
+    transform: translateY(-2px);
+  }
+
+  .corp-cta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
   /* ─────────────────────────────
      CTA CONTACTO
   ───────────────────────────── */
+  .cta-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
   .cta-title {
     font-family: 'Syne', system-ui, sans-serif;
     font-size: clamp(3rem, 7vw, 6rem);
@@ -530,6 +962,18 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
   /* ─────────────────────────────
      RESPONSIVE
   ───────────────────────────── */
+  @media (max-width: 1024px) {
+    .destacado {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 2rem;
+    }
+
+    .publico-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-content {
       padding-left: 1.5rem;
@@ -547,15 +991,38 @@ const marqueeText = 'Data · People · Tech · AI · Design · ';
       padding: 0 1.5rem;
     }
 
-    .casos-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
+    .destacado {
+      padding: 1.5rem;
+      gap: 2rem;
     }
 
-    .casos-grid {
+    .destacado-meta {
+      gap: 1.25rem 2rem;
+    }
+
+    .reveal-obras {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .publico-grid {
       grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .corp-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .corp-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .corp-cta .btn-primary {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

@@ -1,0 +1,172 @@
+---
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+
+const error = Astro.url.searchParams.get('error');
+const redirect = Astro.url.searchParams.get('redirect') || '/portfolio';
+---
+
+<Layout
+  title="Acceso — Juanse Barrio"
+  description="Acceso a los casos corporativos del portfolio."
+>
+
+  <section class="acceso-section">
+    <div class="acceso-container">
+
+      <p class="section-eyebrow">Casos corporativos</p>
+      <h1 class="acceso-title">Acceso restringido</h1>
+      <p class="acceso-body">
+        Los casos de Banco Galicia están bajo NDA. Ingresá la contraseña que te compartí.
+      </p>
+
+      <form method="POST" action="/api/login" class="acceso-form">
+        <input type="hidden" name="redirect" value={redirect} />
+
+        <label class="acceso-label">
+          <span>Contraseña</span>
+          <input
+            type="password"
+            name="password"
+            required
+            autocomplete="off"
+            autofocus
+            class="acceso-input"
+          />
+        </label>
+
+        {error && <p class="acceso-error">Contraseña incorrecta. Probá de nuevo.</p>}
+
+        <button type="submit" class="acceso-button">Entrar</button>
+      </form>
+
+      <a href="/" class="acceso-back">← Volver al inicio</a>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .acceso-section {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(3rem, 10vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .acceso-container {
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .section-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  .acceso-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+  }
+
+  .acceso-body {
+    font-size: 1rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .acceso-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .acceso-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .acceso-label > span {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .acceso-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 1rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: border-color 0.2s ease;
+  }
+
+  .acceso-input:focus {
+    outline: none;
+    border-color: rgba(240, 240, 240, 0.4);
+  }
+
+  .acceso-error {
+    color: #ef6666;
+    font-size: 0.875rem;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .acceso-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #f0f0f0;
+    background-color: #141414;
+    border: 1px solid rgba(240, 240, 240, 0.15);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin-top: 0.5rem;
+  }
+
+  .acceso-button:hover {
+    border-color: rgba(240, 240, 240, 0.4);
+  }
+
+  .acceso-back {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .acceso-back:hover {
+    color: #f0f0f0;
+  }
+</style>
