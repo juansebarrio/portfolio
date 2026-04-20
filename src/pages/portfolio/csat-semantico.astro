@@ -1,0 +1,638 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Convertir la voz del cliente en backlog — Juanse Barrio"
+  description="Caso de estudio: sistema mensual que transforma comentarios de CSAT en un backlog accionable para los squads de Banco Galicia. Base del squad de Visión Digital."
+>
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">CASO DE ESTUDIO · BANCO GALICIA · 2026</p>
+      <h1 class="hero-title">Convertir la voz del cliente en un backlog accionable</h1>
+      <p class="hero-bajada">
+        Diseño y puesta en producción de un sistema mensual que lee cientos de comentarios de CSAT, los clasifica con una taxonomía propia asistida por IA y los entrega como backlog priorizado a los squads del banco. El proyecto se convirtió en la base de un nuevo squad de Visión Digital.
+      </p>
+    </section>
+
+    <!-- ── RESUMEN 30 SEGUNDOS ── -->
+    <section class="resumen">
+      <div class="resumen-col">
+        <p class="mini-eyebrow">EL PROBLEMA</p>
+        <p class="resumen-frase">Cientos de comentarios de CSAT cada mes se perdían en planillas y reportes ad-hoc, sin forma sistemática de convertirlos en acción.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="mini-eyebrow">LA SOLUCIÓN</p>
+        <p class="resumen-frase">Una taxonomía de Producto × Casuística, un proceso mensual reproducible con asistencia de IA y un informe con backlog priorizado por squad.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="mini-eyebrow">EL IMPACTO</p>
+        <p class="resumen-frase">Metodología adoptada a nivel banco, evolutivos que detectan tendencias tempranas y base del nuevo squad de Visión Digital.</p>
+      </div>
+    </section>
+
+    <!-- ── EL PROBLEMA ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL PROBLEMA</p>
+      <h2 class="seccion-title">Miles de voces, cero síntesis</h2>
+
+      <div class="prosa">
+        <p>
+          Banco Galicia recibe cada mes cientos de comentarios abiertos en sus encuestas de CSAT: texto crudo donde los clientes cuentan qué les pasa, qué los frustra, qué les falta. Ese material tenía todo lo necesario para priorizar bien el roadmap de producto, pero vivía disperso, sin clasificación temática, sin vínculo explícito con el score de satisfacción y sin ninguna forma de convertirlo en acción.
+        </p>
+        <p>
+          El equipo de UX leía lo que podía, a mano, caso por caso. Producto y negocio tomaban decisiones con información parcial. Feedback recurrente sobre los mismos dolores se repetía durante meses sin ser capturado como patrón. No había nada sistemático: el feedback se perdía en planillas, reportes puntuales y memoria de equipo.
+        </p>
+        <p>
+          La pregunta que disparó el proyecto fue simple: <em>¿qué pasaría si pudiéramos leer los cientos de comentarios críticos de cada mes, clasificarlos con una taxonomía común y entregarlos a cada squad como backlog priorizado con evidencia?</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── METODOLOGÍA (diagrama pendiente) ── -->
+    <section class="seccion">
+      <p class="eyebrow">LA METODOLOGÍA</p>
+      <h2 class="seccion-title">De comentario crudo a backlog priorizado</h2>
+
+      <p class="intro-parrafo">
+        El sistema toma el feedback desde Qualtrix (plataforma de encuestas) y el CSAT in-app, lo clasifica con una taxonomía propia de Producto × Casuística, lo cruza con el score numérico de satisfacción y lo traduce en un informe mensual con backlog priorizado por squad. La IA asiste en los pasos de análisis y síntesis; las decisiones de clasificación y priorización siguen siendo humanas.
+      </p>
+
+      <div class="diagrama-placeholder">
+        <p class="placeholder-titulo">Diagrama del proceso — próximamente</p>
+        <p class="placeholder-texto">Qualtrix + CSAT in-app → Clasificación + Contactabilidad → Análisis asistido por IA → Informe mensual → Backlog por squad → Seguimiento</p>
+      </div>
+
+      <p class="caption-diagrama">
+        La combinación de dato cuantitativo (CSAT) y lectura cualitativa (comentarios) convierte el score en una radiografía de la experiencia real.
+      </p>
+
+      <div class="taxonomia">
+        <div class="taxonomia-col">
+          <p class="mini-eyebrow">13 PRODUCTOS</p>
+          <p class="taxonomia-items">App · Tarjetas · Préstamos · Pagos · Transferencias · Identidad/Login · Cuentas y Upgrade · Inversiones · Loyalty · PDS · Atención · Cheques · PFM</p>
+        </div>
+        <div class="taxonomia-col">
+          <p class="mini-eyebrow">5 CASUÍSTICAS</p>
+          <p class="taxonomia-items">Funcionalidad · Robustez · Oferta · Atención · Accesibilidad</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── UN MES REAL ── -->
+    <section class="seccion">
+      <p class="eyebrow">UN MES REAL</p>
+      <h2 class="seccion-title">Cómo un corte detectó un nuevo frente crítico</h2>
+
+      <p class="intro-parrafo">
+        En noviembre 2025 el evolutivo mes a mes detectó algo que en un corte aislado habría pasado inadvertido: <strong>Pagos</strong> (QR, DEBIN, débitos) pasó de <strong>0,7&nbsp;% a 10,5&nbsp;%</strong> de los comentarios críticos en un solo mes. El método hizo emerger la tendencia antes de que explotara.
+      </p>
+
+      <div class="metricas-grid">
+        <div class="metrica">
+          <p class="metrica-num">+9,86 pp</p>
+          <p class="metrica-label">Salto en el peso relativo de Pagos como casuística crítica entre octubre y noviembre 2025</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">71,7 %</p>
+          <p class="metrica-label">CSAT Top 2 Box diciembre 2025 (notas 4–5 sobre total)</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">−3,5 pp</p>
+          <p class="metrica-label">Caída del CSAT de noviembre a diciembre, detectada en el corte</p>
+        </div>
+      </div>
+
+      <p class="intro-parrafo">
+        El hallazgo se tradujo directo en backlog: <em>priorizar corrección de errores en QR y DEBIN, asegurar trazabilidad de operaciones, revisar ventanas nocturnas de la app</em>. El squad responsable recibió la evidencia antes de que los problemas de Pagos se convirtieran en la conversación dominante.
+      </p>
+    </section>
+
+    <!-- ── LAS DECISIONES ── -->
+    <section class="seccion">
+      <p class="eyebrow">LAS DECISIONES</p>
+      <h2 class="seccion-title">Cinco decisiones que definieron el sistema</h2>
+
+      <p class="intro-parrafo">
+        Lideré el proyecto de punta a punta: diseño de la taxonomía, definición del proceso, formato del informe, implementación de la asistencia con IA y coordinación con data y producto para la adopción. Estas son las decisiones que más marcaron el resultado.
+      </p>
+
+      <div class="decisiones">
+
+        <article class="decision">
+          <p class="decision-num">01</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Vincular feedback al CSAT desde el primer paso</h3>
+            <p>
+              La mayoría de las herramientas de análisis de texto tratan los comentarios como un corpus aislado. La decisión clave acá fue unir cada comentario con su nota numérica <em>antes</em> de cualquier clasificación. Eso permite no solo saber de qué hablan los clientes, sino qué temas arrastran más insatisfacción y merecen priorización real.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">02</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Una taxonomía Producto × Casuística común a todo el banco</h3>
+            <p>
+              Definí 13 productos y 5 casuísticas (Funcionalidad, Robustez, Oferta, Atención, Accesibilidad) aplicables a cualquier comentario. Esa grilla compartida es lo que permite que un squad de App y uno de Tarjetas hablen el mismo idioma al priorizar, y que los informes comparen peras con peras mes a mes.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">03</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">IA donde escala, humano donde decide</h3>
+            <p>
+              La asistencia de IA se concentra en análisis de volúmenes, generación de gráficos dinámicos y síntesis de patrones sobre los comentarios ya clasificados. La clasificación en sí y la priorización quedan en manos humanas, porque ahí el juicio experto todavía vale más que el modelo. No es casarse con la IA: es usarla donde rinde más.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">04</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Evolutivo mes a mes, no solo corte único</h3>
+            <p>
+              Los informes no son fotos aisladas: cada mes se compara contra el anterior con deltas en puntos porcentuales. Eso fue lo que permitió detectar el salto de Pagos en noviembre, o el retorno de Transferencias como frente crítico en diciembre, antes de que se convirtieran en crisis visibles.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">05</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Output pensado para decisión, no para análisis</h3>
+            <p>
+              El entregable final no es un dashboard: es un <strong>backlog accionable por frente</strong> (Robustez, Funcionalidad, Oferta, Accesibilidad), con ejemplos textuales trazados por HOST_ID y recomendaciones concretas. Cada squad lo usa directo para su roadmap, sin capa de interpretación intermedia.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── IMPACTO ── -->
+    <section class="seccion">
+      <p class="eyebrow">IMPACTO</p>
+      <h2 class="seccion-title">Lo que cambió</h2>
+
+      <ul class="bullets">
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Nuevo squad de Visión Digital:</strong> el proyecto fue la base para la creación de una célula dedicada a leer y priorizar la voz del cliente a nivel banco.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Metodología adoptada como estándar:</strong> la taxonomía Producto × Casuística se convirtió en referencia interna para cualquier análisis cualitativo de feedback.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Detección temprana de tendencias:</strong> el evolutivo mes a mes permitió capturar cambios de foco como el salto de Pagos (+9,86 pp) o el retorno de Transferencias como frente crítico, antes de que fueran evidentes.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Backlog priorizado reproducible:</strong> el equipo de producto pasó de discutir ejemplos sueltos a decidir sobre clusters cuantificados con impacto en CSAT y trazabilidad al comentario original.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Nuevo lenguaje común:</strong> squads distintos discuten prioridades con la misma grilla, lo que hace posible comparar el peso relativo del malestar entre productos y casuísticas.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── APRENDIZAJES ── -->
+    <section class="seccion">
+      <p class="eyebrow">APRENDIZAJES</p>
+      <h2 class="seccion-title">Lo que me llevo</h2>
+
+      <div class="prosa">
+        <p>
+          El rol del diseñador cambió en este proyecto. No era diseñar pantallas: era diseñar <em>cómo la organización lee a sus clientes</em>. El valor del diseño estuvo en definir qué pregunta respondía el sistema, cómo se presentaba el output para que fuera accionable, y qué decisiones estructurales tomar sobre cómo modelar el feedback.
+        </p>
+        <p>
+          La IA generativa no reemplaza la lectura cualitativa; la hace escalable. El equipo sigue leyendo comentarios, pero ahora lee los más representativos de cada cluster en vez de muestras aleatorias. El criterio humano se aplica donde importa: en la clasificación fina y en la priorización.
+        </p>
+        <p>
+          Y tal vez la lección más fuerte: los proyectos con IA que funcionan no son los que usan el mejor modelo, son los que tienen la pregunta de negocio mejor formulada. Vincular feedback con CSAT desde el primer paso y montar un evolutivo mes a mes fue lo que convirtió un análisis de texto lindo en una herramienta de priorización real.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── NAVEGACIÓN ── -->
+    <nav class="caso-nav">
+      <a href="/portfolio" class="nav-link">← Ver todos los casos</a>
+      <a href="/portfolio/upgrade" class="nav-link">Siguiente caso: Upgrade de paquetes →</a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  /* ─────────────────────────────
+     CONTAINER
+  ───────────────────────────── */
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ─────────────────────────────
+     TOKENS COMUNES
+  ───────────────────────────── */
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1.5rem;
+  }
+
+  .mini-eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  /* ─────────────────────────────
+     HERO
+  ───────────────────────────── */
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-bajada {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #a0a0a0;
+    max-width: 50rem;
+    margin: 2rem 0 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─────────────────────────────
+     RESUMEN 30 SEGUNDOS
+  ───────────────────────────── */
+  .resumen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 3rem;
+    background: #141414;
+    border-radius: 16px;
+    margin-top: 6rem;
+  }
+
+  .resumen-frase {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  /* ─────────────────────────────
+     SECCIÓN (común)
+  ───────────────────────────── */
+  .seccion {
+    margin-top: 8rem;
+  }
+
+  .seccion-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0 0 2.5rem;
+  }
+
+  .prosa p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    max-width: 50rem;
+    margin: 0 0 1.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .prosa p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prosa em {
+    color: #e0e0e0;
+    font-style: italic;
+  }
+
+  .intro-parrafo {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    max-width: 50rem;
+    margin: 0 0 2.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .intro-parrafo strong {
+    color: #f0f0f0;
+    font-weight: 500;
+  }
+
+  .intro-parrafo em {
+    color: #e0e0e0;
+    font-style: italic;
+  }
+
+  /* ─────────────────────────────
+     DIAGRAMA PLACEHOLDER
+  ───────────────────────────── */
+  .diagrama-placeholder {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 1px dashed #2a2a2a;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #141414;
+    margin: 0 0 1.5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .placeholder-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #a0a0a0;
+    margin: 0;
+  }
+
+  .placeholder-texto {
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 40rem;
+    line-height: 1.5;
+  }
+
+  .caption-diagrama {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #6b6b6b;
+    margin: 0 0 3rem;
+    max-width: 50rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-style: italic;
+  }
+
+  /* ─────────────────────────────
+     TAXONOMÍA
+  ───────────────────────────── */
+  .taxonomia {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: #141414;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+  }
+
+  .taxonomia-items {
+    font-size: 0.9375rem;
+    color: #c0c0c0;
+    margin: 0;
+    line-height: 1.7;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─────────────────────────────
+     MÉTRICAS GRID
+  ───────────────────────────── */
+  .metricas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 0 0 3rem;
+  }
+
+  .metrica {
+    padding: 2rem;
+    background: #141414;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+  }
+
+  .metrica-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+  }
+
+  .metrica-label {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #a0a0a0;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─────────────────────────────
+     DECISIONES
+  ───────────────────────────── */
+  .decisiones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .decision:last-child {
+    border-bottom: none;
+  }
+
+  .decision-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .decision-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+  }
+
+  .decision-body p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .decision-body em {
+    color: #e0e0e0;
+    font-style: italic;
+  }
+
+  .decision-body strong {
+    color: #f0f0f0;
+    font-weight: 500;
+  }
+
+  /* ─────────────────────────────
+     IMPACTO (bullets)
+  ───────────────────────────── */
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .bullets li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #c0c0c0;
+    max-width: 55rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .bullets strong {
+    color: #f0f0f0;
+    font-weight: 500;
+  }
+
+  .dash {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 500;
+    color: #6b6b6b;
+  }
+
+  /* ─────────────────────────────
+     NAVEGACIÓN
+  ───────────────────────────── */
+  .caso-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 10rem 0 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .nav-link:hover {
+    color: #f0f0f0;
+  }
+
+  /* ─────────────────────────────
+     RESPONSIVE
+  ───────────────────────────── */
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+
+    .resumen {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .seccion {
+      margin-top: 5rem;
+    }
+
+    .taxonomia {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .metricas-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .decision {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 2rem 0;
+    }
+
+    .decision-num {
+      font-size: 2rem;
+    }
+
+    .caso-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-top: 6rem;
+    }
+  }
+</style>
