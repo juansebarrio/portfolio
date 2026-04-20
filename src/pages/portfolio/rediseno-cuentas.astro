@@ -6,6 +6,13 @@ export const prerender = false;
 
 <Layout title="Reescribiendo el corazón del banco — Juanse Barrio" description="Caso de estudio: rediseño del Overview de Cuentas de Banco Galicia, la pantalla más usada de la app.">
 
+  <script is:inline>
+    if (sessionStorage.getItem('portfolio-auth') !== 'true') {
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('/portfolio');
+    }
+  </script>
+
   <div class="page-container">
 
     <!-- ── HERO ── -->

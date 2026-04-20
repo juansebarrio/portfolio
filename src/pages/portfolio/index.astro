@@ -1,11 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PasswordGate from '../../components/PasswordGate.astro';
 
 export const prerender = false;
 ---
 
 <Layout title="Portfolio — Juanse Barrio" description="Casos de estudio de Juan Segundo Barrio: diseño, IA y research en productos digitales de Banco Galicia.">
 
+  <PasswordGate autoShow={true} />
+
+  <div id="portfolio-content" style="display:none">
   <div class="page-container">
 
     <!-- ── HERO ── -->
@@ -101,6 +105,14 @@ export const prerender = false;
     </section>
 
   </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('portfolio-auth') === 'true') {
+      const content = document.getElementById('portfolio-content');
+      if (content) content.style.display = 'block';
+    }
+  </script>
 
 </Layout>
 

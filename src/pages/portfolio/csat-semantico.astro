@@ -9,6 +9,13 @@ import Layout from '../../layouts/Layout.astro';
   description="Caso de estudio: sistema mensual que transforma comentarios de CSAT en un backlog accionable para los squads de Banco Galicia. Base del squad de Visión Digital."
 >
 
+  <script is:inline>
+    if (sessionStorage.getItem('portfolio-auth') !== 'true') {
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('/portfolio');
+    }
+  </script>
+
   <div class="page-container">
 
     <!-- ── HERO ── -->

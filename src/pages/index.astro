@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PasswordGate from '../components/PasswordGate.astro';
 
 const marqueeText = 'Data · People · Tech · AI · Design · ';
 
@@ -225,19 +226,18 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
 
       <div class="corp-grid">
         {casosGalicia.map((c) => (
-          <a href={c.href} class="caso-card caso-card-locked fade-in" aria-label={`${c.titulo} — acceso restringido`}>
+          <a href={c.href} class="caso-card caso-card-locked fade-in" data-requires-auth aria-label={`${c.titulo} — acceso restringido`}>
             <div class="caso-img corp-img">
-              {c.preview ? (
-                <img src={c.preview} alt={c.previewAlt} class="caso-preview-img" loading="lazy" />
-              ) : (
-                <>
-                  <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                    <rect x="5" y="11" width="14" height="10" rx="1.5" />
-                    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                  </svg>
-                  <span class="caso-placeholder lock-label">Acceso restringido</span>
-                </>
+              {c.preview && (
+                <img src={c.preview} alt="" class="caso-preview-blurred" aria-hidden="true" loading="lazy" />
               )}
+              <div class="lock-overlay">
+                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+                <span class="lock-label">Acceso restringido</span>
+              </div>
             </div>
             <p class="caso-meta">{c.meta}</p>
             <p class="caso-titulo">
@@ -255,6 +255,19 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
 
     </div>
   </section>
+
+  <PasswordGate />
+
+  <script>
+    document.querySelectorAll('[data-requires-auth]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (sessionStorage.getItem('portfolio-auth') === 'true') return;
+        e.preventDefault();
+        const target = (link as HTMLAnchorElement).getAttribute('href');
+        window.__showPasswordGate?.(target);
+      });
+    });
+  </script>
 
   <!-- ── CTA CONTACTO ── -->
   <section class="cta-section">
@@ -869,34 +882,46 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
 
   /* Variante con candado */
   .caso-card-locked .corp-img {
-    flex-direction: column;
-    gap: 0.875rem;
-    background:
-      radial-gradient(circle at 50% 40%, rgba(240,240,240,0.04), transparent 60%),
-      #141414;
+    background: #1a1a1a;
     position: relative;
   }
 
-  .caso-card-locked .corp-img::before {
-    content: '';
+  .caso-preview-blurred {
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(2px);
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(16px) saturate(0.7);
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+
+  .lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    z-index: 1;
   }
 
   .lock-icon {
     width: 32px;
     height: 32px;
-    color: #6b6b6b;
+    color: #a0a0a0;
     transition: color 300ms ease, transform 300ms ease;
-    position: relative;
-    z-index: 1;
   }
 
   .lock-label {
-    position: relative;
-    z-index: 1;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a0a0a0;
   }
 
   .caso-card-locked:hover .corp-img {
@@ -904,7 +929,7 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
   }
 
   .caso-card-locked:hover .lock-icon {
-    color: #a0a0a0;
+    color: #f0f0f0;
     transform: translateY(-2px);
   }
 
