@@ -63,9 +63,14 @@ import Layout from '../../layouts/Layout.astro';
         El sistema toma el feedback desde Qualtrix (plataforma de encuestas) y el CSAT in-app, lo clasifica con una taxonomía propia de Producto × Casuística, lo cruza con el score numérico de satisfacción y lo traduce en un informe mensual con backlog priorizado por squad. La IA asiste en los pasos de análisis y síntesis; las decisiones de clasificación y priorización siguen siendo humanas.
       </p>
 
-      <div class="diagrama-placeholder">
-        <p class="placeholder-titulo">Diagrama del proceso — próximamente</p>
-        <p class="placeholder-texto">Qualtrix + CSAT in-app → Clasificación + Contactabilidad → Análisis asistido por IA → Informe mensual → Backlog por squad → Seguimiento</p>
+      <div class="diagrama">
+        <img
+          src="/images/portfolio/csat-semantico/diagrama-construccion-informe.png"
+          alt="Diagrama del flujo: Qualtrix y CSAT In-App alimentan la Clasificación de comentarios, que junto con Contactabilidad y el Contacto con usuarios (Cualitativo) se sintetizan en la Creación del informe, derivando en Propuestas de mejora, Seguimiento y Socialización de resultados."
+          loading="lazy"
+          width="2560"
+          height="918"
+        />
       </div>
 
       <p class="caption-diagrama">
@@ -371,39 +376,20 @@ import Layout from '../../layouts/Layout.astro';
   }
 
   /* ─────────────────────────────
-     DIAGRAMA PLACEHOLDER
+     DIAGRAMA
   ───────────────────────────── */
-  .diagrama-placeholder {
-    aspect-ratio: 16 / 9;
+  .diagrama {
     width: 100%;
-    border: 1px dashed #2a2a2a;
+    background: #000;
     border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: #141414;
+    overflow: hidden;
     margin: 0 0 1.5rem;
-    padding: 2rem;
-    text-align: center;
   }
 
-  .placeholder-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #a0a0a0;
-    margin: 0;
-  }
-
-  .placeholder-texto {
-    font-size: 0.8125rem;
-    color: #6b6b6b;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    max-width: 40rem;
-    line-height: 1.5;
+  .diagrama img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .caption-diagrama {
