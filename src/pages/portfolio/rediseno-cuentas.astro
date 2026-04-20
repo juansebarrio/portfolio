@@ -1,0 +1,729 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = false;
+---
+
+<Layout title="Reescribiendo el corazón del banco — Juanse Barrio" description="Caso de estudio: rediseño del Overview de Cuentas de Banco Galicia, la pantalla más usada de la app.">
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">BANCO GALICIA · 2025–2026 · REDISEÑO</p>
+      <h1 class="hero-title">Reescribiendo el corazón del banco</h1>
+      <p class="hero-sub">El Overview de Cuentas (OWDC) es la pantalla más usada de la app. El 90% de los clientes entra ahí todos los días. También era la más confusa.</p>
+      <div class="mockup-frame single">
+        <img src="/images/portfolio/rediseno-cuentas/hero-owdc.png" alt="Pantalla principal del Overview de Cuentas rediseñado" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ── RESUMEN EN 30 SEGUNDOS ── -->
+    <section class="resumen-section">
+      <h2 class="resumen-titulo">Resumen en 30 segundos</h2>
+      <div class="resumen-grid">
+        <div class="resumen-bloque">
+          <p class="resumen-label">PROBLEMA</p>
+          <p class="resumen-texto">El Overview de Cuentas era el punto de partida diario de millones de clientes, pero se había convertido en un laberinto: costoso para el banco, confuso para los clientes, limitado para crecer.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">QUÉ HICE</p>
+          <p class="resumen-texto">Lideré el rediseño integral de la sección, trabajando con negocio, data, tech y QA para pasar de una vidriera estática a una herramienta de gestión escalable y accionable.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">RESULTADO</p>
+          <p class="resumen-texto">Diseño en producción, con mejoras en identificación de cuentas, lectura de movimientos y accesos rápidos. 140 errores detectados en QA antes de salir, 9 de severidad alta evitados. Impacto directo sobre más de 52.000 contactabilidades trimestrales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EL PROBLEMA ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL PROBLEMA</p>
+      <h2 class="seccion-titulo">El problema</h2>
+      <p class="body-text">El Overview de Cuentas (OWDC) es la sección más crítica de la app bancaria minorista. Es la pantalla donde los clientes ingresan para ver sus cuentas activas y, desde ahí, disparar el resto de sus acciones: transferencias, gestión de alias, consulta de saldos, resúmenes. En la práctica, es el punto de partida de la relación diaria de millones de clientes con el banco.</p>
+      <p class="body-text">Pero la experiencia tenía limitaciones críticas. Los usuarios tenían dificultades para identificar correctamente sus cuentas y encontrar acciones básicas, lo que derivaba en errores, frustración y mayor dependencia de canales asistidos. A nivel de negocio, eso impactaba directamente en la rentabilidad — más contactabilidad, más costo de soporte, más operaciones que deberían resolverse solas.</p>
+      <p class="body-text callout">El Overview de Cuentas, en lugar de ser una vidriera clara y estratégica, se había convertido en un laberinto: costoso para el banco, confuso para los clientes, limitado para crecer.</p>
+      <p class="body-text">La competencia digital (Revolut, Mercado Pago, Ualá) ya ofrecía experiencias de cuentas mucho más claras y accionables. No rediseñar el OWDC no solo era un costo operativo — era una oportunidad perdida de sostener una imagen competitiva.</p>
+
+      <h3 class="sub-titulo mt-3">El doble desafío</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Mejorar la experiencia de los clientes en la gestión de sus cuentas.</li>
+        <li><span class="dash">—</span>Al mismo tiempo, garantizar mayor rentabilidad reduciendo costos de atención.</li>
+      </ul>
+    </section>
+
+    <!-- ── LA INVESTIGACIÓN ── -->
+    <section class="seccion">
+      <p class="eyebrow">LA INVESTIGACIÓN</p>
+      <h2 class="seccion-titulo">La investigación</h2>
+
+      <h3 class="sub-titulo">Proceso</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Investigación cualitativa con clientes.</li>
+        <li><span class="dash">—</span>Análisis de métricas de CSAT y contactabilidad.</li>
+        <li><span class="dash">—</span>Benchmarks de la industria: bancos locales, billeteras virtuales, fintechs globales.</li>
+      </ul>
+
+      <h3 class="sub-titulo mt-3">Hallazgos principales con clientes</h3>
+      <ol class="lista-numerada">
+        <li><span class="num">1.</span>Identificación confusa — muchos usuarios no sabían qué tipo de cuenta tenían, si había cambiado, o cuántas cuentas estaban activas en la app.</li>
+        <li><span class="num">2.</span>Separación por moneda — lejos de ayudar, generaba dudas. Varios clientes no veían reflejados sus saldos en dólares y lo interpretaban como pérdida de control sobre su dinero.</li>
+        <li><span class="num">3.</span>Movimientos poco claros — las descripciones de consumos y transferencias no eran legibles, erosionando la confianza en la información.</li>
+        <li><span class="num">4.</span>Autogestión limitada — funciones básicas como configurar alias, acceder a resúmenes o realizar operaciones rápidas resultaban difíciles de encontrar o directamente inexistentes.</li>
+      </ol>
+
+      <h3 class="sub-titulo mt-3">Análisis de métricas (CSAT y contactabilidad)</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>El 5% de los comentarios detractores en CSAT minorista estaban relacionados con cuentas. Un 3% adicional con paquetes.</li>
+        <li><span class="dash">—</span>Los principales dolores: movimientos duplicados, problemas para configurar alias, disparidad entre canales.</li>
+        <li><span class="dash">—</span>En paquetes, los clientes destacaron desconocimiento de upgrades, falta de oferta clara y percepción de costos excesivos.</li>
+      </ul>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/rediseno-cuentas/research-distribucion.png" alt="Torta de distribución de consultas por sección" loading="lazy" />
+      </div>
+      <p class="fig-caption">Distribución de consultas por sección — cuentas representaba un 5% del volumen total, en línea con otras funcionalidades críticas.</p>
+    </section>
+
+    <!-- ── LOS DATOS DE NEGOCIO ── -->
+    <section class="seccion">
+      <p class="eyebrow">LOS DATOS DE NEGOCIO</p>
+      <h2 class="seccion-titulo">Los datos de negocio</h2>
+      <p class="intro-text">Métricas que redefinieron el alcance del proyecto.</p>
+
+      <div class="metricas">
+        <div class="metrica">
+          <span class="metrica-num">90%</span>
+          <span class="metrica-label">de los clientes tenía al menos una caja de ahorro en pesos</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">64%</span>
+          <span class="metrica-label">de quienes tenían caja de ahorro también tenía cuenta corriente</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">10</span>
+          <span class="metrica-label">cuentas activas llegaban a tener algunos clientes, con una experiencia fragmentada</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">715.000</span>
+          <span class="metrica-label">cuentas nuevas abiertas en 2025 (487k en pesos, 185k en dólares)</span>
+        </div>
+      </div>
+
+      <p class="body-text">Esta combinación de alta base instalada más crecimiento sostenido evidenció un punto clave: no alcanzaba con resolver los dolores detectados en research. El OWDC tenía que convertirse en un driver de negocio y fidelización, capaz de escalar y soportar el crecimiento.</p>
+
+      <h3 class="sub-titulo mt-3">Cuatro objetivos estratégicos</h3>
+      <ol class="lista-numerada">
+        <li><span class="num">1.</span>Reducir la contactabilidad — menos llamadas y consultas en canales asistidos.</li>
+        <li><span class="num">2.</span>Incrementar la rentabilidad — habilitando upgrades y cross-sell desde la sección de cuentas.</li>
+        <li><span class="num">3.</span>Mejorar métricas de experiencia (CSAT/NPS) — devolviendo confianza y transparencia a la operatoria diaria.</li>
+        <li><span class="num">4.</span>Escalar sin rediseños forzados — ofreciendo un framework flexible para soportar nuevas funcionalidades.</li>
+      </ol>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/rediseno-cuentas/negocio-impacto.png" alt="Tabla de potencialidad de impacto en tipologías de contactabilidad" loading="lazy" />
+      </div>
+      <p class="fig-caption">Más de 52.000 casuísticas trimestrales afectadas directamente por las funcionalidades propuestas.</p>
+    </section>
+
+    <!-- ── LAS DECISIONES ── -->
+    <section class="seccion decisiones-section">
+      <p class="eyebrow">LAS DECISIONES</p>
+      <h2 class="seccion-titulo">Las decisiones</h2>
+      <p class="intro-text">Cinco decisiones que definieron el rediseño.</p>
+
+      <div class="decisiones">
+
+        <div class="decision">
+          <span class="decision-num">01</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Saldo total como punto de anclaje</h3>
+            <p class="decision-texto">Cambié el foco de la pantalla: en lugar de empezar por la lista de cuentas, la primera cosa que el usuario ve ahora es el saldo total consolidado (ARS + USD). Es la pregunta número uno que se hacen los clientes al abrir la sección. Darla primero, y dar la desagregación después, simplifica el modelo mental y reduce la fricción inicial.</p>
+            <div class="mockup-frame">
+              <img src="/images/portfolio/rediseno-cuentas/decision-01-antes.jpg" alt="Versión anterior de la pantalla de cuentas" loading="lazy" />
+              <img src="/images/portfolio/rediseno-cuentas/hero-owdc.png" alt="Versión nueva con saldo total" loading="lazy" />
+            </div>
+            <p class="fig-caption">Antes y después.</p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">02</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Jerarquía visual por saldo, no por tipo de cuenta</h3>
+            <p class="decision-texto">Las cuentas se ordenan ahora por monto, no por tipo (CA, CC, USD). Esto responde directo al hallazgo de research: los clientes no distinguían sus cuentas por tipo, pero sí por importancia. Tipo pasa a ser metadata, no jerarquía.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-02-jerarquia.png" alt="Lista de cuentas jerarquizada por saldo" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">03</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Accesos rápidos contextuales por cuenta</h3>
+            <p class="decision-texto">Cada cuenta tiene sus propias acciones directas (Transferir, Ingresar dinero, Mostrar alias y datos). Antes estaban escondidas detrás de menús o requerían flujos de varios pasos. Esto ataca el hallazgo de autogestión limitada y reduce contactabilidad.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-03-accesos.png" alt="Pantalla de detalle de cuenta con accesos rápidos contextuales" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">04</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Upgrade y cross-sell embebidos, no aparte</h3>
+            <p class="decision-texto">En lugar de tener una sección separada de Paquetes o Productos, las oportunidades de upgrade aparecen en contexto — cuando el cliente está viendo su cuenta. Un banner de apertura de Caja de Ahorro en dólares arriba del saldo, por ejemplo. Esto responde al objetivo de rentabilidad sin agregar fricción.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/hero-owdc.png" alt="Pantalla con banner de cross-sell embebido" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision last">
+          <span class="decision-num">05</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Últimos movimientos legibles y jerarquizados</h3>
+            <p class="decision-texto">Antes los movimientos eran una lista plana con descripciones crípticas. Ahora tienen jerarquía visual clara: tipo de operación, monto, estado (En proceso, Realizada) y fecha. Esto ataca directo el hallazgo de movimientos poco claros.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-05-movimientos.png" alt="Últimos movimientos con jerarquía visual clara" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── EL PROCESO ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL PROCESO</p>
+      <h2 class="seccion-titulo">El proceso</h2>
+      <p class="body-text">Un rediseño de esta magnitud no se hace en Figma. Hubo que alinear a varios equipos, validar decisiones con negocio y sostener calidad durante la implementación.</p>
+
+      <div class="process-band">
+        <figure>
+          <img src="/images/portfolio/rediseno-cuentas/proceso-taller.jpg" alt="Taller de alineación entre equipos" loading="lazy" />
+          <figcaption>Taller de alineación entre bancas para asegurar consistencia con otros productos.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/portfolio/rediseno-cuentas/proceso-exploracion.png" alt="Exploración visual de pantallas en Figma" loading="lazy" />
+          <figcaption>Más de 50 pantallas iteradas antes del diseño final.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── EQC ── -->
+    <section class="seccion">
+      <p class="eyebrow">EQC</p>
+      <h2 class="seccion-titulo">Experience & Quality Control</h2>
+      <p class="body-text">Uno de los mayores desafíos fue lograr equiparar el diseño final con el desarrollo, por cambios internos en el equipo y limitaciones de la librería. Para atacarlo, armamos con el equipo de QA lo que llamamos EQC: un tablero en Figma cruzado con un Excel donde detectábamos cada diferencia entre diseño y build.</p>
+      <p class="body-text">El resultado fue un framework replicable: no solo encontramos y arreglamos errores, también dejamos un proceso documentado para futuros rediseños del banco.</p>
+
+      <div class="metricas metricas-3">
+        <div class="metrica">
+          <span class="metrica-num">140</span>
+          <span class="metrica-label">errores detectados en QA</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">97</span>
+          <span class="metrica-label">solucionados antes del lanzamiento</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">9</span>
+          <span class="metrica-label">errores de severidad alta evitados</span>
+        </div>
+      </div>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/rediseno-cuentas/impacto-eqc.png" alt="Tablero de EQC con pantallas en Figma y planilla de errores" loading="lazy" />
+      </div>
+      <p class="fig-caption">Tablero de EQC: pantallas de diseño contrastadas contra builds productivos, con cada diferencia trackeada.</p>
+    </section>
+
+    <!-- ── EL IMPACTO ── -->
+    <section class="seccion">
+      <p class="eyebrow">EL IMPACTO</p>
+      <h2 class="seccion-titulo">El impacto</h2>
+      <p class="body-text">El diseño final salió a producción con todas las problemáticas detectadas resueltas o limitadas, adaptándonos a las limitaciones técnicas del momento.</p>
+
+      <h3 class="sub-titulo mt-3">Logros del diseño final</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Mejor identificación de cuentas.</li>
+        <li><span class="dash">—</span>Lectura rápida de movimientos recientes.</li>
+        <li><span class="dash">—</span>Mejor encontrabilidad de accesos rápidos.</li>
+        <li><span class="dash">—</span>Empties convertidos en posibilidades de venta con banners y calls to action.</li>
+        <li><span class="dash">—</span>Tiempos de carga mejorados y reducción de errores de experiencia.</li>
+      </ul>
+
+      <h3 class="sub-titulo mt-3">Lo que me llevé como diseñador</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>El research es condición necesaria pero no suficiente. El impacto vino de cruzar hallazgos de clientes con números de negocio. La decisión de jerarquizar por saldo y no por tipo, por ejemplo, no sale solo de research — sale de cruzarlo con la métrica de cuántos clientes tienen 10+ cuentas.</li>
+        <li><span class="dash">—</span>EQC como práctica compartida entre diseño y QA no es estándar, pero funciona. Lo propuse como ritual recurrente para futuros rediseños grandes del banco.</li>
+      </ul>
+    </section>
+
+    <!-- ── QUÉ PASÓ DESPUÉS ── -->
+    <section class="seccion">
+      <p class="eyebrow">QUÉ PASÓ DESPUÉS</p>
+      <h2 class="seccion-titulo">Qué pasó después</h2>
+      <p class="body-text">El rediseño está en producción y es la base sobre la que se apoyan las siguientes funcionalidades del sector de cuentas. El framework flexible que diseñamos permite que negocio incorpore nuevos productos o métricas sin tener que pedir un rediseño — que era el objetivo estratégico número cuatro.</p>
+    </section>
+
+    <!-- ── NAVEGACIÓN ── -->
+    <nav class="nav-casos">
+      <a href="/portfolio/pfm" class="nav-item">
+        <span class="nav-label">← Caso anterior</span>
+        <span class="nav-titulo">El primer PFM argentino hecho por un banco</span>
+      </a>
+      <a href="/portfolio/csat-semantico" class="nav-item nav-item-right">
+        <span class="nav-label">Caso siguiente →</span>
+        <span class="nav-titulo">De 10.000 opiniones a un backlog priorizado</span>
+      </a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ── MOCKUP FRAME ── */
+  .mockup-frame {
+    background: #f5f2ed;
+    border-radius: 16px;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .mockup-frame img {
+    max-height: 420px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    flex: 0 1 auto;
+  }
+
+  .mockup-frame.single img {
+    max-height: 480px;
+  }
+
+  .mockup-frame.wide img {
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .fig-caption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin: -1rem 0 2rem;
+  }
+
+  /* ── PROCESS BAND ── */
+  .process-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 44rem;
+    margin: 2rem auto 0;
+  }
+
+  .process-band figure {
+    margin: 0;
+  }
+
+  .process-band img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .process-band figcaption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin-top: 0.875rem;
+    line-height: 1.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-sub {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    color: #a0a0a0;
+    max-width: 50rem;
+    line-height: 1.5;
+    margin: 2rem 0 0;
+  }
+
+  /* ── RESUMEN ── */
+  .resumen-section {
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .resumen-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 2rem;
+  }
+
+  .resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .resumen-label {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.75rem;
+  }
+
+  .resumen-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  /* ── SECCIONES ── */
+  .seccion {
+    padding: 5rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .seccion .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .seccion-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 2.5rem;
+  }
+
+  .body-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #d0d0d0;
+    max-width: 44rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .body-text.callout {
+    border-left: 2px solid #ff6b3d;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .intro-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: -1.5rem 0 3rem;
+  }
+
+  /* ── SUBTÍTULOS ── */
+  .sub-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1.25rem;
+  }
+
+  .mt-3 {
+    margin-top: 3rem;
+  }
+
+  /* ── LISTAS ── */
+  .lista-dash {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-dash li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .dash {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+  }
+
+  .lista-numerada {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-numerada li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .num {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 500;
+  }
+
+  /* ── DECISIONES ── */
+  .decisiones-section {
+    padding-bottom: 6rem;
+  }
+
+  .decisiones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 2rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    align-items: start;
+  }
+
+  .decision.last {
+    border-bottom: none;
+  }
+
+  .decision-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ff6b3d;
+    line-height: 1;
+  }
+
+  .decision-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  .decision-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    max-width: 42rem;
+    margin: 0 0 1.5rem;
+  }
+
+  /* ── MÉTRICAS ── */
+  .metricas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 2.5rem;
+    background: #141414;
+    border-radius: 12px;
+  }
+
+  .metricas-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .metrica-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1;
+  }
+
+  .metrica-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── NAVEGACIÓN ── */
+  .nav-casos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    max-width: 40%;
+  }
+
+  .nav-item-right {
+    text-align: right;
+  }
+
+  .nav-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  .nav-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item:hover .nav-titulo {
+    color: #ffffff;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .mockup-frame {
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+    }
+
+    .mockup-frame img {
+      max-height: 360px;
+      max-width: 100%;
+    }
+
+    .process-band {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .resumen-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .decision {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .decision-num {
+      font-size: 2.5rem;
+    }
+
+    .metricas {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .metricas-3 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .nav-casos {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .nav-item {
+      max-width: 100%;
+    }
+
+    .nav-item-right {
+      text-align: left;
+    }
+  }
+</style>
