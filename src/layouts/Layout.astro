@@ -98,10 +98,9 @@ const currentPath = Astro.url.pathname;
       </div>
     </footer>
 
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
   </body>
 </html>
-
-<script>
-  import { inject } from '@vercel/analytics';
-  inject();
-</script>
