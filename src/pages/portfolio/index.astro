@@ -12,44 +12,22 @@ export const prerender = false;
   <div id="portfolio-content" style="display:none">
   <div class="page-container">
 
-    <!-- ── HERO ── -->
-    <section class="hero">
-      <div class="hero-grid">
-
-        <div class="hero-texto">
-          <p class="eyebrow">PORTFOLIO</p>
-          <h1 class="hero-title">Casos de estudio</h1>
-          <p class="hero-sub">Cuatro proyectos de Banco Galicia donde diseño, IA y research se cruzan. Algunos se enviaron a producción, otros son exploraciones internas con impacto medible.</p>
-        </div>
-
-        <div class="hero-video">
-          <video
-            src="/images/portfolio/upgrade/07-video-final.mov"
-            autoplay
-            muted
-            loop
-            playsinline
-          ></video>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── DIVIDER ── -->
-    <div class="section-divider">
-      <span class="divider-label">CASOS</span>
+    <!-- ── HEADER ── -->
+    <div class="portfolio-header">
+      <p class="eyebrow">PORTFOLIO</p>
+      <h1 class="page-title">Casos de estudio</h1>
     </div>
 
     <!-- ── GRILLA DE CASOS ── -->
     <section class="casos">
 
-      <!-- Caso 1: CSAT semántico -->
-      <a href="/portfolio/csat-semantico" class="caso-card">
+      <!-- Caso 1: CSAT semántico — FEATURED -->
+      <a href="/portfolio/csat-semantico" class="caso-card caso-featured">
         <div class="caso-media">
           <img
             src="/images/portfolio/csat-semantico/csat-tile.webp"
             alt="Juanse presentando los resultados del análisis CSAT a una audiencia de Galicia Design"
-            loading="lazy"
+            loading="eager"
             width="1600"
             height="1000"
           />
@@ -62,7 +40,7 @@ export const prerender = false;
         </div>
       </a>
 
-      <!-- Caso 2: Upgrade (con video) -->
+      <!-- Caso 2: Upgrade -->
       <a href="/portfolio/upgrade" class="caso-card">
         <div class="caso-media">
           <video
@@ -128,17 +106,9 @@ export const prerender = false;
     padding: 0 clamp(1.5rem, 5vw, 3rem);
   }
 
-  /* ── HERO ── */
-  .hero {
-    padding-top: 1.25rem;
-    padding-bottom: 0.75rem;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: 4rem;
-    align-items: center;
+  /* ── HEADER ── */
+  .portfolio-header {
+    padding: 2.5rem 0 1.5rem;
   }
 
   .eyebrow {
@@ -151,74 +121,60 @@ export const prerender = false;
     margin: 0;
   }
 
-  .hero-title {
+  .page-title {
     font-family: 'Syne', system-ui, sans-serif;
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    line-height: 0.95;
+    line-height: 1;
     letter-spacing: -0.02em;
     color: #f0f0f0;
-    margin: 1.5rem 0 0;
-  }
-
-  .hero-sub {
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 1.125rem;
-    color: #a0a0a0;
-    max-width: 32rem;
-    line-height: 1.5;
-    margin: 2rem 0 0;
-  }
-
-  .hero-video {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-video video {
-    height: 70vh;
-    width: auto;
-    max-width: 100%;
-    display: block;
-    border-radius: 24px;
-  }
-
-  /* ── DIVIDER ── */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    margin: 0.625rem 0 0;
-  }
-
-  .section-divider::before,
-  .section-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #2a2a2a;
-  }
-
-  .divider-label {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #4a4a4a;
-    white-space: nowrap;
+    margin: 0.75rem 0 0;
   }
 
   /* ── GRILLA DE CASOS ── */
   .casos {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin-bottom: 10rem;
   }
 
+  /* ── FEATURED CARD ── */
+  .caso-featured {
+    grid-column: 1 / -1;
+    display: grid !important;
+    grid-template-columns: 3fr 2fr;
+    align-items: stretch;
+  }
+
+  .caso-featured .caso-media {
+    aspect-ratio: unset;
+    min-height: 380px;
+    border-radius: 0;
+  }
+
+  .caso-featured .caso-info {
+    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .caso-featured .caso-titulo {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-top: 1rem;
+  }
+
+  .caso-featured .caso-desc {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .caso-featured .caso-cta {
+    margin-top: 2rem;
+    align-self: flex-start;
+  }
+
+  /* ── CARD BASE ── */
   .caso-card {
     display: block;
     text-decoration: none;
@@ -257,25 +213,8 @@ export const prerender = false;
     display: block;
   }
 
-  .caso-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .caso-placeholder span {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #6b6b6b;
-  }
-
   .caso-info {
-    padding: 2rem;
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
   }
@@ -292,7 +231,7 @@ export const prerender = false;
 
   .caso-titulo {
     font-family: 'Syne', system-ui, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: #f0f0f0;
     line-height: 1.2;
@@ -311,7 +250,7 @@ export const prerender = false;
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 0.875rem;
     color: #6b6b6b;
-    margin: 1.5rem 0 0;
+    margin: 1.25rem 0 0;
     align-self: flex-end;
     transition: color 0.2s ease;
   }
@@ -321,23 +260,30 @@ export const prerender = false;
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero-grid {
+  @media (max-width: 900px) {
+    .casos {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .caso-featured {
+      grid-column: 1 / -1;
       grid-template-columns: 1fr;
     }
 
-    .hero-grid .hero-video {
-      order: -1;
+    .caso-featured .caso-media {
+      aspect-ratio: 16 / 9;
+      min-height: unset;
     }
+  }
 
-    .hero-video video {
-      height: 60vh;
-    }
-
+  @media (max-width: 600px) {
     .casos {
       grid-template-columns: 1fr;
-      margin-top: 5rem;
       margin-bottom: 6rem;
+    }
+
+    .caso-featured {
+      grid-template-columns: 1fr;
     }
   }
 </style>
