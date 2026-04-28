@@ -1,0 +1,290 @@
+---
+export const prerender = false;
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Turning the voice of the customer into a backlog — Juanse Barrio"
+  description="Case study: a monthly system that transforms CSAT comments into an actionable backlog for Banco Galicia squads. Foundation of the Digital Vision squad."
+>
+
+  <script is:inline>
+    if (sessionStorage.getItem('portfolio-auth') !== 'true') {
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('/en/portfolio');
+    }
+  </script>
+
+  <div class="page-container">
+
+    <section class="hero">
+      <p class="eyebrow">CASE STUDY · BANCO GALICIA · 2026</p>
+      <h1 class="hero-title">Turning the voice of the customer into an actionable backlog</h1>
+      <p class="hero-bajada">
+        Design and deployment of a monthly system that reads hundreds of CSAT comments, classifies them with a proprietary AI-assisted taxonomy, and delivers them as a prioritized backlog to each bank squad. The project became the foundation of a new Digital Vision squad.
+      </p>
+    </section>
+
+    <section class="resumen">
+      <div class="resumen-col">
+        <p class="mini-eyebrow">THE PROBLEM</p>
+        <p class="resumen-frase">Hundreds of CSAT comments each month were lost in spreadsheets and ad-hoc reports, with no systematic way to turn them into action.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="mini-eyebrow">THE SOLUTION</p>
+        <p class="resumen-frase">A Product × Issue taxonomy, a reproducible monthly process with AI assistance, and a monthly report with a squad-prioritized backlog.</p>
+      </div>
+      <div class="resumen-col">
+        <p class="mini-eyebrow">THE IMPACT</p>
+        <p class="resumen-frase">Methodology adopted bank-wide, trend tracking that detects early signals, and the foundation of the new Digital Vision squad.</p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">THE PROBLEM</p>
+      <h2 class="seccion-title">Thousands of voices, zero synthesis</h2>
+      <div class="prosa">
+        <p>
+          Banco Galicia receives hundreds of open-text comments each month in its CSAT surveys: raw text where customers describe what's happening to them, what frustrates them, what they're missing. This material had everything needed to properly prioritize the product roadmap, but it lived scattered, without thematic classification, without an explicit link to the satisfaction score, and with no way to turn it into action.
+        </p>
+        <p>
+          The UX team read what they could, manually, case by case. Product and business made decisions with partial information. Recurring feedback about the same pain points repeated for months without being captured as a pattern. Nothing was systematic: feedback was lost in spreadsheets, one-off reports, and team memory.
+        </p>
+        <p>
+          The question that sparked the project was simple: <em>What would happen if we could read the hundreds of critical comments each month, classify them with a common taxonomy, and deliver them to each squad as a prioritized backlog with evidence?</em>
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">THE METHODOLOGY</p>
+      <h2 class="seccion-title">From raw comment to prioritized backlog</h2>
+
+      <p class="intro-parrafo">
+        The system takes feedback from Qualtrix (survey platform) and the in-app CSAT, classifies it with a proprietary Product × Issue taxonomy, cross-references it with the numerical satisfaction score, and translates it into a monthly report with a squad-prioritized backlog. AI assists in the analysis and synthesis steps; classification and prioritization decisions remain human.
+      </p>
+
+      <div class="diagrama">
+        <img
+          src="/images/portfolio/csat-semantico/diagrama-construccion-informe.png"
+          alt="Flow diagram: Qualtrix and In-App CSAT feed the Comment Classification step, which together with Contactability and Qualitative User Contact synthesizes into Report Creation, producing Improvement Proposals, Follow-up, and Results Socialization."
+          loading="lazy"
+          width="2560"
+          height="918"
+        />
+      </div>
+
+      <p class="caption-diagrama">
+        Combining quantitative data (CSAT score) and qualitative reading (comments) turns the score into an X-ray of the real experience.
+      </p>
+
+      <div class="taxonomia">
+        <div class="taxonomia-col">
+          <p class="mini-eyebrow">13 PRODUCTS</p>
+          <p class="taxonomia-items">App · Cards · Loans · Payments · Transfers · Identity/Login · Accounts & Upgrade · Investments · Loyalty · PDS · Customer Service · Checks · PFM</p>
+        </div>
+        <div class="taxonomia-col">
+          <p class="mini-eyebrow">5 ISSUE TYPES</p>
+          <p class="taxonomia-items">Functionality · Robustness · Offer · Service · Accessibility</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">A REAL MONTH</p>
+      <h2 class="seccion-title">How one trend report detected a new critical front</h2>
+
+      <p class="intro-parrafo">
+        In November 2025, the month-over-month trend detected something that in an isolated snapshot would have gone unnoticed: <strong>Payments</strong> (QR, DEBIN, debits) jumped from <strong>0.7% to 10.5%</strong> of critical comments in a single month. The method surfaced the trend before it exploded.
+      </p>
+
+      <div class="metricas-grid">
+        <div class="metrica">
+          <p class="metrica-num">+9.86 pp</p>
+          <p class="metrica-label">Jump in the relative weight of Payments as a critical issue between October and November 2025</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">71.7 %</p>
+          <p class="metrica-label">CSAT Top 2 Box December 2025 (scores 4–5 out of total)</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">−3.5 pp</p>
+          <p class="metrica-label">CSAT drop from November to December, detected in the trend report</p>
+        </div>
+      </div>
+
+      <p class="intro-parrafo">
+        The finding translated directly into backlog: <em>prioritize error fixes in QR and DEBIN, ensure operation traceability, review app overnight maintenance windows</em>. The responsible squad received the evidence before Payments issues became the dominant conversation.
+      </p>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">THE DECISIONS</p>
+      <h2 class="seccion-title">Five decisions that defined the system</h2>
+
+      <p class="intro-parrafo">
+        I led the project end to end: taxonomy design, process definition, report format, AI assistance implementation, and coordination with data and product for adoption. These are the decisions that most shaped the outcome.
+      </p>
+
+      <div class="decisiones">
+
+        <article class="decision">
+          <p class="decision-num">01</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Link feedback to the CSAT score from the first step</h3>
+            <p>
+              Most text analysis tools treat comments as an isolated corpus. The key decision here was joining each comment to its numerical score <em>before</em> any classification. This allows knowing not just what customers talk about, but which topics carry the most dissatisfaction and deserve real prioritization.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">02</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">A Product × Issue taxonomy common across the bank</h3>
+            <p>
+              I defined 13 products and 5 issue types (Functionality, Robustness, Offer, Service, Accessibility) applicable to any comment. That shared grid is what allows an App squad and a Cards squad to speak the same language when prioritizing, and lets the reports compare apples to apples month after month.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">03</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">AI where it scales, human where it decides</h3>
+            <p>
+              AI assistance is concentrated on volume analysis, dynamic chart generation, and pattern synthesis over already-classified comments. Classification itself and prioritization stay in human hands, because expert judgment still matters more than the model there. It's not about marrying AI: it's about using it where it performs best.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">04</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Monthly trend tracking, not just one-time snapshots</h3>
+            <p>
+              Reports aren't isolated snapshots: each month is compared against the previous one with percentage-point deltas. That's what allowed detecting the Payments jump in November, or the return of Transfers as a critical front in December, before they became visible crises.
+            </p>
+          </div>
+        </article>
+
+        <article class="decision">
+          <p class="decision-num">05</p>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Output designed for decision, not for analysis</h3>
+            <p>
+              The final deliverable isn't a dashboard: it's an <strong>actionable backlog by front</strong> (Robustness, Functionality, Offer, Accessibility), with textual examples traced by HOST_ID and concrete recommendations. Each squad uses it directly for their roadmap, without an intermediate interpretation layer.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">IMPACT</p>
+      <h2 class="seccion-title">What changed</h2>
+
+      <ul class="bullets">
+        <li>
+          <span class="dash">—</span>
+          <span><strong>New Digital Vision squad:</strong> the project served as the foundation for creating a dedicated cell to read and prioritize the voice of the customer bank-wide.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Methodology adopted as standard:</strong> the Product × Issue taxonomy became the internal reference for any qualitative feedback analysis.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Early trend detection:</strong> the month-over-month tracking captured focus shifts like the Payments jump (+9.86 pp) or the return of Transfers as a critical front, before they were obvious.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>Reproducible prioritized backlog:</strong> the product team went from discussing isolated examples to deciding on quantified clusters with CSAT impact and traceability to the original comment.</span>
+        </li>
+        <li>
+          <span class="dash">—</span>
+          <span><strong>New shared language:</strong> different squads discuss priorities using the same grid, making it possible to compare the relative weight of dissatisfaction across products and issue types.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="seccion">
+      <p class="eyebrow">LEARNINGS</p>
+      <h2 class="seccion-title">What I take away</h2>
+
+      <div class="prosa">
+        <p>
+          The designer's role changed in this project. It wasn't about designing screens: it was about designing <em>how the organization listens to its customers</em>. The value of design lay in defining what question the system answered, how to present the output to make it actionable, and what structural decisions to make about how to model feedback.
+        </p>
+        <p>
+          Generative AI doesn't replace qualitative reading; it makes it scalable. The team still reads comments, but now reads the most representative ones from each cluster instead of random samples. Human judgment is applied where it matters: in fine-grained classification and prioritization.
+        </p>
+        <p>
+          And perhaps the strongest lesson: AI projects that work aren't those that use the best model — they're the ones with the best-formulated business question. Linking feedback to CSAT from the first step and setting up a month-over-month trend was what turned a nice text analysis into a real prioritization tool.
+        </p>
+      </div>
+    </section>
+
+    <nav class="caso-nav">
+      <a href="/en/portfolio" class="nav-link">← View all cases</a>
+      <a href="/en/portfolio/upgrade" class="nav-link">Next case: Package upgrade →</a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container { max-width: 80rem; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
+  .eyebrow { font-family: 'Syne', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #6b6b6b; margin: 0 0 1.5rem; }
+  .mini-eyebrow { font-family: system-ui, -apple-system, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6b6b6b; margin: 0 0 1rem; }
+  .hero { padding-top: 8rem; padding-bottom: 6rem; }
+  .hero-title { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.02em; color: #f0f0f0; margin: 1.5rem 0 0; }
+  .hero-bajada { font-size: 1.25rem; line-height: 1.5; color: #a0a0a0; max-width: 50rem; margin: 2rem 0 0; font-family: system-ui, -apple-system, sans-serif; }
+  .resumen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; padding: 3rem; background: #141414; border-radius: 16px; margin-top: 6rem; }
+  .resumen-frase { font-family: 'Syne', system-ui, sans-serif; font-size: 1.125rem; font-weight: 500; line-height: 1.35; color: #f0f0f0; margin: 0; }
+  .seccion { margin-top: 8rem; }
+  .seccion-title { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 2.5rem; }
+  .prosa p { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 1.5rem; font-family: system-ui, -apple-system, sans-serif; }
+  .prosa p:last-child { margin-bottom: 0; }
+  .prosa em { color: #e0e0e0; font-style: italic; }
+  .intro-parrafo { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 2.5rem; font-family: system-ui, -apple-system, sans-serif; }
+  .intro-parrafo strong { color: #f0f0f0; font-weight: 500; }
+  .intro-parrafo em { color: #e0e0e0; font-style: italic; }
+  .diagrama { width: 100%; background: #000; border-radius: 16px; overflow: hidden; margin: 0 0 1.5rem; }
+  .diagrama img { width: 100%; height: auto; display: block; }
+  .caption-diagrama { font-size: 0.875rem; line-height: 1.5; color: #6b6b6b; margin: 0 0 3rem; max-width: 50rem; font-family: system-ui, -apple-system, sans-serif; font-style: italic; }
+  .taxonomia { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; padding: 2rem; background: #141414; border-radius: 12px; border: 1px solid #2a2a2a; }
+  .taxonomia-items { font-size: 0.9375rem; color: #c0c0c0; margin: 0; line-height: 1.7; font-family: system-ui, -apple-system, sans-serif; }
+  .metricas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 0 0 3rem; }
+  .metrica { padding: 2rem; background: #141414; border-radius: 12px; border: 1px solid #2a2a2a; }
+  .metrica-num { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 1rem; }
+  .metrica-label { font-size: 0.875rem; line-height: 1.5; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+  .decisiones { display: flex; flex-direction: column; }
+  .decision { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid #2a2a2a; }
+  .decision:last-child { border-bottom: none; }
+  .decision-num { font-family: 'Syne', system-ui, sans-serif; font-size: 3rem; font-weight: 700; line-height: 1; color: #6b6b6b; margin: 0; }
+  .decision-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.5rem; font-weight: 500; line-height: 1.2; color: #f0f0f0; margin: 0 0 1rem; }
+  .decision-body p { font-size: 1rem; line-height: 1.6; color: #c0c0c0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+  .decision-body em { color: #e0e0e0; font-style: italic; }
+  .decision-body strong { color: #f0f0f0; font-weight: 500; }
+  .bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+  .bullets li { display: grid; grid-template-columns: 1.5rem 1fr; gap: 0.75rem; font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 55rem; font-family: system-ui, -apple-system, sans-serif; }
+  .bullets strong { color: #f0f0f0; font-weight: 500; }
+  .dash { font-family: 'Syne', system-ui, sans-serif; font-weight: 500; color: #6b6b6b; }
+  .caso-nav { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin: 10rem 0 4rem; padding-top: 3rem; border-top: 1px solid #2a2a2a; }
+  .nav-link { font-size: 0.875rem; color: #6b6b6b; text-decoration: none; transition: color 0.2s ease; font-family: system-ui, -apple-system, sans-serif; }
+  .nav-link:hover { color: #f0f0f0; }
+
+  @media (max-width: 768px) {
+    .hero { padding-top: 5rem; padding-bottom: 4rem; }
+    .resumen { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; margin-top: 4rem; }
+    .seccion { margin-top: 5rem; }
+    .taxonomia { grid-template-columns: 1fr; gap: 1.5rem; }
+    .metricas-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .decision { grid-template-columns: 1fr; gap: 0.75rem; padding: 2rem 0; }
+    .decision-num { font-size: 2rem; }
+    .caso-nav { flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 6rem; }
+  }
+</style>

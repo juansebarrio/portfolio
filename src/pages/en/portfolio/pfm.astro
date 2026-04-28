@@ -1,0 +1,828 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+export const prerender = false;
+---
+
+<Layout title="Argentina's first bank-built PFM — Juanse Barrio" description="Case study: Banco Galicia's native Personal Finance Manager with automatic credit card categorization.">
+
+  <script is:inline>
+    if (sessionStorage.getItem('portfolio-auth') !== 'true') {
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('/en/portfolio');
+    }
+  </script>
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">BANCO GALICIA · 2024 · PRODUCT DESIGN</p>
+      <h1 class="hero-title">Argentina's first bank-built PFM</h1>
+      <p class="hero-sub">Native Personal Finance Manager, with automatic credit card categorization — something no other PFM had achieved in Argentina.</p>
+      <div class="mockup-frame">
+        <img src="/images/portfolio/pfm/screen-ingresos.png" alt="Income screen" loading="lazy" />
+        <img src="/images/portfolio/pfm/hero-gastos.png" alt="Expenses screen" loading="lazy" />
+        <img src="/images/portfolio/pfm/screen-inversiones.png" alt="Investments screen" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ── 30-SECOND SUMMARY ── -->
+    <section class="resumen-section">
+      <h2 class="resumen-titulo">30-second summary</h2>
+      <div class="resumen-grid">
+        <div class="resumen-bloque">
+          <p class="resumen-label">PROBLEM</p>
+          <p class="resumen-texto">Customers were already tracking their finances in Excel, notebooks, and WhatsApp. The bank had all the data but wasn't giving it back to them.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">WHAT I DID</p>
+          <p class="resumen-texto">I designed Argentina's first native bank PFM, automating transaction categorization including credit card purchases — the technical challenge no competitor had solved due to how settlements work in the country.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">RESULT</p>
+          <p class="resumen-texto">Launched to production with a CSAT of 3.5/5 across 183 responses in a Friends & Family launch. Validated demand and left a prioritized improvement backlog.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE PROBLEM ── -->
+    <section class="seccion">
+      <p class="eyebrow">THE PROBLEM</p>
+      <h2 class="seccion-titulo">The problem</h2>
+      <p class="body-text">Galicia had more than 3 million active app users and a clear goal: increase daily usage frequency and cross-sell with other tools. But the app remained mostly transactional — you'd open it, pay, and leave.</p>
+      <p class="body-text">Research revealed something compelling: customers were already doing the work of managing their finances, just outside the app. In Excel, notebooks, agendas, financial planners, or WhatsApp messages to themselves. Manual, fragmented, error-prone.</p>
+      <p class="body-text callout">The technical differentiator no one had closed: in Argentina, credit cards are the hardest purchase type to automatically track — due to how purchases, installments, and billing cycles work. Existing PFMs lived in digital wallets where that problem doesn't exist. No traditional bank had managed to automate this. That was the real opportunity.</p>
+    </section>
+
+    <!-- ── THE RESEARCH ── -->
+    <section class="seccion">
+      <p class="eyebrow">THE RESEARCH</p>
+      <h2 class="seccion-titulo">The research</h2>
+
+      <h3 class="sub-titulo">Process</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Qualitative interviews with users aged 18 to 65.</li>
+        <li><span class="dash">—</span>Observation of financial routines: how they manage income, savings, and spending.</li>
+        <li><span class="dash">—</span>Guerrilla testing at branches with low-fidelity prototypes to validate in real context.</li>
+      </ul>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/pfm/research-slides.png" alt="Grid of research slides with findings by profile" loading="lazy" />
+      </div>
+      <p class="fig-caption">Research Overview Ideal — background, analysis, and detected profiles.</p>
+
+      <h3 class="sub-titulo mt-3">Four key findings</h3>
+      <ol class="lista-numerada">
+        <li><span class="num">1.</span>Manual and fragmented management — Excel, notebooks, agendas, WhatsApp.</li>
+        <li><span class="num">2.</span>Continuous checking — they opened the app several times a day to monitor transactions, especially card activity.</li>
+        <li><span class="num">3.</span>Monthly pattern — beginning of the month for fixed payments, rest of the month for discretionary spending and savings.</li>
+        <li><span class="num">4.</span>Low financial literacy around investing — fixed-term deposits or dollar purchases as the dominant savings method.</li>
+      </ol>
+
+      <blockquote class="quote-block">
+        Research showed us something simple but compelling: people were already doing the work. We just needed to make it easier.
+      </blockquote>
+
+      <h3 class="sub-titulo mt-3">Four profiles of relationship with money</h3>
+      <div class="perfiles-grid">
+        <div class="perfil-card">
+          <h4 class="perfil-nombre">The Saver</h4>
+          <p class="perfil-desc">Every peso goes straight to the piggy bank. Spends only on essentials and prioritizes saving toward a goal: a trip, monthly dollars, a fixed-term deposit.</p>
+        </div>
+        <div class="perfil-card">
+          <h4 class="perfil-nombre">The Bon Vivant</h4>
+          <p class="perfil-desc">Spends on dining, outings, and pleasures. Uses money as a tool for enjoyment, not planning.</p>
+        </div>
+        <div class="perfil-card">
+          <h4 class="perfil-nombre">The Promo Hunter</h4>
+          <p class="perfil-desc">Organizes their spending around discounts, cashback, and benefits. Knows which day which supermarket works with which card.</p>
+        </div>
+        <div class="perfil-card">
+          <h4 class="perfil-nombre">The Family</h4>
+          <p class="perfil-desc">Plans vacations, anticipates large expenses, looks for benefits. Manages finances with a long horizon and multiple shared priorities.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-titulo" style="margin-top: 4rem; margin-bottom: 1.5rem;">In the process</h3>
+      <div class="process-band">
+        <figure>
+          <img src="/images/portfolio/pfm/workshop-cocreacion.jpg" alt="Co-creation workshop with bank teams" loading="lazy" />
+          <figcaption>Co-creation workshop with business, design, and tech teams.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/portfolio/pfm/guerrilla-sucursal.jpg" alt="Guerrilla testing at branch" loading="lazy" />
+          <figcaption>Guerrilla testing at a branch with low-fidelity prototypes.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── DESIGN DECISIONS ── -->
+    <section class="seccion decisiones-section">
+      <p class="eyebrow">THE DECISIONS</p>
+      <h2 class="seccion-titulo">The decisions</h2>
+      <p class="intro-text">Five decisions that defined the product.</p>
+
+      <div class="decisiones">
+
+        <div class="decision">
+          <span class="decision-num">01</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Automatic credit card categorization</h3>
+            <p class="decision-texto">The hardest technical decision and the one that defines the case. I worked with analysts and developers to build the logic that interprets credit card purchases and assigns them to categories without manual input from the user. This was what no one had solved — and what justified Galicia entering a space where fintechs were already playing.</p>
+            <div class="mockup-frame">
+              <img src="/images/portfolio/pfm/decision-cc-supermercados.png" alt="Automatic categorization at supermarkets" loading="lazy" />
+              <img src="/images/portfolio/pfm/decision-cc-detalle.png" alt="Detail of categorized credit card transaction" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">02</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Benchmarking outside the banking world</h3>
+            <p class="decision-texto">Since there was no bank PFM in Argentina to compare against, I took references from digital wallets and global fintechs. I adapted the data visualization language to the banking context (more conservative, with users of lower financial literacy) without losing the visual clarity of modern apps.</p>
+            <div class="mockup-frame wide">
+              <img src="/images/portfolio/pfm/decision-benchmark-wireframes.png" alt="Three wireframe iterations of the Investments screen" loading="lazy" />
+            </div>
+            <p class="fig-caption">Three wireframe iterations for the Investments screen.</p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">03</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Three views in one screen: Income, Expenses, Investments</h3>
+            <p class="decision-texto">Separated by tabs to avoid cognitive overload, but accessible in one gesture. With ARS/USD currency selector — essential in the Argentine context.</p>
+            <div class="mockup-frame">
+              <img src="/images/portfolio/pfm/screen-ingresos.png" alt="Income view" loading="lazy" />
+              <img src="/images/portfolio/pfm/hero-gastos.png" alt="Expenses view" loading="lazy" />
+              <img src="/images/portfolio/pfm/screen-inversiones.png" alt="Investments view" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">04</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Accessible iconography and color system from day one</h3>
+            <p class="decision-texto">15 categories with simple, encapsulated icons. Alternative palette when brand colors didn't meet contrast. This ended up becoming a small system now used by other bank products.</p>
+            <div class="mockup-frame wide extra-padding">
+              <img src="/images/portfolio/pfm/decision-design-system.png" alt="Category, icon, and color system with accessible alternative" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision last">
+          <span class="decision-num">05</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Monthly view by default, not weekly or daily</h3>
+            <p class="decision-texto">Research showed users think about their finances in monthly cycles (payday → fixed expenses → the rest). Forcing that view respected the real mental model.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/pfm/decision-mes-selector.png" alt="Month selector showing the annual calendar" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── THE IMPACT ── -->
+    <section class="seccion">
+      <p class="eyebrow">THE IMPACT</p>
+      <h2 class="seccion-titulo">The impact</h2>
+      <p class="body-text">Due to BCRA regulatory constraints, a mass launch wasn't possible from the start. We opted for a controlled Friends & Family launch to gather real feedback before a general rollout.</p>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/pfm/impacto-csat-chart.png" alt="CSAT chart showing 3.5 out of 5 across 183 responses" loading="lazy" />
+      </div>
+
+      <div class="metricas">
+        <div class="metrica">
+          <span class="metrica-num">3.5 / 5</span>
+          <span class="metrica-label">Avg. CSAT</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">183</span>
+          <span class="metrica-label">F&amp;F responses</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">15</span>
+          <span class="metrica-label">Automatic categories</span>
+        </div>
+        <div class="metrica">
+          <span class="metrica-num">1st</span>
+          <span class="metrica-label">Native bank PFM in Argentina</span>
+        </div>
+      </div>
+
+      <h3 class="sub-titulo mt-3">What users said</h3>
+      <div class="feedback-grid">
+        <div class="feedback-bloque">
+          <p class="feedback-label">VALUED</p>
+          <p class="feedback-texto">Category separation, control over credit cards, visual clarity.</p>
+        </div>
+        <div class="feedback-bloque">
+          <p class="feedback-label">PAIN POINTS</p>
+          <p class="feedback-texto">Performance on certain screens, duplicate expenses in specific cases, webview instead of native in some sections.</p>
+        </div>
+        <div class="feedback-bloque">
+          <p class="feedback-label">KEY SUGGESTIONS</p>
+          <p class="feedback-texto">Category customization, more flexible filters, downloadable reports.</p>
+        </div>
+      </div>
+
+      <div class="mockup-frame wide">
+        <img src="/images/portfolio/pfm/impacto-feedback-sintesis.png" alt="Feedback synthesis in post-its grouped by theme" loading="lazy" />
+      </div>
+      <p class="fig-caption">Synthesis of 183 responses grouped into impressions, features, performance, proposals, and technical issues.</p>
+
+      <h3 class="sub-titulo mt-3">What I took away as a designer</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Launching with F&F + Hotjar instead of waiting for a closed high-fidelity test gave me more real feedback in much less time. I adopted it as a practice for subsequent projects.</li>
+        <li><span class="dash">—</span>The CSAT seemed low at first glance, but qualitative analysis showed the pain points were technical, not conceptual. The product worked — the implementation needed adjustment. That learning sparked the next case — the AI-assisted semantic CSAT analysis.</li>
+      </ul>
+    </section>
+
+    <!-- ── WHAT HAPPENED NEXT ── -->
+    <section class="seccion">
+      <p class="eyebrow">WHAT HAPPENED NEXT</p>
+      <h2 class="seccion-titulo">What happened next</h2>
+      <div class="cierre-grid">
+        <p class="body-text">The project went on hold due to Galicia's acquisition of HSBC, which redirected the bank's product efforts toward customer migration. Now, with those customers already integrated, there are plans to reintroduce the PFM across other products and reinterpret the categories.</p>
+        <figure class="cierre-foto">
+          <img src="/images/portfolio/pfm/cierre-cookies.jpg" alt="Team cookies in front of a Galicia branch on launch day" loading="lazy" />
+          <figcaption>Celebrating the F&F launch with homemade cookies for the team.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── NAVIGATION ── -->
+    <nav class="nav-casos">
+      <a href="/en/portfolio/rediseno-cuentas" class="nav-item">
+        <span class="nav-label">← Previous case</span>
+        <span class="nav-titulo">Designing accounts from scratch</span>
+      </a>
+      <a href="/en/portfolio/csat-semantico" class="nav-item nav-item-right">
+        <span class="nav-label">Next case →</span>
+        <span class="nav-titulo">From 10,000 opinions to a prioritized backlog</span>
+      </a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ── MOCKUP FRAME ── */
+  .mockup-frame {
+    background: #f5f2ed;
+    border-radius: 16px;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .mockup-frame img {
+    max-height: 420px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    flex: 0 1 auto;
+  }
+
+  .mockup-frame.single img {
+    max-height: 480px;
+  }
+
+  .mockup-frame.wide img {
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .mockup-frame.extra-padding {
+    padding: 5rem 4rem;
+  }
+
+  .fig-caption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin: -1rem 0 2rem;
+  }
+
+  /* ── PROCESS BAND ── */
+  .process-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 44rem;
+    margin: 2rem auto 0;
+  }
+
+  .process-band figure {
+    margin: 0;
+  }
+
+  .process-band img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .process-band figcaption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin-top: 0.875rem;
+    line-height: 1.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-sub {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    color: #a0a0a0;
+    max-width: 50rem;
+    line-height: 1.5;
+    margin: 2rem 0 0;
+  }
+
+  /* ── SUMMARY ── */
+  .resumen-section {
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .resumen-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 2rem;
+  }
+
+  .resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .resumen-label {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.75rem;
+  }
+
+  .resumen-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  /* ── SECTIONS ── */
+  .seccion {
+    padding: 5rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .seccion .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .seccion-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 2.5rem;
+  }
+
+  .body-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #d0d0d0;
+    max-width: 44rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .body-text.callout {
+    border-left: 2px solid #ff6b3d;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .intro-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: -1.5rem 0 3rem;
+  }
+
+  /* ── SUBTITLES ── */
+  .sub-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1.25rem;
+  }
+
+  .mt-3 {
+    margin-top: 3rem;
+  }
+
+  /* ── LISTS ── */
+  .lista-dash {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-dash li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .dash {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+  }
+
+  .lista-numerada {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-numerada li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .num {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 500;
+  }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    background: #141414;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #f0f0f0;
+    line-height: 1.4;
+    max-width: 44rem;
+    quotes: none;
+  }
+
+  /* ── PROFILES ── */
+  .perfiles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .perfil-card {
+    background: #141414;
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .perfil-nombre {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 0.5rem;
+  }
+
+  .perfil-desc {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9375rem;
+    color: #a0a0a0;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── DECISIONS ── */
+  .decisiones-section {
+    padding-bottom: 6rem;
+  }
+
+  .decisiones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 2rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    align-items: start;
+  }
+
+  .decision.last {
+    border-bottom: none;
+  }
+
+  .decision-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ff6b3d;
+    line-height: 1;
+  }
+
+  .decision-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  .decision-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    max-width: 42rem;
+    margin: 0 0 1.5rem;
+  }
+
+  /* ── METRICS ── */
+  .metricas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 2.5rem;
+    background: #141414;
+    border-radius: 12px;
+  }
+
+  .metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .metrica-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1;
+  }
+
+  .metrica-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FEEDBACK ── */
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .feedback-label {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.75rem;
+  }
+
+  .feedback-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    margin: 0;
+  }
+
+  /* ── CLOSING ── */
+  .cierre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .cierre-grid .body-text {
+    max-width: 100%;
+  }
+
+  .cierre-foto {
+    margin: 0;
+  }
+
+  .cierre-foto img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .cierre-foto figcaption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  /* ── NAVIGATION ── */
+  .nav-casos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    max-width: 40%;
+  }
+
+  .nav-item-right {
+    text-align: right;
+  }
+
+  .nav-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  .nav-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item:hover .nav-titulo {
+    color: #ffffff;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .mockup-frame {
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+    }
+
+    .mockup-frame img {
+      max-height: 360px;
+      max-width: 100%;
+    }
+
+    .mockup-frame.extra-padding {
+      padding: 2rem 1.5rem;
+    }
+
+    .process-band {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .resumen-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .perfiles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .decision {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .decision-num {
+      font-size: 2.5rem;
+    }
+
+    .metricas {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .feedback-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cierre-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nav-casos {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .nav-item {
+      max-width: 100%;
+    }
+
+    .nav-item-right {
+      text-align: left;
+    }
+  }
+</style>

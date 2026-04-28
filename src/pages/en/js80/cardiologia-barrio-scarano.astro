@@ -1,0 +1,1400 @@
+---
+import LayoutJS80 from '../../../layouts/LayoutJS80.astro';
+
+export const prerender = false;
+---
+
+<LayoutJS80
+  title="Barrio · Scarano Cardiology — JS80"
+  description="Brand, website and AI voice agent for a cardiology practice in Bahía Blanca. JS80 Studio Case 0."
+>
+
+  <!-- ── CASE HERO ── -->
+  <section class="case-hero section">
+    <div class="container">
+      <nav class="case-back">
+        <a href="/en/js80" class="back-link">← JS80</a>
+      </nav>
+      <div class="case-hero-grid">
+        <div class="case-hero-content">
+          <span class="label case-label">Case 0 · Medical Pack · April 2026</span>
+          <h1 class="case-title">Barrio · Scarano<br />Cardiology</h1>
+          <p class="case-pitch">
+            The first practice that never closes.
+          </p>
+          <div class="case-tags">
+            {['brand', 'web', 'conversational AI', 'health', 'voice agent', 'Eleven Labs'].map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <div class="case-hero-meta">
+            <div class="meta-item">
+              <span class="label">Client</span>
+              <span>Dr. Juan Pablo Barrio + Dr. Cynthia Scarano</span>
+            </div>
+            <div class="meta-item">
+              <span class="label">Location</span>
+              <span>Bahía Blanca, Buenos Aires</span>
+            </div>
+            <div class="meta-item">
+              <span class="label">Type</span>
+              <span>Pro-bono · End-to-end Medical Pack</span>
+            </div>
+            <div class="meta-item">
+              <span class="label">Status</span>
+              <span>Site in production · agent in validation</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-hero-mark" aria-hidden="true">
+          <span class="mark-b">B</span>
+          <span class="mark-dot">·</span>
+          <span class="mark-s">S</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAIN IMAGE ── -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="main-image-placeholder">
+        <span class="placeholder-inner">
+          <span class="label">Live site</span>
+          <a
+            href="https://barrioscarano-qsqj.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            View site ↗
+          </a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXECUTIVE SUMMARY ── -->
+  <section class="section">
+    <div class="container">
+      <div class="resumen-grid">
+        <div class="resumen-label">
+          <span class="label">Summary</span>
+        </div>
+        <div class="resumen-body">
+          <p class="resumen-text">
+            The practice operated without any digital presence and with a human receptionist
+            covering only daytime hours: after-hours calls were lost and appointment management
+            ended up being handled informally through the Dr.'s personal WhatsApp.
+          </p>
+          <p class="resumen-text">
+            We built the complete brand system, the live website, and Sofía — an AI voice
+            assistant that handles calls 24/7, manages appointments, and routes cardiac
+            emergencies to emergency services. This is JS80's first end-to-end case and the
+            operational validation of the SecretarIA Voice Pack.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE PROBLEM ── -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">The problem</span>
+        <h2 class="section-title">Two skilled cardiologists, zero digital infrastructure.</h2>
+        <p class="section-lead">Typical situation in Argentine neighborhood medicine: full appointment book, no system around it.</p>
+      </div>
+      <div class="problems-grid">
+        <div class="problem-item">
+          <span class="problem-num">01</span>
+          <h3 class="problem-title">No digital presence</h3>
+          <p class="problem-body">Google searches found nothing about the practice. Everything outside word-of-mouth was lost.</p>
+        </div>
+        <div class="problem-item">
+          <span class="problem-num">02</span>
+          <h3 class="problem-title">Missed calls after hours</h3>
+          <p class="problem-body">Human receptionist available only during office hours. In cardiology, a large volume of calls comes from chronic follow-up patients who have doubts at night or on Saturdays.</p>
+        </div>
+        <div class="problem-item">
+          <span class="problem-num">03</span>
+          <h3 class="problem-title">Informal management via personal WhatsApp</h3>
+          <p class="problem-body">Cancellations, rescheduling, and queries ended up in Dr. Barrio's personal WhatsApp. It invades personal life and doesn't scale.</p>
+        </div>
+        <div class="problem-item">
+          <span class="problem-num">04</span>
+          <h3 class="problem-title">Cardiac risk without a protocol</h3>
+          <p class="problem-body">Patients calling to describe symptoms with no clear referral channel. No protocol, no record.</p>
+        </div>
+        <div class="problem-item">
+          <span class="problem-num">05</span>
+          <h3 class="problem-title">Undefined identity</h3>
+          <p class="problem-body">No name as such, no visual system, no way to present both professionals as equals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE SOLUTION ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">The solution</span>
+        <h2 class="section-title">Three integrated layers.</h2>
+      </div>
+      <div class="solucion-layers">
+
+        <!-- Brand -->
+        <div class="layer">
+          <div class="layer-header">
+            <span class="layer-num">01</span>
+            <div>
+              <span class="label">Brand</span>
+              <h3 class="layer-title">Brand manual v3.0 — complete system.</h3>
+            </div>
+          </div>
+          <p class="layer-body">
+            Built on four pillars (Time · Listening · Craft · Bond) and four clinical commitments
+            signed by the practice: only necessary tests, medication only if required,
+            check-ups are about peace of mind, we're here after the appointment too.
+          </p>
+          <div class="layer-specs">
+            <div class="spec-block">
+              <span class="label">Palette</span>
+              <div class="swatches">
+                <div class="swatch" style="background:#5A2A2E" title="Burgundy #5A2A2E"></div>
+                <div class="swatch" style="background:#F5F0E6; border: 0.5px solid #e8e0d0" title="Cream #F5F0E6"></div>
+                <div class="swatch" style="background:#2A2520" title="Charcoal #2A2520"></div>
+                <div class="swatch" style="background:#B07550" title="Copper #B07550"></div>
+              </div>
+              <div class="swatch-codes">
+                <span>#5A2A2E</span>
+                <span>#F5F0E6</span>
+                <span>#2A2520</span>
+                <span>#B07550</span>
+              </div>
+            </div>
+            <div class="spec-block">
+              <span class="label">Typography</span>
+              <div class="font-samples">
+                <span class="font-dm">DM Serif Display</span>
+                <span class="font-ibm">IBM Plex Sans</span>
+                <span class="font-mono">IBM Plex Mono</span>
+              </div>
+            </div>
+            <div class="spec-block">
+              <span class="label">Isotype</span>
+              <p class="spec-text">B · S — two initials separated by a copper dot, with no scale hierarchy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-divider"></div>
+
+        <!-- Web -->
+        <div class="layer">
+          <div class="layer-header">
+            <span class="layer-num">02</span>
+            <div>
+              <span class="label">Web</span>
+              <h3 class="layer-title">Single-file landing page in production.</h3>
+            </div>
+          </div>
+          <p class="layer-body">
+            HTML5 + CSS3 + vanilla JS. No frameworks, no build step, no tracking.
+            Google Fonts as the only external dependency. Automatic deploy from private GitHub via Vercel.
+            In production on April 27, 2026.
+          </p>
+          <div class="layer-specs">
+            <div class="spec-block">
+              <span class="label">Sections</span>
+              <p class="spec-text">Hero · What we do · The four commitments · Dual portraits · About each professional · Practical info · WhatsApp CTA · Footer</p>
+            </div>
+            <div class="spec-block">
+              <span class="label">Stack</span>
+              <p class="spec-text">HTML5 · CSS3 with variables · vanilla JS · Intersection Observer · Google Maps embed without API key</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="layer-divider"></div>
+
+        <!-- Sofía -->
+        <div class="layer">
+          <div class="layer-header">
+            <span class="layer-num">03</span>
+            <div>
+              <span class="label">SecretarIA</span>
+              <h3 class="layer-title">Sofía — 24/7 voice agent.</h3>
+            </div>
+          </div>
+          <p class="layer-body">
+            Conversational agent on Eleven Labs Conversational AI. Defined identity: warm and measured
+            tone, speaks in institutional plural with an explicit prohibited vocabulary list.
+            Never diagnoses, never comments on symptoms, never recommends medication.
+          </p>
+          <div class="sofia-arch">
+            <span class="label">Architecture — 7 subagents</span>
+            <div class="arch-tree">
+              <div class="arch-root">Greeting → Router by intent</div>
+              <div class="arch-branches">
+                <div class="arch-branch"><span class="arch-id">A</span> New appointment</div>
+                <div class="arch-branch"><span class="arch-id">B</span> Confirm appointment</div>
+                <div class="arch-branch"><span class="arch-id">C</span> Cancel / Reschedule</div>
+                <div class="arch-branch"><span class="arch-id">D</span> Queries (hours, location, insurance)</div>
+                <div class="arch-branch"><span class="arch-id">E</span> Message for human</div>
+                <div class="arch-branch arch-branch-urgent"><span class="arch-id arch-id-urgent">F</span> EMERGENCY → referral to 107/911</div>
+                <div class="arch-branch"><span class="arch-id">G</span> Fallback (3 failed attempts)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE PROCESS ── -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">The process</span>
+        <h2 class="section-title">Six stages, not strictly linear.</h2>
+      </div>
+      <div class="proceso-list">
+        <div class="proceso-item">
+          <span class="proceso-num">01</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Diagnosis and naming</h3>
+            <p class="proceso-text">Started as a personal brand manual for Dr. Barrio (v1.0 → v2.0). Cynthia joined as the second cardiologist, which forced a complete rethink from scratch. Decision: alphabetical order + copper dot as connector, no hierarchy.</p>
+          </div>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">02</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Brand manual v3.0</h3>
+            <p class="proceso-text">Complete visual and verbal system. Self-contained navigable document, not a static PDF. Pillars, clinical commitments, palette, typography, isotype, dual portrait system.</p>
+          </div>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">03</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Site copy</h3>
+            <p class="proceso-text">Building the plural voice without falling into corporate language. YES and NO vocabularies defined as a closed list. "We see patients", not "our team". The practice is two cardiologists, not a clinic.</p>
+          </div>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">04</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Site build and deploy</h3>
+            <p class="proceso-text">Single-file HTML/CSS/JS, private GitHub, Vercel. In production on April 27, 2026. No frameworks, no build step: what's deployed is exactly what's written.</p>
+          </div>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">05</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Voice agent setup</h3>
+            <p class="proceso-text">The most delicate stage. Architecture was redesigned after discovering that Eleven Labs uses a single system prompt at agent level, not per subagent. Hard rules consolidated into system prompt; Conversation goals describe only what each subagent does.</p>
+          </div>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">06</span>
+          <div class="proceso-body">
+            <h3 class="proceso-title">Testing and refinement</h3>
+            <p class="proceso-text">Critical cases in priority order: emergency, cancel → emergency, new appointment, fallback. The cancel → emergency edge was the most demanding: if someone calls to cancel because they "don't feel well" and describes a cardiac symptom, Sofía pivots without hesitation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KEY DECISIONS ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">Key decisions</span>
+        <h2 class="section-title">The five that defined the project.</h2>
+      </div>
+      <div class="decisions-grid">
+
+        <div class="decision-card">
+          <span class="decision-num">01</span>
+          <h3 class="decision-title">Alphabetical order + copper dot as connector</h3>
+          <p class="decision-body">No visible hierarchy between professionals. The medical industry resolves duos by putting the most senior's surname first; here it was different: B before S because B comes first in the alphabet. Propagates to the site, the agent, and the signature system.</p>
+        </div>
+
+        <div class="decision-card">
+          <span class="decision-num">02</span>
+          <h3 class="decision-title">Functional plural voice, anti-institutional</h3>
+          <p class="decision-body">The agent and site speak in plural but with an explicit prohibited vocabulary — a closed list in the system prompt. That boundary defines the brand: two cardiologists sharing a space, not a corporate clinic.</p>
+        </div>
+
+        <div class="decision-card">
+          <span class="decision-num">03</span>
+          <h3 class="decision-title">Critical edge: Cancel → Emergency</h3>
+          <p class="decision-body">If a patient calls to cancel because they "don't feel well" and describes a cardiac symptom, the agent pivots from cancellation to emergency. Don't assume canceling is the final goal. Configuring this edge can literally save a life.</p>
+        </div>
+
+        <div class="decision-card">
+          <span class="decision-num">04</span>
+          <h3 class="decision-title">Structural honesty about emergencies</h3>
+          <p class="decision-body">The agent never diagnoses, never comments, never says "it might be nothing". At any cardiac trigger, it refers to emergency services (107) or 911 without ambiguity. Sacrifices apparent utility in exchange for eliminating reputational and clinical risk.</p>
+        </div>
+
+        <div class="decision-card">
+          <span class="decision-num">05</span>
+          <h3 class="decision-title">Single system prompt + short Conversation goals</h3>
+          <p class="decision-body">Hard rules consolidated into the agent-level system prompt; Conversation goals describe only what each subagent does. Less repetition, more consistency, more maintainable. Becomes the template for all future Voice Pack projects.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTRAITS ── -->
+  <section class="section section-white">
+    <div class="container">
+      <span class="label" style="display:block; margin-bottom: 32px;">The cardiologists</span>
+      <div class="portraits-grid">
+        <div class="portrait-item">
+          <div class="portrait-img">
+            <img
+              src="/images/js80/cardiologia-barrio-scarano/dr-barrio-portrait.jpg"
+              alt="Dr. Juan Pablo Barrio — Cardiologist"
+              loading="lazy"
+            />
+          </div>
+          <div class="portrait-info">
+            <p class="portrait-name">Dr. Juan Pablo Barrio</p>
+            <p class="portrait-meta">MP 112321 · Mon, Wed &amp; Fri</p>
+          </div>
+        </div>
+        <div class="portrait-item">
+          <div class="portrait-img">
+            <img
+              src="/images/js80/cardiologia-barrio-scarano/dra-scarano-portrait.jpg"
+              alt="Dr. Cynthia Scarano — Cardiologist"
+              loading="lazy"
+            />
+          </div>
+          <div class="portrait-info">
+            <p class="portrait-name">Dr. Cynthia Scarano</p>
+            <p class="portrait-meta">MP 2505 · Tue &amp; Thu</p>
+          </div>
+        </div>
+      </div>
+      <p class="portraits-note">
+        Dual portrait system: same framing, same size, same visual weight. No hierarchy.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── RESULTS ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">Results</span>
+        <h2 class="section-title">What's changed so far.</h2>
+        <p class="results-disclaimer">
+          The voice agent is not yet in real production — KPIs are defined but there's no data yet.
+          What follows is what exists today, without projections.
+        </p>
+      </div>
+      <div class="results-grid">
+        <div class="results-col">
+          <span class="label results-col-label">For the practice</span>
+          <ul class="results-list">
+            <li>First digital presence — site in production since April 27, 2026</li>
+            <li>Complete, systematic brand identity — manual v3.0</li>
+            <li>Voice agent configured and ready for production when a phone number is assigned</li>
+            <li>Expected reduction of load on Dr.'s personal WhatsApp</li>
+          </ul>
+        </div>
+        <div class="results-col">
+          <span class="label results-col-label">For JS80</span>
+          <ul class="results-list">
+            <li>Operational validation of the Voice Pack ($15k–22k). Before it was "coming soon"; now it's "configuration tested with a real client".</li>
+            <li>End-to-end Medical Pack operational template</li>
+            <li>Technical learnings on Eleven Labs architecture and safety-critical conversational AI</li>
+            <li>System prompt, conversation goals, and edges documented and reusable</li>
+          </ul>
+        </div>
+      </div>
+      <div class="results-pending">
+        <span class="label">Pending for real production</span>
+        <div class="pending-grid">
+          <span class="pending-item">Phone number (Twilio or equivalent)</span>
+          <span class="pending-item">Final LLM decision (GPT-4o or Claude Sonnet)</span>
+          <span class="pending-item">Final voice decision (Veda Sky or cloned voice)</span>
+          <span class="pending-item">Closed list of accepted insurance plans</span>
+          <span class="pending-item">Emergency trigger validation with clinical authority</span>
+          <span class="pending-item">Photo session for Dr. Scarano</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STACK ── -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">Stack</span>
+      </div>
+      <div class="stack-table">
+        <div class="stack-row stack-row-header">
+          <span>Layer</span>
+          <span>Tool</span>
+        </div>
+        {[
+          ['Documentation', 'Notion'],
+          ['Typography', 'Google Fonts — DM Serif Display + IBM Plex Sans + IBM Plex Mono'],
+          ['Frontend', 'HTML5 / CSS3 / vanilla JS'],
+          ['Maps', 'Google Maps embed'],
+          ['Repo', 'GitHub (private)'],
+          ['Hosting', 'Vercel'],
+          ['Agent · Platform', 'Eleven Labs Conversational AI'],
+          ['Agent · LLM', 'GLM-4.5-Air (testing) → GPT-4o / Claude Sonnet (production)'],
+          ['Agent · Voice', 'Eleven Labs Veda Sky (testing) → possible cloned voice'],
+          ['Telephony', 'Pending — Twilio or equivalent'],
+          ['Communication', 'WhatsApp Business'],
+        ].map(([capa, herramienta]) => (
+          <div class="stack-row">
+            <span class="stack-capa">{capa}</span>
+            <span class="stack-tool">{herramienta}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY · VISUAL MATERIAL ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="label">Visual material</span>
+        <h2 class="section-title">What exists today.</h2>
+      </div>
+      <div class="gallery-grid">
+
+        <div class="gallery-item gallery-wide">
+          <div class="gallery-placeholder" style="aspect-ratio: 16/9;">
+            <span class="gallery-placeholder-label">site · hero desktop</span>
+            <span class="gallery-placeholder-dim">1440 × 900</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="aspect-ratio: 9/16;">
+            <span class="gallery-placeholder-label">site · mobile</span>
+            <span class="gallery-placeholder-dim">390 × 844</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="aspect-ratio: 4/3;">
+            <span class="gallery-placeholder-label">commitments section</span>
+            <span class="gallery-placeholder-dim">1440 × 1080</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-real" style="aspect-ratio: 3/4;">
+            <img
+              src="/images/js80/cardiologia-barrio-scarano/dr-barrio-portrait.jpg"
+              alt="Dr. Juan Pablo Barrio"
+              loading="lazy"
+            />
+          </div>
+          <p class="gallery-caption">Portrait · Dr. Juan Pablo Barrio</p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-real" style="aspect-ratio: 3/4;">
+            <img
+              src="/images/js80/cardiologia-barrio-scarano/dra-scarano-portrait.jpg"
+              alt="Dr. Cynthia Scarano"
+              loading="lazy"
+            />
+          </div>
+          <p class="gallery-caption">Portrait · Dr. Cynthia Scarano</p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="aspect-ratio: 16/10;">
+            <span class="gallery-placeholder-label">Eleven Labs builder</span>
+            <span class="gallery-placeholder-dim">subagents · edges</span>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-placeholder" style="aspect-ratio: 4/3;">
+            <span class="gallery-placeholder-label">brand manual v3.0</span>
+            <span class="gallery-placeholder-dim">navigable HTML</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="section section-white" style="border-bottom: none;">
+    <div class="container">
+      <div class="final-cta">
+        <div class="final-cta-content">
+          <span class="label">Next step</span>
+          <h2 class="final-cta-title">See the live site.</h2>
+          <p class="final-cta-body">
+            The site is in production on Vercel with the permanent domain in process.
+            The agent goes into production when a phone number is assigned.
+          </p>
+          <div class="final-cta-links">
+            <a
+              href="https://barrioscarano-qsqj.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+            >
+              View site ↗
+            </a>
+            <a href="/en/js80" class="btn-ghost">← Back to JS80</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</LayoutJS80>
+
+<style>
+  /* ── CASE HERO ── */
+  .case-hero {
+    background: var(--bg-white);
+  }
+
+  .case-back {
+    margin-bottom: 48px;
+  }
+
+  .back-link {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-ghost);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+
+  .case-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .case-label {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .case-title {
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -3px;
+    color: var(--text-primary);
+    margin: 0 0 20px;
+  }
+
+  .case-pitch {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .tag {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    background: #f0efe8;
+    border: 0.5px solid var(--border-line);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  .case-hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+    padding-top: 32px;
+    border-top: 0.5px solid var(--border-soft);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-item .label {
+    display: block;
+  }
+
+  .meta-item span:last-child {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-body);
+  }
+
+  /* B·S mark */
+  .case-hero-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    user-select: none;
+  }
+
+  .mark-b,
+  .mark-s {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(80px, 12vw, 140px);
+    font-weight: 500;
+    line-height: 1;
+    color: #5A2A2E;
+    opacity: 0.15;
+  }
+
+  .mark-dot {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 400;
+    color: #B07550;
+    opacity: 0.3;
+    line-height: 1;
+    margin-top: 0.1em;
+  }
+
+  /* ── MAIN IMAGE ── */
+  .main-image-placeholder {
+    aspect-ratio: 16 / 9;
+    background: #f0efe8;
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* ── SUMMARY ── */
+  .resumen-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .resumen-label .label {
+    display: block;
+    padding-top: 6px;
+  }
+
+  .resumen-text {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    color: var(--text-body);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .resumen-text + .resumen-text {
+    margin-top: 20px;
+  }
+
+  /* ── SECTION PATTERN ── */
+  .section-intro {
+    max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  .section-intro .label {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.8px;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-lead {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── PROBLEMS ── */
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .problem-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .problem-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-ghost);
+    font-weight: 500;
+  }
+
+  .problem-title {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+  }
+
+  .problem-body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── SOLUTION LAYERS ── */
+  .solucion-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .layer {
+    padding: 48px 0;
+  }
+
+  .layer-divider {
+    height: 0.5px;
+    background: var(--border-soft);
+  }
+
+  .layer-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .layer-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-ghost);
+    font-weight: 500;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .layer-header .label {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .layer-title {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+  }
+
+  .layer-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 32px;
+  }
+
+  .layer-specs {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .spec-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .spec-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  .swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .swatch-codes {
+    display: flex;
+    gap: 8px;
+  }
+
+  .swatch-codes span {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 9px;
+    color: var(--text-ghost);
+    width: 36px;
+    text-align: center;
+    letter-spacing: 0;
+    word-break: break-all;
+  }
+
+  .font-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .font-dm {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+
+  .font-ibm {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .font-mono {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-meta);
+  }
+
+  /* Sofía architecture */
+  .sofia-arch {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .arch-tree {
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 560px;
+  }
+
+  .arch-root {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+
+  .arch-branches {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .arch-branch {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .arch-branch-urgent {
+    color: #c0392b;
+    font-weight: 500;
+  }
+
+  .arch-id {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-ghost);
+    background: #f0efe8;
+    border-radius: 3px;
+    padding: 2px 6px;
+    flex-shrink: 0;
+  }
+
+  .arch-id-urgent {
+    background: #fdecea;
+    color: #c0392b;
+  }
+
+  /* ── PROCESS ── */
+  .proceso-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .proceso-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+
+  .proceso-item:first-child {
+    border-top: 0.5px solid var(--border-soft);
+  }
+
+  .proceso-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-ghost);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+
+  .proceso-title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .proceso-text {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── DECISIONS ── */
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .decision-card {
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .decision-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-ghost);
+    font-weight: 500;
+  }
+
+  .decision-title {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .decision-body {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  /* ── PORTRAITS ── */
+  .portraits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 640px;
+    margin-bottom: 24px;
+  }
+
+  .portrait-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .portrait-img {
+    aspect-ratio: 3/4;
+    background: #f0efe8;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .portrait-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .portrait-name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .portrait-meta {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-ghost);
+  }
+
+  .portraits-note {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-ghost);
+    font-style: italic;
+  }
+
+  /* ── RESULTS ── */
+  .results-disclaimer {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-meta);
+    border-left: 2px solid var(--border-line);
+    padding-left: 14px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .results-col-label {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .results-list li {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .results-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-ghost);
+  }
+
+  .results-pending {
+    background: #f8f7f3;
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pending-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .pending-item {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 10px 14px;
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-soft);
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+
+  /* ── STACK ── */
+  .stack-table {
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    max-width: 720px;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    padding: 14px 20px;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+
+  .stack-row:last-child {
+    border-bottom: none;
+  }
+
+  .stack-row-header {
+    background: #f5f5f2;
+  }
+
+  .stack-row-header span {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+    font-weight: 500;
+  }
+
+  .stack-capa {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-meta);
+    font-weight: 500;
+  }
+
+  .stack-tool {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-body);
+  }
+
+  /* ── GALLERY ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-wide {
+    grid-column: 1 / -1;
+  }
+
+  .gallery-placeholder {
+    background: #f0efe8;
+    border: 0.5px dashed #c9bba1;
+    border-radius: var(--radius-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .gallery-placeholder-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b0a898;
+    font-weight: 500;
+  }
+
+  .gallery-placeholder-dim {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    color: #c9bba1;
+    letter-spacing: 0.05em;
+  }
+
+  .gallery-real {
+    width: 100%;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: #f0efe8;
+  }
+
+  .gallery-real img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-caption {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-ghost);
+    margin-top: 8px;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    max-width: 640px;
+  }
+
+  .final-cta-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin: 16px 0 20px;
+  }
+
+  .final-cta-body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  .final-cta-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .case-hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-hero-mark {
+      display: none;
+    }
+
+    .case-hero-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .resumen-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .problems-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .decisions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pending-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-wide {
+      grid-column: 1 / -1;
+    }
+
+    .proceso-item {
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+    }
+
+    .portraits-grid {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .problems-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pending-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

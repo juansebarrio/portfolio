@@ -1,0 +1,635 @@
+---
+import LayoutJS80 from '../../layouts/LayoutJS80.astro';
+
+export const prerender = false;
+---
+
+<LayoutJS80 title="JS80 Studio — Juanse Barrio" description="I'm co-founder of JS80, a digital solutions studio. From idea to working business.">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="container">
+
+      <div class="ghost-wordmark" aria-hidden="true">js80</div>
+
+      <div class="hero-grid">
+        <div class="hero-content">
+
+          <div class="logo-wrap">
+            <span class="logo-mark">js80</span>
+            <span class="logo-dot" aria-hidden="true">·</span>
+            <span class="logo-tag">digital solutions studio</span>
+          </div>
+
+          <h1 class="hero-title">
+            From idea to <em>working</em> business.
+          </h1>
+
+          <div class="founder-note">
+            <p>
+              I'm co-founder of JS80, a digital solutions studio.
+              The same rigor of corporate product, applied to real businesses.
+              No jargon. No fluff.
+            </p>
+            <div class="founder-links">
+              <a
+                href="https://www.js80.studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary"
+              >
+                View full studio <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-core-wrap" aria-hidden="true">
+          <div class="core"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="proyectos-section">
+    <div class="container">
+
+      <div class="proyectos-header">
+        <p class="proyectos-eyebrow">Projects</p>
+        <h2 class="proyectos-titulo">Studio work</h2>
+      </div>
+
+      <div class="proyectos-grid">
+
+        <!-- Card 1: Cardiología Barrio · Scarano -->
+        <a
+          href="/en/js80/cardiologia-barrio-scarano"
+          class="caso-card caso-card-cardio"
+          aria-label="View case study: Barrio · Scarano Cardiology"
+        >
+          <div class="caso-media">
+            <div class="caso-bs-mark" aria-hidden="true">
+              <span class="bs-b">B</span>
+              <span class="bs-dot">·</span>
+              <span class="bs-s">S</span>
+            </div>
+          </div>
+          <div class="caso-body">
+            <div class="caso-top">
+              <p class="caso-eyebrow">JS80 · April 2026 · Case 0</p>
+              <h3 class="caso-titulo">Barrio · Scarano Cardiology</h3>
+              <p class="caso-desc">
+                Full brand, live website, and Sofía — an AI voice agent that handles
+                appointments, cancellations, and emergencies 24/7.
+              </p>
+            </div>
+            <div class="caso-footer">
+              <div class="caso-tags">
+                <span class="tag">brand</span>
+                <span class="tag">web</span>
+                <span class="tag">conversational AI</span>
+                <span class="tag">voice agent</span>
+              </div>
+              <span class="caso-arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Coming soon -->
+        <div class="caso-card caso-next" aria-hidden="true">
+          <div class="caso-media caso-media-next">
+            <div class="next-core" aria-hidden="true"></div>
+          </div>
+          <div class="caso-body">
+            <div class="caso-top">
+              <p class="caso-eyebrow">JS80 · 2026</p>
+              <h3 class="caso-titulo caso-titulo-muted">Next project</h3>
+              <p class="caso-desc caso-desc-muted">
+                The next case is on its way. Stay tuned.
+              </p>
+            </div>
+            <div class="caso-footer">
+              <p class="next-label">In development</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <p class="cta-eyebrow">Have a project?</p>
+        <h2 class="cta-title">Let's talk.</h2>
+        <p class="cta-body">
+          We work with clients who know what they want but don't have the full team
+          to make it happen. If that sounds like you, reach out.
+        </p>
+        <div class="cta-links">
+          <a
+            href="mailto:contacto@juansebarrio.com?subject=JS80%20Project"
+            class="btn-primary"
+          >
+            Get in touch <span>→</span>
+          </a>
+          <a
+            href="https://www.js80.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-ghost"
+          >
+            js80.studio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</LayoutJS80>
+
+<style>
+  /* ─────────────────────────────
+     HERO
+  ───────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 80px 64px 96px;
+    border-bottom: 0.5px solid var(--border-soft);
+    overflow: hidden;
+  }
+
+  .ghost-wordmark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: clamp(160px, 28vw, 320px);
+    font-weight: 600;
+    color: var(--text-primary);
+    opacity: 0.03;
+    letter-spacing: -12px;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .logo-mark {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .logo-dot {
+    color: var(--c-blue);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .logo-tag {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+  }
+
+  .hero-title {
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -2.5px;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .founder-note {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .founder-note p {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 480px;
+  }
+
+  .founder-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-core-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .core {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 32%, rgba(255,255,255,0.5), transparent 42%),
+      conic-gradient(
+        from 180deg,
+        var(--c-blue),
+        var(--c-violet),
+        var(--c-coral),
+        var(--c-peach),
+        var(--c-violet-light),
+        var(--c-turquoise),
+        var(--c-blue)
+      );
+    box-shadow:
+      0 0 0 1px rgba(107, 140, 255, 0.22),
+      0 0 0 9px rgba(107, 140, 255, 0.08),
+      0 0 0 10px rgba(107, 140, 255, 0.18),
+      0 0 0 22px rgba(107, 140, 255, 0.04);
+    animation: core-rotate 60s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes core-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .core, .next-core { animation: none; }
+  }
+
+  /* ─────────────────────────────
+     PROJECTS
+  ───────────────────────────── */
+  .proyectos-section {
+    padding: 72px 64px;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+
+  .proyectos-section .container {
+    max-width: 1040px;
+  }
+
+  .proyectos-header {
+    margin-bottom: 40px;
+  }
+
+  .proyectos-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+    margin: 0 0 10px;
+  }
+
+  .proyectos-titulo {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.8px;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* ─────────────────────────────
+     CARDS
+  ───────────────────────────── */
+  .caso-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+  }
+
+  .caso-card:not(.caso-next):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(44, 44, 42, 0.1);
+    border-color: #d0cfc8;
+  }
+
+  .caso-next {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  .caso-media {
+    height: 130px;
+    background: #f2f0e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.5px solid var(--border-soft);
+    flex-shrink: 0;
+  }
+
+  .caso-media-next {
+    background: #f4f4f2;
+  }
+
+  .caso-card-cardio .caso-media {
+    background: #5A2A2E;
+    border-bottom-color: #4a2226;
+  }
+
+  .caso-bs-mark {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+
+  .bs-b, .bs-s {
+    font-family: var(--font-serif);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1;
+    color: #F5F0E6;
+    opacity: 0.35;
+    transition: opacity 0.2s ease;
+  }
+
+  .bs-dot {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: #C89A7A;
+    opacity: 0.7;
+    line-height: 1;
+    margin-top: 0.08em;
+    transition: opacity 0.2s ease;
+  }
+
+  .caso-card-cardio:hover .bs-b,
+  .caso-card-cardio:hover .bs-s {
+    opacity: 0.6;
+  }
+
+  .caso-card-cardio:hover .bs-dot {
+    opacity: 1;
+  }
+
+  .next-core {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 32%, rgba(255,255,255,0.5), transparent 42%),
+      conic-gradient(
+        from 180deg,
+        var(--c-blue),
+        var(--c-violet),
+        var(--c-coral),
+        var(--c-peach),
+        var(--c-violet-light),
+        var(--c-turquoise),
+        var(--c-blue)
+      );
+    opacity: 0.35;
+    animation: core-rotate 40s linear infinite;
+  }
+
+  .caso-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 14px;
+  }
+
+  .caso-top {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .caso-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+    margin: 0;
+  }
+
+  .caso-titulo {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .caso-titulo-muted {
+    color: var(--text-ghost);
+  }
+
+  .caso-desc {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 2px 0 0;
+  }
+
+  .caso-desc-muted {
+    color: var(--text-ghost);
+  }
+
+  .caso-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .caso-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-meta);
+    background: #f2f0e8;
+    border: 0.5px solid #e0ddd5;
+    border-radius: 3px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+
+  .caso-arrow {
+    font-size: 16px;
+    color: var(--text-ghost);
+    flex-shrink: 0;
+    transition: transform 0.2s ease, color 0.2s ease;
+    line-height: 1;
+  }
+
+  .caso-card:not(.caso-next):hover .caso-arrow {
+    transform: translateX(3px);
+    color: var(--text-primary);
+  }
+
+  .next-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+    margin: 0;
+  }
+
+  /* ─────────────────────────────
+     CTA
+  ───────────────────────────── */
+  .cta-section {
+    padding: 72px 64px 80px;
+    background: var(--bg-white);
+  }
+
+  .cta-section .container {
+    max-width: 1040px;
+  }
+
+  .cta-content {
+    max-width: 600px;
+  }
+
+  .cta-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-ghost);
+    margin: 0 0 12px;
+  }
+
+  .cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+    line-height: 1;
+  }
+
+  .cta-body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0 0 32px;
+  }
+
+  .cta-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ─────────────────────────────
+     RESPONSIVE
+  ───────────────────────────── */
+  @media (max-width: 900px) {
+    .hero {
+      padding: 56px 24px 72px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-core-wrap {
+      display: none;
+    }
+
+    .proyectos-section {
+      padding: 56px 24px;
+    }
+
+    .proyectos-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .proyectos-titulo {
+      font-size: 28px;
+    }
+
+    .cta-section {
+      padding: 56px 24px;
+    }
+  }
+</style>

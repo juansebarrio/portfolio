@@ -8,17 +8,33 @@ interface Props {
 
 const { title = 'Juan Segundo Barrio', description = 'Portafolio de Juan Segundo Barrio' } = Astro.props;
 
-const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/experiencia', label: 'Experiencia' },
-  { href: '/portfolio', label: 'Portfolio' },
-];
-
 const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+const prefix = isEnglish ? '/en' : '';
+const basePath = isEnglish ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
+
+const switchPath = isEnglish
+  ? basePath
+  : (currentPath === '/' ? '/en' : '/en' + currentPath);
+const switchLabel = isEnglish ? 'ES' : 'EN';
+
+const homeHref   = isEnglish ? '/en' : '/';
+const expHref    = `${prefix}/experiencia`;
+const portHref   = `${prefix}/portfolio`;
+const js80Href   = `${prefix}/js80`;
+
+const homeActive = basePath === '/';
+const expActive  = basePath === '/experiencia';
+const portActive = basePath.startsWith('/portfolio');
+const js80Active = basePath === '/js80' || basePath.startsWith('/js80/');
+
+const L = isEnglish
+  ? { home: 'Home', exp: 'Experience', port: 'Portfolio' }
+  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio' };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={isEnglish ? 'en' : 'es'}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,6 +42,9 @@ const currentPath = Astro.url.pathname;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="alternate" hreflang="es" href={`https://juansebarrio.com${basePath === '/' ? '' : basePath}`} />
+    <link rel="alternate" hreflang="en" href={`https://juansebarrio.com/en${basePath === '/' ? '' : basePath}`} />
+    <link rel="alternate" hreflang="x-default" href={`https://juansebarrio.com${basePath === '/' ? '' : basePath}`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -35,42 +54,42 @@ const currentPath = Astro.url.pathname;
     <header class="sticky top-0 z-50 border-b border-white/5" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(12px);">
       <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
 
-        <!-- Desktop: Inicio (izq) -->
+        <!-- Desktop: Home/Inicio (izq) -->
         <div class="nav-desktop flex items-center gap-8 flex-1">
           <a
-            href="/"
+            href={homeHref}
             class="text-sm tracking-wide transition-colors duration-200"
-            style={currentPath === '/' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+            style={homeActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
           >
-            Inicio
+            {L.home}
           </a>
         </div>
 
         <!-- Centro: nombre -->
-        <a href="/" class="font-heading text-base font-semibold tracking-tight whitespace-nowrap" style="font-family: 'Syne', system-ui, sans-serif;">
+        <a href={homeHref} class="font-heading text-base font-semibold tracking-tight whitespace-nowrap" style="font-family: 'Syne', system-ui, sans-serif;">
           Juan Segundo Barrio
         </a>
 
         <!-- Desktop: links (der) -->
         <div class="nav-desktop flex items-center gap-8 flex-1 justify-end">
           <a
-            href="/experiencia"
+            href={expHref}
             class="text-sm tracking-wide transition-colors duration-200"
-            style={currentPath === '/experiencia' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+            style={expActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
           >
-            Experiencia
+            {L.exp}
           </a>
           <a
-            href="/portfolio"
+            href={portHref}
             class="text-sm tracking-wide transition-colors duration-200"
-            style={currentPath === '/portfolio' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+            style={portActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
           >
-            Portfolio
+            {L.port}
           </a>
           <a
-            href="/js80"
+            href={js80Href}
             class="text-sm tracking-wide transition-colors duration-200"
-            style={currentPath === '/js80' ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
+            style={js80Active ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
             aria-label="JS80 Studio"
           >
             <span style="display:inline-flex; align-items:center; gap:6px;">
@@ -86,6 +105,14 @@ const currentPath = Astro.url.pathname;
               </svg>
               JS80
             </span>
+          </a>
+          <a
+            href={switchPath}
+            class="text-sm tracking-wide transition-colors duration-200 lang-switch"
+            style="color: #6b6b6b; border: 1px solid rgba(240,240,240,0.12); padding: 2px 8px; border-radius: 3px; font-size: 0.75rem; letter-spacing: 0.08em;"
+            aria-label={isEnglish ? 'Switch to Spanish' : 'Switch to English'}
+          >
+            {switchLabel}
           </a>
         </div>
 
@@ -118,9 +145,9 @@ const currentPath = Astro.url.pathname;
       >
         <div style="padding: 8px 24px 16px; display:flex; flex-direction:column; gap:0;">
           {[
-            { href: '/', label: 'Inicio', active: currentPath === '/' },
-            { href: '/experiencia', label: 'Experiencia', active: currentPath === '/experiencia' },
-            { href: '/portfolio', label: 'Portfolio', active: currentPath.startsWith('/portfolio') },
+            { href: homeHref, label: L.home, active: homeActive },
+            { href: expHref, label: L.exp, active: expActive },
+            { href: portHref, label: L.port, active: portActive },
           ].map(link => (
             <a
               href={link.href}
@@ -130,8 +157,8 @@ const currentPath = Astro.url.pathname;
             </a>
           ))}
           <a
-            href="/js80"
-            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${currentPath === '/js80' ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
+            href={js80Href}
+            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${js80Active ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
           >
             <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
               <defs>
@@ -145,12 +172,18 @@ const currentPath = Astro.url.pathname;
             </svg>
             JS80
           </a>
+          <a
+            href={switchPath}
+            style={`display:block; padding: 14px 0; font-size:0.8125rem; letter-spacing: 0.08em; color: #6b6b6b; text-decoration:none; border-top: 1px solid rgba(255,255,255,0.04);`}
+          >
+            {isEnglish ? '→ Español' : '→ English'}
+          </a>
         </div>
       </div>
     </header>
 
     <style>
-      .nav-mobile { display: none; }
+      .nav-mobile { display: none !important; }
 
       @media (max-width: 640px) {
         .nav-desktop { display: none !important; }

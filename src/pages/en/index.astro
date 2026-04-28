@@ -1,0 +1,553 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PasswordGate from '../../components/PasswordGate.astro';
+
+const marqueeText = 'Data · People · Tech · AI · Design · ';
+const legislaturaVideoId = 'cLVTwzJwieo';
+
+const casosGalicia = [
+  {
+    href: '/en/portfolio/csat-semantico',
+    meta: 'Banco Galicia · 2026 · AI + Research',
+    titulo: 'From 10,000 opinions to a prioritized backlog',
+  },
+  {
+    href: '/en/portfolio/upgrade',
+    meta: 'Banco Galicia · 2026 · Product Design',
+    titulo: "Argentina's fastest financial system upgrade",
+  },
+  {
+    href: '/en/portfolio/rediseno-cuentas',
+    meta: 'Banco Galicia · 2025 · Redesign',
+    titulo: 'Designing accounts from scratch',
+    preview: '/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg',
+    previewAlt: 'Cross-banca alignment workshop: team reviewing redesign screens on large monitors',
+  },
+  {
+    href: '/en/portfolio/pfm',
+    meta: 'Banco Galicia · 2024 · Product Design',
+    titulo: "Argentina's first bank-built PFM",
+    preview: '/images/portfolio/pfm/pfm-card-preview.jpg',
+    previewAlt: 'Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes',
+  },
+];
+
+const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURIComponent('Full portfolio access')}&body=${encodeURIComponent('Hi Juanse,\n\nI would like to view the NDA cases in your portfolio.\n\nThanks,\n')}`;
+---
+
+<Layout title="Juanse Barrio — Home" description="Portfolio of Juan Segundo Barrio, AI Product Designer.">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {[...Array(3)].map(() => (
+          <span class="marquee-bg-item">{marqueeText}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-heading">
+        <h1 class="hero-title">AI Product Designer</h1>
+        <p class="hero-subtitle">NGO Vice President&nbsp;·&nbsp;Diversity &amp; Inclusion</p>
+      </div>
+
+      <p class="hero-bio">
+        Technology has always been part of my story. Today I design digital products
+        born from that same passion: creating useful, human, and meaningful experiences.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/en/portfolio" class="btn-primary">View portfolio</a>
+        <a href="/en/experiencia" class="btn-text">My experience →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORKSHOP SECTION ── -->
+  <section class="taller-section">
+    <div class="taller-grid">
+      <figure class="taller-foto fade-in">
+        <img src="/images/about/galicia-taller.png" alt="Workshop photo" />
+      </figure>
+
+      <div class="taller-texto fade-in">
+        <blockquote class="taller-frase">
+          AI-focused design. Research, experimentation, and shipping products that real people use every day.
+        </blockquote>
+        <p class="taller-rol">
+          I believe the symbiosis between humans and technology reflects our innate desire for evolution. My contribution is designing products that use that blend to improve people's real lives.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PUBLIC WORK ── -->
+  <section class="publico-section">
+    <div class="home-container">
+
+      <div class="publico-header fade-in">
+        <p class="section-eyebrow">Public work</p>
+        <h2 class="casos-title">Beyond the bank</h2>
+        <p class="publico-intro">
+          Open projects where design, communication, and purpose intersect. Impulse (AHF) and teaching at UdeSA.
+        </p>
+      </div>
+
+      <!-- FEATURED: Legislature -->
+      <article class="destacado fade-in">
+        <div class="destacado-media">
+          <img
+            src="/images/impulse/legislatura-diploma.jpg"
+            alt="Recognition diploma from the Legislature of the Autonomous City of Buenos Aires for participation in the Celebramos el Orgullo exhibition"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="destacado-texto">
+          <p class="destacado-eyebrow">Buenos Aires Legislature · 2024 · Institutional recognition</p>
+          <h3 class="destacado-titulo">Celebrating Pride</h3>
+          <p class="destacado-bajada">
+            Photography series selected for the institutional exhibition at the Buenos Aires City Legislature during Pride Week. Recognized by the Directorate General of Human Rights.
+          </p>
+
+          <ul class="destacado-meta">
+            <li><strong>9</strong><span>exhibited works</span></li>
+            <li><strong>Official</strong><span>CABA Legislature</span></li>
+            <li><strong>HR</strong><span>General Directorate</span></li>
+          </ul>
+
+          <details class="destacado-reveal">
+            <summary>
+              <span class="reveal-label-open">View works and recognition video</span>
+              <span class="reveal-label-close">Hide</span>
+              <span class="reveal-arrow" aria-hidden="true">↓</span>
+            </summary>
+
+            <div class="reveal-content">
+              <div class="reveal-video">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${legislaturaVideoId}`}
+                  title="Recognition at CABA Legislature — Juan Segundo Barrio"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+
+              <p class="reveal-obras-label">Exhibited works · HIV/VIR Series</p>
+              <div class="reveal-obras">
+                <img src="/images/impulse/obra-1-vihvir.jpg" alt="Work 1 — HIV/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-2-vihvir.jpg" alt="Work 2 — HIV/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-3-vihvir.jpg" alt="Work 3 — HIV/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-4-vihvir.jpg" alt="Work 4 — HIV/VIR" loading="lazy" />
+              </div>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <!-- SECONDARY GRID -->
+      <div class="publico-grid">
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/impulse/pride-congreso-noche.jpg"
+              alt="Impulse float at the 2025 Pride March with Congress in the background"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Pride March 2025 · Impulse</p>
+          <h3 class="caso-titulo">Let's Talk About HIV</h3>
+          <p class="publico-bajada">
+            Creative direction of float and awareness campaign at the CABA Pride March.
+          </p>
+        </article>
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/impulse/chatbot-presentacion.jpg"
+              alt="Juanse presenting the Undetectable = Untransmittable chatbot"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Digital product · Impulse</p>
+          <h3 class="caso-titulo">Undetectable = Untransmittable</h3>
+          <p class="publico-bajada">
+            HIV information chatbot and access to Impulse's prevention network.
+          </p>
+        </article>
+
+        <article class="publico-card fade-in">
+          <div class="publico-img">
+            <img
+              src="/images/udesa/udesa-ux-day.jpg"
+              alt="Juanse teaching at UdeSA"
+              loading="lazy"
+            />
+          </div>
+          <p class="caso-meta">Teaching · 2023–2024</p>
+          <h3 class="caso-titulo">UX Design at UdeSA</h3>
+          <p class="publico-bajada">
+            Adjunct professor of UX Design for the Bachelor's in Digital Business. 20–30 students per cohort.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CORPORATE CASES · GALICIA ── -->
+  <section class="corp-section">
+    <div class="home-container">
+
+      <div class="corp-header fade-in">
+        <p class="section-eyebrow">Corporate cases</p>
+        <h2 class="casos-title">NDA projects</h2>
+        <p class="corp-intro">
+          Four Banco Galicia cases with restricted access due to confidentiality. Write to me if you'd like to review them and I'll share access.
+        </p>
+      </div>
+
+      <div class="corp-grid">
+        {casosGalicia.map((c) => (
+          <a href={c.href} class="caso-card caso-card-locked fade-in" data-requires-auth aria-label={`${c.titulo} — restricted access`}>
+            <div class="caso-img corp-img">
+              {c.preview && (
+                <img src={c.preview} alt="" class="caso-preview-blurred" aria-hidden="true" loading="lazy" />
+              )}
+              <div class="lock-overlay">
+                <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect x="5" y="11" width="14" height="10" rx="1.5" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+                <span class="lock-label">Restricted access</span>
+              </div>
+            </div>
+            <p class="caso-meta">{c.meta}</p>
+            <p class="caso-titulo">
+              {c.titulo}
+              <span class="caso-arrow" aria-hidden="true">→</span>
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <div class="corp-cta fade-in">
+        <a href={mailtoAcceso} class="btn-primary">Request full portfolio access</a>
+        <a href="/en/portfolio" class="btn-text">View index →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <PasswordGate />
+
+  <script>
+    document.querySelectorAll('[data-requires-auth]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (sessionStorage.getItem('portfolio-auth') === 'true') return;
+        e.preventDefault();
+        const target = (link as HTMLAnchorElement).getAttribute('href');
+        window.__showPasswordGate?.(target);
+      });
+    });
+  </script>
+
+  <!-- ── CONTACT CTA ── -->
+  <section class="cta-section">
+    <div class="home-container">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="cta-title">Let's talk?</h2>
+      <p class="cta-body">
+        I'm open to opportunities as a Product Designer with an AI focus.
+        I'm also interested in collaborations with social organizations and projects
+        that blend technology with purpose. I'm authorized to work across
+        Mercosur and the European Union, both as a freelancer and as an employee.
+      </p>
+      <div class="cta-links">
+        <a href="mailto:contacto@juansebarrio.com" class="cta-link">
+          contacto@juansebarrio.com&nbsp;↗
+        </a>
+        <span class="cta-sep" aria-hidden="true">·</span>
+        <a
+          href="https://www.linkedin.com/in/juansebarrio"
+          class="cta-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn&nbsp;↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-marquee {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.08;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 28s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-bg-item {
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #f0f0f0;
+    padding-right: 2rem;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding-left: 4rem;
+    padding-right: 2rem;
+    max-width: 56rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-heading { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif !important;
+    font-size: clamp(2.5rem, 6vw, 5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  .hero-subtitle { font-size: clamp(0.875rem, 1.5vw, 1rem); font-weight: 500; color: #6b6b6b; margin: 0; }
+
+  .hero-bio { color: #a0a0a0; line-height: 1.75; font-size: 1rem; max-width: 38ch; margin: 0; }
+
+  .hero-buttons { display: flex; align-items: center; gap: 2rem; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #f0f0f0;
+    background-color: #141414;
+    border: 1px solid rgba(240, 240, 240, 0.15);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .btn-primary:hover { border-color: rgba(240, 240, 240, 0.4); }
+
+  .btn-text { font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s ease; }
+  .btn-text:hover { color: #f0f0f0; }
+
+  .taller-section {
+    padding: 6rem 0;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+
+  .taller-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .taller-foto { margin: 0; border-radius: 12px; overflow: hidden; }
+  .taller-foto img { width: 100%; aspect-ratio: 16 / 9; max-height: 70vh; object-fit: cover; filter: grayscale(100%); display: block; }
+  .taller-texto { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  .taller-frase {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #e0e0e0;
+    margin: 0;
+    quotes: none;
+  }
+
+  .taller-rol { font-size: 0.75rem; font-weight: 400; color: #555; line-height: 1.6; letter-spacing: 0.02em; margin: 0; }
+
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-33.333%); }
+  }
+
+  .home-container { max-width: 80rem; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+
+  .section-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1rem;
+  }
+
+  .casos-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .caso-meta { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6b6b6b; margin: 0 0 0.5rem; font-family: system-ui, -apple-system, sans-serif; }
+
+  .caso-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 500; color: #f0f0f0; line-height: 1.2; margin: 0; transition: color 300ms ease; }
+
+  .caso-img { aspect-ratio: 4 / 3; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; overflow: hidden; transition: filter 300ms ease, border-color 300ms ease; }
+
+  .caso-arrow { opacity: 0; margin-left: 0.5rem; display: inline-block; transition: opacity 300ms ease; }
+
+  .publico-section { padding: clamp(4rem, 10vw, 8rem) 0; border-top: 1px solid rgba(240, 240, 240, 0.06); }
+  .publico-header { max-width: 48rem; margin-bottom: 4rem; }
+  .publico-intro { font-size: 1rem; color: #a0a0a0; line-height: 1.6; margin: 1.25rem 0 0; max-width: 42rem; font-family: system-ui, -apple-system, sans-serif; }
+
+  .destacado { display: grid; grid-template-columns: 6fr 5fr; gap: 4rem; align-items: start; padding: 3rem; margin-bottom: 5rem; background: #141414; border: 1px solid #2a2a2a; border-radius: 16px; }
+  .destacado-media { border-radius: 10px; overflow: hidden; background: #0a0a0a; }
+  .destacado-media img { width: 100%; height: auto; display: block; }
+  .destacado-eyebrow { font-family: system-ui, -apple-system, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6b6b; margin: 0 0 1rem; }
+  .destacado-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 700; color: #f0f0f0; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 1.25rem; }
+  .destacado-bajada { font-size: 1rem; color: #a0a0a0; line-height: 1.6; margin: 0 0 2rem; font-family: system-ui, -apple-system, sans-serif; }
+
+  .destacado-meta { display: flex; flex-wrap: wrap; gap: 2rem 2.5rem; padding: 0; margin: 0 0 2rem; list-style: none; border-top: 1px solid #2a2a2a; border-bottom: 1px solid #2a2a2a; padding-block: 1.25rem; }
+  .destacado-meta li { display: flex; flex-direction: column; gap: 0.25rem; }
+  .destacado-meta strong { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; color: #f0f0f0; letter-spacing: -0.01em; }
+  .destacado-meta span { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6b6b6b; }
+
+  .destacado-reveal { margin-top: 0.5rem; }
+  .destacado-reveal > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1.25rem; font-family: system-ui, -apple-system, sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; color: #f0f0f0; background-color: #0a0a0a; border: 1px solid rgba(240, 240, 240, 0.15); border-radius: 2px; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .destacado-reveal > summary::-webkit-details-marker { display: none; }
+  .destacado-reveal > summary:hover { border-color: rgba(240, 240, 240, 0.4); }
+  .reveal-label-close { display: none; }
+  .destacado-reveal[open] .reveal-label-open { display: none; }
+  .destacado-reveal[open] .reveal-label-close { display: inline; }
+  .reveal-arrow { display: inline-block; transition: transform 0.3s ease; }
+  .destacado-reveal[open] .reveal-arrow { transform: rotate(180deg); }
+  .reveal-content { margin-top: 2rem; display: flex; flex-direction: column; gap: 2rem; }
+  .reveal-video { position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 10px; overflow: hidden; background: #0a0a0a; border: 1px solid #2a2a2a; }
+  .reveal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .reveal-obras-label { font-family: system-ui, -apple-system, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6b6b; margin: 0.5rem 0 0; }
+  .reveal-obras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+  .reveal-obras img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 6px; display: block; background: #0a0a0a; }
+
+  .publico-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .publico-card { display: flex; flex-direction: column; }
+  .publico-img { aspect-ratio: 4 / 3; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; transition: border-color 300ms ease; }
+  .publico-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms ease; }
+  .publico-card:hover .publico-img { border-color: #3a3a3a; }
+  .publico-card:hover .publico-img img { transform: scale(1.02); }
+  .publico-bajada { font-size: 0.9375rem; color: #a0a0a0; line-height: 1.5; margin: 0.75rem 0 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .corp-section { padding: clamp(4rem, 10vw, 8rem) 0; border-top: 1px solid rgba(240, 240, 240, 0.06); }
+  .corp-header { max-width: 48rem; margin-bottom: 4rem; }
+  .corp-intro { font-size: 1rem; color: #a0a0a0; line-height: 1.6; margin: 1.25rem 0 0; max-width: 42rem; font-family: system-ui, -apple-system, sans-serif; }
+  .corp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
+
+  .caso-card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
+  .caso-card:hover .caso-titulo { color: #ffffff; }
+  .caso-card:hover .caso-arrow { opacity: 1; }
+
+  .caso-card-locked .corp-img { background: #1a1a1a; position: relative; }
+  .caso-preview-blurred { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(16px) saturate(0.7); transform: scale(1.1); opacity: 0.4; }
+  .lock-overlay { position: absolute; inset: 0; background: rgba(10, 10, 10, 0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; z-index: 1; }
+  .lock-icon { width: 32px; height: 32px; color: #a0a0a0; transition: color 300ms ease, transform 300ms ease; }
+  .lock-label { font-family: 'Syne', system-ui, sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #a0a0a0; }
+  .caso-card-locked:hover .corp-img { border-color: #3a3a3a; }
+  .caso-card-locked:hover .lock-icon { color: #f0f0f0; transform: translateY(-2px); }
+
+  .corp-cta { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+
+  .cta-section { padding: clamp(4rem, 10vw, 8rem) 0; border-top: 1px solid rgba(240, 240, 240, 0.06); }
+  .cta-title { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 700; color: #f0f0f0; line-height: 0.95; letter-spacing: -0.03em; margin: 0 0 2rem; }
+  .cta-body { font-size: 1.125rem; color: #a0a0a0; max-width: 40rem; line-height: 1.6; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
+  .cta-links { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .cta-link { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 500; color: #f0f0f0; text-decoration: none; white-space: nowrap; transition: color 0.2s ease; }
+  .cta-link:hover { color: #ffffff; }
+  .cta-sep { color: #6b6b6b; font-size: 1.25rem; line-height: 1; user-select: none; }
+
+  @media (max-width: 1024px) {
+    .destacado { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
+    .publico-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .taller-section { padding: 4rem 0; min-height: auto; }
+    .taller-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.5rem; }
+    .destacado { padding: 1.5rem; gap: 2rem; }
+    .destacado-meta { gap: 1.25rem 2rem; }
+    .reveal-obras { grid-template-columns: repeat(2, 1fr); }
+    .publico-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .corp-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .corp-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .corp-cta .btn-primary { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>

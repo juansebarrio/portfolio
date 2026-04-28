@@ -1,0 +1,888 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+export const prerender = false;
+---
+
+<Layout title="Designing accounts from scratch — Juanse Barrio" description="Case study: redesign of Banco Galicia's Accounts Overview, the most-used screen in the app.">
+
+  <script is:inline>
+    if (sessionStorage.getItem('portfolio-auth') !== 'true') {
+      document.documentElement.style.visibility = 'hidden';
+      window.location.replace('/en/portfolio');
+    }
+  </script>
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">BANCO GALICIA · 2025–2026 · REDESIGN</p>
+      <h1 class="hero-title">Designing accounts from scratch</h1>
+      <p class="hero-sub">The Accounts Overview (OWDC) is the most-used screen in the app. 90% of customers enter it every day. It was also the most confusing.</p>
+      <div class="mockup-frame comparison">
+        <figure class="compare-item">
+          <span class="compare-label">BEFORE</span>
+          <img src="/images/portfolio/rediseno-cuentas/decision-01-antes.jpg" alt="Previous Accounts Overview" loading="lazy" />
+        </figure>
+        <figure class="compare-item">
+          <span class="compare-label">AFTER</span>
+          <img src="/images/portfolio/rediseno-cuentas/hero-owdc.png" alt="Redesigned Accounts Overview" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 30-SECOND SUMMARY ── -->
+    <section class="resumen-section section-tertiary">
+      <h2 class="resumen-titulo">30-second summary</h2>
+      <div class="resumen-grid">
+        <div class="resumen-bloque">
+          <p class="resumen-label">PROBLEM</p>
+          <p class="resumen-texto">The Accounts Overview was the daily starting point for millions of customers, but had become a maze: costly for the bank, confusing for customers, limited for growth.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">WHAT I DID</p>
+          <p class="resumen-texto">I led the full redesign of the section, working with business, data, tech, and QA to move from a static storefront to a scalable, actionable management tool.</p>
+        </div>
+        <div class="resumen-bloque">
+          <p class="resumen-label">RESULT</p>
+          <p class="resumen-texto">Design in production, with improvements in account identification, transaction readability, and quick actions. 140 bugs found in QA before launch, 9 high-severity ones avoided. Direct impact on over 52,000 quarterly contact cases.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE PROBLEM ── -->
+    <section class="section-primary">
+      <h2 class="seccion-titulo">The problem</h2>
+      <p class="body-text">The Accounts Overview (OWDC) is the most critical section of the retail banking app. It's the screen where customers go to view their active accounts and, from there, trigger all other actions: transfers, alias management, balance checks, statements. In practice, it's the daily entry point of millions of customers into their relationship with the bank.</p>
+      <p class="body-text">But the experience had critical limitations. Users struggled to correctly identify their accounts and find basic actions, which led to errors, frustration, and greater dependence on assisted channels. At the business level, this directly impacted profitability — more contacts, higher support costs, more operations that should have resolved themselves.</p>
+      <p class="body-text callout">The Accounts Overview, instead of being a clear, strategic storefront, had become a maze: costly for the bank, confusing for customers, limited for growth.</p>
+      <p class="body-text">Digital competitors (Revolut, Mercado Pago, Ualá) already offered much clearer, more actionable account experiences. Not redesigning the OWDC wasn't just an operational cost — it was a missed opportunity to sustain a competitive image.</p>
+
+      <h3 class="sub-titulo mt-3">The dual challenge</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Improve the customer experience in managing their accounts.</li>
+        <li><span class="dash">—</span>At the same time, ensure greater profitability by reducing support costs.</li>
+      </ul>
+    </section>
+
+    <!-- ── THE RESEARCH ── -->
+    <section class="section-primary">
+      <h2 class="seccion-titulo">The research</h2>
+
+      <h3 class="sub-titulo">Process</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Qualitative research with customers.</li>
+        <li><span class="dash">—</span>CSAT and contactability metrics analysis.</li>
+        <li><span class="dash">—</span>Industry benchmarks: local banks, digital wallets, global fintechs.</li>
+      </ul>
+
+      <h3 class="sub-titulo mt-3">Key findings with customers</h3>
+      <ol class="lista-numerada">
+        <li><span class="num">1.</span>Confusing identification — many users didn't know what type of account they had, whether it had changed, or how many accounts were active in the app.</li>
+        <li><span class="num">2.</span>Currency separation — far from helping, it caused confusion. Several customers couldn't see their dollar balances and interpreted it as losing control over their money.</li>
+        <li><span class="num">3.</span>Unclear transactions — descriptions of purchases and transfers were unreadable, eroding trust in the information.</li>
+        <li><span class="num">4.</span>Limited self-service — basic functions like setting up an alias, accessing statements, or performing quick operations were hard to find or simply didn't exist.</li>
+      </ol>
+
+      <h3 class="sub-titulo mt-3">Metrics analysis (CSAT and contactability)</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>5% of detractor comments in retail CSAT were related to accounts. An additional 3% related to packages.</li>
+        <li><span class="dash">—</span>Main pain points: duplicate transactions, problems configuring aliases, discrepancies between channels.</li>
+        <li><span class="dash">—</span>In packages, customers highlighted lack of awareness about upgrades, unclear offers, and perception of excessive costs.</li>
+      </ul>
+
+      <div class="research-viz">
+        <div class="mockup-frame wide">
+          <img src="/images/portfolio/rediseno-cuentas/research-distribucion.png" alt="Distribution of queries by section" loading="lazy" />
+        </div>
+        <aside class="data-highlight">
+          <span class="highlight-number">5%</span>
+          <p class="highlight-text">of total app queries are about accounts, in line with other critical features.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── BUSINESS DATA ── -->
+    <section class="section-secondary datos-negocio">
+      <h2 class="seccion-titulo">The business data</h2>
+      <p class="sub-intro">Metrics that redefined the project scope.</p>
+
+      <div class="datos-grid">
+        <div class="datos-col-left">
+          <p class="body-text">This combination of a large installed base plus sustained growth revealed a key insight: solving the pain points found in research wasn't enough. The OWDC had to become a business and retention driver, capable of scaling and supporting growth.</p>
+          <h3 class="sub-titulo">Four strategic objectives</h3>
+          <ol class="dash-list">
+            <li>Reduce contactability — fewer calls and queries through assisted channels.</li>
+            <li>Increase profitability — enabling upgrades and cross-sell from the accounts section.</li>
+            <li>Improve experience metrics (CSAT/NPS) — restoring confidence and transparency in daily operations.</li>
+            <li>Scale without forced redesigns — providing a flexible framework to support new features.</li>
+          </ol>
+        </div>
+        <div class="datos-col-right">
+          <div class="metrics-grid metrics-2x2">
+            <div class="metric">
+              <span class="metric-number">90%</span>
+              <span class="metric-label">with a peso savings account</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">64%</span>
+              <span class="metric-label">with savings + checking account</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">10</span>
+              <span class="metric-label">active accounts per customer (max)</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">715k</span>
+              <span class="metric-label">new accounts opened in 2025</span>
+            </div>
+          </div>
+          <div class="mockup-frame wide" style="margin-top: 2rem;">
+            <img src="/images/portfolio/rediseno-cuentas/negocio-impacto.png" alt="Impact potential table by contactability type" loading="lazy" />
+          </div>
+          <p class="caption">52,000+ quarterly cases affected by the proposed features.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE DECISIONS ── -->
+    <section class="section-primary decisiones-section">
+      <h2 class="seccion-titulo">The decisions</h2>
+      <p class="intro-text">Five decisions that defined the redesign.</p>
+
+      <div class="decisiones">
+
+        <div class="decision">
+          <span class="decision-num">01</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Total balance as the anchor point</h3>
+            <p class="decision-texto">I shifted the screen's focus: instead of starting with the account list, the first thing the user sees now is the consolidated total balance (ARS + USD). It's the number-one question customers ask when opening the section. Showing it first, with breakdown below, simplifies the mental model and reduces initial friction.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/hero-owdc.png" alt="Consolidated total balance as the screen's anchor point" loading="lazy" />
+            </div>
+            <p class="fig-caption">The consolidated total balance (ARS + USD) as the first information the user sees.</p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">02</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Visual hierarchy by balance, not account type</h3>
+            <p class="decision-texto">Accounts are now sorted by amount, not by type (savings, checking, USD). This directly responds to the research finding: customers didn't distinguish their accounts by type, but they did by importance. Type becomes metadata, not hierarchy.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-02-jerarquia.png" alt="Account list hierarchized by balance" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">03</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Contextual quick actions per account</h3>
+            <p class="decision-texto">Each account has its own direct actions (Transfer, Deposit, Show alias and details). Before, these were hidden behind menus or required multi-step flows. This directly addresses the limited self-service finding and reduces contactability.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-03-accesos.png" alt="Account detail screen with contextual quick actions" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="decision-num">04</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Upgrade and cross-sell embedded, not separate</h3>
+            <p class="decision-texto">Instead of a separate Packages or Products section, upgrade opportunities appear in context — when the customer is viewing their account. A USD savings account opening banner at the top of the balance, for example. This addresses the profitability objective without adding friction.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-04-crosssell.png" alt="Embedded cross-sell banner in the Overview: USD savings account and Fima account with yield" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="decision last">
+          <span class="decision-num">05</span>
+          <div class="decision-body">
+            <h3 class="decision-titulo">Readable, hierarchized recent transactions</h3>
+            <p class="decision-texto">Before, transactions were a flat list with cryptic descriptions. Now they have clear visual hierarchy: operation type, amount, status (Processing, Completed), and date. This directly addresses the unclear transactions finding.</p>
+            <div class="mockup-frame single">
+              <img src="/images/portfolio/rediseno-cuentas/decision-05-movimientos.png" alt="Recent transactions with clear visual hierarchy" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── THE PROCESS ── -->
+    <section class="section-secondary">
+      <h2 class="seccion-titulo">The process</h2>
+      <p class="body-text">A redesign of this magnitude doesn't happen in Figma. Multiple teams had to be aligned, decisions validated with business, and quality maintained during implementation.</p>
+
+      <div class="process-band">
+        <figure>
+          <img src="/images/portfolio/rediseno-cuentas/proceso-taller.jpg" alt="Alignment workshop between teams" loading="lazy" />
+          <figcaption>Cross-team alignment workshop to ensure consistency with other products.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/portfolio/rediseno-cuentas/proceso-exploracion.png" alt="Visual exploration of screens in Figma" loading="lazy" />
+          <figcaption>More than 50 screens iterated before the final design.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── EQC ── -->
+    <section class="section-secondary">
+      <h2 class="seccion-titulo">Experience &amp; Quality Control</h2>
+      <p class="body-text">One of the biggest challenges was making the final design match development, due to internal team changes and library limitations. To tackle it, we worked with the QA team to build what we called EQC: a Figma board crossed with a spreadsheet where we detected every difference between design and build.</p>
+      <p class="body-text">The result was a replicable framework: we didn't just find and fix bugs — we also left a documented process for future bank redesigns.</p>
+
+      <div class="mockup-frame evidence">
+        <img src="/images/portfolio/rediseno-cuentas/impacto-eqc.png" alt="EQC board with Figma screens and error spreadsheet" loading="lazy" />
+      </div>
+      <p class="fig-caption">EQC board: 140 inconsistencies detected between the delivered design and the production build. Each row carries severity, owner, status, and recommendation. 97 were resolved before launch; 9 high-severity ones were blocked by this process before reaching production.</p>
+    </section>
+
+    <!-- ── THE IMPACT ── -->
+    <section class="section-primary">
+      <h2 class="seccion-titulo">The impact</h2>
+      <p class="body-text">The final design went to production with all detected issues resolved or mitigated, adapting to the technical constraints at the time.</p>
+
+      <h3 class="sub-titulo mt-3">Final design achievements</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Better account identification.</li>
+        <li><span class="dash">—</span>Faster reading of recent transactions.</li>
+        <li><span class="dash">—</span>Improved discoverability of quick actions.</li>
+        <li><span class="dash">—</span>Empty states converted into sales opportunities with banners and calls to action.</li>
+        <li><span class="dash">—</span>Improved load times and reduced experience errors.</li>
+      </ul>
+
+      <h3 class="sub-titulo mt-3">What I took away as a designer</h3>
+      <ul class="lista-dash">
+        <li><span class="dash">—</span>Research is necessary but not sufficient. The impact came from crossing customer findings with business metrics. The decision to sort by balance rather than account type, for example, doesn't come from research alone — it comes from crossing it with the metric showing how many customers have 10+ accounts.</li>
+        <li><span class="dash">—</span>EQC as a shared practice between design and QA isn't standard, but it works. I proposed it as a recurring ritual for future major bank redesigns.</li>
+      </ul>
+    </section>
+
+    <!-- ── WHAT HAPPENED NEXT ── -->
+    <section class="section-tertiary">
+      <h2 class="seccion-titulo">What happened next</h2>
+      <p class="body-text">The redesign is in production and is the foundation on which the next features in the accounts section are built. The flexible framework we designed allows business to incorporate new products or metrics without requesting a redesign — which was strategic objective number four.</p>
+    </section>
+
+    <!-- ── NAVIGATION ── -->
+    <nav class="nav-casos">
+      <a href="/en/portfolio/pfm" class="nav-item">
+        <span class="nav-label">← Previous case</span>
+        <span class="nav-titulo">Argentina's first bank-built PFM</span>
+      </a>
+      <a href="/en/portfolio/csat-semantico" class="nav-item nav-item-right">
+        <span class="nav-label">Next case →</span>
+        <span class="nav-titulo">From 10,000 opinions to a prioritized backlog</span>
+      </a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ── MOCKUP FRAME ── */
+  .mockup-frame {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .mockup-frame img {
+    max-height: 420px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    flex: 0 1 auto;
+  }
+
+  .mockup-frame.single {
+    max-width: 48rem;
+    margin: 2rem auto;
+    padding: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .mockup-frame.single img {
+    max-height: 520px;
+  }
+
+  .mockup-frame.wide img {
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .mockup-frame.comparison {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    flex-wrap: nowrap;
+  }
+
+  .compare-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+    margin: 0;
+  }
+
+  .compare-label {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #6b6b6b;
+    text-transform: uppercase;
+  }
+
+  .compare-item img {
+    max-height: 440px;
+    width: auto;
+    border-radius: 8px;
+    flex: none;
+  }
+
+  .mockup-frame.evidence {
+    max-width: 40rem;
+    margin: 2rem auto;
+  }
+
+  .mockup-frame.evidence img {
+    max-height: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* ── CAPTIONS ── */
+  .fig-caption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin: -1rem 0 2rem;
+  }
+
+  .caption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  /* ── PROCESS BAND ── */
+  .process-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 44rem;
+    margin: 2rem auto 4rem;
+  }
+
+  .process-band figure {
+    margin: 0;
+  }
+
+  .process-band img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    max-height: 320px;
+  }
+
+  .process-band figcaption {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    font-style: italic;
+    margin-top: 0.875rem;
+    line-height: 1.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 0;
+  }
+
+  .hero-sub {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    color: #a0a0a0;
+    max-width: 50rem;
+    line-height: 1.5;
+    margin: 2rem 0 0;
+  }
+
+  /* ── SUMMARY ── */
+  .resumen-section {
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .resumen-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 2rem;
+  }
+
+  .resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .resumen-label {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.75rem;
+  }
+
+  .resumen-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  /* ── SECTION HIERARCHY ── */
+  .section-primary {
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .section-primary .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-secondary {
+    padding: 2.5rem 0;
+  }
+
+  .section-tertiary {
+    padding: 2rem 0;
+  }
+
+  /* ── TITLES ── */
+  .seccion-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 2.5rem;
+  }
+
+  .section-secondary .seccion-titulo {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin: 0 0 1.5rem;
+  }
+
+  .section-tertiary .seccion-titulo {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 1.5rem;
+  }
+
+  .body-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #d0d0d0;
+    max-width: 44rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .body-text.callout {
+    border-left: 2px solid #ff6b3d;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .intro-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: -1.5rem 0 3rem;
+  }
+
+  .sub-intro {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin: -1.5rem 0 2rem;
+  }
+
+  .sub-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1.25rem;
+  }
+
+  .mt-3 {
+    margin-top: 3rem;
+  }
+
+  /* ── LISTS ── */
+  .lista-dash {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-dash li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .dash {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+  }
+
+  .lista-numerada {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 44rem;
+  }
+
+  .lista-numerada li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .num {
+    color: #6b6b6b;
+    flex-shrink: 0;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 500;
+  }
+
+  .dash-list {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .dash-list li {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+  }
+
+  /* ── RESEARCH VIZ ── */
+  .research-viz {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  .research-viz .mockup-frame {
+    margin: 0;
+  }
+
+  .data-highlight {
+    padding: 1.5rem;
+  }
+
+  .highlight-number {
+    display: block;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: #ff6b3d;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-text {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: #d0d0d0;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── BUSINESS DATA ── */
+  .datos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ── METRICS ── */
+  .metrics-grid {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    background: #141414;
+    border-radius: 12px;
+  }
+
+  .metrics-2x2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .metric-number {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #f0f0f0;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #a0a0a0;
+  }
+
+  /* ── DECISIONS ── */
+  .decisiones-section {
+    padding-bottom: 4rem;
+  }
+
+  .decisiones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .decision {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 2rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    align-items: start;
+  }
+
+  .decision.last {
+    border-bottom: none;
+  }
+
+  .decision-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ff6b3d;
+    line-height: 1;
+  }
+
+  .decision-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  .decision-texto {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    max-width: 42rem;
+    margin: 0 0 1.5rem;
+  }
+
+  /* ── NAVIGATION ── */
+  .nav-casos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    max-width: 40%;
+  }
+
+  .nav-item-right {
+    text-align: right;
+  }
+
+  .nav-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+  }
+
+  .nav-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item:hover .nav-titulo {
+    color: #ffffff;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .datos-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mockup-frame {
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+    }
+
+    .mockup-frame img {
+      max-height: 360px;
+      max-width: 100%;
+    }
+
+    .mockup-frame.comparison {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem 1rem;
+    }
+
+    .compare-item img {
+      max-height: none;
+      max-width: 100%;
+    }
+
+    .metrics-grid {
+      gap: 1rem;
+    }
+
+    .research-viz {
+      grid-template-columns: 1fr;
+    }
+
+    .process-band {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .resumen-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .decision {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+
+    .decision-num {
+      font-size: 2.5rem;
+    }
+
+    .body-text.callout {
+      padding-left: 1rem;
+    }
+
+    .nav-casos {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .nav-item {
+      max-width: 100%;
+    }
+
+    .nav-item-right {
+      text-align: left;
+    }
+  }
+</style>

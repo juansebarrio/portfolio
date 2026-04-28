@@ -16,6 +16,12 @@ const {
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en';
+const basePath = isEnglish ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
+const switchPath = isEnglish
+  ? basePath
+  : (currentPath === '/' ? '/en' : '/en' + currentPath);
+const backHref = isEnglish ? '/en' : '/';
 ---
 
 <!doctype html>
@@ -199,11 +205,16 @@ const currentPath = Astro.url.pathname;
     <!-- ── NAV JS80 ── -->
     <header class="js80-nav">
       <div class="js80-nav-inner">
-        <a href="/" class="js80-nav-back">← Juanse Barrio</a>
-        <a href="/js80" class="js80-nav-logo">js80</a>
-        <a href="https://www.js80.studio" target="_blank" rel="noopener noreferrer" class="js80-nav-ext">
-          js80.studio&nbsp;↗
-        </a>
+        <a href={backHref} class="js80-nav-back">← Juanse Barrio</a>
+        <a href={isEnglish ? '/en/js80' : '/js80'} class="js80-nav-logo">js80</a>
+        <div style="display:flex; align-items:center; gap:1.5rem;">
+          <a href={switchPath} class="js80-nav-back" style="border: 0.5px solid #e0ddd5; padding: 2px 8px; border-radius: 3px; font-size: 11px; letter-spacing: 0.1em;">
+            {isEnglish ? 'ES' : 'EN'}
+          </a>
+          <a href="https://www.js80.studio" target="_blank" rel="noopener noreferrer" class="js80-nav-ext">
+            js80.studio&nbsp;↗
+          </a>
+        </div>
       </div>
     </header>
 

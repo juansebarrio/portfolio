@@ -1,0 +1,127 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PasswordGate from '../../../components/PasswordGate.astro';
+
+export const prerender = false;
+---
+
+<Layout title="Portfolio — Juanse Barrio" description="Case studies by Juan Segundo Barrio: design, AI and research on Banco Galicia digital products.">
+
+  <PasswordGate autoShow={true} />
+
+  <div id="portfolio-content" style="display:none">
+  <div class="page-container">
+
+    <div class="portfolio-header">
+      <p class="eyebrow">PORTFOLIO</p>
+      <h1 class="page-title">Case studies</h1>
+    </div>
+
+    <section class="casos">
+
+      <a href="/en/portfolio/csat-semantico" class="caso-card caso-featured">
+        <div class="caso-media">
+          <img
+            src="/images/portfolio/csat-semantico/csat-tile.webp"
+            alt="Juanse presenting CSAT analysis results to a Galicia Design audience"
+            loading="eager"
+            width="1600"
+            height="1000"
+          />
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">Banco Galicia · 2026 · AI + Research</p>
+          <h2 class="caso-titulo">Turning the voice of the customer into an actionable backlog</h2>
+          <p class="caso-desc">A monthly system that classifies hundreds of CSAT comments using a proprietary AI-assisted taxonomy and delivers them as a squad-prioritized backlog.</p>
+          <p class="caso-cta">View case →</p>
+        </div>
+      </a>
+
+      <a href="/en/portfolio/upgrade" class="caso-card">
+        <div class="caso-media">
+          <video src="/images/portfolio/upgrade/07-video-final.mov" autoplay muted loop playsinline></video>
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
+          <h2 class="caso-titulo">Argentina's fastest financial system upgrade</h2>
+          <p class="caso-desc">Native redesign of the package upgrade flow: from an inconsistent webview to three friction-free steps.</p>
+          <p class="caso-cta">View case →</p>
+        </div>
+      </a>
+
+      <a href="/en/portfolio/rediseno-cuentas" class="caso-card">
+        <div class="caso-media">
+          <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Cross-banca alignment workshop: team reviewing redesign screens on large monitors" loading="lazy" />
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">Banco Galicia · 2025 · Redesign</p>
+          <h2 class="caso-titulo">Designing accounts from scratch</h2>
+          <p class="caso-desc">Full redesign of the accounts flow, the most used feature by the bank's customers.</p>
+          <p class="caso-cta">View case →</p>
+        </div>
+      </a>
+
+      <a href="/en/portfolio/pfm" class="caso-card">
+        <div class="caso-media">
+          <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes" loading="lazy" />
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
+          <h2 class="caso-titulo">Argentina's first bank-built PFM</h2>
+          <p class="caso-desc">Personal Finance Manager designed from research: four profiles, four ways of relating to money.</p>
+          <p class="caso-cta">View case →</p>
+        </div>
+      </a>
+
+    </section>
+
+  </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('portfolio-auth') === 'true') {
+      const content = document.getElementById('portfolio-content');
+      if (content) content.style.display = 'block';
+    }
+  </script>
+
+</Layout>
+
+<style>
+  .page-container { max-width: 80rem; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
+  .portfolio-header { padding: 2.5rem 0 1.5rem; }
+  .eyebrow { font-family: 'Syne', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #6b6b6b; margin: 0; }
+  .page-title { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0.75rem 0 0; }
+
+  .casos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 10rem; }
+
+  .caso-featured { grid-column: 1 / -1; display: grid !important; grid-template-columns: 3fr 2fr; align-items: stretch; }
+  .caso-featured .caso-media { aspect-ratio: unset; min-height: 380px; border-radius: 0; }
+  .caso-featured .caso-info { padding: 2.5rem 2.5rem 2.5rem 2.5rem; justify-content: center; gap: 0; }
+  .caso-featured .caso-titulo { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-top: 1rem; }
+  .caso-featured .caso-desc { margin-top: 1rem; font-size: 1rem; }
+  .caso-featured .caso-cta { margin-top: 2rem; align-self: flex-start; }
+
+  .caso-card { display: block; text-decoration: none; color: inherit; background: #141414; border-radius: 20px; overflow: hidden; transition: transform 300ms ease, background 300ms ease; }
+  .caso-card:hover { transform: translateY(-4px); background: #1a1a1a; }
+  .caso-media { aspect-ratio: 16 / 10; background: #0a0a0a; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .caso-media video { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .caso-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .caso-info { padding: 1.75rem; display: flex; flex-direction: column; }
+  .caso-meta { font-family: system-ui, -apple-system, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6b6b6b; margin: 0; }
+  .caso-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 500; color: #f0f0f0; line-height: 1.2; margin: 0.75rem 0 0; }
+  .caso-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 0.9375rem; color: #a0a0a0; line-height: 1.5; margin: 0.75rem 0 0; }
+  .caso-cta { font-family: system-ui, -apple-system, sans-serif; font-size: 0.875rem; color: #6b6b6b; margin: 1.25rem 0 0; align-self: flex-end; transition: color 0.2s ease; }
+  .caso-card:hover .caso-cta { color: #f0f0f0; }
+
+  @media (max-width: 900px) {
+    .casos { grid-template-columns: 1fr 1fr; }
+    .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
+    .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
+  }
+
+  @media (max-width: 600px) {
+    .casos { grid-template-columns: 1fr; margin-bottom: 6rem; }
+    .caso-featured { grid-template-columns: 1fr; }
+  }
+</style>
