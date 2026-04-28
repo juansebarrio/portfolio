@@ -35,7 +35,8 @@ const currentPath = Astro.url.pathname;
     <header class="sticky top-0 z-50 border-b border-white/5" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(12px);">
       <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
 
-        <div class="flex items-center gap-8 flex-1">
+        <!-- Desktop: Inicio (izq) -->
+        <div class="nav-desktop flex items-center gap-8 flex-1">
           <a
             href="/"
             class="text-sm tracking-wide transition-colors duration-200"
@@ -45,11 +46,13 @@ const currentPath = Astro.url.pathname;
           </a>
         </div>
 
+        <!-- Centro: nombre -->
         <a href="/" class="font-heading text-base font-semibold tracking-tight whitespace-nowrap" style="font-family: 'Syne', system-ui, sans-serif;">
           Juan Segundo Barrio
         </a>
 
-        <div class="flex items-center gap-8 flex-1 justify-end">
+        <!-- Desktop: links (der) -->
+        <div class="nav-desktop flex items-center gap-8 flex-1 justify-end">
           <a
             href="/experiencia"
             class="text-sm tracking-wide transition-colors duration-200"
@@ -86,8 +89,101 @@ const currentPath = Astro.url.pathname;
           </a>
         </div>
 
+        <!-- Mobile: botón hamburguesa -->
+        <button
+          id="nav-toggle"
+          class="nav-mobile"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="nav-mobile-menu"
+          style="background:none; border:none; cursor:pointer; padding:4px; color:#6b6b6b; display:flex; align-items:center; justify-content:center;"
+        >
+          <svg id="nav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="2" y1="5" x2="18" y2="5"/>
+            <line x1="2" y1="10" x2="18" y2="10"/>
+            <line x1="2" y1="15" x2="18" y2="15"/>
+          </svg>
+          <svg id="nav-icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="display:none;">
+            <line x1="4" y1="4" x2="16" y2="16"/>
+            <line x1="16" y1="4" x2="4" y2="16"/>
+          </svg>
+        </button>
+
       </nav>
+
+      <!-- Mobile menu -->
+      <div
+        id="nav-mobile-menu"
+        style="display:none; border-top: 1px solid rgba(255,255,255,0.05);"
+      >
+        <div style="padding: 8px 24px 16px; display:flex; flex-direction:column; gap:0;">
+          {[
+            { href: '/', label: 'Inicio', active: currentPath === '/' },
+            { href: '/experiencia', label: 'Experiencia', active: currentPath === '/experiencia' },
+            { href: '/portfolio', label: 'Portfolio', active: currentPath.startsWith('/portfolio') },
+          ].map(link => (
+            <a
+              href={link.href}
+              style={`display:block; padding: 14px 0; font-size:0.9375rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: ${link.active ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/js80"
+            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${currentPath === '/js80' ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
+          >
+            <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
+              <defs>
+                <radialGradient id="js80-mob-g" cx="35%" cy="35%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+                  <stop offset="45%" stop-color="#6B8CFF"/>
+                  <stop offset="100%" stop-color="#8B6FFF"/>
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="50" r="44" fill="url(#js80-mob-g)"/>
+            </svg>
+            JS80
+          </a>
+        </div>
+      </div>
     </header>
+
+    <style>
+      .nav-mobile { display: none; }
+
+      @media (max-width: 640px) {
+        .nav-desktop { display: none !important; }
+        .nav-mobile  { display: flex !important; }
+      }
+    </style>
+
+    <script>
+      const toggle   = document.getElementById('nav-toggle');
+      const menu     = document.getElementById('nav-mobile-menu');
+      const iconOpen  = document.getElementById('nav-icon-open');
+      const iconClose = document.getElementById('nav-icon-close');
+
+      toggle?.addEventListener('click', () => {
+        const isOpen = menu?.style.display !== 'none';
+        if (menu)     menu.style.display     = isOpen ? 'none' : 'block';
+        if (iconOpen)  iconOpen.style.display  = isOpen ? 'block' : 'none';
+        if (iconClose) iconClose.style.display = isOpen ? 'none' : 'block';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.style.color = isOpen ? '#6b6b6b' : '#f0f0f0';
+      });
+
+      // Cerrar al hacer click en un link del menú
+      menu?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (menu)     menu.style.display     = 'none';
+          if (iconOpen)  iconOpen.style.display  = 'block';
+          if (iconClose) iconClose.style.display = 'none';
+          toggle?.setAttribute('aria-expanded', 'false');
+          if (toggle) toggle.style.color = '#6b6b6b';
+        });
+      });
+    </script>
 
     <main class="flex-1">
       <slot />
