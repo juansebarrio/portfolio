@@ -286,6 +286,34 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
     </div>
   </section>
 
+  <!-- ── JS80 MODULE ── -->
+  <section class="js80-module">
+    <div class="js80-module-inner home-container">
+      <div class="js80-module-content">
+        <div class="js80-module-logo">
+          <div class="js80-sphere-sm" aria-hidden="true">
+            <div class="js80-sphere"></div>
+          </div>
+          <div class="js80-logo-text">
+            <span class="js80-wm">js80</span>
+            <span class="js80-dot-sep" aria-hidden="true">·</span>
+            <span class="js80-tag-label">digital solutions studio</span>
+          </div>
+        </div>
+        <p class="js80-module-desc">
+          The same rigor of corporate product, applied to real businesses.
+          No jargon. No fluff.
+        </p>
+        <a href="/en/js80" class="js80-module-btn">Explore the studio →</a>
+      </div>
+      <div class="js80-module-visual" aria-hidden="true">
+        <div class="js80-sphere-wrap">
+          <div class="js80-sphere"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
 
 <style>
@@ -517,6 +545,27 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
   .cta-link:hover { color: #ffffff; }
   .cta-sep { color: #6b6b6b; font-size: 1.25rem; line-height: 1; user-select: none; }
 
+  /* JS80 MODULE */
+  .js80-module { background: #fafafa; border-top: 0.5px solid #e8e8e3; border-bottom: 0.5px solid #e8e8e3; }
+  .js80-module-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; padding-top: clamp(3rem, 5vw, 4.5rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
+  .js80-module-content { display: flex; flex-direction: column; gap: 1.25rem; }
+  .js80-module-logo { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .js80-sphere-sm { display: none; }
+  .js80-logo-text { display: flex; align-items: baseline; gap: 10px; }
+  .js80-wm { font-family: 'Fraunces', Georgia, serif; font-size: 2rem; font-weight: 600; letter-spacing: -1px; color: #2c2c2a; line-height: 1; }
+  .js80-dot-sep { font-size: 1.25rem; color: #6B8CFF; opacity: 0.7; line-height: 1; }
+  .js80-tag-label { font-family: system-ui, -apple-system, sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #a0a09a; }
+  .js80-module-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 1.0625rem; color: #4a4a46; line-height: 1.6; max-width: 36rem; margin: 0; }
+  .js80-module-btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 20px; background: #2c2c2a; color: #ffffff; border-radius: 8px; font-family: system-ui, -apple-system, sans-serif; font-size: 0.8125rem; font-weight: 500; text-decoration: none; align-self: flex-start; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .js80-module-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(44,44,42,0.18); color: #ffffff; }
+  .js80-module-visual { flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding-right: 2rem; }
+  .js80-sphere-wrap { animation: js80-float 4s ease-in-out infinite; }
+  .js80-sphere { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 32% 32%, rgba(255,255,255,0.55), transparent 42%), conic-gradient(from 180deg, #6B8CFF, #8B6FFF, #FF8AA0, #FFB088, #A67AFF, #5DC7E0, #6B8CFF); box-shadow: 0 0 0 1px rgba(107,140,255,0.22), 0 0 0 9px rgba(107,140,255,0.08), 0 0 0 10px rgba(107,140,255,0.18), 0 0 0 22px rgba(107,140,255,0.04); animation: js80-spin 40s linear infinite, js80-glow 4s ease-in-out infinite; }
+  @keyframes js80-float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+  @keyframes js80-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes js80-glow { 0%, 100% { box-shadow: 0 0 0 1px rgba(107,140,255,0.22), 0 0 0 9px rgba(107,140,255,0.08), 0 0 0 10px rgba(107,140,255,0.18), 0 0 0 22px rgba(107,140,255,0.04); } 50% { box-shadow: 0 0 0 1px rgba(107,140,255,0.38), 0 0 0 12px rgba(107,140,255,0.13), 0 0 0 14px rgba(107,140,255,0.24), 0 0 0 32px rgba(107,140,255,0.07), 0 18px 40px rgba(107,140,255,0.18); } }
+  @media (prefers-reduced-motion: reduce) { .js80-sphere-wrap { animation: none; } .js80-sphere { animation: none; } }
+
   @media (max-width: 1024px) {
     .destacado { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
     .publico-grid { grid-template-columns: repeat(2, 1fr); }
@@ -533,6 +582,12 @@ const mailtoAcceso = `mailto:contacto@juansebarrio.com?subject=${encodeURICompon
     .corp-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .corp-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .corp-cta .btn-primary { width: 100%; justify-content: center; }
+    .js80-module-visual { display: none; }
+    .js80-module-logo { align-items: center; }
+    .js80-sphere-sm { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; height: 40px; }
+    .js80-sphere-sm .js80-sphere { width: 40px; height: 40px; animation: js80-spin 40s linear infinite; box-shadow: 0 0 0 1px rgba(107,140,255,0.2), 0 0 0 4px rgba(107,140,255,0.07); }
+    .js80-logo-text { display: flex; flex-direction: column; gap: 3px; }
+    .js80-dot-sep { display: none; }
   }
 </style>
 
