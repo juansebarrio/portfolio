@@ -98,24 +98,42 @@ export const prerender = false;
           </div>
         </a>
 
-        <!-- Card 2: Coming soon -->
-        <div class="caso-card caso-next" aria-hidden="true">
-          <div class="caso-media caso-media-next">
-            <div class="next-core" aria-hidden="true"></div>
+        <!-- Card 2: Digital Appointment System -->
+        <a
+          href="/en/js80/turnero-digital"
+          class="caso-card caso-card-turnero"
+          aria-label="View case study: Digital Appointment System"
+        >
+          <div class="caso-media">
+            <div class="caso-turnero-mark" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="10" width="36" height="34" rx="4" stroke="currentColor" stroke-width="2"/>
+                <line x1="6" y1="20" x2="42" y2="20" stroke="currentColor" stroke-width="2"/>
+                <line x1="15" y1="4" x2="15" y2="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="33" y1="4" x2="33" y2="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="24" cy="32" r="3" fill="currentColor"/>
+              </svg>
+            </div>
           </div>
           <div class="caso-body">
             <div class="caso-top">
-              <p class="caso-eyebrow">JS80 · 2026</p>
-              <h3 class="caso-titulo caso-titulo-muted">Next project</h3>
-              <p class="caso-desc caso-desc-muted">
-                The next case is on its way. Stay tuned.
+              <p class="caso-eyebrow">JS80 · April 2026 · Case 1</p>
+              <h3 class="caso-titulo">Digital Appointment System</h3>
+              <p class="caso-desc">
+                Your patient books in 30 seconds. Your schedule organizes itself — no app to download, no forms, no secretary spending all day on the phone.
               </p>
             </div>
             <div class="caso-footer">
-              <p class="next-label">In development</p>
+              <div class="caso-tags">
+                <span class="tag">health</span>
+                <span class="tag">scheduling</span>
+                <span class="tag">AI</span>
+                <span class="tag">WhatsApp</span>
+              </div>
+              <span class="caso-arrow">→</span>
             </div>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -432,6 +450,20 @@ export const prerender = false;
   .caso-card-cardio:hover .bs-dot {
     opacity: 1;
   }
+
+  .caso-card-turnero .caso-media {
+    background: #1a2a3a;
+    border-bottom-color: #162234;
+  }
+  .caso-turnero-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B8CFF;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+  }
+  .caso-card-turnero:hover .caso-turnero-mark { opacity: 0.8; }
 
   .next-core {
     width: 72px;
