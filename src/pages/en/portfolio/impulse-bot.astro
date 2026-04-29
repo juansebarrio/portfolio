@@ -20,6 +20,16 @@ import Layout from '../../../layouts/Layout.astro';
       </p>
     </section>
 
+    <!-- ── HERO IMAGE ── -->
+    <div class="hero-img-wrap">
+      <img
+        src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
+        alt="Undetectable and Untransmittable — Impulse Bot's two characters embracing on an orange background"
+        class="hero-img"
+        loading="eager"
+      />
+    </div>
+
     <!-- ── QUICK FACTS ── -->
     <div class="quick-facts">
       <div class="fact">
@@ -98,6 +108,37 @@ import Layout from '../../../layouts/Layout.astro';
           </div>
         </div>
 
+      </div>
+
+      <!-- Flow chart with lightbox -->
+      <div class="flowchart-wrap">
+        <button class="flowchart-btn" id="flowchart-trigger" aria-label="View full bot decision tree fullscreen">
+          <img
+            src="/images/portfolio/impulse-bot/dashboard.ong.png"
+            alt="Impulse Bot's full decision tree: nodes, branches, global keywords and human fallbacks"
+            class="flowchart-img"
+            loading="lazy"
+          />
+          <div class="flowchart-hint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Expand</span>
+          </div>
+        </button>
+        <p class="flowchart-caption">The bot's full decision tree: three main branches, global keyword handling, and human handoff at every escape point.</p>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="flowchart-lightbox" role="dialog" aria-modal="true" aria-label="Bot decision tree fullscreen">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+        <img
+          src="/images/portfolio/impulse-bot/dashboard.ong.png"
+          alt="Impulse Bot's full decision tree"
+          class="lightbox-img"
+        />
+      </div>
+
+      <div class="decisiones" style="margin-top: 3rem;">
+
         <div class="decision">
           <p class="decision-num">02</p>
           <div>
@@ -141,6 +182,64 @@ import Layout from '../../../layouts/Layout.astro';
       </div>
     </section>
 
+    <!-- ── VISUAL SYSTEM ── -->
+    <section class="seccion">
+      <p class="eyebrow">Visual system</p>
+      <h2 class="seccion-title">Making "Undetectable" and "Untransmittable" human</h2>
+
+      <div class="prosa">
+        <p>
+          For a sexual health chatbot to work, you first need to dismantle public health language. People don't enter a conversation with the phrase <em>"undetectable viral load"</em> in their heads — they come with doubts, embarrassment, urgency.
+        </p>
+        <p>
+          The bot's visual system was built around <strong>two characters that embody the global U=U slogan (Undetectable = Untransmittable)</strong>: if a person living with HIV has an undetectable viral load thanks to treatment, the virus is sexually untransmittable. It's one of modern prevention's most powerful messages, and it's almost always communicated in medical language.
+        </p>
+        <p>
+          <strong>Undetectable</strong> (blue) came first. <strong>Untransmittable</strong> (red) arrived six months later — the actual time treatment needs to become untransmittable. They're twins. They hug. They jump. They feel scared, they hesitate, they celebrate. They show up in WhatsApp and break the idea that talking about HIV has to be solemn.
+        </p>
+      </div>
+
+      <div class="characters-grid">
+        <div class="character-card">
+          <img
+            src="/images/portfolio/impulse-bot/chatbot_impulse_pj1.jpeg"
+            alt="Undetectable — blue character from Impulse Bot"
+            loading="lazy"
+          />
+          <div class="character-info">
+            <p class="character-name">Undetectable</p>
+            <p class="character-desc">The blue one. Represents an undetectable viral load — the goal of antiretroviral treatment.</p>
+          </div>
+        </div>
+        <div class="character-card">
+          <img
+            src="/images/portfolio/impulse-bot/chatbot_impulse_pj2.jpeg"
+            alt="Untransmittable — red character from Impulse Bot"
+            loading="lazy"
+          />
+          <div class="character-info">
+            <p class="character-name">Untransmittable</p>
+            <p class="character-desc">The red one. Arrives six months later — the actual time treatment takes to achieve untransmittability.</p>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="pull-quote">
+        "The twins aren't a sticker pack. They're a product decision: if the brand doesn't scare you, the conversation continues."
+      </blockquote>
+
+      <!-- TODO: add credit to the illustrator/Impulse team that created the characters -->
+      <a
+        href="/images/portfolio/impulse-bot/chatbot_Personajes.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pdf-link"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Download character manual (PDF)
+      </a>
+    </section>
+
     <!-- ── RESULTS ── -->
     <section class="seccion">
       <p class="eyebrow">Results</p>
@@ -150,7 +249,7 @@ import Layout from '../../../layouts/Layout.astro';
         Two activation waves — Pride June 2025 and the BA Pride March in October — generated the two spikes of the pilot. Between waves, the bot stayed active and contacts remained in the base, allowing reactivation with no friction.
       </p>
 
-      <!-- TODO: insert real dashboard screenshot here -->
+      <!-- TODO: replace with dashboard-metrics.png when available -->
       <div class="dashboard-placeholder">
         <p class="placeholder-label">[ Dashboard screenshot — pending ]</p>
       </div>
@@ -229,14 +328,47 @@ import Layout from '../../../layouts/Layout.astro';
       <p class="cierre-texto">
         The pilot closes and the project evolves into a new platform with generative-AI capabilities. The 131 opt-in contacts are the starting point; the tone and flow learnings are the conversational brand playbook.
       </p>
+      <div class="cierre-img-wrap">
+        <img
+          src="/images/portfolio/impulse-bot/chatbot_impulse_pj1_y_pj2.jpeg"
+          alt="Undetectable and Untransmittable jumping with arms raised"
+          class="cierre-img"
+          loading="lazy"
+        />
+      </div>
     </section>
 
     <!-- ── CASE NAV ── -->
     <nav class="caso-nav">
-      <a href="/en/portfolio" class="caso-nav-link caso-nav-back">← View all cases</a>
+      <a href="/en/portfolio" class="caso-nav-link">← View all cases</a>
     </nav>
 
   </div>
+
+  <!-- Lightbox script -->
+  <script>
+    const trigger = document.getElementById('flowchart-trigger');
+    const lightbox = document.getElementById('flowchart-lightbox');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    trigger?.addEventListener('click', () => {
+      lightbox?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeLightbox = () => {
+      lightbox?.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
 </Layout>
 
@@ -267,7 +399,8 @@ import Layout from '../../../layouts/Layout.astro';
     margin: 0 0 0.5rem;
   }
 
-  .hero { padding-top: 8rem; padding-bottom: 4rem; }
+  /* ── Hero ── */
+  .hero { padding-top: 8rem; padding-bottom: 3rem; }
 
   .hero-title {
     font-family: 'Syne', system-ui, sans-serif;
@@ -297,10 +430,27 @@ import Layout from '../../../layouts/Layout.astro';
     font-family: system-ui, -apple-system, sans-serif;
   }
 
+  .hero-img-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    background: #0d0d0d;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 60vh;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* ── Quick facts ── */
   .quick-facts {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
     border: 1px solid #2a2a2a;
     border-radius: 16px;
     overflow: hidden;
@@ -328,6 +478,7 @@ import Layout from '../../../layouts/Layout.astro';
     font-family: system-ui, -apple-system, sans-serif;
   }
 
+  /* ── Meta ── */
   .meta-band {
     display: flex;
     flex-wrap: wrap;
@@ -340,6 +491,7 @@ import Layout from '../../../layouts/Layout.astro';
 
   .meta-val { font-size: 0.9375rem; color: #c0c0c0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
+  /* ── Sections ── */
   .seccion { margin-top: 8rem; }
 
   .seccion-title {
@@ -359,6 +511,7 @@ import Layout from '../../../layouts/Layout.astro';
 
   .intro-parrafo { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
+  /* ── Decisions ── */
   .decisiones { display: flex; flex-direction: column; }
 
   .decision { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid #2a2a2a; }
@@ -369,9 +522,188 @@ import Layout from '../../../layouts/Layout.astro';
   .decision-cuerpo { font-size: 1rem; line-height: 1.65; color: #a0a0a0; margin: 0; max-width: 44rem; font-family: system-ui, -apple-system, sans-serif; }
   .decision-cuerpo em { color: #c0c0c0; font-style: italic; }
 
-  .dashboard-placeholder { width: 100%; min-height: 320px; background: #141414; border: 1px dashed #3a3a3a; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 3rem; }
+  /* ── Flow chart ── */
+  .flowchart-wrap { margin: 3rem 0; }
+
+  .flowchart-btn {
+    position: relative;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .flowchart-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    transition: filter 0.2s ease;
+  }
+
+  .flowchart-btn:hover .flowchart-img { filter: brightness(0.85); }
+
+  .flowchart-hint {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(10,10,10,0.8);
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #a0a0a0;
+    font-family: system-ui, -apple-system, sans-serif;
+    pointer-events: none;
+  }
+
+  .flowchart-caption {
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    margin: 1rem 0 0;
+    font-style: italic;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: #f0f0f0;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── Characters ── */
+  .characters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .character-card {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .character-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .character-info {
+    padding: 1.5rem;
+  }
+
+  .character-name {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin: 0 0 0.5rem;
+  }
+
+  .character-desc {
+    font-size: 0.875rem;
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* ── Pull quote ── */
+  .pull-quote {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    color: #e0e0e0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    border-left: 3px solid #3a3a3a;
+    padding-left: 2rem;
+    margin: 3rem 0 2rem;
+    max-width: 44rem;
+  }
+
+  /* ── PDF link ── */
+  .pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    text-decoration: none;
+    border-bottom: 1px solid #3a3a3a;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .pdf-link:hover { color: #f0f0f0; border-color: #f0f0f0; }
+
+  /* ── Dashboard placeholder ── */
+  .dashboard-placeholder {
+    width: 100%;
+    min-height: 280px;
+    background: #141414;
+    border: 1px dashed #3a3a3a;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
   .placeholder-label { font-size: 0.875rem; color: #4a4a4a; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
 
+  /* ── Metrics ── */
   .metricas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 0 0 3rem; }
 
   .metrica { padding: 2rem; background: #141414; border-radius: 12px; border: 1px solid #2a2a2a; }
@@ -379,36 +711,45 @@ import Layout from '../../../layouts/Layout.astro';
   .metrica-num { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 0.75rem; }
   .metrica-label { font-size: 0.875rem; line-height: 1.5; color: #6b6b6b; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
+  /* ── Lectura ── */
   .lectura { display: flex; flex-direction: column; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; }
   .lectura-item { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; padding: 2rem 2.5rem; border-bottom: 1px solid #2a2a2a; background: #141414; }
   .lectura-item:last-child { border-bottom: none; }
   .lectura-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: #f0f0f0; margin: 0; line-height: 1.4; }
   .lectura-cuerpo { font-size: 0.9375rem; line-height: 1.6; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
+  /* ── Learnings ── */
   .aprendizajes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .aprendizaje { padding: 2rem; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; }
   .aprendizaje-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; color: #f0f0f0; margin: 0 0 0.75rem; line-height: 1.3; }
   .aprendizaje-cuerpo { font-size: 0.9375rem; line-height: 1.65; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
+  /* ── Close ── */
   .seccion-cierre { padding-bottom: 3rem; border-bottom: 1px solid #2a2a2a; }
-  .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+  .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
-  .caso-nav { display: flex; align-items: center; justify-content: space-between; padding: 3rem 0 6rem; }
-  .caso-nav-link { font-family: 'Syne', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s ease; }
+  .cierre-img-wrap { border-radius: 16px; overflow: hidden; }
+  .cierre-img { width: 100%; height: auto; display: block; max-height: 480px; object-fit: cover; object-position: center top; }
+
+  /* ── Nav ── */
+  .caso-nav { display: flex; padding: 3rem 0 6rem; }
+  .caso-nav-link { font-family: 'Syne', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s; }
   .caso-nav-link:hover { color: #f0f0f0; }
 
+  /* ── Responsive ── */
   @media (max-width: 768px) {
     .quick-facts { grid-template-columns: 1fr 1fr; }
     .fact { border-bottom: 1px solid #2a2a2a; }
     .fact:nth-child(odd) { border-right: 1px solid #2a2a2a; }
     .fact:last-child { border-bottom: none; }
     .fact:nth-last-child(2) { border-bottom: none; }
-    .meta-band { gap: 1.5rem 2rem; }
     .decision { grid-template-columns: 1fr; gap: 0.75rem; }
     .decision-num { font-size: 1.5rem; color: #3a3a3a; }
+    .characters-grid { grid-template-columns: 1fr; }
     .metricas-grid { grid-template-columns: 1fr 1fr; }
     .lectura-item { grid-template-columns: 1fr; gap: 0.75rem; }
     .aprendizajes { grid-template-columns: 1fr; }
+    .pull-quote { padding-left: 1.25rem; }
   }
 
   @media (max-width: 480px) {
