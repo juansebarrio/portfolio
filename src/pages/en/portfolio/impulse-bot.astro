@@ -1,0 +1,417 @@
+---
+export const prerender = false;
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Impulse Bot — Juanse Barrio"
+  description="Argentina's first chatbot fully dedicated to sexual health. Design and launch of Impulse's conversational channel on WhatsApp."
+>
+
+  <div class="page-container">
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <p class="eyebrow">CONVERSATIONAL DESIGN · PUBLIC HEALTH · AI · 2025</p>
+      <h1 class="hero-title">Impulse Bot</h1>
+      <p class="hero-subtitle">Argentina's first chatbot fully dedicated to sexual health.</p>
+      <p class="hero-bajada">
+        I designed and launched the conversational channel that supported 130+ people during Pride 2025 — from RSVP for the Impulse truck to post-event follow-up.
+      </p>
+    </section>
+
+    <!-- ── QUICK FACTS ── -->
+    <div class="quick-facts">
+      <div class="fact">
+        <p class="fact-num">2,249</p>
+        <p class="fact-label">Messages exchanged</p>
+      </div>
+      <div class="fact">
+        <p class="fact-num">196</p>
+        <p class="fact-label">Active conversations</p>
+      </div>
+      <div class="fact">
+        <p class="fact-num">82%</p>
+        <p class="fact-label">Opt-in for future communications</p>
+      </div>
+      <div class="fact">
+        <p class="fact-num">#1</p>
+        <p class="fact-label">Sexual health chatbot in Argentina</p>
+      </div>
+    </div>
+
+    <!-- ── META ── -->
+    <div class="meta-band">
+      <div class="meta-item">
+        <p class="mini-eyebrow">Role</p>
+        <p class="meta-val">Product Designer & Project Lead</p>
+      </div>
+      <div class="meta-item">
+        <p class="mini-eyebrow">Client</p>
+        <p class="meta-val">Impulse — AIDS Healthcare Foundation Argentina</p>
+      </div>
+      <div class="meta-item">
+        <p class="mini-eyebrow">Timeframe</p>
+        <p class="meta-val">Jun 2025 – Apr 2026 (pilot)</p>
+      </div>
+      <div class="meta-item">
+        <p class="mini-eyebrow">Channel</p>
+        <p class="meta-val">WhatsApp Business API</p>
+      </div>
+      <div class="meta-item">
+        <p class="mini-eyebrow">Status</p>
+        <p class="meta-val">Pilot closed — evolving to new technology</p>
+      </div>
+    </div>
+
+    <!-- ── CONTEXT ── -->
+    <section class="seccion">
+      <p class="eyebrow">The context</p>
+      <h2 class="seccion-title">WhatsApp was where people already were.</h2>
+      <div class="prosa">
+        <p>
+          Impulse is the Argentine chapter of AIDS Healthcare Foundation, the world's leading HIV prevention organization. As part of its Pride 2025 presence, Impulse deployed an <strong>active truck in the march</strong> with testing, information and guest artists. The operation needed a channel that could RSVP and follow up with guests in real time, answer sexual health questions in a warm — non-clinical — tone, and build a contact base that could be reactivated in future campaigns, all with a small team and no call-center budget.
+        </p>
+        <p>
+          Traditional channels (forms, email, social DMs) broke down on at least one of those points. WhatsApp was where people already were.
+        </p>
+        <p>
+          Until this pilot, Argentina had no conversational channel built <em>specifically</em> for sexual health: information lived in static websites, long FAQs, or in-person consultations. A dedicated chatbot opened the door to something different — accurate info, in the user's language, in the user's channel, backed by a trusted organization.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── APPROACH ── -->
+    <section class="seccion">
+      <p class="eyebrow">How I built it</p>
+      <h2 class="seccion-title">Five decisions that defined the product</h2>
+
+      <div class="decisiones">
+
+        <div class="decision">
+          <p class="decision-num">01</p>
+          <div>
+            <p class="decision-titulo">Conversational mapping before touching the tool</p>
+            <p class="decision-cuerpo">
+              Before configuring anything, I mapped flows on paper: what are the real questions? What tone do people use when asking about sexual health? What happens when the bot doesn't know? I spent afternoons reading real conversations on other Impulse channels to distill patterns.
+            </p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <p class="decision-num">02</p>
+          <div>
+            <p class="decision-titulo">Tone design</p>
+            <p class="decision-cuerpo">
+              I defined a voice system: close, free of unnecessary jargon, non-judgmental, humorous when appropriate. The hypothesis was that if the user felt judged, they'd leave. The data confirmed it.
+            </p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <p class="decision-num">03</p>
+          <div>
+            <p class="decision-titulo">Intent-based flows</p>
+            <p class="decision-cuerpo">
+              Three main branches: (a) RSVP and truck logistics, (b) sexual health info and testing referrals, (c) post-event follow-up. Each branch with a human <em>fallback</em> when the question stepped outside the script.
+            </p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <p class="decision-num">04</p>
+          <div>
+            <p class="decision-titulo">WhatsApp as the only channel</p>
+            <p class="decision-cuerpo">
+              A counterintuitive call — usually you design multichannel. Here, the bet was to concentrate everything on WhatsApp to avoid fragmenting the experience or the support team.
+            </p>
+          </div>
+        </div>
+
+        <div class="decision">
+          <p class="decision-num">05</p>
+          <div>
+            <p class="decision-titulo">Metrics from day zero</p>
+            <p class="decision-cuerpo">
+              Dashboard for received vs. sent messages, active conversations, new contacts, opt-in. Without this, the pilot couldn't justify its evolution.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── RESULTS ── -->
+    <section class="seccion">
+      <p class="eyebrow">Results</p>
+      <h2 class="seccion-title">A small pilot that unlocked investment in a new platform.</h2>
+
+      <p class="intro-parrafo">
+        Two activation waves — Pride June 2025 and the BA Pride March in October — generated the two spikes of the pilot. Between waves, the bot stayed active and contacts remained in the base, allowing reactivation with no friction.
+      </p>
+
+      <!-- TODO: insert real dashboard screenshot here -->
+      <div class="dashboard-placeholder">
+        <p class="placeholder-label">[ Dashboard screenshot — pending ]</p>
+      </div>
+
+      <div class="metricas-grid">
+        <div class="metrica">
+          <p class="metrica-num">196</p>
+          <p class="metrica-label">Active conversations</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">133</p>
+          <p class="metrica-label">New contacts</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">2,249</p>
+          <p class="metrica-label">Total messages (792 received · 1,457 sent)</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">82%</p>
+          <p class="metrica-label">Opt-in for future comms (108 of 131 contacts)</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">1.84:1</p>
+          <p class="metrica-label">Sent / received message ratio</p>
+        </div>
+        <div class="metrica">
+          <p class="metrica-num">2</p>
+          <p class="metrica-label">Activation waves: June Pride + October BA March</p>
+        </div>
+      </div>
+
+      <div class="lectura">
+        <div class="lectura-item">
+          <p class="lectura-titulo">The 1.84:1 ratio is design, not noise</p>
+          <p class="lectura-cuerpo">The bot speaks more than it listens because a useful sexual-health conversation includes context, options and referrals — not just binary answers.</p>
+        </div>
+        <div class="lectura-item">
+          <p class="lectura-titulo">82% opt-in is exceptionally high for an NGO</p>
+          <p class="lectura-cuerpo">Market averages for NGO comms subscriptions usually sit below 30%. It signals the channel built real trust.</p>
+        </div>
+        <div class="lectura-item">
+          <p class="lectura-titulo">The two spikes aren't noise — they're the story</p>
+          <p class="lectura-cuerpo">The bot acted as an amplifier in the two key moments of the Argentine LGBTIQ+ calendar. Zero churn between waves: contacts stayed in the base ready to reactivate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT I LEARNED ── -->
+    <section class="seccion">
+      <p class="eyebrow">What I learned</p>
+      <h2 class="seccion-title">Four principles the pilot left behind.</h2>
+
+      <div class="aprendizajes">
+        <div class="aprendizaje">
+          <p class="aprendizaje-titulo">Channel beats sophistication</p>
+          <p class="aprendizaje-cuerpo">A rule-based WhatsApp bot beat any "AI-first" solution we could've shipped on another channel. People don't open new apps to talk about sexual health.</p>
+        </div>
+        <div class="aprendizaje">
+          <p class="aprendizaje-titulo">Tone is product</p>
+          <p class="aprendizaje-cuerpo">Not a cosmetic layer. Every copy decision moved the conversation-continuation metric.</p>
+        </div>
+        <div class="aprendizaje">
+          <p class="aprendizaje-titulo">Designing for the human fallback is designing the whole system</p>
+          <p class="aprendizaje-cuerpo">Chatbots fail; what matters is how they fail. The human handoff was designed with the same seriousness as the main flow.</p>
+        </div>
+        <div class="aprendizaje">
+          <p class="aprendizaje-titulo">A well-measured pilot is the best case for evolution budget</p>
+          <p class="aprendizaje-cuerpo">Without the metrics, this case wouldn't be migrating to a more robust platform today.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT'S NEXT ── -->
+    <section class="seccion seccion-cierre">
+      <p class="eyebrow">What's next</p>
+      <p class="cierre-texto">
+        The pilot closes and the project evolves into a new platform with generative-AI capabilities. The 131 opt-in contacts are the starting point; the tone and flow learnings are the conversational brand playbook.
+      </p>
+    </section>
+
+    <!-- ── CASE NAV ── -->
+    <nav class="caso-nav">
+      <a href="/en/portfolio" class="caso-nav-link caso-nav-back">← View all cases</a>
+    </nav>
+
+  </div>
+
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1.5rem;
+  }
+
+  .mini-eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 0.5rem;
+  }
+
+  .hero { padding-top: 8rem; padding-bottom: 4rem; }
+
+  .hero-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 1.5rem 0 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    color: #a0a0a0;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-bajada {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #6b6b6b;
+    max-width: 50rem;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .quick-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .fact { padding: 2rem; border-right: 1px solid #2a2a2a; background: #141414; }
+  .fact:last-child { border-right: none; }
+
+  .fact-num {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0 0 0.75rem;
+  }
+
+  .fact-label {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: #6b6b6b;
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .meta-band {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 2rem;
+  }
+
+  .meta-val { font-size: 0.9375rem; color: #c0c0c0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .seccion { margin-top: 8rem; }
+
+  .seccion-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0 0 2.5rem;
+  }
+
+  .prosa p { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 1.5rem; font-family: system-ui, -apple-system, sans-serif; }
+  .prosa p:last-child { margin-bottom: 0; }
+  .prosa strong { color: #f0f0f0; font-weight: 500; }
+  .prosa em { color: #e0e0e0; font-style: italic; }
+
+  .intro-parrafo { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
+
+  .decisiones { display: flex; flex-direction: column; }
+
+  .decision { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid #2a2a2a; }
+  .decision:last-child { border-bottom: none; }
+
+  .decision-num { font-family: 'Syne', system-ui, sans-serif; font-size: 3rem; font-weight: 700; line-height: 1; color: #2a2a2a; margin: 0; }
+  .decision-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; color: #f0f0f0; margin: 0 0 0.75rem; }
+  .decision-cuerpo { font-size: 1rem; line-height: 1.65; color: #a0a0a0; margin: 0; max-width: 44rem; font-family: system-ui, -apple-system, sans-serif; }
+  .decision-cuerpo em { color: #c0c0c0; font-style: italic; }
+
+  .dashboard-placeholder { width: 100%; min-height: 320px; background: #141414; border: 1px dashed #3a3a3a; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 3rem; }
+  .placeholder-label { font-size: 0.875rem; color: #4a4a4a; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
+
+  .metricas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 0 0 3rem; }
+
+  .metrica { padding: 2rem; background: #141414; border-radius: 12px; border: 1px solid #2a2a2a; }
+
+  .metrica-num { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 0.75rem; }
+  .metrica-label { font-size: 0.875rem; line-height: 1.5; color: #6b6b6b; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .lectura { display: flex; flex-direction: column; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; }
+  .lectura-item { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; padding: 2rem 2.5rem; border-bottom: 1px solid #2a2a2a; background: #141414; }
+  .lectura-item:last-child { border-bottom: none; }
+  .lectura-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: #f0f0f0; margin: 0; line-height: 1.4; }
+  .lectura-cuerpo { font-size: 0.9375rem; line-height: 1.6; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .aprendizajes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .aprendizaje { padding: 2rem; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; }
+  .aprendizaje-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; color: #f0f0f0; margin: 0 0 0.75rem; line-height: 1.3; }
+  .aprendizaje-cuerpo { font-size: 0.9375rem; line-height: 1.65; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .seccion-cierre { padding-bottom: 3rem; border-bottom: 1px solid #2a2a2a; }
+  .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+  .caso-nav { display: flex; align-items: center; justify-content: space-between; padding: 3rem 0 6rem; }
+  .caso-nav-link { font-family: 'Syne', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s ease; }
+  .caso-nav-link:hover { color: #f0f0f0; }
+
+  @media (max-width: 768px) {
+    .quick-facts { grid-template-columns: 1fr 1fr; }
+    .fact { border-bottom: 1px solid #2a2a2a; }
+    .fact:nth-child(odd) { border-right: 1px solid #2a2a2a; }
+    .fact:last-child { border-bottom: none; }
+    .fact:nth-last-child(2) { border-bottom: none; }
+    .meta-band { gap: 1.5rem 2rem; }
+    .decision { grid-template-columns: 1fr; gap: 0.75rem; }
+    .decision-num { font-size: 1.5rem; color: #3a3a3a; }
+    .metricas-grid { grid-template-columns: 1fr 1fr; }
+    .lectura-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .aprendizajes { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .metricas-grid { grid-template-columns: 1fr; }
+  }
+</style>
