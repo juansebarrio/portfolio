@@ -85,6 +85,31 @@ export const prerender = false;
     }
   </script>
 
+  <!-- ── PUBLIC CASES (no gate) ── -->
+  <div class="page-container">
+    <section class="casos casos-publicos">
+
+      <div class="publicos-header">
+        <p class="eyebrow">PUBLIC PROJECT</p>
+      </div>
+
+      <a href="/en/portfolio/impulse-bot" class="caso-card">
+        <div class="caso-media caso-media-impulse">
+          <div class="impulse-visual" aria-hidden="true">
+            <span>💬</span>
+          </div>
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>
+          <h2 class="caso-titulo">Impulse Bot</h2>
+          <p class="caso-desc">Argentina's first chatbot fully dedicated to sexual health. 2,249 messages exchanged, 82% opt-in rate, two activation waves in the LGBTIQ+ calendar.</p>
+          <p class="caso-cta">View case →</p>
+        </div>
+      </a>
+
+    </section>
+  </div>
+
 </Layout>
 
 <style>
@@ -124,4 +149,14 @@ export const prerender = false;
     .casos { grid-template-columns: 1fr; margin-bottom: 6rem; }
     .caso-featured { grid-template-columns: 1fr; }
   }
+
+  .casos-publicos {
+    display: block;
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+  }
+  .publicos-header { margin-bottom: 2rem; }
+  .caso-media-impulse { background: #0d1a2b; display: flex; align-items: center; justify-content: center; }
+  .impulse-visual { font-size: 3rem; opacity: 0.5; }
 </style>
