@@ -5,307 +5,275 @@ export const prerender = false;
 ---
 
 <LayoutJS80
-  title="Digital Appointment System — JS80"
-  description="Medical scheduling in 30 seconds: web booking, WhatsApp AI agent, and admin panel. Case 1 of JS80 Studio."
+  title="Digital Appointment System · JS80"
+  description="End-to-end scheduling system built for medical practices."
 >
 
-  <!-- ── CASE HERO ── -->
-  <section class="case-hero section">
-    <div class="container">
-      <nav class="case-back">
-        <a href="/en/js80" class="back-link">← JS80</a>
-      </nav>
-      <div class="case-hero-grid">
-        <div class="case-hero-content">
-          <span class="label case-label">Case 1 · Health · April 2026</span>
-          <h1 class="case-title">Digital<br />Appointment<br />System</h1>
-          <p class="case-pitch">
-            Your patient books in 30 seconds.<br />Your schedule organizes itself.
-          </p>
-          <div class="case-tags">
-            {['health', 'scheduling', 'SecretarIA', 'WhatsApp', 'AI', 'admin panel'].map(tag => (
-              <span class="tag">{tag}</span>
-            ))}
-          </div>
-          <div class="case-hero-meta">
-            <div class="meta-item">
-              <span class="label">Product</span>
-              <span>End-to-end scheduling system</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Sector</span>
-              <span>Healthcare · prepaid medicine & clinics</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Status</span>
-              <span>Live in production</span>
-            </div>
-          </div>
-        </div>
-        <div class="case-hero-visual" aria-hidden="true">
-          <div class="turnero-icon-lg">
-            <svg width="96" height="96" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="6" y="10" width="36" height="34" rx="4" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="6" y1="20" x2="42" y2="20" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="15" y1="4" x2="15" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <line x1="33" y1="4" x2="33" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="24" cy="32" r="3" fill="currentColor"/>
-            </svg>
-          </div>
-        </div>
+  <!-- ── Hero ── -->
+  <div class="case-hero">
+    <div class="case-hero-inner">
+      <div class="case-tags">
+        <span class="tag">Health</span>
+        <span class="tag">Scheduling</span>
+        <span class="tag">SecretarIA</span>
+      </div>
+      <h1 class="serif case-title">Digital appointment system.</h1>
+      <p class="case-subtitle">
+        Your patient books in 30 seconds. Your schedule organizes itself — no app to download,
+        no endless forms, no secretary spending all day on the phone.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Preview ── -->
+  <div class="case-preview">
+    <div class="preview-frame">
+      <iframe
+        src="https://www.js80.studio/turnero-preview.html"
+        title="Digital appointment system"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- ── Content ── -->
+  <div class="case-body container">
+
+    <div class="case-block">
+      <span class="label">The challenge</span>
+      <div class="case-content">
+        <h2 class="serif">The bar to improve this was on the floor.</h2>
+        <p>
+          Booking an appointment today means five screens: raw lists with 30+ duplicate locations,
+          exact-text search where a typo locks you out, and email validation only at the end of
+          the flow. The result is an 18% no-show rate nobody tracks and a secretary spending the
+          whole day confirming appointments one by one.
+        </p>
+        <ul class="case-list">
+          <li>No geolocation or visible slots from the start</li>
+          <li>Zero effective reminders before the appointment</li>
+          <li>Cancellations that become dead schedule time</li>
+          <li>Secretary types instead of attending patients</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ── KEY METRICS ── -->
-  <section class="section section-white">
-    <div class="container">
-      <div class="pitch-grid">
-        <div class="pitch-stat">
-          <span class="stat-num">30s</span>
-          <span class="stat-label">to book an appointment</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">70%</span>
-          <span class="stat-label">of bookings without human intervention</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">0</span>
-          <span class="stat-label">confirmation calls needed</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">24/7</span>
-          <span class="stat-label">availability via WhatsApp</span>
-        </div>
+    <div class="case-block">
+      <span class="label">The solution</span>
+      <div class="case-content">
+        <h2 class="serif">Three layers. One single tool.</h2>
+        <p>
+          The JS80 Scheduler works in complementary layers: first the patient alone — 70% of
+          appointments are booked without anyone at the practice touching a keyboard. Then
+          SecretarIA for what requires natural conversation. And finally the human secretary
+          with full override on everything, receiving only what the AI didn't resolve.
+        </p>
+        <ul class="case-list">
+          <li>Patient books, confirms and reschedules without calling</li>
+          <li>SecretarIA schedules via WhatsApp in natural language</li>
+          <li>Waitlist covers cancellations instantly</li>
+          <li>Admin panel with daily agenda and pending queue</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ── THE CHALLENGE ── -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">The challenge</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">The bar to improve this was on the floor</h2>
-          <p class="body-text">
-            The previous system required five screens to book an appointment. Raw lists with 30+ duplicate locations, exact-text search where a typo locked you out, late email validation, and no visible time slots until the very end of the process.
-          </p>
-          <p class="body-text">
-            The result: an 18% no-show rate nobody was tracking, secretaries spending entire days on confirmation calls, and cancellations turning into dead schedule slots because the system had no waitlist.
-          </p>
-          <ul class="problem-list">
-            <li>No geolocation or visible slots from the start</li>
-            <li>Zero effective reminders</li>
-            <li>Cancellations become dead schedule time</li>
-            <li>Secretary types instead of attending patients</li>
-            <li>18% no-show rate with no follow-up</li>
-          </ul>
-        </div>
+    <div class="case-block">
+      <span class="label">What's included</span>
+      <div class="case-chips">
+        <span class="chip">Web booking</span>
+        <span class="chip">WhatsApp</span>
+        <span class="chip">SecretarIA</span>
+        <span class="chip">Admin panel</span>
+        <span class="chip">Waitlist</span>
+        <span class="chip">Automatic reminders</span>
+        <span class="chip">Google Calendar</span>
       </div>
     </div>
-  </section>
 
-  <!-- ── THE SOLUTION ── -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">The solution</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">Three layers. One single tool.</h2>
-          <p class="body-text">
-            We designed a system with three complementary layers: the patient as the first line, SecretarIA as the safety net, and the human secretary with full control over what matters.
-          </p>
+  </div>
 
-          <div class="layers-grid">
-            <div class="layer-card">
-              <span class="layer-num">01</span>
-              <h3 class="layer-title">Autonomous patient</h3>
-              <p class="layer-desc">
-                Books, confirms, and reschedules without calling. 70% of appointments are self-managed in under 30 seconds. No app to download.
-              </p>
-            </div>
-            <div class="layer-card">
-              <span class="layer-num">02</span>
-              <h3 class="layer-title">SecretarIA · WhatsApp</h3>
-              <p class="layer-desc">
-                AI agent that schedules via WhatsApp in natural language. Patients write the way they talk, and the system understands. Available 24 hours.
-              </p>
-            </div>
-            <div class="layer-card">
-              <span class="layer-num">03</span>
-              <h3 class="layer-title">Human secretary</h3>
-              <p class="layer-desc">
-                Admin panel with daily agenda, pending queue, and full control. The secretary decides, the system executes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHAT'S INCLUDED ── -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">What's included</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">Everything you need to start tomorrow</h2>
-          <div class="features-grid">
-            {[
-              { icon: '🌐', label: 'Web booking', desc: 'Optimized flow, no unnecessary steps.' },
-              { icon: '💬', label: 'WhatsApp + SecretarIA', desc: 'Natural language scheduling, 24/7.' },
-              { icon: '📋', label: 'Admin panel', desc: 'Daily agenda and pending queue.' },
-              { icon: '⏳', label: 'Waitlist', desc: 'Someone cancels → next in line fills the slot instantly.' },
-              { icon: '🔔', label: 'Automatic reminders', desc: 'Reduced no-shows without human intervention.' },
-              { icon: '📅', label: 'Google Calendar sync', desc: 'Schedule always in sync.' },
-            ].map(f => (
-              <div class="feature-item">
-                <span class="feature-icon" aria-hidden="true">{f.icon}</span>
-                <div>
-                  <p class="feature-label">{f.label}</p>
-                  <p class="feature-desc">{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FINAL CTA ── -->
-  <section class="section case-cta">
-    <div class="container">
-      <p class="label case-cta-label">Want something like this for your business?</p>
-      <h2 class="case-cta-title">Let's talk.</h2>
-      <a
-        href="mailto:contacto@juansebarrio.com?subject=Digital%20Appointment%20System%20JS80"
-        class="btn-primary"
-      >
-        Get in touch →
-      </a>
-      <a href="/en/js80" class="back-link case-back-bottom">← Back to JS80</a>
-    </div>
-  </section>
+  <!-- ── CTA ── -->
+  <div class="case-cta">
+    <p class="serif case-cta-title">Want something like this for your business?</p>
+    <a href="mailto:contacto@juansebarrio.com?subject=Digital%20Appointment%20System%20JS80" class="btn-primary">
+      Let's talk <span>→</span>
+    </a>
+  </div>
 
 </LayoutJS80>
 
 <style>
-  .case-hero { padding-top: 48px; }
-  .case-back { margin-bottom: 40px; }
-  .back-link { font-size: 0.875rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-  .back-link:hover { color: rgba(255,255,255,0.8); }
-  .case-label { color: rgba(255,255,255,0.35); display: block; margin-bottom: 20px; }
-  .case-title {
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 500;
-    line-height: 1.0;
-    letter-spacing: -2px;
-    color: var(--text-primary);
-    margin: 0 0 24px;
+  .case-hero {
+    padding: 80px 64px 72px;
+    border-bottom: 0.5px solid var(--border-soft);
   }
-  .case-pitch {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-    margin: 0 0 28px;
-  }
-  .case-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: start;
-  }
-  .case-hero-visual {
+  .case-hero-inner { max-width: 720px; }
+
+  .case-tags {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 48px;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
-  .turnero-icon-lg { color: #6B8CFF; opacity: 0.3; }
-  .case-hero-meta {
+  .tag {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--text-meta);
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  .case-title {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -2.5px;
+    margin: 0 0 24px;
+    color: var(--text-primary);
+  }
+  .case-subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .case-preview {
+    background: var(--bg-white);
+    border-bottom: 0.5px solid var(--border-soft);
+    padding: 48px 64px;
+  }
+  .preview-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 0.5px solid var(--border-line);
+    box-shadow: 0 8px 40px rgba(44, 44, 42, 0.08);
+    height: 780px;
+  }
+  .preview-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .case-body {
+    padding: 80px 64px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 32px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(255,255,255,0.07);
+    gap: 72px;
   }
-  .meta-item { display: flex; gap: 16px; align-items: baseline; font-size: 0.875rem; }
-  .meta-item .label { min-width: 80px; color: rgba(255,255,255,0.3); }
-  .meta-item span:last-child { color: rgba(255,255,255,0.7); }
-
-  .pitch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-  .pitch-stat { display: flex; flex-direction: column; gap: 8px; padding: 32px 24px; border-right: 1px solid #e8e8e3; }
-  .pitch-stat:last-child { border-right: none; }
-  .stat-num {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 500;
-    line-height: 1;
-    color: #2c2c2a;
-    letter-spacing: -2px;
+  .case-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: start;
   }
-  .stat-label { font-size: 0.8125rem; color: #a0a09a; line-height: 1.4; }
 
-  .two-col { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; align-items: start; }
-  .col-label { padding-top: 6px; }
-  .section-label { color: rgba(255,255,255,0.3); }
-  .section-heading {
-    font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  .case-content h2 {
+    font-size: 28px;
     font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
+    margin: 0 0 16px;
     color: var(--text-primary);
-    margin: 0 0 24px;
   }
-  .body-text { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin: 0 0 16px; max-width: 56ch; }
+  .case-content p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
 
-  .problem-list { margin: 24px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .problem-list li { font-size: 0.9375rem; color: rgba(255,255,255,0.55); padding-left: 20px; position: relative; line-height: 1.5; }
-  .problem-list li::before { content: '—'; position: absolute; left: 0; color: rgba(255,255,255,0.2); }
+  .case-list {
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .case-list li {
+    font-size: 14px;
+    color: var(--text-body);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .case-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-ghost);
+    font-size: 11px;
+    top: 2px;
+  }
 
-  .layers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 32px; }
-  .layer-card { padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; display: flex; flex-direction: column; gap: 10px; }
-  .layer-num { font-family: var(--font-serif); font-size: 0.75rem; color: #6B8CFF; letter-spacing: 0.1em; }
-  .layer-title { font-size: 1rem; font-weight: 500; color: var(--text-primary); margin: 0; }
-  .layer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin: 0; }
+  .case-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .chip {
+    font-size: 13px;
+    color: var(--text-body);
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-btn);
+    padding: 6px 14px;
+  }
 
-  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 32px; }
-  .feature-item { display: flex; gap: 14px; align-items: flex-start; }
-  .feature-icon { font-size: 1.25rem; flex-shrink: 0; line-height: 1.4; }
-  .feature-label { font-size: 0.9375rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px; }
-  .feature-desc { font-size: 0.8125rem; color: rgba(255,255,255,0.45); margin: 0; line-height: 1.5; }
-
-  .case-cta { text-align: center; border-top: 1px solid rgba(255,255,255,0.07); }
-  .case-cta-label { color: rgba(255,255,255,0.35); display: block; margin-bottom: 16px; }
-  .case-cta-title { font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 5rem); font-weight: 500; letter-spacing: -2px; color: var(--text-primary); margin: 0 0 40px; }
-  .case-back-bottom { display: block; margin-top: 32px; font-size: 0.875rem; }
-
-  .section-white { background: #fafafa; }
-  .section-white .section-heading { color: #2c2c2a; }
-  .section-alt { background: rgba(255,255,255,0.015); }
+  .case-cta {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 80px 64px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .case-cta-title {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.6px;
+    margin: 0;
+    color: #fff;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px;
+    background: var(--bg-dark);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-btn);
+    font-size: 13px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(44, 44, 42, 0.3);
+  }
+  .btn-primary span { opacity: 0.7; transition: transform 0.2s ease; }
+  .btn-primary:hover span { transform: translateX(2px); }
 
   @media (max-width: 900px) {
-    .case-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .case-hero-visual { display: none; }
-    .pitch-grid { grid-template-columns: repeat(2, 1fr); }
-    .pitch-stat { border-right: none; border-bottom: 1px solid #e8e8e3; }
-    .pitch-stat:nth-child(odd) { border-right: 1px solid #e8e8e3; }
-    .pitch-stat:last-child { border-bottom: none; }
-    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
-    .col-label { padding-top: 0; }
-    .layers-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr; }
+    .case-hero { padding: 56px 24px 48px; }
+    .case-title { font-size: 42px; letter-spacing: -1.5px; }
+    .case-preview { padding: 32px 24px; }
+    .preview-frame { height: 480px; }
+    .case-body { padding: 56px 24px; gap: 48px; }
+    .case-block { grid-template-columns: 1fr; gap: 16px; }
+    .case-cta { padding: 64px 24px; }
+    .case-cta-title { font-size: 26px; }
   }
 </style>

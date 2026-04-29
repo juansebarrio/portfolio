@@ -5,441 +5,280 @@ export const prerender = false;
 ---
 
 <LayoutJS80
-  title="Turnero Digital — JS80"
-  description="Sistema de gestión de turnos médicos en 30 segundos: web, WhatsApp con IA y panel admin. Caso 1 de JS80 Studio."
+  title="Turnero digital · JS80"
+  description="Sistema completo de gestión de turnos pensado para consultorios médicos."
 >
 
-  <!-- ── HERO DEL CASO ── -->
-  <section class="case-hero section">
-    <div class="container">
-      <nav class="case-back">
-        <a href="/js80" class="back-link">← JS80</a>
-      </nav>
-      <div class="case-hero-grid">
-        <div class="case-hero-content">
-          <span class="label case-label">Caso 1 · Salud · Abril 2026</span>
-          <h1 class="case-title">Turnero<br />Digital</h1>
-          <p class="case-pitch">
-            Tu paciente toma turno en 30 segundos.<br />Tu agenda se ordena sola.
-          </p>
-          <div class="case-tags">
-            {['salud', 'turnos', 'SecretarIA', 'WhatsApp', 'IA', 'panel admin'].map(tag => (
-              <span class="tag">{tag}</span>
-            ))}
-          </div>
-          <div class="case-hero-meta">
-            <div class="meta-item">
-              <span class="label">Producto</span>
-              <span>Sistema de turnos end-to-end</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Sector</span>
-              <span>Salud · medicina prepaga y consultorios</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Estado</span>
-              <span>En producción</span>
-            </div>
-          </div>
-        </div>
-        <div class="case-hero-visual" aria-hidden="true">
-          <div class="turnero-icon-lg">
-            <svg width="96" height="96" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="6" y="10" width="36" height="34" rx="4" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="6" y1="20" x2="42" y2="20" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="15" y1="4" x2="15" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <line x1="33" y1="4" x2="33" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="24" cy="32" r="3" fill="currentColor"/>
-            </svg>
-          </div>
-        </div>
+  <!-- ── Hero ── -->
+  <div class="case-hero">
+    <div class="case-hero-inner">
+      <div class="case-tags">
+        <span class="tag">Salud</span>
+        <span class="tag">Turnos</span>
+        <span class="tag">SecretarIA</span>
+      </div>
+      <h1 class="serif case-title">Turnero digital.</h1>
+      <p class="case-subtitle">
+        Tu paciente toma turno en 30 segundos. Tu agenda se ordena sola — sin app que descargar,
+        sin formularios eternos, sin que tu secretaria pase el día al teléfono.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Preview ── -->
+  <div class="case-preview">
+    <div class="preview-frame">
+      <iframe
+        src="https://www.js80.studio/turnero-preview.html"
+        title="Turnero digital"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- ── Contenido ── -->
+  <div class="case-body container">
+
+    <div class="case-block">
+      <span class="label">El desafío</span>
+      <div class="case-content">
+        <h2 class="serif">El bar para mejorar esto está en el piso.</h2>
+        <p>
+          Tomar turno en una prepaga hoy son cinco pantallas: listas crudas de 30+ sedes con
+          duplicados, búsqueda por texto exacto donde si escribís mal quedás afuera, y validación
+          de email recién al final del flujo. El resultado es un ausentismo del 18% que nadie mide
+          y una secretaria que pasa el día al teléfono confirmando uno por uno.
+        </p>
+        <ul class="case-list">
+          <li>Sin geolocalización ni slots visibles de entrada</li>
+          <li>Cero recordatorios efectivos antes del turno</li>
+          <li>Cancelaciones que quedan como agenda muerta</li>
+          <li>La secretaria tipea en lugar de atender</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ── RESUMEN / PITCH ── -->
-  <section class="section section-white">
-    <div class="container">
-      <div class="pitch-grid">
-        <div class="pitch-stat">
-          <span class="stat-num">30s</span>
-          <span class="stat-label">para tomar un turno</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">70%</span>
-          <span class="stat-label">de turnos sin intervención humana</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">0</span>
-          <span class="stat-label">llamadas de confirmación</span>
-        </div>
-        <div class="pitch-stat">
-          <span class="stat-num">24/7</span>
-          <span class="stat-label">disponibilidad vía WhatsApp</span>
-        </div>
+    <div class="case-block">
+      <span class="label">La solución</span>
+      <div class="case-content">
+        <h2 class="serif">Tres capas. Una sola herramienta.</h2>
+        <p>
+          El Turnero JS80 funciona en capas que se complementan: primero el paciente solo — el
+          70% de los turnos se toman sin que nadie del consultorio toque un teclado. Luego
+          SecretarIA para lo que requiere conversación natural. Y finalmente la secretaria humana
+          con override total sobre todo, recibiendo solo lo que la IA no resolvió.
+        </p>
+        <ul class="case-list">
+          <li>El paciente toma, confirma y reagenda sin llamar</li>
+          <li>SecretarIA agenda por WhatsApp en lenguaje natural</li>
+          <li>Lista de espera cubre cancelaciones al instante</li>
+          <li>Panel admin con la agenda del día y bandeja de pendientes</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ── EL DESAFÍO ── -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">El desafío</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">El bar para mejorar esto está en el piso</h2>
-          <p class="body-text">
-            El sistema anterior necesitaba cinco pantallas para agendar un turno. Listas crudas con 30+ sedes con duplicados, búsqueda por texto exacto donde si escribís mal quedás afuera, validación tardía del email y sin slots visibles hasta el final del proceso.
-          </p>
-          <p class="body-text">
-            El resultado: 18% de ausentismo que nadie medía, secretarias pasando el día entero haciendo llamadas de confirmación, y cancelaciones que se convertían en agenda muerta porque el sistema no tenía lista de espera.
-          </p>
-          <ul class="problem-list">
-            <li>Sin geolocalización ni slots visibles desde el inicio</li>
-            <li>Cero recordatorios efectivos</li>
-            <li>Cancelaciones quedan como agenda muerta</li>
-            <li>Secretaria tipea en lugar de atender</li>
-            <li>18% de ausentismo sin seguimiento</li>
-          </ul>
-        </div>
+    <div class="case-block">
+      <span class="label">Lo que incluye</span>
+      <div class="case-chips">
+        <span class="chip">Toma de turno web</span>
+        <span class="chip">WhatsApp</span>
+        <span class="chip">SecretarIA</span>
+        <span class="chip">Panel admin</span>
+        <span class="chip">Lista de espera</span>
+        <span class="chip">Recordatorios automáticos</span>
+        <span class="chip">Google Calendar</span>
       </div>
     </div>
-  </section>
 
-  <!-- ── LA SOLUCIÓN ── -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">La solución</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">Tres capas. Una sola herramienta.</h2>
-          <p class="body-text">
-            Diseñamos un sistema con tres capas que se complementan: el paciente como primera línea, SecretarIA como red de contención y la secretaria humana como control total sobre lo que importa.
-          </p>
+  </div>
 
-          <div class="layers-grid">
-            <div class="layer-card">
-              <span class="layer-num">01</span>
-              <h3 class="layer-title">Paciente autónomo</h3>
-              <p class="layer-desc">
-                Toma, confirma y reagenda sin llamar. 70% de los turnos se gestionan solos en menos de 30 segundos. Sin app que descargar.
-              </p>
-            </div>
-            <div class="layer-card">
-              <span class="layer-num">02</span>
-              <h3 class="layer-title">SecretarIA · WhatsApp</h3>
-              <p class="layer-desc">
-                Agente IA que agenda por WhatsApp en lenguaje natural. El paciente escribe como habla y el sistema entiende. Disponible las 24 horas.
-              </p>
-            </div>
-            <div class="layer-card">
-              <span class="layer-num">03</span>
-              <h3 class="layer-title">Secretaria humana</h3>
-              <p class="layer-desc">
-                Panel admin con agenda del día, cola de pendientes y control total. La secretaria decide, el sistema ejecuta.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── QUÉ INCLUYE ── -->
-  <section class="section">
-    <div class="container">
-      <div class="two-col">
-        <div class="col-label">
-          <span class="label section-label">Qué incluye</span>
-        </div>
-        <div class="col-content">
-          <h2 class="section-heading">Todo lo que necesitás para empezar mañana</h2>
-          <div class="features-grid">
-            {[
-              { icon: '🌐', label: 'Toma de turno web', desc: 'Flujo optimizado, sin pasos innecesarios.' },
-              { icon: '💬', label: 'WhatsApp + SecretarIA', desc: 'Agenda en lenguaje natural, 24/7.' },
-              { icon: '📋', label: 'Panel admin', desc: 'Agenda del día y cola de pendientes.' },
-              { icon: '⏳', label: 'Lista de espera', desc: 'Cancela alguien → entra el siguiente al instante.' },
-              { icon: '🔔', label: 'Recordatorios automáticos', desc: 'Reducción de ausentismo sin intervención humana.' },
-              { icon: '📅', label: 'Google Calendar sync', desc: 'La agenda siempre sincronizada.' },
-            ].map(f => (
-              <div class="feature-item">
-                <span class="feature-icon" aria-hidden="true">{f.icon}</span>
-                <div>
-                  <p class="feature-label">{f.label}</p>
-                  <p class="feature-desc">{f.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA FINAL ── -->
-  <section class="section case-cta">
-    <div class="container">
-      <p class="label case-cta-label">¿Querés algo así para tu negocio?</p>
-      <h2 class="case-cta-title">Hablemos.</h2>
-      <a
-        href="mailto:contacto@juansebarrio.com?subject=Turnero%20Digital%20JS80"
-        class="btn-primary"
-      >
-        Escribinos →
-      </a>
-      <a href="/js80" class="back-link case-back-bottom">← Volver a JS80</a>
-    </div>
-  </section>
+  <!-- ── CTA ── -->
+  <div class="case-cta">
+    <p class="serif case-cta-title">¿Querés algo así para tu negocio?</p>
+    <a href="mailto:contacto@juansebarrio.com?subject=Turnero%20Digital%20JS80" class="btn-primary">
+      Hablemos <span>→</span>
+    </a>
+  </div>
 
 </LayoutJS80>
 
 <style>
   /* ── Hero ── */
-  .case-hero { padding-top: 48px; }
-  .case-back { margin-bottom: 40px; }
-  .back-link { font-size: 0.875rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-  .back-link:hover { color: rgba(255,255,255,0.8); }
-  .case-label { color: rgba(255,255,255,0.35); display: block; margin-bottom: 20px; }
-  .case-title {
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 500;
-    line-height: 1.0;
-    letter-spacing: -2px;
-    color: var(--text-primary);
-    margin: 0 0 24px;
+  .case-hero {
+    padding: 80px 64px 72px;
+    border-bottom: 0.5px solid var(--border-soft);
   }
-  .case-pitch {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-    margin: 0 0 28px;
-  }
-  .case-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: start;
-  }
-  .case-hero-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 48px;
-  }
-  .turnero-icon-lg {
-    color: #6B8CFF;
-    opacity: 0.3;
-  }
-  .case-hero-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 32px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-  .meta-item {
-    display: flex;
-    gap: 16px;
-    align-items: baseline;
-    font-size: 0.875rem;
-  }
-  .meta-item .label {
-    min-width: 80px;
-    color: rgba(255,255,255,0.3);
-  }
-  .meta-item span:last-child { color: rgba(255,255,255,0.7); }
+  .case-hero-inner { max-width: 720px; }
 
-  /* ── Pitch stats ── */
-  .pitch-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-  }
-  .pitch-stat {
+  .case-tags {
     display: flex;
-    flex-direction: column;
     gap: 8px;
-    padding: 32px 24px;
-    border-right: 1px solid #e8e8e3;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
-  .pitch-stat:last-child { border-right: none; }
-  .stat-num {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  .tag {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     font-weight: 500;
-    line-height: 1;
-    color: #2c2c2a;
-    letter-spacing: -2px;
-  }
-  .stat-label {
-    font-size: 0.8125rem;
-    color: #a0a09a;
-    line-height: 1.4;
+    color: var(--text-meta);
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: 4px;
+    padding: 4px 10px;
   }
 
-  /* ── Two col layout ── */
-  .two-col {
+  .case-title {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -2.5px;
+    margin: 0 0 24px;
+    color: var(--text-primary);
+  }
+  .case-subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  /* ── Preview ── */
+  .case-preview {
+    background: var(--bg-white);
+    border-bottom: 0.5px solid var(--border-soft);
+    padding: 48px 64px;
+  }
+  .preview-frame {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 0.5px solid var(--border-line);
+    box-shadow: 0 8px 40px rgba(44, 44, 42, 0.08);
+    height: 780px;
+  }
+  .preview-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ── Body ── */
+  .case-body {
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+  .case-block {
     display: grid;
     grid-template-columns: 200px 1fr;
-    gap: 4rem;
+    gap: 48px;
     align-items: start;
   }
-  .col-label { padding-top: 6px; }
-  .section-label { color: rgba(255,255,255,0.3); }
-  .section-heading {
-    font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+
+  .case-content h2 {
+    font-size: 28px;
     font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-    color: var(--text-primary);
-    margin: 0 0 24px;
-  }
-  .body-text {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.75;
+    letter-spacing: -0.4px;
     margin: 0 0 16px;
-    max-width: 56ch;
+    color: var(--text-primary);
+  }
+  .case-content p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
   }
 
-  /* ── Problem list ── */
-  .problem-list {
-    margin: 24px 0 0;
+  .case-list {
+    margin: 20px 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
-  .problem-list li {
-    font-size: 0.9375rem;
-    color: rgba(255,255,255,0.55);
-    padding-left: 20px;
+  .case-list li {
+    font-size: 14px;
+    color: var(--text-body);
+    padding-left: 16px;
     position: relative;
     line-height: 1.5;
   }
-  .problem-list li::before {
-    content: '—';
+  .case-list li::before {
+    content: '→';
     position: absolute;
     left: 0;
-    color: rgba(255,255,255,0.2);
+    color: var(--text-ghost);
+    font-size: 11px;
+    top: 2px;
   }
 
-  /* ── Layers ── */
-  .layers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 32px;
-  }
-  .layer-card {
-    padding: 24px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 12px;
+  .case-chips {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .layer-num {
-    font-family: var(--font-serif);
-    font-size: 0.75rem;
-    color: #6B8CFF;
-    letter-spacing: 0.1em;
-  }
-  .layer-title {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
-  }
-  .layer-desc {
-    font-size: 0.875rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* ── Features ── */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-top: 32px;
-  }
-  .feature-item {
-    display: flex;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
     align-items: flex-start;
   }
-  .feature-icon { font-size: 1.25rem; flex-shrink: 0; line-height: 1.4; }
-  .feature-label {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0 0 4px;
-  }
-  .feature-desc {
-    font-size: 0.8125rem;
-    color: rgba(255,255,255,0.45);
-    margin: 0;
-    line-height: 1.5;
+  .chip {
+    font-size: 13px;
+    color: var(--text-body);
+    background: var(--bg-white);
+    border: 0.5px solid var(--border-line);
+    border-radius: var(--radius-btn);
+    padding: 6px 14px;
   }
 
-  /* ── CTA final ── */
+  /* ── CTA ── */
   .case-cta {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: 80px 64px;
     text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-  .case-cta-label {
-    color: rgba(255,255,255,0.35);
-    display: block;
-    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
   }
   .case-cta-title {
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: 36px;
     font-weight: 500;
-    letter-spacing: -2px;
-    color: var(--text-primary);
-    margin: 0 0 40px;
+    letter-spacing: -0.6px;
+    margin: 0;
+    color: #fff;
   }
-  .case-back-bottom {
-    display: block;
-    margin-top: 32px;
-    font-size: 0.875rem;
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px;
+    background: var(--bg-dark);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-btn);
+    font-size: 13px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
-  /* ── Section variants ── */
-  .section-white { background: #fafafa; }
-  .section-white .section-heading { color: #2c2c2a; }
-  .section-white .stat-num { color: #2c2c2a; }
-
-  .section-alt { background: rgba(255,255,255,0.015); }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(44, 44, 42, 0.3);
+  }
+  .btn-primary span { opacity: 0.7; transition: transform 0.2s ease; }
+  .btn-primary:hover span { transform: translateX(2px); }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
-    .case-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .case-hero-visual { display: none; }
-    .pitch-grid { grid-template-columns: repeat(2, 1fr); }
-    .pitch-stat { border-right: none; border-bottom: 1px solid #e8e8e3; }
-    .pitch-stat:nth-child(odd) { border-right: 1px solid #e8e8e3; }
-    .pitch-stat:last-child { border-bottom: none; }
-    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
-    .col-label { padding-top: 0; }
-    .layers-grid { grid-template-columns: 1fr; }
-    .features-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 480px) {
-    .pitch-grid { grid-template-columns: 1fr 1fr; }
+    .case-hero { padding: 56px 24px 48px; }
+    .case-title { font-size: 42px; letter-spacing: -1.5px; }
+    .case-preview { padding: 32px 24px; }
+    .preview-frame { height: 480px; }
+    .case-body { padding: 56px 24px; gap: 48px; }
+    .case-block { grid-template-columns: 1fr; gap: 16px; }
+    .case-cta { padding: 64px 24px; }
+    .case-cta-title { font-size: 26px; }
   }
 </style>
