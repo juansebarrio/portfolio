@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PasswordGate from '../components/PasswordGate.astro';
 
 const marqueeText = 'Data · People · Tech · AI · Design · ';
 
@@ -253,15 +252,12 @@ const casosGalicia = [
     </div>
   </section>
 
-  <PasswordGate />
-
   <script>
     document.querySelectorAll('[data-requires-auth]').forEach(link => {
       link.addEventListener('click', (e) => {
         if (sessionStorage.getItem('portfolio-auth') === 'true') return;
         e.preventDefault();
-        const target = (link as HTMLAnchorElement).getAttribute('href');
-        window.__showPasswordGate?.(target);
+        window.location.href = '/portfolio?unlock=1';
       });
     });
   </script>

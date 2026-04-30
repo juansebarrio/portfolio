@@ -183,11 +183,17 @@ export const prerender = false;
     const inlineInput = document.getElementById('inline-input');
     const inlineError = document.getElementById('inline-error');
 
-    unlockBtn?.addEventListener('click', () => {
-      unlockBtn.style.display = 'none';
-      inlineGate.style.display = 'flex';
+    function showInlineForm() {
+      if (unlockBtn) unlockBtn.style.display = 'none';
+      if (inlineGate) inlineGate.style.display = 'flex';
       setTimeout(() => inlineInput?.focus(), 50);
-    });
+    }
+
+    unlockBtn?.addEventListener('click', showInlineForm);
+
+    if (new URLSearchParams(window.location.search).get('unlock') === '1') {
+      showInlineForm();
+    }
 
     inlineGate?.addEventListener('submit', (e) => {
       e.preventDefault();
