@@ -20,6 +20,16 @@ import Layout from '../../layouts/Layout.astro';
       </p>
     </section>
 
+    <!-- ── HERO IMAGE ── -->
+    <div class="hero-img-wrap">
+      <img
+        src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
+        alt="Indetectable e Intransmisible — los dos personajes del Impulse Bot abrazados sobre fondo naranja"
+        class="hero-img"
+        loading="eager"
+      />
+    </div>
+
     <!-- ── QUICK FACTS ── -->
     <div class="quick-facts">
       <div class="fact">
@@ -139,6 +149,99 @@ import Layout from '../../layouts/Layout.astro';
         </div>
 
       </div>
+
+      <!-- Flow chart con lightbox — va después de todas las decisiones -->
+      <div class="flowchart-wrap">
+        <button class="flowchart-btn" id="flowchart-trigger" aria-label="Ver árbol completo del bot a pantalla completa">
+          <div class="flowchart-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/dashboard.ong.png"
+              alt="Árbol completo de decisiones del Impulse Bot: nodos, ramas, keywords globales y fallbacks humanos"
+              class="flowchart-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="flowchart-hint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Expandir</span>
+          </div>
+        </button>
+        <p class="flowchart-caption">El árbol completo del bot: tres ramas principales, manejo de keywords globales y derivación humana en cada punto de fuga.</p>
+      </div>
+
+    </section>
+
+    <!-- Lightbox (fuera del flujo normal) -->
+    <div class="lightbox" id="flowchart-lightbox" role="dialog" aria-modal="true" aria-label="Árbol del bot a pantalla completa">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
+      <div class="lightbox-img-area">
+        <img
+          src="/images/portfolio/impulse-bot/dashboard.ong.png"
+          alt="Árbol completo de decisiones del Impulse Bot"
+          class="lightbox-img"
+        />
+      </div>
+    </div>
+
+    <!-- ── SISTEMA VISUAL ── -->
+    <section class="seccion">
+      <p class="eyebrow">Sistema visual</p>
+      <h2 class="seccion-title">Hacer humanos a "Indetectable" e "Intransmisible"</h2>
+
+      <div class="prosa">
+        <p>
+          Para que un chatbot de salud sexual funcione, primero hay que desarmar el lenguaje de la salud pública. La gente no entra a una conversación con la palabra <em>"undetectable viral load"</em> en la cabeza — entra con dudas, vergüenzas, urgencias.
+        </p>
+        <p>
+          El sistema visual del bot se construyó alrededor de <strong>dos personajes que personifican el slogan global U=U (Undetectable = Untransmittable)</strong>: si una persona con VIH tiene carga viral indetectable gracias a su tratamiento, el virus es intransmisible por vía sexual. Es uno de los mensajes más potentes de la prevención moderna, y casi siempre se comunica en lenguaje médico.
+        </p>
+        <p>
+          <strong>Indetectable</strong> (azul) llegó primero. <strong>Intransmisible</strong> (rojo) seis meses después — el tiempo real que el tratamiento necesita para volverse intransmisible. Son gemelos. Se abrazan. Saltan. Tienen miedo, dudan, celebran. Aparecen en WhatsApp y rompen la idea de que hablar de VIH tiene que ser solemne.
+        </p>
+      </div>
+
+      <div class="characters-grid">
+        <div class="character-card">
+          <div class="character-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/chatbot_impulse_pj1.jpeg"
+              alt="Indetectable — personaje azul del Impulse Bot"
+              loading="lazy"
+            />
+          </div>
+          <div class="character-info">
+            <p class="character-name">Indetectable</p>
+            <p class="character-desc">El azul. Representa la carga viral indetectable — el objetivo del tratamiento antirretroviral.</p>
+          </div>
+        </div>
+        <div class="character-card">
+          <div class="character-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/chatbot_impulse_pj2.jpeg"
+              alt="Intransmisible — personaje rojo del Impulse Bot"
+              loading="lazy"
+            />
+          </div>
+          <div class="character-info">
+            <p class="character-name">Intransmisible</p>
+            <p class="character-desc">El rojo. Llega seis meses después — el tiempo real que tarda el tratamiento en lograr la intrasmisibilidad.</p>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="pull-quote">
+        "Los gemelos no son un sticker pack. Son una decisión de producto: si la marca no asusta, la conversación sigue."
+      </blockquote>
+
+      <a
+        href="/images/portfolio/impulse-bot/chatbot_Personajes.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pdf-link"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Descargar manual de personajes (PDF)
+      </a>
     </section>
 
     <!-- ── RESULTADOS ── -->
@@ -150,9 +253,8 @@ import Layout from '../../layouts/Layout.astro';
         Dos olas de activación — Pride junio 2025 y la Marcha del Orgullo de BA en octubre — generaron los dos picos del piloto. Entre olas, el bot siguió activo y los contactos se mantuvieron en base, lo que permitió reactivarlos sin fricción.
       </p>
 
-      <!-- TODO: insertar captura del dashboard real aquí -->
       <div class="dashboard-placeholder">
-        <p class="placeholder-label">[ Captura del dashboard — pendiente ]</p>
+        <p class="placeholder-label">[ Captura del dashboard de métricas — pendiente ]</p>
       </div>
 
       <div class="metricas-grid">
@@ -229,14 +331,46 @@ import Layout from '../../layouts/Layout.astro';
       <p class="cierre-texto">
         El piloto cierra y el proyecto evoluciona a una nueva plataforma con capacidades de IA generativa. La base de 131 contactos opt-in es el punto de partida; los aprendizajes de tono y flujo son el manual de marca conversacional.
       </p>
+      <div class="cierre-img-wrap">
+        <img
+          src="/images/portfolio/impulse-bot/chatbot_impulse_pj1_y_pj2.jpeg"
+          alt="Indetectable e Intransmisible saltando con los brazos en alto"
+          class="cierre-img"
+          loading="lazy"
+        />
+      </div>
     </section>
 
     <!-- ── NAV CASOS ── -->
     <nav class="caso-nav">
-      <a href="/portfolio" class="caso-nav-link caso-nav-back">← Ver todos los casos</a>
+      <a href="/portfolio" class="caso-nav-link">← Ver todos los casos</a>
     </nav>
 
   </div>
+
+  <script>
+    const trigger = document.getElementById('flowchart-trigger');
+    const lightbox = document.getElementById('flowchart-lightbox');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    trigger?.addEventListener('click', () => {
+      lightbox?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeLightbox = () => {
+      lightbox?.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
 </Layout>
 
@@ -247,7 +381,6 @@ import Layout from '../../layouts/Layout.astro';
     padding: 0 clamp(1.5rem, 5vw, 3rem);
   }
 
-  /* ── Tokens ── */
   .eyebrow {
     font-family: 'Syne', system-ui, sans-serif;
     font-size: 0.75rem;
@@ -269,10 +402,7 @@ import Layout from '../../layouts/Layout.astro';
   }
 
   /* ── Hero ── */
-  .hero {
-    padding-top: 8rem;
-    padding-bottom: 4rem;
-  }
+  .hero { padding-top: 8rem; padding-bottom: 3rem; }
 
   .hero-title {
     font-family: 'Syne', system-ui, sans-serif;
@@ -302,23 +432,34 @@ import Layout from '../../layouts/Layout.astro';
     font-family: system-ui, -apple-system, sans-serif;
   }
 
+  .hero-img-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    background: #111;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 64vh;
+    object-fit: cover;
+    object-position: center center;
+  }
+
   /* ── Quick facts ── */
   .quick-facts {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
     border: 1px solid #2a2a2a;
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 3rem;
   }
 
-  .fact {
-    padding: 2rem 2rem 2rem;
-    border-right: 1px solid #2a2a2a;
-    background: #141414;
-  }
-
+  .fact { padding: 2rem; border-right: 1px solid #2a2a2a; background: #141414; }
   .fact:last-child { border-right: none; }
 
   .fact-num {
@@ -339,7 +480,7 @@ import Layout from '../../layouts/Layout.astro';
     font-family: system-ui, -apple-system, sans-serif;
   }
 
-  /* ── Meta band ── */
+  /* ── Meta ── */
   .meta-band {
     display: flex;
     flex-wrap: wrap;
@@ -350,12 +491,7 @@ import Layout from '../../layouts/Layout.astro';
     margin-bottom: 2rem;
   }
 
-  .meta-val {
-    font-size: 0.9375rem;
-    color: #c0c0c0;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
+  .meta-val { font-size: 0.9375rem; color: #c0c0c0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
   /* ── Secciones ── */
   .seccion { margin-top: 8rem; }
@@ -370,73 +506,220 @@ import Layout from '../../layouts/Layout.astro';
     margin: 0 0 2.5rem;
   }
 
-  .prosa p {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: #c0c0c0;
-    max-width: 50rem;
-    margin: 0 0 1.5rem;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
+  .prosa p { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 1.5rem; font-family: system-ui, -apple-system, sans-serif; }
   .prosa p:last-child { margin-bottom: 0; }
   .prosa strong { color: #f0f0f0; font-weight: 500; }
   .prosa em { color: #e0e0e0; font-style: italic; }
 
-  .intro-parrafo {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: #c0c0c0;
-    max-width: 50rem;
-    margin: 0 0 3rem;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
+  .intro-parrafo { font-size: 1.125rem; line-height: 1.6; color: #c0c0c0; max-width: 50rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
-  /* ── Decisiones / Approach ── */
+  /* ── Decisiones ── */
   .decisiones { display: flex; flex-direction: column; }
 
-  .decision {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 3rem;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid #2a2a2a;
-  }
-
+  .decision { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid #2a2a2a; }
   .decision:last-child { border-bottom: none; }
 
-  .decision-num {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #2a2a2a;
-    margin: 0;
+  .decision-num { font-family: 'Syne', system-ui, sans-serif; font-size: 3rem; font-weight: 700; line-height: 1; color: #2a2a2a; margin: 0; }
+  .decision-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; color: #f0f0f0; margin: 0 0 0.75rem; }
+  .decision-cuerpo { font-size: 1rem; line-height: 1.65; color: #a0a0a0; margin: 0; max-width: 44rem; font-family: system-ui, -apple-system, sans-serif; }
+  .decision-cuerpo em { color: #c0c0c0; font-style: italic; }
+
+  /* ── Flow chart ── */
+  .flowchart-wrap { margin: 4rem 0 0; }
+
+  .flowchart-btn {
+    position: relative;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    border-radius: 16px;
+    overflow: hidden;
+    display: block;
   }
 
-  .decision-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
+  /* Contenedor blanco para el PNG con fondo blanco */
+  .flowchart-img-area {
+    background: #f8f8f6;
+    border-radius: 16px;
+    padding: 2.5rem;
+    border: 1px solid #e0e0de;
+    transition: filter 0.2s ease;
+  }
+
+  .flowchart-btn:hover .flowchart-img-area { filter: brightness(0.94); }
+
+  .flowchart-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .flowchart-hint {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(10,10,10,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #e0e0e0;
+    font-family: system-ui, -apple-system, sans-serif;
+    pointer-events: none;
+  }
+
+  .flowchart-caption {
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    margin: 1rem 0 0;
+    font-style: italic;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .lightbox.open { display: flex; }
+
+  /* Contenedor blanco también en el lightbox */
+  .lightbox-img-area {
+    background: #f8f8f6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .lightbox-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: #f0f0f0;
     font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+  /* ── Personajes ── */
+  .characters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .character-card {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* Área de imagen con fondo claro para ilustraciones */
+  .character-img-area {
+    background: #f5f4f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 1.5rem;
+    min-height: 280px;
+  }
+
+  .character-card img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .character-info {
+    padding: 1.5rem;
+  }
+
+  .character-name {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #f0f0f0;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.5rem;
   }
 
-  .decision-cuerpo {
-    font-size: 1rem;
-    line-height: 1.65;
+  .character-desc {
+    font-size: 0.875rem;
     color: #a0a0a0;
+    line-height: 1.6;
     margin: 0;
-    max-width: 44rem;
     font-family: system-ui, -apple-system, sans-serif;
   }
 
-  .decision-cuerpo em { color: #c0c0c0; font-style: italic; }
+  /* ── Pull quote ── */
+  .pull-quote {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    color: #e0e0e0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    border-left: 3px solid #3a3a3a;
+    padding-left: 2rem;
+    margin: 3rem 0 2rem;
+    max-width: 44rem;
+  }
+
+  /* ── PDF link ── */
+  .pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    text-decoration: none;
+    border-bottom: 1px solid #3a3a3a;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .pdf-link:hover { color: #f0f0f0; border-color: #f0f0f0; }
 
   /* ── Dashboard placeholder ── */
   .dashboard-placeholder {
     width: 100%;
-    min-height: 320px;
+    min-height: 280px;
     background: #141414;
     border: 1px dashed #3a3a3a;
     border-radius: 16px;
@@ -446,147 +729,56 @@ import Layout from '../../layouts/Layout.astro';
     margin-bottom: 3rem;
   }
 
-  .placeholder-label {
-    font-size: 0.875rem;
-    color: #4a4a4a;
-    font-family: system-ui, -apple-system, sans-serif;
-    margin: 0;
-  }
+  .placeholder-label { font-size: 0.875rem; color: #4a4a4a; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
 
   /* ── Métricas ── */
-  .metricas-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 0 0 3rem;
-  }
+  .metricas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 0 0 3rem; }
 
-  .metrica {
-    padding: 2rem;
-    background: #141414;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-  }
+  .metrica { padding: 2rem; background: #141414; border-radius: 12px; border: 1px solid #2a2a2a; }
 
-  .metrica-num {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: #f0f0f0;
-    margin: 0 0 0.75rem;
-  }
+  .metrica-num { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 0.75rem; }
+  .metrica-label { font-size: 0.875rem; line-height: 1.5; color: #6b6b6b; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
-  .metrica-label {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #6b6b6b;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  /* ── Lectura del piloto ── */
-  .lectura {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .lectura-item {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid #2a2a2a;
-    background: #141414;
-  }
-
+  /* ── Lectura ── */
+  .lectura { display: flex; flex-direction: column; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; }
+  .lectura-item { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; padding: 2rem 2.5rem; border-bottom: 1px solid #2a2a2a; background: #141414; }
   .lectura-item:last-child { border-bottom: none; }
-
-  .lectura-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #f0f0f0;
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .lectura-cuerpo {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: #a0a0a0;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
+  .lectura-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: #f0f0f0; margin: 0; line-height: 1.4; }
+  .lectura-cuerpo { font-size: 0.9375rem; line-height: 1.6; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
   /* ── Aprendizajes ── */
-  .aprendizajes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .aprendizaje {
-    padding: 2rem;
-    background: #141414;
-    border: 1px solid #2a2a2a;
-    border-radius: 12px;
-  }
-
-  .aprendizaje-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #f0f0f0;
-    margin: 0 0 0.75rem;
-    line-height: 1.3;
-  }
-
-  .aprendizaje-cuerpo {
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: #a0a0a0;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
+  .aprendizajes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .aprendizaje { padding: 2rem; background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; }
+  .aprendizaje-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; color: #f0f0f0; margin: 0 0 0.75rem; line-height: 1.3; }
+  .aprendizaje-cuerpo { font-size: 0.9375rem; line-height: 1.65; color: #a0a0a0; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
 
   /* ── Cierre ── */
-  .seccion-cierre {
-    padding-bottom: 3rem;
-    border-bottom: 1px solid #2a2a2a;
-  }
+  .seccion-cierre { padding-bottom: 3rem; border-bottom: 1px solid #2a2a2a; }
+  .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
-  .cierre-texto {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: #a0a0a0;
-    max-width: 44rem;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-  }
-
-  /* ── Nav casos ── */
-  .caso-nav {
+  .cierre-img-wrap {
+    background: #f5f4f0;
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 3rem 0 6rem;
+    justify-content: center;
+    padding: 3rem 2rem;
   }
 
-  .caso-nav-link {
-    font-family: 'Syne', system-ui, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #6b6b6b;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  .cierre-img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 440px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
   }
 
+  /* ── Nav ── */
+  .caso-nav { display: flex; padding: 3rem 0 6rem; }
+  .caso-nav-link { font-family: 'Syne', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s; }
   .caso-nav-link:hover { color: #f0f0f0; }
 
   /* ── Responsive ── */
@@ -596,12 +788,15 @@ import Layout from '../../layouts/Layout.astro';
     .fact:nth-child(odd) { border-right: 1px solid #2a2a2a; }
     .fact:last-child { border-bottom: none; }
     .fact:nth-last-child(2) { border-bottom: none; }
-    .meta-band { gap: 1.5rem 2rem; }
     .decision { grid-template-columns: 1fr; gap: 0.75rem; }
     .decision-num { font-size: 1.5rem; color: #3a3a3a; }
+    .characters-grid { grid-template-columns: 1fr; }
     .metricas-grid { grid-template-columns: 1fr 1fr; }
     .lectura-item { grid-template-columns: 1fr; gap: 0.75rem; }
     .aprendizajes { grid-template-columns: 1fr; }
+    .pull-quote { padding-left: 1.25rem; }
+    .flowchart-img-area { padding: 1.5rem; }
+    .cierre-img-wrap { padding: 2rem 1.5rem; }
   }
 
   @media (max-width: 480px) {

@@ -108,37 +108,6 @@ import Layout from '../../../layouts/Layout.astro';
           </div>
         </div>
 
-      </div>
-
-      <!-- Flow chart with lightbox -->
-      <div class="flowchart-wrap">
-        <button class="flowchart-btn" id="flowchart-trigger" aria-label="View full bot decision tree fullscreen">
-          <img
-            src="/images/portfolio/impulse-bot/dashboard.ong.png"
-            alt="Impulse Bot's full decision tree: nodes, branches, global keywords and human fallbacks"
-            class="flowchart-img"
-            loading="lazy"
-          />
-          <div class="flowchart-hint">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-            <span>Expand</span>
-          </div>
-        </button>
-        <p class="flowchart-caption">The bot's full decision tree: three main branches, global keyword handling, and human handoff at every escape point.</p>
-      </div>
-
-      <!-- Lightbox -->
-      <div class="lightbox" id="flowchart-lightbox" role="dialog" aria-modal="true" aria-label="Bot decision tree fullscreen">
-        <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
-        <img
-          src="/images/portfolio/impulse-bot/dashboard.ong.png"
-          alt="Impulse Bot's full decision tree"
-          class="lightbox-img"
-        />
-      </div>
-
-      <div class="decisiones" style="margin-top: 3rem;">
-
         <div class="decision">
           <p class="decision-num">02</p>
           <div>
@@ -180,7 +149,39 @@ import Layout from '../../../layouts/Layout.astro';
         </div>
 
       </div>
+
+      <!-- Flow chart with lightbox — after all decisions -->
+      <div class="flowchart-wrap">
+        <button class="flowchart-btn" id="flowchart-trigger" aria-label="View full bot decision tree fullscreen">
+          <div class="flowchart-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/dashboard.ong.png"
+              alt="Impulse Bot's full decision tree: nodes, branches, global keywords and human fallbacks"
+              class="flowchart-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="flowchart-hint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            <span>Expand</span>
+          </div>
+        </button>
+        <p class="flowchart-caption">The bot's full decision tree: three main branches, global keyword handling, and human handoff at every escape point.</p>
+      </div>
+
     </section>
+
+    <!-- Lightbox (outside normal flow) -->
+    <div class="lightbox" id="flowchart-lightbox" role="dialog" aria-modal="true" aria-label="Bot decision tree fullscreen">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+      <div class="lightbox-img-area">
+        <img
+          src="/images/portfolio/impulse-bot/dashboard.ong.png"
+          alt="Impulse Bot's full decision tree"
+          class="lightbox-img"
+        />
+      </div>
+    </div>
 
     <!-- ── VISUAL SYSTEM ── -->
     <section class="seccion">
@@ -201,22 +202,26 @@ import Layout from '../../../layouts/Layout.astro';
 
       <div class="characters-grid">
         <div class="character-card">
-          <img
-            src="/images/portfolio/impulse-bot/chatbot_impulse_pj1.jpeg"
-            alt="Undetectable — blue character from Impulse Bot"
-            loading="lazy"
-          />
+          <div class="character-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/chatbot_impulse_pj1.jpeg"
+              alt="Undetectable — blue character from Impulse Bot"
+              loading="lazy"
+            />
+          </div>
           <div class="character-info">
             <p class="character-name">Undetectable</p>
             <p class="character-desc">The blue one. Represents an undetectable viral load — the goal of antiretroviral treatment.</p>
           </div>
         </div>
         <div class="character-card">
-          <img
-            src="/images/portfolio/impulse-bot/chatbot_impulse_pj2.jpeg"
-            alt="Untransmittable — red character from Impulse Bot"
-            loading="lazy"
-          />
+          <div class="character-img-area">
+            <img
+              src="/images/portfolio/impulse-bot/chatbot_impulse_pj2.jpeg"
+              alt="Untransmittable — red character from Impulse Bot"
+              loading="lazy"
+            />
+          </div>
           <div class="character-info">
             <p class="character-name">Untransmittable</p>
             <p class="character-desc">The red one. Arrives six months later — the actual time treatment takes to achieve untransmittability.</p>
@@ -228,7 +233,6 @@ import Layout from '../../../layouts/Layout.astro';
         "The twins aren't a sticker pack. They're a product decision: if the brand doesn't scare you, the conversation continues."
       </blockquote>
 
-      <!-- TODO: add credit to the illustrator/Impulse team that created the characters -->
       <a
         href="/images/portfolio/impulse-bot/chatbot_Personajes.pdf"
         target="_blank"
@@ -249,7 +253,6 @@ import Layout from '../../../layouts/Layout.astro';
         Two activation waves — Pride June 2025 and the BA Pride March in October — generated the two spikes of the pilot. Between waves, the bot stayed active and contacts remained in the base, allowing reactivation with no friction.
       </p>
 
-      <!-- TODO: replace with dashboard-metrics.png when available -->
       <div class="dashboard-placeholder">
         <p class="placeholder-label">[ Dashboard screenshot — pending ]</p>
       </div>
@@ -345,7 +348,6 @@ import Layout from '../../../layouts/Layout.astro';
 
   </div>
 
-  <!-- Lightbox script -->
   <script>
     const trigger = document.getElementById('flowchart-trigger');
     const lightbox = document.getElementById('flowchart-lightbox');
@@ -435,16 +437,16 @@ import Layout from '../../../layouts/Layout.astro';
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 4rem;
-    background: #0d0d0d;
+    background: #111;
   }
 
   .hero-img {
     width: 100%;
     height: auto;
     display: block;
-    max-height: 60vh;
+    max-height: 64vh;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
   }
 
   /* ── Quick facts ── */
@@ -523,7 +525,7 @@ import Layout from '../../../layouts/Layout.astro';
   .decision-cuerpo em { color: #c0c0c0; font-style: italic; }
 
   /* ── Flow chart ── */
-  .flowchart-wrap { margin: 3rem 0; }
+  .flowchart-wrap { margin: 4rem 0 0; }
 
   .flowchart-btn {
     position: relative;
@@ -532,35 +534,42 @@ import Layout from '../../../layouts/Layout.astro';
     border: none;
     padding: 0;
     cursor: zoom-in;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     display: block;
   }
+
+  /* White container for PNG with white background */
+  .flowchart-img-area {
+    background: #f8f8f6;
+    border-radius: 16px;
+    padding: 2.5rem;
+    border: 1px solid #e0e0de;
+    transition: filter 0.2s ease;
+  }
+
+  .flowchart-btn:hover .flowchart-img-area { filter: brightness(0.94); }
 
   .flowchart-img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    transition: filter 0.2s ease;
+    border-radius: 8px;
   }
-
-  .flowchart-btn:hover .flowchart-img { filter: brightness(0.85); }
 
   .flowchart-hint {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(10,10,10,0.8);
-    border: 1px solid #3a3a3a;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(10,10,10,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 8px;
     padding: 6px 12px;
     display: flex;
     align-items: center;
     gap: 6px;
     font-size: 0.75rem;
-    color: #a0a0a0;
+    color: #e0e0e0;
     font-family: system-ui, -apple-system, sans-serif;
     pointer-events: none;
   }
@@ -578,7 +587,7 @@ import Layout from '../../../layouts/Layout.astro';
   .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.92);
     z-index: 9999;
     display: none;
     align-items: center;
@@ -588,11 +597,21 @@ import Layout from '../../../layouts/Layout.astro';
 
   .lightbox.open { display: flex; }
 
-  .lightbox-img {
-    max-width: 100%;
+  /* White container in lightbox too */
+  .lightbox-img-area {
+    background: #f8f8f6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 90vw;
     max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
+    overflow: auto;
+  }
+
+  .lightbox-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
   }
 
   .lightbox-close {
@@ -630,11 +649,20 @@ import Layout from '../../../layouts/Layout.astro';
     overflow: hidden;
   }
 
+  /* Light background area for character illustrations */
+  .character-img-area {
+    background: #f5f4f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 1.5rem;
+    min-height: 280px;
+  }
+
   .character-card img {
     width: 100%;
-    height: 320px;
-    object-fit: cover;
-    object-position: center top;
+    max-height: 260px;
+    object-fit: contain;
     display: block;
   }
 
@@ -728,8 +756,25 @@ import Layout from '../../../layouts/Layout.astro';
   .seccion-cierre { padding-bottom: 3rem; border-bottom: 1px solid #2a2a2a; }
   .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
-  .cierre-img-wrap { border-radius: 16px; overflow: hidden; }
-  .cierre-img { width: 100%; height: auto; display: block; max-height: 480px; object-fit: cover; object-position: center top; }
+  .cierre-img-wrap {
+    background: #f5f4f0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+  }
+
+  .cierre-img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 440px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+  }
 
   /* ── Nav ── */
   .caso-nav { display: flex; padding: 3rem 0 6rem; }
@@ -750,6 +795,8 @@ import Layout from '../../../layouts/Layout.astro';
     .lectura-item { grid-template-columns: 1fr; gap: 0.75rem; }
     .aprendizajes { grid-template-columns: 1fr; }
     .pull-quote { padding-left: 1.25rem; }
+    .flowchart-img-area { padding: 1.5rem; }
+    .cierre-img-wrap { padding: 2rem 1.5rem; }
   }
 
   @media (max-width: 480px) {
