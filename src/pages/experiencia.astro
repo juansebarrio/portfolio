@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Accordion from '../components/Accordion.astro';
+import VoiceSection from '../components/VoiceSection.astro';
 ---
 
 <Layout
@@ -16,6 +17,19 @@ import Accordion from '../components/Accordion.astro';
       Con foco en research, IA aplicada y resultados medibles.
     </p>
   </header>
+
+  <!-- ── ASISTENTE PERSONAL (IA) ── -->
+  <VoiceSection
+    sectionId="juan-ia"
+    agentId="agent_0801kqf4rva9ezttcab527sp0cbm"
+    eyebrow="Juanse IA"
+    heading="Preguntame lo que quieras."
+    sub="Un agente entrenado con mi experiencia que responde como si fuera yo: sobre proyectos, decisiones de producto, equipos y forma de trabajar."
+    idle="Tocá para hablar"
+    compact={true}
+    ctaLabel="Agendar una reunión →"
+    ctaHref="https://calendly.com/contacto-juansebarrio/30min"
+  />
 
   <!-- ── DOS COLUMNAS: Roles + Logros ── -->
   <div class="exp-columns">
@@ -745,6 +759,7 @@ import Accordion from '../components/Accordion.astro';
 
     .exp-col {
       padding: 3rem 0;
+      min-width: 0;
     }
 
     .exp-col + .exp-col {

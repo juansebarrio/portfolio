@@ -1,23 +1,48 @@
 ---
-const AGENT_ID = 'agent_3901kqb924nye4895n6khgp2c0sd';
+interface Props {
+  agentId?    : string;
+  sectionId?  : string;
+  eyebrow?    : string;
+  heading?    : string;
+  sub?        : string;
+  idle?       : string;
+  connecting? : string;
+  listening?  : string;
+  speaking?   : string;
+  error?      : string;
+  end?        : string;
+  compact?    : boolean;
+  ctaLabel?   : string;
+  ctaHref?    : string;
+}
 
-const ui = {
-  eyebrow    : 'Asistente JS80',
-  heading    : 'Preguntá lo que quieras.',
-  sub        : 'Nuestro asistente te cuenta qué hacemos, cómo trabajamos y si tiene sentido avanzar.',
-  idle       : 'Tocá para hablar',
-  connecting : 'Conectando…',
-  listening  : 'Escuchando…',
-  speaking   : 'Respondiendo…',
-  error      : 'Algo salió mal. Intentá de nuevo.',
-  end        : 'Terminar conversación',
-};
+const {
+  agentId    = 'agent_3901kqb924nye4895n6khgp2c0sd',
+  sectionId  = 'asistente',
+  eyebrow    = 'Asistente JS80',
+  heading    = 'Preguntá lo que quieras.',
+  sub        = 'Nuestro asistente te cuenta qué hacemos, cómo trabajamos y si tiene sentido avanzar.',
+  idle       = 'Tocá para hablar',
+  connecting = 'Conectando…',
+  listening  = 'Escuchando…',
+  speaking   = 'Respondiendo…',
+  error      = 'Algo salió mal. Intentá de nuevo.',
+  end        = 'Terminar conversación',
+  compact    = false,
+  ctaLabel,
+  ctaHref,
+} = Astro.props;
+
+const ui = { eyebrow, heading, sub, idle, connecting, listening, speaking, error, end };
+const AGENT_ID = agentId;
+const showCta  = !!(ctaLabel && ctaHref);
 ---
 
 <section
   class="voice-section"
-  id="asistente"
+  id={sectionId}
   data-state="idle"
+  data-compact={compact ? 'true' : 'false'}
   data-idle={ui.idle}
   data-connecting={ui.connecting}
   data-listening={ui.listening}
@@ -31,24 +56,29 @@ const ui = {
       <span class="label vs-eyebrow">{ui.eyebrow}</span>
       <h2 class="serif vs-heading">{ui.heading}</h2>
       <p class="vs-sub">{ui.sub}</p>
+      {showCta && (
+        <a class="vs-cta" href={ctaHref} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
+      )}
     </div>
 
-    <div class="orb-scene">
-      <div class="ring ring-3"></div>
-      <div class="ring ring-2"></div>
-      <div class="ring ring-1"></div>
-      <div class="orb-scaler">
-        <button class="orb" id="vs-orb-btn" aria-label={ui.idle}></button>
+    <div class="vs-orb-col">
+      <div class="orb-scene">
+        <div class="ring ring-3"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-1"></div>
+        <div class="orb-scaler">
+          <button class="orb" id="vs-orb-btn" aria-label={ui.idle}></button>
+        </div>
       </div>
-    </div>
 
-    <div class="vs-status-area">
-      <div class="idle-hint" id="vs-idle-hint">
-        <span class="idle-arrow">↑</span>
-        <p class="idle-label">{ui.idle}</p>
+      <div class="vs-status-area">
+        <div class="idle-hint" id="vs-idle-hint">
+          <span class="idle-arrow">↑</span>
+          <p class="idle-label">{ui.idle}</p>
+        </div>
+        <p class="vs-status" id="vs-status-text"></p>
+        <button class="vs-end-btn" id="vs-end-btn" hidden>{ui.end}</button>
       </div>
-      <p class="vs-status" id="vs-status-text"></p>
-      <button class="vs-end-btn" id="vs-end-btn" hidden>{ui.end}</button>
     </div>
 
   </div>
@@ -57,56 +87,56 @@ const ui = {
 <script>
   import { Conversation } from '@11labs/client';
 
-  const section  = document.getElementById('asistente')!;
-  const orbBtn   = document.getElementById('vs-orb-btn')!;
-  const endBtn   = document.getElementById('vs-end-btn') as HTMLButtonElement;
-  const statusEl = document.getElementById('vs-status-text')!;
-  const idleHint = document.getElementById('vs-idle-hint')!;
-
-  const AGENT_ID = section.dataset.agent!;
-
   type State = 'idle' | 'connecting' | 'listening' | 'speaking' | 'error';
-  let convo: Awaited<ReturnType<typeof Conversation.startSession>> | null = null;
 
-  function getLabel(state: State): string {
-    return (section.dataset as Record<string, string>)[state] ?? '';
-  }
+  document.querySelectorAll<HTMLElement>('.voice-section').forEach((section) => {
+    const orbBtn   = section.querySelector<HTMLButtonElement>('.orb')!;
+    const endBtn   = section.querySelector<HTMLButtonElement>('.vs-end-btn')!;
+    const statusEl = section.querySelector<HTMLElement>('.vs-status')!;
+    const idleHint = section.querySelector<HTMLElement>('.idle-hint')!;
+    const AGENT_ID = section.dataset.agent!;
 
-  function setState(state: State) {
-    section.dataset.state = state;
-    statusEl.textContent  = state === 'idle' ? '' : getLabel(state);
-    idleHint.hidden       = state !== 'idle';
-    endBtn.hidden         = state === 'idle' || state === 'error';
-    (orbBtn as HTMLButtonElement).disabled = state === 'connecting';
-  }
+    let convo: Awaited<ReturnType<typeof Conversation.startSession>> | null = null;
 
-  orbBtn.addEventListener('click', async () => {
-    const s = section.dataset.state as State;
-    if (s !== 'idle' && s !== 'error') return;
-    try {
-      setState('connecting');
-      convo = await Conversation.startSession({
-        agentId     : AGENT_ID,
-        onConnect   : ()         => setState('listening'),
-        onDisconnect: ()         => { convo = null; setState('idle'); },
-        onError     : ()         => setState('error'),
-        onModeChange: ({ mode }) => setState(mode === 'speaking' ? 'speaking' : 'listening'),
-      });
-    } catch (e) {
-      console.error(e);
-      setState('error');
+    const getLabel = (state: State): string =>
+      (section.dataset as Record<string, string>)[state] ?? '';
+
+    function setState(state: State) {
+      section.dataset.state = state;
+      statusEl.textContent  = state === 'idle' ? '' : getLabel(state);
+      idleHint.hidden       = state !== 'idle';
+      endBtn.hidden         = state === 'idle' || state === 'error';
+      orbBtn.disabled       = state === 'connecting';
     }
-  });
 
-  endBtn.addEventListener('click', async () => {
-    if (convo) { await convo.endSession(); convo = null; }
-    setState('idle');
+    orbBtn.addEventListener('click', async () => {
+      const s = section.dataset.state as State;
+      if (s !== 'idle' && s !== 'error') return;
+      try {
+        setState('connecting');
+        convo = await Conversation.startSession({
+          agentId     : AGENT_ID,
+          onConnect   : ()         => setState('listening'),
+          onDisconnect: ()         => { convo = null; setState('idle'); },
+          onError     : ()         => setState('error'),
+          onModeChange: ({ mode }) => setState(mode === 'speaking' ? 'speaking' : 'listening'),
+        });
+      } catch (e) {
+        console.error(e);
+        setState('error');
+      }
+    });
+
+    endBtn.addEventListener('click', async () => {
+      if (convo) { await convo.endSession(); convo = null; }
+      setState('idle');
+    });
   });
 </script>
 
 <style>
   .voice-section {
-    background: var(--bg-dark);
+    background: var(--bg-dark, #0a0a0a);
     padding: 96px 64px;
   }
 
@@ -119,7 +149,30 @@ const ui = {
     gap: 56px;
   }
 
+  /* Wrapper transparente: en modo default no afecta el layout vertical */
+  .vs-orb-col { display: contents; }
+
   .vs-intro { text-align: center; }
+
+  .vs-cta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 24px;
+    padding: 12px 22px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .vs-cta:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
 
   .vs-eyebrow {
     color: rgba(255,255,255,0.3);
@@ -171,13 +224,13 @@ const ui = {
       radial-gradient(circle at 30% 28%, rgba(255,255,255,0.5), transparent 38%),
       conic-gradient(
         from 180deg,
-        var(--c-blue),
-        var(--c-violet),
-        var(--c-coral),
-        var(--c-peach),
-        var(--c-violet-light),
-        var(--c-turquoise),
-        var(--c-blue)
+        var(--c-blue, #6B8CFF),
+        var(--c-violet, #8B6FFF),
+        var(--c-coral, #FF8AA0),
+        var(--c-peach, #FFB088),
+        var(--c-violet-light, #A67AFF),
+        var(--c-turquoise, #5DC7E0),
+        var(--c-blue, #6B8CFF)
       );
     box-shadow:
       0 0 0 1px rgba(107,140,255,0.35),
@@ -279,6 +332,114 @@ const ui = {
     .vs-heading { font-size: 32px; letter-spacing: -0.8px; }
     .orb-scene { width: 240px; height: 240px; }
     .orb, .ring { width: 220px; height: 220px; }
+  }
+
+  /* ── Modo compacto: texto izquierda, esfera derecha, alto reducido.
+        Estilos alineados con el sistema visual de Experiencia (Layout principal). ── */
+  .voice-section[data-compact="true"] {
+    padding: 3.5rem 5rem 3rem;
+    border-bottom: 1px solid rgba(240, 240, 240, 0.06);
+  }
+  .voice-section[data-compact="true"] .vs-inner {
+    max-width: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .voice-section[data-compact="true"] .vs-orb-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .voice-section[data-compact="true"] .vs-intro {
+    text-align: left;
+    flex: 1;
+    max-width: 60ch;
+  }
+  /* Eyebrow alineado con el resto de la página (uppercase + tracking) */
+  .voice-section[data-compact="true"] .vs-eyebrow {
+    color: #555;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.875rem;
+  }
+  /* Heading alineado con .exp-title (Syne ya por global.css en h2) */
+  .voice-section[data-compact="true"] .vs-heading {
+    font-family: "Syne", system-ui, sans-serif;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #f0f0f0;
+    margin: 0 0 0.75rem;
+  }
+  /* Sub alineado con .exp-subtitle */
+  .voice-section[data-compact="true"] .vs-sub {
+    color: #6b6b6b;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 52ch;
+    margin: 0;
+  }
+  /* CTA alineado con .col-cta */
+  .voice-section[data-compact="true"] .vs-cta {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.3rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #f0f0f0;
+    background-color: #141414;
+    border: 1px solid rgba(240, 240, 240, 0.15);
+    border-radius: 8px;
+  }
+  .voice-section[data-compact="true"] .vs-cta:hover {
+    background-color: #1a1a1a;
+    border-color: rgba(240, 240, 240, 0.3);
+  }
+  .voice-section[data-compact="true"] .orb-scene {
+    width: 150px;
+    height: 150px;
+  }
+  .voice-section[data-compact="true"] .orb,
+  .voice-section[data-compact="true"] .ring {
+    width: 130px;
+    height: 130px;
+  }
+  .voice-section[data-compact="true"] .vs-status-area {
+    min-height: 0;
+    gap: 10px;
+  }
+  .voice-section[data-compact="true"] .idle-arrow {
+    font-size: 16px;
+    color: rgba(240, 240, 240, 0.4);
+  }
+  .voice-section[data-compact="true"] .idle-label {
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+    font-weight: 500;
+  }
+  .voice-section[data-compact="true"] .vs-status {
+    font-size: 0.8125rem;
+    color: #6b6b6b;
+  }
+
+  @media (max-width: 900px) {
+    .voice-section[data-compact="true"] {
+      padding: 3rem 1.5rem;
+    }
+    .voice-section[data-compact="true"] .vs-inner {
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+    .voice-section[data-compact="true"] .vs-intro { text-align: center; max-width: none; }
+    .voice-section[data-compact="true"] .vs-sub { margin: 0 auto; }
+    .voice-section[data-compact="true"] .vs-cta { margin-top: 1.5rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {

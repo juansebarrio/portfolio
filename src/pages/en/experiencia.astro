@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Accordion from '../../components/Accordion.astro';
+import VoiceSection from '../../components/VoiceSection.astro';
 ---
 
 <Layout
@@ -15,6 +16,23 @@ import Accordion from '../../components/Accordion.astro';
       Focused on research, applied AI, and measurable results.
     </p>
   </header>
+
+  <VoiceSection
+    sectionId="juan-ia"
+    agentId="agent_0801kqf4rva9ezttcab527sp0cbm"
+    eyebrow="Juanse AI"
+    heading="Ask me anything."
+    sub="An agent trained on my experience that answers as if it were me: projects, product decisions, teams, and how I work."
+    idle="Tap to talk"
+    connecting="Connecting…"
+    listening="Listening…"
+    speaking="Answering…"
+    error="Something went wrong. Try again."
+    end="End conversation"
+    compact={true}
+    ctaLabel="Book a meeting →"
+    ctaHref="https://calendly.com/contacto-juansebarrio/30min"
+  />
 
   <div class="exp-columns">
 
@@ -369,7 +387,7 @@ import Accordion from '../../components/Accordion.astro';
   @media (max-width: 768px) {
     .exp-header { padding: 3rem 1.5rem 2.5rem; }
     .exp-columns { grid-template-columns: 1fr; padding: 0 1.5rem; }
-    .exp-col { padding: 3rem 0; }
+    .exp-col { padding: 3rem 0; min-width: 0; }
     .exp-col + .exp-col { padding: 3rem 0; border-left: none; border-top: 1px solid rgba(240, 240, 240, 0.06); }
     .exp-section { padding: 0 1.5rem; }
     .carousel-track--certs .carousel-item { flex: 0 0 100%; }
