@@ -7,9 +7,8 @@ export const prerender = false;
 
 <Layout title="Portfolio — Juanse Barrio" description="Case studies by Juan Segundo Barrio: design, AI and research on Banco Galicia digital products.">
 
-  <PasswordGate autoShow={true} />
+  <PasswordGate autoShow={false} />
 
-  <div id="portfolio-content" style="display:none">
   <div class="page-container">
 
     <div class="portfolio-header">
@@ -17,87 +16,108 @@ export const prerender = false;
       <h1 class="page-title">Case studies</h1>
     </div>
 
-    <section class="casos">
+    <!-- ── NDA CASES ── -->
+    <section class="nda-section">
 
-      <a href="/en/portfolio/csat-semantico" class="caso-card caso-featured">
-        <div class="caso-media">
-          <img
-            src="/images/portfolio/csat-semantico/csat-tile.webp"
-            alt="Juanse presenting CSAT analysis results to a Galicia Design audience"
-            loading="eager"
-            width="1600"
-            height="1000"
-          />
+      <!-- Locked state — visible when not auth'd -->
+      <div class="nda-lock" id="nda-lock">
+        <div class="lock-body">
+          <div class="lock-icon-wrap" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <p class="lock-eyebrow">4 CASES · BANCO GALICIA · NDA</p>
+          <p class="lock-desc">Product Design, AI and Research at one of Argentina's three largest banks.</p>
+          <button class="lock-btn" id="unlock-btn">
+            View cases
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
         </div>
-        <div class="caso-info">
-          <p class="caso-meta">Banco Galicia · 2026 · AI + Research</p>
-          <h2 class="caso-titulo">Turning the voice of the customer into an actionable backlog</h2>
-          <p class="caso-desc">A monthly system that classifies hundreds of CSAT comments using a proprietary AI-assisted taxonomy and delivers them as a squad-prioritized backlog.</p>
-          <p class="caso-cta">View case →</p>
+        <div class="lock-preview" aria-hidden="true">
+          <div class="preview-card preview-featured"></div>
+          <div class="preview-card"></div>
+          <div class="preview-card"></div>
+          <div class="preview-card"></div>
         </div>
-      </a>
+      </div>
 
-      <a href="/en/portfolio/upgrade" class="caso-card">
-        <div class="caso-media">
-          <video src="/images/portfolio/upgrade/07-video-final.mov" autoplay muted loop playsinline></video>
+      <!-- Unlocked cases — hidden until auth -->
+      <div id="nda-content" style="display:none">
+        <div class="portfolio-header-inner">
+          <p class="eyebrow">NDA CASES</p>
         </div>
-        <div class="caso-info">
-          <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
-          <h2 class="caso-titulo">Argentina's fastest financial system upgrade</h2>
-          <p class="caso-desc">Native redesign of the package upgrade flow: from an inconsistent webview to three friction-free steps.</p>
-          <p class="caso-cta">View case →</p>
-        </div>
-      </a>
+        <div class="casos">
 
-      <a href="/en/portfolio/rediseno-cuentas" class="caso-card">
-        <div class="caso-media">
-          <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Cross-banca alignment workshop: team reviewing redesign screens on large monitors" loading="lazy" />
-        </div>
-        <div class="caso-info">
-          <p class="caso-meta">Banco Galicia · 2025 · Redesign</p>
-          <h2 class="caso-titulo">Designing accounts from scratch</h2>
-          <p class="caso-desc">Full redesign of the accounts flow, the most used feature by the bank's customers.</p>
-          <p class="caso-cta">View case →</p>
-        </div>
-      </a>
+          <a href="/en/portfolio/csat-semantico" class="caso-card caso-featured">
+            <div class="caso-media">
+              <img
+                src="/images/portfolio/csat-semantico/csat-tile.webp"
+                alt="Juanse presenting CSAT analysis results to a Galicia Design audience"
+                loading="eager"
+                width="1600"
+                height="1000"
+              />
+            </div>
+            <div class="caso-info">
+              <p class="caso-meta">Banco Galicia · 2026 · AI + Research</p>
+              <h2 class="caso-titulo">Turning the voice of the customer into an actionable backlog</h2>
+              <p class="caso-desc">A monthly system that classifies hundreds of CSAT comments using a proprietary AI-assisted taxonomy and delivers them as a squad-prioritized backlog.</p>
+              <p class="caso-cta">View case →</p>
+            </div>
+          </a>
 
-      <a href="/en/portfolio/pfm" class="caso-card">
-        <div class="caso-media">
-          <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes" loading="lazy" />
-        </div>
-        <div class="caso-info">
-          <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
-          <h2 class="caso-titulo">Argentina's first bank-built PFM</h2>
-          <p class="caso-desc">Personal Finance Manager designed from research: four profiles, four ways of relating to money.</p>
-          <p class="caso-cta">View case →</p>
-        </div>
-      </a>
+          <a href="/en/portfolio/upgrade" class="caso-card">
+            <div class="caso-media">
+              <video src="/images/portfolio/upgrade/07-video-final.mov" autoplay muted loop playsinline></video>
+            </div>
+            <div class="caso-info">
+              <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
+              <h2 class="caso-titulo">Argentina's fastest financial system upgrade</h2>
+              <p class="caso-desc">Native redesign of the package upgrade flow: from an inconsistent webview to three friction-free steps.</p>
+              <p class="caso-cta">View case →</p>
+            </div>
+          </a>
 
+          <a href="/en/portfolio/rediseno-cuentas" class="caso-card">
+            <div class="caso-media">
+              <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Cross-banca alignment workshop: team reviewing redesign screens on large monitors" loading="lazy" />
+            </div>
+            <div class="caso-info">
+              <p class="caso-meta">Banco Galicia · 2025 · Redesign</p>
+              <h2 class="caso-titulo">Designing accounts from scratch</h2>
+              <p class="caso-desc">Full redesign of the accounts flow, the most used feature by the bank's customers.</p>
+              <p class="caso-cta">View case →</p>
+            </div>
+          </a>
+
+          <a href="/en/portfolio/pfm" class="caso-card">
+            <div class="caso-media">
+              <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes" loading="lazy" />
+            </div>
+            <div class="caso-info">
+              <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
+              <h2 class="caso-titulo">Argentina's first bank-built PFM</h2>
+              <p class="caso-desc">Personal Finance Manager designed from research: four profiles, four ways of relating to money.</p>
+              <p class="caso-cta">View case →</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
     </section>
 
-  </div>
-  </div>
-
-  <script>
-    if (sessionStorage.getItem('portfolio-auth') === 'true') {
-      const content = document.getElementById('portfolio-content');
-      if (content) content.style.display = 'block';
-    }
-  </script>
-
-  <!-- ── PUBLIC CASES (no gate) ── -->
-  <div class="page-container">
-    <section class="casos casos-publicos">
-
+    <!-- ── PUBLIC CASES ── -->
+    <section class="casos-publicos">
       <div class="publicos-header">
         <p class="eyebrow">PUBLIC PROJECT</p>
       </div>
 
       <a href="/en/portfolio/impulse-bot" class="caso-card">
         <div class="caso-media caso-media-impulse">
-          <div class="impulse-visual" aria-hidden="true">
-            <span>💬</span>
-          </div>
+          <img
+            src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
+            alt="Undetectable and Untransmittable — Impulse Bot's two characters"
+            loading="lazy"
+          />
         </div>
         <div class="caso-info">
           <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>
@@ -106,57 +126,251 @@ export const prerender = false;
           <p class="caso-cta">View case →</p>
         </div>
       </a>
-
     </section>
+
   </div>
+
+  <script>
+    function applyAuth() {
+      const lock = document.getElementById('nda-lock');
+      const content = document.getElementById('nda-content');
+      if (lock) lock.style.display = 'none';
+      if (content) content.style.display = 'block';
+    }
+
+    if (sessionStorage.getItem('portfolio-auth') === 'true') {
+      applyAuth();
+    }
+
+    document.getElementById('unlock-btn')?.addEventListener('click', () => {
+      window.__showPasswordGate?.();
+    });
+
+    window.addEventListener('portfolio-auth', applyAuth);
+  </script>
 
 </Layout>
 
 <style>
   .page-container { max-width: 80rem; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
-  .portfolio-header { padding: 2.5rem 0 1.5rem; }
-  .eyebrow { font-family: 'Syne', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #6b6b6b; margin: 0; }
-  .page-title { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #f0f0f0; margin: 0.75rem 0 0; }
 
-  .casos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 10rem; }
+  .portfolio-header { padding: 2.5rem 0 2rem; }
+  .portfolio-header-inner { padding: 0 0 1.5rem; }
 
-  .caso-featured { grid-column: 1 / -1; display: grid !important; grid-template-columns: 3fr 2fr; align-items: stretch; }
+  .eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .page-title {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f0f0f0;
+    margin: 0.75rem 0 0;
+  }
+
+  /* ── NDA lock state ── */
+  .nda-section { margin-bottom: 2rem; }
+
+  .nda-lock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .lock-body { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  .lock-icon-wrap {
+    width: 40px;
+    height: 40px;
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b6b6b;
+  }
+
+  .lock-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .lock-desc {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: #a0a0a0;
+    margin: 0;
+    max-width: 28rem;
+  }
+
+  .lock-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.25rem;
+    background: #f0f0f0;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .lock-btn:hover { background: #d8d8d8; transform: translateY(-1px); }
+
+  .lock-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.75rem;
+    height: 260px;
+  }
+
+  .preview-card {
+    background: #1a1a1a;
+    border: 1px solid #252525;
+    border-radius: 12px;
+  }
+
+  .preview-featured {
+    grid-column: 1 / -1;
+    height: auto;
+  }
+
+  /* ── Casos grid ── */
+  .casos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .caso-featured {
+    grid-column: 1 / -1;
+    display: grid !important;
+    grid-template-columns: 3fr 2fr;
+    align-items: stretch;
+  }
+
   .caso-featured .caso-media { aspect-ratio: unset; min-height: 380px; border-radius: 0; }
-  .caso-featured .caso-info { padding: 2.5rem 2.5rem 2.5rem 2.5rem; justify-content: center; gap: 0; }
+  .caso-featured .caso-info { padding: 2.5rem; justify-content: center; gap: 0; }
   .caso-featured .caso-titulo { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-top: 1rem; }
   .caso-featured .caso-desc { margin-top: 1rem; font-size: 1rem; }
   .caso-featured .caso-cta { margin-top: 2rem; align-self: flex-start; }
 
-  .caso-card { display: block; text-decoration: none; color: inherit; background: #141414; border-radius: 20px; overflow: hidden; transition: transform 300ms ease, background 300ms ease; }
+  .caso-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #141414;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 300ms ease, background 300ms ease;
+  }
+
   .caso-card:hover { transform: translateY(-4px); background: #1a1a1a; }
-  .caso-media { aspect-ratio: 16 / 10; background: #0a0a0a; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+
+  .caso-media {
+    aspect-ratio: 16 / 10;
+    background: #0a0a0a;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .caso-media video { width: 100%; height: 100%; object-fit: contain; display: block; }
   .caso-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
   .caso-info { padding: 1.75rem; display: flex; flex-direction: column; }
-  .caso-meta { font-family: system-ui, -apple-system, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6b6b6b; margin: 0; }
-  .caso-titulo { font-family: 'Syne', system-ui, sans-serif; font-size: 1.25rem; font-weight: 500; color: #f0f0f0; line-height: 1.2; margin: 0.75rem 0 0; }
-  .caso-desc { font-family: system-ui, -apple-system, sans-serif; font-size: 0.9375rem; color: #a0a0a0; line-height: 1.5; margin: 0.75rem 0 0; }
-  .caso-cta { font-family: system-ui, -apple-system, sans-serif; font-size: 0.875rem; color: #6b6b6b; margin: 1.25rem 0 0; align-self: flex-end; transition: color 0.2s ease; }
+
+  .caso-meta {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  .caso-titulo {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.2;
+    margin: 0.75rem 0 0;
+  }
+
+  .caso-desc {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9375rem;
+    color: #a0a0a0;
+    line-height: 1.5;
+    margin: 0.75rem 0 0;
+  }
+
+  .caso-cta {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    margin: 1.25rem 0 0;
+    align-self: flex-end;
+    transition: color 0.2s ease;
+  }
+
   .caso-card:hover .caso-cta { color: #f0f0f0; }
 
+  /* ── Públicos ── */
+  .casos-publicos {
+    padding-top: 3.5rem;
+    border-top: 1px solid rgba(240, 240, 240, 0.06);
+    padding-bottom: 8rem;
+  }
+
+  .publicos-header { margin-bottom: 1.5rem; }
+
+  .caso-media-impulse { background: #1a0f07; }
+
+  /* ── Responsive ── */
   @media (max-width: 900px) {
+    .nda-lock { grid-template-columns: 1fr; }
+    .lock-preview { display: none; }
     .casos { grid-template-columns: 1fr 1fr; }
     .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
     .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
   }
 
   @media (max-width: 600px) {
-    .casos { grid-template-columns: 1fr; margin-bottom: 6rem; }
+    .nda-lock { padding: 2rem; }
+    .casos { grid-template-columns: 1fr; }
     .caso-featured { grid-template-columns: 1fr; }
   }
-
-  .casos-publicos {
-    display: block;
-    margin-top: 5rem;
-    padding-top: 4rem;
-    border-top: 1px solid rgba(240, 240, 240, 0.06);
-  }
-  .publicos-header { margin-bottom: 2rem; }
-  .caso-media-impulse { background: #0d1a2b; display: flex; align-items: center; justify-content: center; }
-  .impulse-visual { font-size: 3rem; opacity: 0.5; }
 </style>
