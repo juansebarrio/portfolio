@@ -11,7 +11,7 @@ import Layout from '../../../layouts/Layout.astro';
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
       document.documentElement.style.visibility = 'hidden';
-      window.location.replace('/en/portfolio');
+      window.location.replace('/en/portfolio?unlock=1');
     }
   </script>
 
