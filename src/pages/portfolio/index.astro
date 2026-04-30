@@ -1,13 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PasswordGate from '../../components/PasswordGate.astro';
 
 export const prerender = false;
 ---
 
 <Layout title="Portfolio — Juanse Barrio" description="Casos de estudio de Juan Segundo Barrio: diseño, IA y research en productos digitales de Banco Galicia.">
-
-  <PasswordGate autoShow={false} />
 
   <div class="page-container">
 
@@ -31,6 +28,11 @@ export const prerender = false;
             Ver los casos
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
+          <form id="inline-gate" class="inline-gate" style="display:none" novalidate>
+            <input type="password" id="inline-input" class="inline-input" placeholder="Contraseña" autocomplete="current-password" />
+            <p id="inline-error" class="inline-error" hidden>Contraseña incorrecta</p>
+            <button type="submit" class="inline-submit">Acceder</button>
+          </form>
         </div>
         <div class="lock-preview" aria-hidden="true">
           <div class="preview-card preview-featured"></div>
@@ -164,6 +166,9 @@ export const prerender = false;
   </div>
 
   <script>
+    const STORAGE_KEY = 'portfolio-auth';
+    const PASSWORD = 'libertador123456';
+
     function applyAuth() {
       const lock = document.getElementById('nda-lock');
       const content = document.getElementById('nda-content');
@@ -171,15 +176,30 @@ export const prerender = false;
       if (content) content.style.display = 'block';
     }
 
-    if (sessionStorage.getItem('portfolio-auth') === 'true') {
-      applyAuth();
-    }
+    if (sessionStorage.getItem(STORAGE_KEY) === 'true') applyAuth();
 
-    document.getElementById('unlock-btn')?.addEventListener('click', () => {
-      window.__showPasswordGate?.();
+    const unlockBtn = document.getElementById('unlock-btn');
+    const inlineGate = document.getElementById('inline-gate');
+    const inlineInput = document.getElementById('inline-input');
+    const inlineError = document.getElementById('inline-error');
+
+    unlockBtn?.addEventListener('click', () => {
+      unlockBtn.style.display = 'none';
+      inlineGate.style.display = 'flex';
+      setTimeout(() => inlineInput?.focus(), 50);
     });
 
-    window.addEventListener('portfolio-auth', applyAuth);
+    inlineGate?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (inlineInput.value === PASSWORD) {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+        applyAuth();
+      } else {
+        inlineError.hidden = false;
+        inlineInput.value = '';
+        inlineInput.focus();
+      }
+    });
   </script>
 
 </Layout>
@@ -276,6 +296,53 @@ export const prerender = false;
   }
 
   .lock-btn:hover { background: #d8d8d8; transform: translateY(-1px); }
+
+  .inline-gate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 22rem;
+    margin-top: 0.5rem;
+  }
+
+  .inline-input {
+    padding: 0.75rem 1rem;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 0.9375rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .inline-input:focus { border-color: #f0f0f0; }
+
+  .inline-error {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.8125rem;
+    color: #ff4444;
+    margin: 0;
+  }
+
+  .inline-submit {
+    align-self: flex-start;
+    padding: 0.75rem 1.25rem;
+    background: #f0f0f0;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .inline-submit:hover { background: #d8d8d8; }
 
   /* Preview grid of ghost cards */
   .lock-preview {
