@@ -103,4 +103,17 @@ const { title, meta, defaultOpen = false } = Astro.props;
   .accordion-body {
     padding: 0.25rem 0 2rem;
   }
+
+  @media (max-width: 640px) {
+    .accordion-summary {
+      flex-wrap: wrap;
+      column-gap: 1rem;
+      row-gap: 0.35rem;
+      padding-right: 0;
+    }
+    .accordion-title { flex: 1 1 0; min-width: 0; }
+    .accordion-right { display: contents; }
+    .accordion-meta { order: 3; flex-basis: 100%; white-space: normal; }
+    .accordion-icon { order: 2; }
+  }
 </style>
