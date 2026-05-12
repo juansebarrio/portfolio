@@ -25,3 +25,4 @@ pnpm-debug.log*
 *.mp4
 public/videos/
 .vercel
+.claude/
