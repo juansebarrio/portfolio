@@ -399,13 +399,28 @@ import Layout from '../../../layouts/Layout.astro';
       <p class="cierre-texto">
         The pilot closes and the project evolves into a new platform with generative-AI capabilities. The 131 opt-in contacts are the starting point; the tone and flow learnings are the conversational brand playbook.
       </p>
-      <div class="cierre-img-wrap">
-        <img
-          src="/images/portfolio/impulse-bot/chatbot_impulse_pj1_y_pj2.jpeg"
-          alt="Undetectable and Untransmittable jumping with arms raised"
-          class="cierre-img"
-          loading="lazy"
-        />
+      <p class="videos-eyebrow">Project presentation at Latin American Summit</p>
+      <div class="videos-grid">
+        <div class="video-wrap">
+          <iframe
+            src="https://player.vimeo.com/video/1191384342?title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="Latin American Summit presentation — part 1"
+          ></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe
+            src="https://player.vimeo.com/video/1193265857?title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+            allowfullscreen
+            loading="lazy"
+            title="Latin American Summit presentation — part 2"
+          ></iframe>
+        </div>
       </div>
     </section>
 
@@ -993,19 +1008,39 @@ import Layout from '../../../layouts/Layout.astro';
   .seccion-cierre { padding-bottom: 3rem; border-bottom: 1px solid #2a2a2a; }
   .cierre-texto { font-size: 1.25rem; line-height: 1.6; color: #a0a0a0; max-width: 44rem; margin: 0 0 3rem; font-family: system-ui, -apple-system, sans-serif; }
 
-  .cierre-img-wrap {
+  .videos-eyebrow {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .video-wrap {
+    position: relative;
+    aspect-ratio: 9 / 16;
     background: #0e0e0e;
     border-radius: 16px;
     overflow: hidden;
-    line-height: 0;
   }
 
-  .cierre-img {
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 480px;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
+    height: 100%;
+    border: 0;
   }
 
   /* ── Nav ── */
@@ -1029,7 +1064,7 @@ import Layout from '../../../layouts/Layout.astro';
     .pull-quote { padding-left: 1.25rem; }
     .flowchart-img-area { padding: 1.5rem; }
     .ratio-row { grid-template-columns: 1fr; gap: 0.5rem; }
-    .cierre-img { height: 320px; }
+    .videos-grid { gap: 1rem; }
   }
 
   @media (max-width: 480px) {
