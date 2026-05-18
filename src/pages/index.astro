@@ -205,24 +205,6 @@ const casosGalicia = [
           </p>
         </article>
 
-        <a href="/arte" class="publico-card publico-card-link fade-in">
-          <div class="publico-img">
-            <img
-              src="/images/impulse/obra-1-vihvir.jpg"
-              alt="Obra de la serie VIH/VIR — fotografía exhibida en la Legislatura de la Ciudad"
-              loading="lazy"
-            />
-          </div>
-          <p class="caso-meta">Arte · Fotografía · Performance</p>
-          <h3 class="caso-titulo">
-            Arte como activismo
-            <span class="caso-arrow" aria-hidden="true">→</span>
-          </h3>
-          <p class="publico-bajada">
-            Fotografía, performance y proyectos multimediales. Obras teatrales y piezas multimediales en proceso.
-          </p>
-        </a>
-
       </div>
     </div>
   </section>
@@ -834,34 +816,13 @@ const casosGalicia = [
   /* Grilla secundaria: Marcha · Chatbot · UdeSA */
   .publico-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
   .publico-card {
     display: flex;
     flex-direction: column;
-  }
-
-  .publico-card-link {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .publico-card-link .caso-arrow {
-    display: inline-block;
-    margin-left: 0.25rem;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .publico-card-link:hover .caso-arrow {
-    opacity: 1;
-    transform: translateX(2px);
-  }
-
-  .publico-card-link:hover .caso-titulo {
-    color: #ffffff;
   }
 
   .publico-img {
