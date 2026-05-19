@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /acceso
+
+Sitemap: https://juansebarrio.com/sitemap-index.xml

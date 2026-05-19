@@ -33,7 +33,28 @@ const casosGalicia = [
 
 ---
 
-<Layout title="Juanse Barrio — Home" description="Portfolio of Juan Segundo Barrio, AI Product Designer.">
+<Layout
+  title="Juanse Barrio — AI Product Designer · Portfolio"
+  description="Portfolio of Juan Segundo Barrio, AI Product Designer at Banco Galicia. Designing with a focus on AI, research and shipping digital products. Vice President at Impulse (AHF) and lecturer at UdeSA."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Juan Segundo Barrio',
+      alternateName: 'Juanse Barrio',
+      url: 'https://juansebarrio.com/en',
+      image: 'https://juansebarrio.com/og-image.jpg',
+      jobTitle: 'AI Product Designer',
+      worksFor: { '@type': 'Organization', name: 'Banco Galicia' },
+      sameAs: ['https://www.linkedin.com/in/juansebarrio'],
+      email: 'mailto:contacto@juansebarrio.com',
+      knowsLanguage: ['es', 'en'],
+    })}
+  />
 
   <!-- ── HERO ── -->
   <section class="hero">
