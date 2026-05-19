@@ -54,10 +54,9 @@ export const prerender = false;
               <img
                 src="/images/portfolio/csat-semantico/csat-tile.webp"
                 alt="Juanse presenting CSAT analysis results to a Galicia Design audience"
-                loading="eager"
+                loading="eager" fetchpriority="high"
                 width="1600"
-                height="1000"
-              />
+                height="1000" decoding="async" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2026 · AI + Research</p>
@@ -81,7 +80,7 @@ export const prerender = false;
 
           <a href="/en/portfolio/rediseno-cuentas" class="caso-card">
             <div class="caso-media">
-              <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Cross-banca alignment workshop: team reviewing redesign screens on large monitors" loading="lazy" />
+              <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Cross-banca alignment workshop: team reviewing redesign screens on large monitors" loading="lazy" decoding="async" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2025 · Redesign</p>
@@ -93,7 +92,7 @@ export const prerender = false;
 
           <a href="/en/portfolio/pfm" class="caso-card">
             <div class="caso-media">
-              <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes" loading="lazy" />
+              <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Guerrilla testing at a branch: a person using the PFM on their phone while the team takes notes" loading="lazy" decoding="async" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
@@ -118,8 +117,7 @@ export const prerender = false;
           <img
             src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
             alt="Undetectable and Untransmittable — Impulse Bot's two characters"
-            loading="lazy"
-          />
+            loading="lazy" decoding="async" />
         </div>
         <div class="caso-info">
           <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>

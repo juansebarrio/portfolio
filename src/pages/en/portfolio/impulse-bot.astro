@@ -26,8 +26,7 @@ import Layout from '../../../layouts/Layout.astro';
         src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
         alt="Undetectable and Untransmittable — Impulse Bot's two characters embracing on an orange background"
         class="hero-img"
-        loading="eager"
-      />
+        loading="eager" fetchpriority="high" decoding="async" />
     </div>
 
     <!-- ── QUICK FACTS ── -->
@@ -158,8 +157,7 @@ import Layout from '../../../layouts/Layout.astro';
               src="/images/portfolio/impulse-bot/dashboard.ong.png"
               alt="Impulse Bot's full decision tree: nodes, branches, global keywords and human fallbacks"
               class="flowchart-img"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <div class="flowchart-hint">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -178,8 +176,7 @@ import Layout from '../../../layouts/Layout.astro';
         <img
           src="/images/portfolio/impulse-bot/dashboard.ong.png"
           alt="Impulse Bot's full decision tree"
-          class="lightbox-img"
-        />
+          class="lightbox-img" loading="lazy" decoding="async" />
       </div>
     </div>
 
@@ -206,8 +203,7 @@ import Layout from '../../../layouts/Layout.astro';
             <img
               src="/images/portfolio/impulse-bot/chatbot_impulse_pj1.jpeg"
               alt="Undetectable — blue character from Impulse Bot"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <div class="character-info">
             <p class="character-name">Undetectable</p>
@@ -219,8 +215,7 @@ import Layout from '../../../layouts/Layout.astro';
             <img
               src="/images/portfolio/impulse-bot/chatbot_impulse_pj2.jpeg"
               alt="Untransmittable — red character from Impulse Bot"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <div class="character-info">
             <p class="character-name">Untransmittable</p>
