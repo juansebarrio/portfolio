@@ -11,6 +11,8 @@ const redirect = Astro.url.searchParams.get('redirect') || '/portfolio';
   title="Acceso — Juanse Barrio"
   description="Acceso a los casos corporativos del portfolio."
 >
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
 
   <section class="acceso-section">
     <div class="acceso-container">
