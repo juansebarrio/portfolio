@@ -97,7 +97,7 @@ const casosGalicia = [
     <div class="taller-grid">
 
       <figure class="taller-foto fade-in">
-        <img src="/images/about/galicia-taller.png" alt="Foto de taller de trabajo" />
+        <img src="/images/about/galicia-taller.png" alt="Foto de taller de trabajo" loading="lazy" decoding="async" />
       </figure>
 
       <div class="taller-texto fade-in">
@@ -130,8 +130,7 @@ const casosGalicia = [
           <img
             src="/images/impulse/legislatura-diploma.jpg"
             alt="Diploma de reconocimiento de la Legislatura de la Ciudad Autónoma de Buenos Aires por participación en la exposición Celebramos el Orgullo"
-            loading="lazy"
-          />
+            loading="lazy" decoding="async" />
         </div>
 
         <div class="destacado-texto">
@@ -168,10 +167,10 @@ const casosGalicia = [
 
               <p class="reveal-obras-label">Obras exhibidas · Serie VIH/VIR</p>
               <div class="reveal-obras">
-                <img src="/images/impulse/obra-1-vihvir.jpg" alt="Obra 1 — VIH/VIR" loading="lazy" />
-                <img src="/images/impulse/obra-2-vihvir.jpg" alt="Obra 2 — VIH/VIR" loading="lazy" />
-                <img src="/images/impulse/obra-3-vihvir.jpg" alt="Obra 3 — VIH/VIR" loading="lazy" />
-                <img src="/images/impulse/obra-4-vihvir.jpg" alt="Obra 4 — VIH/VIR" loading="lazy" />
+                <img src="/images/impulse/obra-1-vihvir.jpg" alt="Obra 1 — VIH/VIR" loading="lazy" decoding="async" />
+                <img src="/images/impulse/obra-2-vihvir.jpg" alt="Obra 2 — VIH/VIR" loading="lazy" decoding="async" />
+                <img src="/images/impulse/obra-3-vihvir.jpg" alt="Obra 3 — VIH/VIR" loading="lazy" decoding="async" />
+                <img src="/images/impulse/obra-4-vihvir.jpg" alt="Obra 4 — VIH/VIR" loading="lazy" decoding="async" />
               </div>
             </div>
           </details>
@@ -186,8 +185,7 @@ const casosGalicia = [
             <img
               src="/images/impulse/pride-congreso-noche.jpg"
               alt="Carroza de Impulse en la Marcha del Orgullo 2025 con el Congreso de fondo"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <p class="caso-meta">Marcha del Orgullo 2025 · Impulse</p>
           <h3 class="caso-titulo">Hablemos de VIH</h3>
@@ -201,8 +199,7 @@ const casosGalicia = [
             <img
               src="/images/impulse/chatbot-presentacion.jpg"
               alt="Juanse presentando el chatbot Indetectable = Intransmisible"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <p class="caso-meta">Producto digital · Impulse</p>
           <h3 class="caso-titulo">Indetectable = Intransmisible</h3>
@@ -216,8 +213,7 @@ const casosGalicia = [
             <img
               src="/images/udesa/udesa-ux-day.jpg"
               alt="Juanse dando clase en la UdeSA"
-              loading="lazy"
-            />
+              loading="lazy" decoding="async" />
           </div>
           <p class="caso-meta">Docencia · 2023–2024</p>
           <h3 class="caso-titulo">Diseño UX en UdeSA</h3>
@@ -247,7 +243,7 @@ const casosGalicia = [
           <a href={c.href} class="caso-card caso-card-locked fade-in" data-requires-auth aria-label={`${c.titulo} — acceso restringido`}>
             <div class="caso-img corp-img">
               {c.preview && (
-                <img src={c.preview} alt="" class="caso-preview-blurred" aria-hidden="true" loading="lazy" />
+                <img src={c.preview} alt="" class="caso-preview-blurred" aria-hidden="true" loading="lazy" decoding="async" />
               )}
               <div class="lock-overlay">
                 <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
