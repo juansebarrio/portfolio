@@ -244,7 +244,7 @@ import VoiceSection from '../../components/VoiceSection.astro';
   </section>
 
   <!-- ── TRAINING & CERTIFICATIONS ── -->
-  <section class="exp-section cert-section exp-section--last">
+  <section class="exp-section cert-section">
     <p class="exp-section-heading">Training & Certifications</p>
 
     <div class="cert-block">
@@ -313,6 +313,23 @@ import VoiceSection from '../../components/VoiceSection.astro';
         <div class="cert-item"><div class="cert-logo-wrap"><img src="/images/certs/logos/utdt.jpg" alt="UTDT" loading="lazy" decoding="async" /></div><div class="cert-info"><p class="cert-name">Agile Innovation Program</p><p class="cert-institution">UTDT</p></div></div>
         <div class="cert-item"><div class="cert-logo-wrap"><img src="/images/certs/logos/utdt.jpg" alt="UTDT" loading="lazy" decoding="async" /></div><div class="cert-info"><p class="cert-name">Agile Methodologies Program</p><p class="cert-institution">UTDT</p></div></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER (closing) ── -->
+  <section class="exp-cta-banner">
+    <div class="exp-cta-inner">
+      <p class="cta-banner-eyebrow">Let's chat</p>
+      <h2 class="cta-banner-heading">A (virtual) coffee to see where I can help.</h2>
+      <p class="cta-banner-sub">30 min, no commitment.</p>
+      <a
+        class="cta-banner-link"
+        href="https://calendar.app.google/ZCQuzHpjeGnoKUrp6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book a coffee →
+      </a>
     </div>
   </section>
 
@@ -398,7 +415,17 @@ import VoiceSection from '../../components/VoiceSection.astro';
     .carousel-track--badges .carousel-item { flex: 0 0 calc((100% - 1rem) / 2); }
     .carousel-btn { display: none !important; }
     .cert-grid { grid-template-columns: 1fr; }
+    .exp-cta-banner { padding: 4rem 1.5rem 5rem; }
   }
+
+  /* ── CTA BANNER (closing) ── */
+  .exp-cta-banner { padding: 6rem 5rem 7rem; border-top: 1px solid rgba(240, 240, 240, 0.06); text-align: center; }
+  .exp-cta-inner { max-width: 32rem; margin: 0 auto; }
+  .cta-banner-eyebrow { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #555; margin: 0 0 1.25rem; }
+  .cta-banner-heading { font-family: 'Syne', system-ui, sans-serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; color: #f0f0f0; margin: 0 0 1rem; line-height: 1.1; }
+  .cta-banner-sub { color: #808080; font-size: 1rem; line-height: 1.7; margin: 0 0 2.25rem; }
+  .cta-banner-link { display: inline-flex; align-items: center; padding: 0.9rem 1.85rem; font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.02em; color: #0a0a0a; background-color: #f0f0f0; border: 1px solid #f0f0f0; border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; }
+  .cta-banner-link:hover { background-color: #ffffff; transform: translateY(-1px); }
 </style>
 
 <script>
