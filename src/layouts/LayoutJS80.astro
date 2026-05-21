@@ -49,9 +49,11 @@ const cardioActive       = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive      = basePath === '/js80/turnero-digital';
 const js80OverviewActive = basePath === '/js80';
 
+const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
+
 const N = isEnglish
-  ? { studio: 'JS80 Studio', products: 'Custom Products' }
-  : { studio: 'Estudio JS80', products: 'Productos a medida' };
+  ? { studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Sales Dashboard' }
+  : { studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero de Ventas' };
 
 const breadcrumbItems = segments.length > 0
   ? [
@@ -343,6 +345,16 @@ const breadcrumbItems = segments.length > 0
             >
               Turnero Digital
             </a>
+            <a
+              href={inmobiliariaHref}
+              role="menuitem"
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>{N.inmobiliaria}</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
@@ -535,6 +547,23 @@ const breadcrumbItems = segments.length > 0
   .js80-products-item:hover {
     color: #2c2c2a;
     background-color: #f5f3ee;
+  }
+
+  .js80-products-item-ext {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .js80-products-ext {
+    font-size: 11px;
+    color: #a0a09a;
+    transition: color 0.15s ease;
+  }
+
+  .js80-products-item-ext:hover .js80-products-ext {
+    color: #2c2c2a;
   }
 
   .js80-products-divider {

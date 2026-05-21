@@ -70,9 +70,11 @@ const cardioActive  = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive = basePath === '/js80/turnero-digital';
 const js80OverviewActive = basePath === '/js80';
 
+const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
+
 const L = isEnglish
-  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products' }
-  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida' };
+  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Sales Dashboard' }
+  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero de Ventas' };
 ---
 
 <!doctype html>
@@ -236,6 +238,16 @@ const L = isEnglish
               >
                 Turnero Digital
               </a>
+              <a
+                href={inmobiliariaHref}
+                role="menuitem"
+                class="js80-menu-item js80-menu-item-ext"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {L.inmobiliaria}
+                <span class="js80-menu-ext" aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
           <a
@@ -316,9 +328,18 @@ const L = isEnglish
           </a>
           <a
             href={turneroHref}
-            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${turneroActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
+            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${turneroActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
           >
             Turnero Digital
+          </a>
+          <a
+            href={inmobiliariaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={`display:flex; align-items:center; justify-content:space-between; padding: 10px 0 10px 22px; font-size:0.875rem; color: #6b6b6b; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
+          >
+            <span>{L.inmobiliaria}</span>
+            <span aria-hidden="true" style="color: #4a4a4a; font-size: 0.75rem; margin-right: 4px;">↗</span>
           </a>
           <a
             href={switchPath}
@@ -415,6 +436,23 @@ const L = isEnglish
       .js80-menu-item:hover {
         color: #f0f0f0;
         background-color: rgba(255, 255, 255, 0.04);
+      }
+
+      .js80-menu-item-ext {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .js80-menu-ext {
+        font-size: 0.75rem;
+        color: #6b6b6b;
+        transition: color 0.15s ease;
+      }
+
+      .js80-menu-item-ext:hover .js80-menu-ext {
+        color: #f0f0f0;
       }
 
       .js80-menu-divider {
