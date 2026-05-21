@@ -55,19 +55,24 @@ const breadcrumbItems = segments.length > 0
     ]
   : null;
 
-const homeHref   = isEnglish ? '/en' : '/';
-const expHref    = `${prefix}/experiencia`;
-const portHref   = `${prefix}/portfolio`;
-const js80Href   = `${prefix}/js80`;
+const homeHref    = isEnglish ? '/en' : '/';
+const expHref     = `${prefix}/experiencia`;
+const portHref    = `${prefix}/portfolio`;
+const js80Href    = `${prefix}/js80`;
+const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
+const turneroHref = `${prefix}/js80/turnero-digital`;
 
-const homeActive = basePath === '/';
-const expActive  = basePath === '/experiencia';
-const portActive = basePath.startsWith('/portfolio');
-const js80Active = basePath === '/js80' || basePath.startsWith('/js80/');
+const homeActive    = basePath === '/';
+const expActive     = basePath === '/experiencia';
+const portActive    = basePath.startsWith('/portfolio');
+const js80Active    = basePath === '/js80' || basePath.startsWith('/js80/');
+const cardioActive  = basePath === '/js80/cardiologia-barrio-scarano';
+const turneroActive = basePath === '/js80/turnero-digital';
+const js80OverviewActive = basePath === '/js80';
 
 const L = isEnglish
-  ? { home: 'Home', exp: 'Experience', port: 'Portfolio' }
-  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio' };
+  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products' }
+  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida' };
 ---
 
 <!doctype html>
@@ -174,13 +179,16 @@ const L = isEnglish
           >
             {L.port}
           </a>
-          <a
-            href={js80Href}
-            class="text-sm tracking-wide transition-colors duration-200"
-            style={js80Active ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
-            aria-label="JS80 Studio"
-          >
-            <span style="display:inline-flex; align-items:center; gap:6px;">
+          <div class="js80-dropdown" data-js80-dropdown>
+            <button
+              type="button"
+              id="js80-trigger"
+              class="js80-trigger text-sm tracking-wide transition-colors duration-200"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="js80-menu"
+              style={`color: ${js80Active ? '#f0f0f0' : '#6b6b6b'};`}
+            >
               <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
                 <defs>
                   <radialGradient id="js80-nav-g" cx="35%" cy="35%">
@@ -192,8 +200,44 @@ const L = isEnglish
                 <circle cx="50" cy="50" r="44" fill="url(#js80-nav-g)"/>
               </svg>
               JS80
-            </span>
-          </a>
+              <svg class="js80-chevron" width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M2 3.5L5 6.5L8 3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div
+              id="js80-menu"
+              class="js80-menu"
+              role="menu"
+              aria-labelledby="js80-trigger"
+            >
+              <a
+                href={js80Href}
+                role="menuitem"
+                class="js80-menu-overview"
+                style={js80OverviewActive ? 'color: #f0f0f0;' : ''}
+              >
+                {L.studio}
+              </a>
+              <div class="js80-menu-divider"></div>
+              <div class="js80-menu-label">{L.products}</div>
+              <a
+                href={cardioHref}
+                role="menuitem"
+                class="js80-menu-item"
+                style={cardioActive ? 'color: #f0f0f0;' : ''}
+              >
+                Cardiología B·S
+              </a>
+              <a
+                href={turneroHref}
+                role="menuitem"
+                class="js80-menu-item"
+                style={turneroActive ? 'color: #f0f0f0;' : ''}
+              >
+                Turnero Digital
+              </a>
+            </div>
+          </div>
           <a
             href={switchPath}
             class="text-sm tracking-wide transition-colors duration-200 lang-switch"
@@ -246,7 +290,7 @@ const L = isEnglish
           ))}
           <a
             href={js80Href}
-            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${js80Active ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
+            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${js80OverviewActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
           >
             <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
               <defs>
@@ -258,7 +302,23 @@ const L = isEnglish
               </defs>
               <circle cx="50" cy="50" r="44" fill="url(#js80-mob-g)"/>
             </svg>
-            JS80
+            {L.studio}
+          </a>
+
+          <p style="margin: 14px 0 6px; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: #4a4a4a; font-weight: 500;">
+            {L.products}
+          </p>
+          <a
+            href={cardioHref}
+            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${cardioActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
+          >
+            Cardiología B·S
+          </a>
+          <a
+            href={turneroHref}
+            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${turneroActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
+          >
+            Turnero Digital
           </a>
           <a
             href={switchPath}
@@ -276,6 +336,100 @@ const L = isEnglish
       @media (max-width: 640px) {
         .nav-desktop { display: none !important; }
         .nav-mobile  { display: flex !important; }
+      }
+
+      /* ── JS80 dropdown (desktop) ── */
+      .js80-dropdown {
+        position: relative;
+      }
+
+      .js80-trigger {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font: inherit;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1;
+      }
+
+      .js80-trigger:hover {
+        color: #f0f0f0 !important;
+      }
+
+      .js80-chevron {
+        opacity: 0.7;
+        transition: transform 0.2s ease;
+        margin-top: 1px;
+      }
+
+      .js80-dropdown.is-open .js80-chevron {
+        transform: rotate(180deg);
+      }
+
+      .js80-menu {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        min-width: 220px;
+        background-color: rgba(14, 14, 14, 0.96);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 8px 0;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4px);
+        transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
+        z-index: 60;
+      }
+
+      .js80-dropdown.is-open .js80-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
+      }
+
+      .js80-menu-overview,
+      .js80-menu-item {
+        display: block;
+        padding: 8px 16px;
+        font-size: 0.8125rem;
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.15s ease, background-color 0.15s ease;
+        letter-spacing: 0.01em;
+      }
+
+      .js80-menu-overview {
+        font-weight: 500;
+        color: #d8d8d8;
+      }
+
+      .js80-menu-overview:hover,
+      .js80-menu-item:hover {
+        color: #f0f0f0;
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+
+      .js80-menu-divider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.06);
+        margin: 6px 12px;
+      }
+
+      .js80-menu-label {
+        padding: 6px 16px 4px;
+        font-size: 0.625rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #4a4a4a;
+        font-weight: 500;
       }
     </style>
 
@@ -303,6 +457,34 @@ const L = isEnglish
           toggle?.setAttribute('aria-expanded', 'false');
           if (toggle) toggle.style.color = '#6b6b6b';
         });
+      });
+
+      // ── JS80 dropdown (desktop) ──
+      const js80Dropdown = document.querySelector<HTMLElement>('[data-js80-dropdown]');
+      const js80Trigger  = document.getElementById('js80-trigger');
+
+      const closeJs80 = () => {
+        js80Dropdown?.classList.remove('is-open');
+        js80Trigger?.setAttribute('aria-expanded', 'false');
+      };
+
+      js80Trigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = js80Dropdown?.classList.toggle('is-open') ?? false;
+        js80Trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!js80Dropdown?.classList.contains('is-open')) return;
+        if (js80Dropdown.contains(e.target as Node)) return;
+        closeJs80();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && js80Dropdown?.classList.contains('is-open')) {
+          closeJs80();
+          js80Trigger?.focus();
+        }
       });
     </script>
 

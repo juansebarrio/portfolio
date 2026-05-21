@@ -40,6 +40,19 @@ const segments = basePath.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
 const pageTitle = title.split(' — ')[0].split(' · ')[0].trim();
 const homeLabel = isEnglish ? 'Home' : 'Inicio';
 
+const prefix = isEnglish ? '/en' : '';
+const js80Href    = `${prefix}/js80`;
+const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
+const turneroHref = `${prefix}/js80/turnero-digital`;
+
+const cardioActive       = basePath === '/js80/cardiologia-barrio-scarano';
+const turneroActive      = basePath === '/js80/turnero-digital';
+const js80OverviewActive = basePath === '/js80';
+
+const N = isEnglish
+  ? { studio: 'JS80 Studio', products: 'Custom Products' }
+  : { studio: 'Estudio JS80', products: 'Productos a medida' };
+
 const breadcrumbItems = segments.length > 0
   ? [
       { '@type': 'ListItem', position: 1, name: homeLabel, item: isEnglish ? `${SITE}/en` : SITE },
@@ -283,7 +296,56 @@ const breadcrumbItems = segments.length > 0
     <header class="js80-nav">
       <div class="js80-nav-inner">
         <a href={backHref} class="js80-nav-back">← Juanse Barrio</a>
-        <a href={isEnglish ? '/en/js80' : '/js80'} class="js80-nav-logo">js80</a>
+
+        <div class="js80-products-dropdown" data-js80-products>
+          <button
+            type="button"
+            id="js80-products-trigger"
+            class="js80-nav-logo js80-products-trigger"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="js80-products-menu"
+          >
+            js80
+            <svg class="js80-products-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M2 3.5L5 6.5L8 3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div
+            id="js80-products-menu"
+            class="js80-products-menu"
+            role="menu"
+            aria-labelledby="js80-products-trigger"
+          >
+            <a
+              href={js80Href}
+              role="menuitem"
+              class="js80-products-overview"
+              style={js80OverviewActive ? 'color: #2c2c2a;' : ''}
+            >
+              {N.studio}
+            </a>
+            <div class="js80-products-divider"></div>
+            <div class="js80-products-label">{N.products}</div>
+            <a
+              href={cardioHref}
+              role="menuitem"
+              class="js80-products-item"
+              style={cardioActive ? 'color: #2c2c2a;' : ''}
+            >
+              Cardiología B·S
+            </a>
+            <a
+              href={turneroHref}
+              role="menuitem"
+              class="js80-products-item"
+              style={turneroActive ? 'color: #2c2c2a;' : ''}
+            >
+              Turnero Digital
+            </a>
+          </div>
+        </div>
+
         <div style="display:flex; align-items:center; gap:1.5rem;">
           <a href={switchPath} class="js80-nav-back" style="border: 0.5px solid #e0ddd5; padding: 2px 8px; border-radius: 3px; font-size: 11px; letter-spacing: 0.1em;">
             {isEnglish ? 'ES' : 'EN'}
@@ -313,6 +375,34 @@ const breadcrumbItems = segments.length > 0
       import { injectSpeedInsights } from '@vercel/speed-insights';
       inject();
       injectSpeedInsights();
+
+      // ── JS80 products dropdown ──
+      const productsDropdown = document.querySelector<HTMLElement>('[data-js80-products]');
+      const productsTrigger  = document.getElementById('js80-products-trigger');
+
+      const closeProducts = () => {
+        productsDropdown?.classList.remove('is-open');
+        productsTrigger?.setAttribute('aria-expanded', 'false');
+      };
+
+      productsTrigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = productsDropdown?.classList.toggle('is-open') ?? false;
+        productsTrigger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!productsDropdown?.classList.contains('is-open')) return;
+        if (productsDropdown.contains(e.target as Node)) return;
+        closeProducts();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && productsDropdown?.classList.contains('is-open')) {
+          closeProducts();
+          productsTrigger?.focus();
+        }
+      });
     </script>
   </body>
 </html>
@@ -361,6 +451,106 @@ const breadcrumbItems = segments.length > 0
     color: #2c2c2a;
     text-decoration: none;
     line-height: 1;
+  }
+
+  /* ── Productos dropdown ── */
+  .js80-products-dropdown {
+    position: relative;
+  }
+
+  .js80-products-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: #2c2c2a;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.15s ease;
+  }
+
+  .js80-products-trigger:hover {
+    opacity: 0.7;
+  }
+
+  .js80-products-chevron {
+    color: #a0a09a;
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-top: 4px;
+  }
+
+  .js80-products-dropdown.is-open .js80-products-chevron {
+    transform: rotate(180deg);
+    color: #2c2c2a;
+  }
+
+  .js80-products-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    min-width: 240px;
+    background: #ffffff;
+    border: 0.5px solid #e8e8e3;
+    border-radius: 10px;
+    padding: 8px 0;
+    box-shadow: 0 16px 40px rgba(44, 44, 42, 0.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
+    z-index: 120;
+  }
+
+  .js80-products-dropdown.is-open .js80-products-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
+  }
+
+  .js80-products-overview,
+  .js80-products-item {
+    display: block;
+    padding: 9px 18px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    color: #5a5a56;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .js80-products-overview {
+    font-weight: 500;
+    color: #2c2c2a;
+  }
+
+  .js80-products-overview:hover,
+  .js80-products-item:hover {
+    color: #2c2c2a;
+    background-color: #f5f3ee;
+  }
+
+  .js80-products-divider {
+    height: 1px;
+    background: #efefea;
+    margin: 6px 14px;
+  }
+
+  .js80-products-label {
+    padding: 6px 18px 4px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a0a09a;
+    font-weight: 500;
   }
 
   .js80-nav-ext {
