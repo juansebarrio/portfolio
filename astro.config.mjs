@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/acceso'),
+      filter: (page) => !/\/(acceso|port)\/?$/.test(page),
       i18n: {
         defaultLocale: 'es',
         locales: {

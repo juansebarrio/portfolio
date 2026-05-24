@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /acceso
+Disallow: /port
 
 Sitemap: https://juansebarrio.com/sitemap-index.xml

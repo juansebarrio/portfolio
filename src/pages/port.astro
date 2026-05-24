@@ -1,0 +1,1013 @@
+---
+import Layout from '../layouts/ManualLayout.astro';
+
+// ─────────────────────────────────────────────────────────────
+// PORTFOLIO SECRETO · /port
+// Estética del Brand Manual v1.0 · 2026
+// Geist + Geist Mono · Paper/Bone/Ink
+// Sin acceso desde el menú principal
+// ─────────────────────────────────────────────────────────────
+
+const casos = [
+  {
+    n: '01',
+    href: '/portfolio/csat-semantico',
+    meta: 'BANCO GALICIA · 2026 · IA + RESEARCH',
+    titulo: 'De +3.000 opiniones a un backlog priorizado',
+    bajada: 'Sistema de análisis semántico de CSAT que transforma feedback no estructurado en oportunidades de producto priorizadas por impacto.',
+    stats: [
+      { num: 3000, label: 'opiniones / mes', suffix: '+' },
+      { num: 87, label: 'precisión clasificación', suffix: '%' },
+      { num: 12, label: 'horas → minutos', suffix: '' },
+    ],
+    tags: [],
+  },
+  {
+    n: '02',
+    href: '/portfolio/impulse-bot',
+    meta: 'IMPULSE (AHF) · 2025 · PRODUCTO DIGITAL',
+    titulo: 'Indetectable = Intransmisible',
+    bajada: 'Chatbot de información sobre VIH y acceso a la red de prevención de Impulse. Diseño conversacional con foco en privacidad y reducción de estigma.',
+    stats: [
+      { num: 3400, label: 'conversaciones primer mes', suffix: '+' },
+      { num: 18, label: 'derivaciones a testeo', suffix: '%' },
+      { num: 24, label: 'horas de disponibilidad', suffix: '/7' },
+    ],
+    tags: [],
+  },
+  {
+    n: '03',
+    href: '/portfolio/upgrade',
+    meta: 'BANCO GALICIA · 2026 · PRODUCT DESIGN',
+    titulo: 'El upgrade más rápido del sistema financiero argentino',
+    bajada: 'Rediseño del flujo de cambio de paquete: de 7 pasos y abandono masivo a una experiencia conversacional de menos de 90 segundos.',
+    stats: [
+      { num: 90, label: 'segundos promedio', suffix: 's' },
+      { num: 6, label: 'CR previo', suffix: '%' },
+      { num: 3, label: 'pantallas vs 7 previas', suffix: '' },
+    ],
+    tags: ['PRODUCT', 'E2E', 'BANKING'],
+  },
+  {
+    n: '04',
+    href: 'https://www.js80.studio',
+    cta: 'Conocé el estudio',
+    meta: 'JS80 · 2026 · ESTUDIO INDEPENDIENTE',
+    titulo: 'Soluciones digitales, sin agencia de por medio',
+    bajada: 'Estudio de diseño y producto digital que fundé en Buenos Aires. Trabajo directo con founders y equipos chicos: estrategia, producto y entrega.',
+    stats: [
+      { num: 6, label: 'años de experiencia', suffix: '+' },
+      { num: 3, label: 'verticales activas', suffix: '' },
+      { num: 1, label: 'cliente, un proyecto', suffix: ':1' },
+    ],
+    tags: ['STUDIO', 'SOLUCIONES DIGITALES'],
+  },
+];
+---
+
+<Layout
+  title="Manual — Juan Segundo Barrio"
+  description="Portfolio · Product Designer / AI / DEI"
+>
+  <script is:inline>
+    // /port es la entrada secreta: pre-autoriza el acceso a los casos NDA
+    // para que los links salten el password gate.
+    try { sessionStorage.setItem('portfolio-auth', 'true'); } catch (_) {}
+  </script>
+
+  <main class="manual">
+
+    <!-- ╔═══════════════════════════════════════════════╗
+         ║  PÁGINA 01 — COVER                            ║
+         ╚═══════════════════════════════════════════════╝ -->
+    <section class="page page-cover" data-page="01">
+      <div class="page-corner page-corner-tl">PORTFOLIO</div>
+      <div class="page-corner page-corner-tr">
+        <span class="dot">●</span> V1.0 · 2026
+      </div>
+
+      <div class="cover-inner">
+        <p class="cover-eyebrow reveal" data-delay="0">PROYECTOS</p>
+        <h1 class="cover-title reveal" data-delay="120">Juan Segundo Barrio</h1>
+        <p class="cover-descriptor reveal" data-delay="240">PRODUCT DESIGNER / AI / DEI</p>
+        <p class="cover-tag reveal" data-delay="360">PORTFOLIO · SISTEMA PERSONAL</p>
+      </div>
+
+      <div class="page-corner page-corner-bl">JUANSEBARRIO.COM</div>
+      <div class="page-corner page-corner-br">01 / 06</div>
+
+      <div class="scroll-hint">
+        <span class="scroll-line"></span>
+        <span class="scroll-label">SCROLL</span>
+      </div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗
+         ║  PÁGINA 02 — ÍNDICE                            ║
+         ╚═══════════════════════════════════════════════╝ -->
+    <section class="page page-index" data-page="02">
+      <div class="page-corner page-corner-tl">ÍNDICE</div>
+      <div class="page-corner page-corner-tr">02 — CONTENTS</div>
+
+      <div class="index-inner">
+        <p class="section-num reveal-on-scroll">— 02</p>
+        <h2 class="section-title reveal-on-scroll">Casos.</h2>
+
+        <ul class="index-list">
+          {casos.map((c, i) => (
+            <li class="index-item reveal-on-scroll" style={`--i: ${i}`}>
+              <a href={`#caso-${c.n}`} class="index-link">
+                <span class="index-num">{c.n}</span>
+                <span class="index-titulo">{c.titulo}</span>
+                <span class="index-rule"></span>
+                <span class="index-page">0{i + 3}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="page-corner page-corner-br">02 / 06</div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗
+         ║  PÁGINAS 03–06 — CASOS (PIN + PARALLAX)        ║
+         ╚═══════════════════════════════════════════════╝ -->
+    {casos.map((c, i) => (
+      <section
+        class="page page-caso"
+        id={`caso-${c.n}`}
+        data-page={`0${i + 3}`}
+        data-caso-index={i}
+      >
+        <div class="page-corner page-corner-tl">CASO {c.n}</div>
+        <div class="page-corner page-corner-tr">0{i + 3} — CASE STUDY</div>
+
+        <div class="caso-pin">
+          <div class="caso-grid">
+
+            <!-- Columna izquierda: meta + número gigante -->
+            <div class="caso-side">
+              <p class="caso-section-num reveal-on-scroll">— 0{i + 3}</p>
+              <div class="caso-mega-num">
+                <span class="mega-digit" data-mega>{c.n}</span>
+              </div>
+              {c.tags.length > 0 && (
+                <div class="caso-tags">
+                  {c.tags.map((t) => (
+                    <span class="caso-tag">{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <!-- Columna derecha: contenido -->
+            <div class="caso-main">
+              <p class="caso-meta reveal-on-scroll">{c.meta}</p>
+              <h2 class="caso-titulo reveal-on-scroll">{c.titulo}</h2>
+              <p class="caso-bajada reveal-on-scroll">{c.bajada}</p>
+
+              <!-- Stats con contador animado -->
+              <div class="caso-stats">
+                {c.stats.map((s, si) => (
+                  <div class="stat" style={`--si: ${si}`}>
+                    <div class="stat-num">
+                      <span class="counter" data-target={s.num} data-suffix={s.suffix}>0</span>
+                      <span class="stat-suffix">{s.suffix}</span>
+                    </div>
+                    <div class="stat-line"></div>
+                    <p class="stat-label">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a href={c.href} class="caso-cta">
+                <span>{c.cta || 'Ver caso completo'}</span>
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page-corner page-corner-br">0{i + 3} / 06</div>
+      </section>
+    ))}
+
+    <!-- ╔═══════════════════════════════════════════════╗
+         ║  PÁGINA 07 — CIERRE (en oscuro como el PDF)    ║
+         ╚═══════════════════════════════════════════════╝ -->
+    <section class="page page-cierre" data-page="06">
+      <div class="cierre-inner">
+        <p class="cierre-eyebrow reveal-on-scroll">— FIN · V1.0 —</p>
+        <h2 class="cierre-title reveal-on-scroll">Juan Segundo Barrio</h2>
+        <p class="cierre-descriptor reveal-on-scroll">PRODUCT DESIGNER / AI / DEI</p>
+
+        <dl class="cierre-meta reveal-on-scroll">
+          <div><dt>web</dt><dd><a href="https://juansebarrio.com">juansebarrio.com</a></dd></div>
+          <div><dt>mail</dt><dd><a href="mailto:contacto@juansebarrio.com">contacto@juansebarrio.com</a></dd></div>
+          <div><dt>year</dt><dd>2026</dd></div>
+        </dl>
+
+        <a
+          href="https://calendar.app.google/PPLiZbo67BZbEDtb7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cierre-cta reveal-on-scroll"
+        >
+          <span>Agendar una reunión</span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="page-corner page-corner-br light">06 / 06</div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  /* ─────────────────────────────────────────────────────
+     IMPORT GEIST · GEIST MONO
+  ───────────────────────────────────────────────────── */
+  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600&display=swap');
+
+  /* ─────────────────────────────────────────────────────
+     TOKENS — del manual
+  ───────────────────────────────────────────────────── */
+  .manual {
+    --ink: #0A0A0A;
+    --paper: #FFFFFF;
+    --bone: #F5F5F4;
+    --line: #E5E5E5;
+    --muted: #6b6b6b;
+    --muted-soft: #a8a8a8;
+
+    --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+
+    --page-pad-x: clamp(1.5rem, 4vw, 4rem);
+    --page-pad-y: clamp(2rem, 4vh, 3rem);
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .manual * {
+    box-sizing: border-box;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PÁGINAS — cada una llena el viewport
+  ───────────────────────────────────────────────────── */
+  .page {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--page-pad-y) var(--page-pad-x);
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .page-cover,
+  .page-index { background: var(--paper); }
+
+  .page-caso:nth-of-type(odd-bg) { background: var(--bone); }
+  .page-caso { background: var(--bone); }
+  .page-caso:nth-of-type(2n) { background: var(--paper); }
+
+  .page-cierre {
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: none;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     CORNERS — metadata en esquinas (como el PDF)
+  ───────────────────────────────────────────────────── */
+  .page-corner {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .page-corner.light { color: rgba(240, 240, 240, 0.55); }
+
+  .page-corner-tl { top: var(--page-pad-y); left: var(--page-pad-x); }
+  .page-corner-tr { top: var(--page-pad-y); right: var(--page-pad-x); }
+  .page-corner-bl { bottom: var(--page-pad-y); left: var(--page-pad-x); }
+  .page-corner-br { bottom: var(--page-pad-y); right: var(--page-pad-x); }
+
+  .page-corner .dot {
+    display: inline-block;
+    transform: translateY(-1px);
+    margin-right: 4px;
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PÁGINA 01 — COVER
+  ───────────────────────────────────────────────────── */
+  .cover-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .cover-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(2.5rem, 8vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+
+  .cover-descriptor {
+    font-family: var(--font-mono);
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .cover-tag {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-soft);
+  }
+
+  /* Reveal entrada cover */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: calc(var(--page-pad-y) + 2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--ink);
+    transform-origin: top;
+    animation: scrollLine 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .scroll-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PÁGINA 02 — ÍNDICE
+  ───────────────────────────────────────────────────── */
+  .index-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 4rem;
+  }
+
+  .index-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .index-item {
+    border-top: 1px solid var(--line);
+  }
+  .index-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .index-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    color: var(--ink);
+    text-decoration: none;
+    transition: padding 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .index-link:hover {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .index-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    min-width: 2rem;
+  }
+
+  .index-titulo {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    letter-spacing: -0.01em;
+  }
+
+  .index-rule {
+    height: 1px;
+    background: var(--line);
+    min-width: 2rem;
+  }
+
+  .index-page {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  /* Reveal on scroll genérico */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  .reveal-on-scroll.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PÁGINAS DE CASO — pin + parallax
+  ───────────────────────────────────────────────────── */
+  .page-caso {
+    min-height: 100vh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .page-caso .page-corner {
+    z-index: 5;
+  }
+
+  .caso-pin {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--page-pad-y) var(--page-pad-x);
+  }
+
+  .caso-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 320px) 1fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  /* Columna izquierda — número MEGA con parallax */
+  .caso-side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .caso-section-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .caso-mega-num {
+    overflow: hidden;
+    line-height: 0.8;
+  }
+
+  .mega-digit {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(8rem, 22vw, 22rem);
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    color: var(--ink);
+    will-change: transform;
+    /* parallax via JS (CSS var --mega-y) */
+    transform: translateY(var(--mega-y, 0));
+  }
+
+  .page-caso:nth-of-type(2n) .mega-digit {
+    -webkit-text-stroke: 2px var(--ink);
+    color: transparent;
+  }
+
+  .caso-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .caso-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  /* Columna derecha — contenido */
+  .caso-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+
+  .caso-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .caso-titulo {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(1.875rem, 4.5vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .caso-bajada {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  /* Stats con counter */
+  .caso-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--si, 0) * 120ms);
+  }
+
+  .stat.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-num {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-suffix {
+    font-family: var(--font-mono);
+    font-size: 0.6em;
+    color: var(--muted);
+    margin-left: 2px;
+  }
+
+  /* el suffix también está dentro del .stat-num — escondemos el extra del span counter */
+  .stat-num .stat-suffix { display: none; }
+
+  .stat-line {
+    height: 1px;
+    background: var(--line);
+    width: 100%;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* CTA del caso */
+  .caso-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--ink);
+    margin-top: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .caso-cta:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .caso-cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .cta-arrow {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ─────────────────────────────────────────────────────
+     PÁGINA CIERRE
+  ───────────────────────────────────────────────────── */
+  .page-cierre {
+    min-height: 100vh;
+  }
+
+  .cierre-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cierre-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    color: rgba(240, 240, 240, 0.55);
+    margin: 0 0 1rem;
+  }
+
+  .cierre-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--paper);
+    margin: 0;
+  }
+
+  .cierre-descriptor {
+    font-family: var(--font-mono);
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    letter-spacing: 0.16em;
+    color: rgba(240, 240, 240, 0.55);
+    margin: 0;
+  }
+
+  .cierre-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .cierre-meta > div {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    justify-content: center;
+  }
+
+  .cierre-meta dt {
+    color: rgba(240, 240, 240, 0.45);
+    min-width: 3rem;
+    text-align: right;
+  }
+
+  .cierre-meta dd {
+    margin: 0;
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .cierre-meta a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240, 240, 240, 0.3);
+    transition: border-color 0.3s ease;
+  }
+
+  .cierre-meta a:hover {
+    border-color: var(--paper);
+  }
+
+  .cierre-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--paper);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .cierre-cta:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .cierre-cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ─────────────────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .caso-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .caso-side {
+      gap: 1rem;
+    }
+
+    .mega-digit {
+      font-size: clamp(6rem, 24vw, 12rem);
+    }
+
+    .caso-stats {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .stat-num {
+      font-size: clamp(1.75rem, 9vw, 2.5rem);
+    }
+
+    .index-link {
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+    }
+
+    .index-rule {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .page-corner {
+      font-size: 0.625rem;
+    }
+
+    .caso-pin {
+      align-items: flex-start;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────
+     REDUCED MOTION
+  ───────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-on-scroll,
+    .stat {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .mega-digit {
+      transform: none !important;
+    }
+
+    .scroll-line {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // ───────────────────────────────────────────────────────
+  // 1. REVEAL inicial del cover (con delay)
+  // ───────────────────────────────────────────────────────
+  document.querySelectorAll('.reveal').forEach((el) => {
+    const delay = parseInt((el as HTMLElement).dataset.delay || '0', 10);
+    setTimeout(() => el.classList.add('is-in'), delay);
+  });
+
+  // ───────────────────────────────────────────────────────
+  // 2. REVEAL on scroll (genérico)
+  // ───────────────────────────────────────────────────────
+  const revealObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  document
+    .querySelectorAll('.reveal-on-scroll, .stat')
+    .forEach((el) => revealObs.observe(el));
+
+  // ───────────────────────────────────────────────────────
+  // 3. COUNTER animado (números que cuentan)
+  // ───────────────────────────────────────────────────────
+  const formatNum = (n: number, target: number): string => {
+    if (target >= 1000) {
+      return Math.round(n).toLocaleString('es-AR');
+    }
+    return Math.round(n).toString();
+  };
+
+  const counterObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        const target = parseInt(el.dataset.target || '0', 10);
+        const duration = 1600;
+        const start = performance.now();
+
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / duration, 1);
+          // easeOutExpo
+          const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+          el.textContent = formatNum(target * eased, target);
+          if (t < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+        counterObs.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  document.querySelectorAll('.counter').forEach((el) => counterObs.observe(el));
+
+  // ───────────────────────────────────────────────────────
+  // 4. PARALLAX del número mega (rAF, no scroll listener directo)
+  // ───────────────────────────────────────────────────────
+  const megaEls = Array.from(document.querySelectorAll<HTMLElement>('[data-mega]'));
+  let ticking = false;
+
+  const updateParallax = () => {
+    const vh = window.innerHeight;
+    megaEls.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      // posición relativa al centro del viewport (-1 a 1 aprox)
+      const center = rect.top + rect.height / 2 - vh / 2;
+      const progress = center / vh;
+      // movimiento sutil — máximo ~80px arriba/abajo
+      const y = Math.max(-80, Math.min(80, progress * -90));
+      el.style.setProperty('--mega-y', `${y}px`);
+    });
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  };
+
+  // Solo activar parallax si el usuario no prefiere reduced motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+  }
+</script>
