@@ -333,6 +333,23 @@ import VoiceSection from '../../components/VoiceSection.astro';
     </div>
   </section>
 
+  <!-- ── LIGHTBOX (certificate + badge carousels) ── -->
+  <div class="cert-lightbox" id="cert-lightbox" hidden role="dialog" aria-modal="true" aria-label="View certificate">
+    <button class="cert-lightbox-btn cert-lightbox-close" id="cert-lightbox-close" type="button" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg>
+    </button>
+    <button class="cert-lightbox-btn cert-lightbox-prev" id="cert-lightbox-prev" type="button" aria-label="Previous">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="cert-lightbox-btn cert-lightbox-next" id="cert-lightbox-next" type="button" aria-label="Next">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <figure class="cert-lightbox-figure">
+      <img class="cert-lightbox-img" id="cert-lightbox-img" alt="" />
+      <figcaption class="cert-lightbox-caption" id="cert-lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
 </Layout>
 
 <style is:global>
@@ -426,6 +443,79 @@ import VoiceSection from '../../components/VoiceSection.astro';
   .cta-banner-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; margin: 0 0 2.25rem; }
   .cta-banner-link { display: inline-flex; align-items: center; padding: 0.9rem 1.85rem; font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.02em; color: var(--bg); background-color: var(--fg); border: 1px solid var(--fg); border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; }
   .cta-banner-link:hover { background-color: var(--bg); color: var(--fg); transform: translateY(-1px); }
+
+  /* ─────────────────────────────────────────────────────
+     LIGHTBOX (certificate + badge carousels)
+  ───────────────────────────────────────────────────── */
+  .carousel-track--certs .carousel-item,
+  .carousel-track--badges .carousel-item { cursor: zoom-in; outline: none; }
+  .carousel-track--certs .carousel-item:focus-visible,
+  .carousel-track--badges .carousel-item:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
+
+  .cert-lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(10, 10, 10, 0.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    padding: clamp(1.5rem, 5vh, 4rem) clamp(3.5rem, 8vw, 5rem);
+    animation: cert-lightbox-fade 200ms ease-out;
+  }
+  .cert-lightbox[hidden] { display: none; }
+
+  @keyframes cert-lightbox-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .cert-lightbox-figure {
+    margin: 0; display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    max-width: 100%; max-height: 100%;
+  }
+  .cert-lightbox-img {
+    max-width: min(90vw, 1200px); max-height: 78vh; width: auto; height: auto;
+    object-fit: contain; display: block; border-radius: 6px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); background: #fff;
+  }
+  .cert-lightbox-caption {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(245, 245, 244, 0.7);
+    text-align: center; max-width: 36rem; margin: 0; line-height: 1.5;
+  }
+
+  .cert-lightbox-btn {
+    position: absolute;
+    background: rgba(245, 245, 244, 0.06);
+    border: 1px solid rgba(245, 245, 244, 0.18);
+    color: rgba(245, 245, 244, 0.9);
+    border-radius: 999px; cursor: pointer; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 200ms ease, border-color 200ms ease, opacity 200ms ease;
+  }
+  .cert-lightbox-btn:hover {
+    background: rgba(245, 245, 244, 0.12);
+    border-color: rgba(245, 245, 244, 0.5);
+  }
+  .cert-lightbox-btn:focus-visible {
+    outline: 2px solid rgba(245, 245, 244, 0.7); outline-offset: 2px;
+  }
+  .cert-lightbox-btn[disabled] { opacity: 0.25; pointer-events: none; }
+
+  .cert-lightbox-close {
+    top: clamp(1rem, 3vh, 1.5rem); right: clamp(1rem, 3vw, 1.5rem);
+    width: 40px; height: 40px;
+  }
+  .cert-lightbox-prev,
+  .cert-lightbox-next { top: 50%; transform: translateY(-50%); width: 44px; height: 44px; }
+  .cert-lightbox-prev { left: clamp(0.5rem, 2vw, 1.25rem); }
+  .cert-lightbox-next { right: clamp(0.5rem, 2vw, 1.25rem); }
+
+  @media (max-width: 600px) {
+    .cert-lightbox { padding: 2.5rem 0.75rem 1.5rem; }
+    .cert-lightbox-prev,
+    .cert-lightbox-next,
+    .cert-lightbox-close { width: 36px; height: 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cert-lightbox { animation: none; }
+  }
 </style>
 
 <script>
@@ -480,4 +570,84 @@ import VoiceSection from '../../components/VoiceSection.astro';
   }
 
   document.querySelectorAll<HTMLElement>('.carousel-outer').forEach(initCarousel);
+</script>
+
+<script>
+  // ─────────────────────────────────────────────────────
+  // LIGHTBOX for certificate + badge carousels
+  // ─────────────────────────────────────────────────────
+  (() => {
+    const lightbox = document.getElementById('cert-lightbox') as HTMLElement | null;
+    if (!lightbox) return;
+
+    const imgEl     = document.getElementById('cert-lightbox-img')     as HTMLImageElement;
+    const captionEl = document.getElementById('cert-lightbox-caption') as HTMLElement;
+    const closeBtn  = document.getElementById('cert-lightbox-close')   as HTMLButtonElement;
+    const prevBtn   = document.getElementById('cert-lightbox-prev')    as HTMLButtonElement;
+    const nextBtn   = document.getElementById('cert-lightbox-next')    as HTMLButtonElement;
+
+    let currentList: HTMLImageElement[] = [];
+    let currentIndex = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    function render() {
+      const img = currentList[currentIndex];
+      if (!img) return;
+      imgEl.src = img.src;
+      imgEl.alt = img.alt || '';
+      captionEl.textContent = img.alt || '';
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === currentList.length - 1;
+    }
+
+    function open(list: HTMLImageElement[], index: number, trigger: HTMLElement) {
+      currentList = list;
+      currentIndex = index;
+      lastFocused = trigger;
+      render();
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function close() {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    function prev() { if (currentIndex > 0) { currentIndex--; render(); } }
+    function next() { if (currentIndex < currentList.length - 1) { currentIndex++; render(); } }
+
+    document.querySelectorAll<HTMLElement>('.carousel-track--certs, .carousel-track--badges').forEach((track) => {
+      const items = Array.from(track.querySelectorAll<HTMLImageElement>('.carousel-item img'));
+      items.forEach((img, i) => {
+        const item = img.closest<HTMLElement>('.carousel-item');
+        if (!item) return;
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', img.alt ? `View: ${img.alt}` : 'View image');
+        const trigger = () => open(items, i, item);
+        item.addEventListener('click', trigger);
+        item.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+        });
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape')         close();
+      else if (e.key === 'ArrowLeft')  prev();
+      else if (e.key === 'ArrowRight') next();
+    });
+  })();
 </script>
