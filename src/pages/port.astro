@@ -352,6 +352,12 @@ const casos = [
 
   /* Modificador: zoom con foco a la izquierda (usado por motion 06 / Heat Strip).
      Cada animación puede tener su propia variante si necesita zoom u origen distinto. */
+  .page-motion-strip--zoom-left {
+    /* Sección más corta verticalmente — el "strip" horizontal no necesita ocupar
+       todo el viewport. Ancho full-bleed se mantiene. */
+    min-height: 70vh;
+  }
+
   .page-motion-strip--zoom-left .motion-strip-bleed iframe {
     transform: scale(1.7);
     transform-origin: left center;
@@ -360,7 +366,7 @@ const casos = [
   /* Mobile: bajar el zoom para que el texto del strip no se vea apretado. */
   @media (max-width: 600px) {
     .page-motion-strip--zoom-left .motion-strip-bleed iframe {
-      transform: scale(1.5);
+      transform: scale(1.3);
     }
   }
 
