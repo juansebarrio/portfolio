@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 export const prerender = false;
 ---
 
-<Layout title="Portfolio — Juanse Barrio" description="Case studies by Juan Segundo Barrio: design, AI and research on Banco Galicia digital products.">
+<Layout title="Portfolio — Juanse Barrio" description="Case studies by Juan Segundo Barrio: digital product design, applied AI and research.">
 
   <div class="page-container">
 
@@ -157,6 +157,18 @@ export const prerender = false;
           </div>
         </a>
 
+        <a href="https://www.js80.studio/trabajo/inmobiliaria" target="_blank" rel="noopener noreferrer" class="caso-mini">
+          <div class="mini-media mini-media-tablero" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="20" x2="21" y2="20"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/></svg>
+          </div>
+          <div class="mini-info">
+            <p class="caso-meta">JS80 · 2026 · Real Estate</p>
+            <h3 class="mini-titulo">Sales Dashboard</h3>
+            <p class="mini-desc">Real estate dashboard with sales KPIs, unit management, and real-time operational metrics.</p>
+            <p class="caso-cta">View case ↗</p>
+          </div>
+        </a>
+
       </div>
     </section>
 
@@ -214,22 +226,22 @@ export const prerender = false;
   .portfolio-header-inner { padding: 0 0 1.5rem; }
 
   .eyebrow {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #6b6b6b;
+    color: var(--muted);
     margin: 0;
   }
 
   .page-title {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.02em;
-    color: #f0f0f0;
+    color: var(--fg);
     margin: 0.75rem 0 0;
   }
 
@@ -241,8 +253,8 @@ export const prerender = false;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
-    background: #141414;
-    border: 1px solid #2a2a2a;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 3rem;
     margin-bottom: 2rem;
@@ -253,30 +265,30 @@ export const prerender = false;
   .lock-icon-wrap {
     width: 40px;
     height: 40px;
-    background: #1e1e1e;
-    border: 1px solid #2a2a2a;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6b6b6b;
+    color: var(--muted);
   }
 
   .lock-eyebrow {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.6875rem;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #6b6b6b;
+    color: var(--muted);
     margin: 0;
   }
 
   .lock-desc {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 1.0625rem;
     line-height: 1.5;
-    color: #a0a0a0;
+    color: var(--muted);
     margin: 0;
     max-width: 28rem;
   }
@@ -286,11 +298,11 @@ export const prerender = false;
     align-items: center;
     gap: 8px;
     padding: 0.75rem 1.25rem;
-    background: #f0f0f0;
-    color: #0a0a0a;
+    background: var(--fg);
+    color: var(--bg);
     border: none;
     border-radius: 8px;
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
     font-weight: 600;
     cursor: pointer;
@@ -298,7 +310,7 @@ export const prerender = false;
     margin-top: 0.5rem;
   }
 
-  .lock-btn:hover { background: #d8d8d8; transform: translateY(-1px); }
+  .lock-btn:hover { background: var(--bg); color: var(--fg); transform: translateY(-1px); }
 
   .inline-gate {
     display: flex;
@@ -311,21 +323,21 @@ export const prerender = false;
 
   .inline-input {
     padding: 0.75rem 1rem;
-    background: #0a0a0a;
-    border: 1px solid #2a2a2a;
+    background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    color: #f0f0f0;
+    color: var(--fg);
     font-size: 0.9375rem;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     outline: none;
     transition: border-color 0.2s ease;
     box-sizing: border-box;
   }
 
-  .inline-input:focus { border-color: #f0f0f0; }
+  .inline-input:focus { border-color: var(--fg); }
 
   .inline-error {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.8125rem;
     color: #ff4444;
     margin: 0;
@@ -334,18 +346,18 @@ export const prerender = false;
   .inline-submit {
     align-self: flex-start;
     padding: 0.75rem 1.25rem;
-    background: #f0f0f0;
-    color: #0a0a0a;
+    background: var(--fg);
+    color: var(--bg);
     border: none;
     border-radius: 8px;
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
   }
 
-  .inline-submit:hover { background: #d8d8d8; }
+  .inline-submit:hover { background: var(--bg); color: var(--fg); }
 
   .lock-preview {
     display: grid;
@@ -356,8 +368,8 @@ export const prerender = false;
   }
 
   .preview-card {
-    background: #1a1a1a;
-    border: 1px solid #252525;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
   }
 
@@ -391,17 +403,17 @@ export const prerender = false;
     display: block;
     text-decoration: none;
     color: inherit;
-    background: #141414;
+    background: var(--surface);
     border-radius: 20px;
     overflow: hidden;
     transition: transform 300ms ease, background 300ms ease;
   }
 
-  .caso-card:hover { transform: translateY(-4px); background: #1a1a1a; }
+  .caso-card:hover { transform: translateY(-4px); background: var(--surface); }
 
   .caso-media {
     aspect-ratio: 16 / 10;
-    background: #0a0a0a;
+    background: var(--bg);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -414,47 +426,47 @@ export const prerender = false;
   .caso-info { padding: 1.75rem; display: flex; flex-direction: column; }
 
   .caso-meta {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6b6b6b;
+    color: var(--muted);
     margin: 0;
   }
 
   .caso-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 1.25rem;
     font-weight: 500;
-    color: #f0f0f0;
+    color: var(--fg);
     line-height: 1.2;
     margin: 0.75rem 0 0;
   }
 
   .caso-desc {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
-    color: #a0a0a0;
+    color: var(--muted);
     line-height: 1.5;
     margin: 0.75rem 0 0;
   }
 
   .caso-cta {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.875rem;
-    color: #6b6b6b;
+    color: var(--muted);
     margin: 1.25rem 0 0;
     align-self: flex-end;
     transition: color 0.2s ease;
   }
 
-  .caso-card:hover .caso-cta { color: #f0f0f0; }
+  .caso-card:hover .caso-cta { color: var(--fg); }
 
   /* ── Públicos ── */
   .casos-publicos {
     padding-top: 3.5rem;
-    border-top: 1px solid rgba(240, 240, 240, 0.06);
+    border-top: 1px solid var(--hairline);
     padding-bottom: 8rem;
   }
 
@@ -466,26 +478,26 @@ export const prerender = false;
   /* JS80 subsection */
   .js80-sub { margin-top: 2.5rem; margin-bottom: 1rem; }
 
-  .casos-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .casos-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
   .caso-mini {
     display: grid;
     grid-template-columns: 100px 1fr;
     text-decoration: none;
     color: inherit;
-    background: #141414;
-    border: 1px solid #1e1e1e;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
     transition: transform 300ms ease, background 300ms ease;
     min-height: 100px;
   }
 
-  .caso-mini:hover { transform: translateY(-3px); background: #1a1a1a; }
-  .caso-mini:hover .caso-cta { color: #f0f0f0; }
+  .caso-mini:hover { transform: translateY(-3px); background: var(--surface); }
+  .caso-mini:hover .caso-cta { color: var(--fg); }
 
   .mini-media {
-    background: #0d0d0d;
+    background: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -494,25 +506,29 @@ export const prerender = false;
 
   .mini-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .mini-media-turnero { background: #0a1628; color: #4a7fa8; }
+  /* Brand tints — color del producto sobre surface del theme.
+     En light: tinta pastel. En dark: tinta profunda. */
+  .mini-media-turnero { background: color-mix(in oklab, #4a7fa8 14%, var(--surface)); color: #4a7fa8; }
 
-  .mini-media-cardio { background: #1e0d10; color: #8a4450; }
+  .mini-media-cardio  { background: color-mix(in oklab, #8a4450 14%, var(--surface)); color: #8a4450; }
+
+  .mini-media-tablero { background: color-mix(in oklab, #4a8a7a 14%, var(--surface)); color: #4a8a7a; }
 
   .mini-info { padding: 1.125rem 1.125rem 1.125rem 1rem; display: flex; flex-direction: column; }
 
   .mini-titulo {
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-size: 1rem;
     font-weight: 500;
-    color: #f0f0f0;
+    color: var(--fg);
     line-height: 1.2;
     margin: 0.5rem 0 0;
   }
 
   .mini-desc {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
     font-size: 0.8125rem;
-    color: #6b6b6b;
+    color: var(--muted);
     line-height: 1.5;
     margin: 0.5rem 0 0;
     flex: 1;

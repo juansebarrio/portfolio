@@ -1,12 +1,22 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
+/* ════════════════════════════════════════════════════════════════
+   Tailwind theme — los nombres se mantienen para no romper el
+   markup existente (bg-bg, text-fg, text-muted), pero ahora
+   apuntan a los tokens del manual y reaccionan al switch.
+   ════════════════════════════════════════════════════════════════ */
 @theme {
-  --color-bg: #0a0a0a;
-  --color-fg: #f0f0f0;
-  --color-accent: #e0e0e0;
-  --color-muted: #6b6b6b;
-  --font-heading: "Syne", system-ui, sans-serif;
-  --font-body: system-ui, -apple-system, sans-serif;
+  --color-bg:      var(--bg);
+  --color-fg:      var(--fg);
+  --color-accent:  var(--fg);
+  --color-muted:   var(--muted);
+  --color-surface: var(--surface);
+  --color-line:    var(--border);
+
+  --font-heading:  "Geist", system-ui, sans-serif;
+  --font-body:     "Geist", system-ui, sans-serif;
+  --font-mono:     "Geist Mono", ui-monospace, monospace;
 }
 
 @layer base {
@@ -25,14 +35,26 @@
   }
 
   html {
-    background-color: #0a0a0a;
-    color: #f0f0f0;
-    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Geist", system-ui, sans-serif;
+    letter-spacing: var(--track-body);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Syne", system-ui, sans-serif;
+    font-family: "Geist", system-ui, sans-serif;
+    letter-spacing: var(--track-h1);
+    font-weight: 500;
   }
 
   a {
@@ -44,5 +66,51 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  /* Selección: pintura sobre tinta */
+  ::selection {
+    background-color: var(--fg);
+    color: var(--bg);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Utilidades editoriales — accesibles desde toda la web
+   ════════════════════════════════════════════════════════════════ */
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hairline {
+  height: 1px;
+  background-color: var(--border);
+  width: 100%;
+}
+
+/* Reveal on scroll genérico */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.reveal-up.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

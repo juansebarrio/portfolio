@@ -1,0 +1,102 @@
+---
+// ────────────────────────────────────────────────────────
+// BrandLockup · El logo principal del manual
+// Manual §05-06 · Wordmark + descriptor mono
+// Construido en HTML (no SVG) para heredar currentColor
+// y respetar el switch light/dark automáticamente.
+// ────────────────────────────────────────────────────────
+interface Props {
+  variant?: 'primary' | 'inline' | 'mark';
+  size?: 'xs' | 's' | 'm' | 'l';
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = 'inline',
+  size = 's',
+  href,
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  class:list={['brand-lockup', `brand-${variant}`, `brand-${size}`, className]}
+  aria-label="Juan Segundo Barrio · Product Designer / AI / DEI"
+>
+  <span class="brand-wordmark">Juan Segundo Barrio</span>
+  {variant !== 'mark' && (
+    <span class="brand-descriptor">PRODUCT DESIGNER / AI / DEI</span>
+  )}
+</Tag>
+
+<style>
+  .brand-lockup {
+    display: inline-flex;
+    color: var(--fg);
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  /* ── Wordmark ── */
+  .brand-wordmark {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: var(--track-wordmark);
+    color: inherit;
+    white-space: nowrap;
+  }
+
+  /* ── Descriptor ── */
+  .brand-descriptor {
+    font-family: var(--font-mono);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── Variant: primary (horizontal apilada · manual §09-01) ── */
+  .brand-primary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4em;
+  }
+
+  /* ── Variant: inline (single line · manual §09-04) ── */
+  .brand-inline {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .brand-inline .brand-descriptor {
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--border);
+  }
+
+  /* ── Variant: mark (solo wordmark, sin descriptor) ── */
+  .brand-mark { align-items: center; }
+
+  /* ── Sizes ── */
+  .brand-xs .brand-wordmark { font-size: 14px; }
+  .brand-xs .brand-descriptor { font-size: 9px; }
+
+  .brand-s .brand-wordmark { font-size: 16px; }
+  .brand-s .brand-descriptor { font-size: 10px; }
+
+  .brand-m .brand-wordmark { font-size: 24px; }
+  .brand-m .brand-descriptor { font-size: 12px; }
+
+  .brand-l .brand-wordmark { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+  .brand-l .brand-descriptor { font-size: clamp(0.8125rem, 1.2vw, 1rem); }
+
+  /* En mobile el inline puede comerse el descriptor */
+  @media (max-width: 640px) {
+    .brand-inline .brand-descriptor {
+      display: none;
+    }
+  }
+</style>

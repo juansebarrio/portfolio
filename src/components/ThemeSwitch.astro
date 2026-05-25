@@ -1,0 +1,121 @@
+---
+// ────────────────────────────────────────────────────────
+// ThemeSwitch · Toggle Light/Dark
+// Estilo: mono textual (LIGHT/DARK), no sol/luna.
+// Coherente con "editorial, no decorativo" (manual §04-03).
+// ────────────────────────────────────────────────────────
+---
+
+<button
+  type="button"
+  id="theme-switch"
+  class="theme-switch"
+  aria-label="Cambiar tema"
+  aria-live="polite"
+  data-theme-switch
+>
+  <span class="theme-switch-track" aria-hidden="true">
+    <span class="theme-switch-thumb"></span>
+  </span>
+  <span class="theme-switch-label theme-switch-label--light">LIGHT</span>
+  <span class="theme-switch-label theme-switch-label--dark">DARK</span>
+</button>
+
+<style>
+  .theme-switch {
+    --w: 56px;
+    --h: 22px;
+    --pad: 2px;
+
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 10px 2px 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--track-mono);
+    color: var(--muted);
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+    line-height: 1;
+  }
+
+  .theme-switch:hover {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+
+  .theme-switch:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+  }
+
+  /* Track + thumb (la "pildorita") */
+  .theme-switch-track {
+    position: relative;
+    width: 28px;
+    height: 14px;
+    border-radius: 999px;
+    background-color: var(--hairline);
+    flex-shrink: 0;
+    transition: background-color var(--dur-base) var(--ease-out);
+  }
+
+  .theme-switch-thumb {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--fg);
+    transition: transform var(--dur-base) var(--ease-spring);
+  }
+
+  /* Estado dark: el thumb se desliza a la derecha */
+  :root[data-theme="dark"] .theme-switch-thumb {
+    transform: translateX(14px);
+  }
+
+  /* Labels: solo se muestra el opuesto al estado actual */
+  .theme-switch-label--dark { display: none; }
+  :root[data-theme="dark"] .theme-switch-label--light { display: none; }
+  :root[data-theme="dark"] .theme-switch-label--dark { display: inline; }
+
+  /* En mobile ocultamos el label, solo queda el track */
+  @media (max-width: 640px) {
+    .theme-switch {
+      padding: 4px;
+      gap: 0;
+    }
+    .theme-switch-label--light,
+    .theme-switch-label--dark { display: none !important; }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('theme-switch');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+
+      root.setAttribute('data-theme', next);
+
+      try {
+        localStorage.setItem('theme', next);
+      } catch (_) {
+        /* localStorage puede no estar disponible (Safari privado, etc.) */
+      }
+
+      // Notificar a otros scripts si necesitan reaccionar
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+    });
+  }
+</script>
