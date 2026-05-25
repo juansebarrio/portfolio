@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import BrandLockup from '../components/BrandLockup.astro';
+import ThemeSwitch from '../components/ThemeSwitch.astro';
 
 interface Props {
   title?: string;
@@ -31,8 +33,7 @@ const ogImageUrl = new URL(ogImage, SITE).href;
 const esUrl = `${SITE}${basePath === '/' ? '' : basePath}`;
 const enUrl = `${SITE}/en${basePath === '/' ? '' : basePath}`;
 
-// BreadcrumbList JSON-LD computado desde la URL.
-// Sólo se emite en páginas con profundidad >= 1 (no en home).
+// BreadcrumbList JSON-LD
 const segmentLabels: Record<string, { es: string; en: string }> = {
   portfolio:   { es: 'Portfolio',   en: 'Portfolio' },
   experiencia: { es: 'Experiencia', en: 'Experience' },
@@ -81,11 +82,37 @@ const L = isEnglish
 <html lang={isEnglish ? 'en' : 'es'}>
   <head>
     <meta charset="utf-8" />
+
+    {/* ════════════════════════════════════════════════════════════
+       PRE-PAINT THEME SCRIPT
+       Inyecta data-theme antes del primer paint para evitar
+       flash al cargar en modo opuesto al sistema.
+       MUY IMPORTANTE: este script va PRIMERO, antes de cualquier CSS.
+       ════════════════════════════════════════════════════════════ */}
+    <script is:inline>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          // Marcar como listo en el próximo frame, así las transiciones de tema
+          // no se disparan en el primer render.
+          requestAnimationFrame(function() {
+            document.documentElement.setAttribute('data-theme-ready', '');
+          });
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0a0a0a" />
+    {/* theme-color dinámico vía JS más abajo */}
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
     <meta name="description" content={description} />
     <title>{title}</title>
 
@@ -94,7 +121,7 @@ const L = isEnglish
     <link rel="alternate" hreflang="en-US" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={esUrl} />
 
-    <!-- Open Graph -->
+    {/* Open Graph */}
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Juan Segundo Barrio" />
     <meta property="og:title" content={title} />
@@ -106,22 +133,19 @@ const L = isEnglish
     <meta property="og:locale" content={isEnglish ? 'en_US' : 'es_AR'} />
     <meta property="og:locale:alternate" content={isEnglish ? 'es_AR' : 'en_US'} />
 
-    <!-- Twitter -->
+    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    {/* ── Fuentes: Geist + Geist Mono ── */}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://fonts.gstatic.com/s/syne/v24/8vIS7w4qzmVxsWxjBZRjr0FKM_3fvg6jTY8.woff2"
-      crossorigin
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
 
     {breadcrumbItems && (
       <script
@@ -137,7 +161,7 @@ const L = isEnglish
 
     <slot name="head" />
 
-    <!-- Privacy-friendly analytics by Plausible -->
+    {/* Plausible */}
     <script async src="https://plausible.io/js/pa-Eb0eVpXKn3crloCY9jzDQ.js"></script>
     <script is:inline>
       window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
@@ -146,50 +170,45 @@ const L = isEnglish
   </head>
   <body class="min-h-screen flex flex-col">
 
-    <header class="sticky top-0 z-50 border-b border-white/5" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(12px);">
-      <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+    {/* ════════════════════════════════════════════════════════════
+       SCROLL PROGRESS BAR — barra finita arriba de todo, va creciendo.
+       Pure CSS via animation-timeline (con fallback graceful).
+       ════════════════════════════════════════════════════════════ */}
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-        <!-- Desktop: Home/Inicio (izq) -->
-        <div class="nav-desktop flex items-center gap-8 flex-1">
-          <a
-            href={homeHref}
-            class="text-sm tracking-wide transition-colors duration-200"
-            style={homeActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
-          >
+    <header class="site-header">
+      <nav class="site-nav">
+
+        {/* Desktop: link Home (izq) */}
+        <div class="nav-desktop nav-left">
+          <a href={homeHref} class:list={['nav-link', { 'is-active': homeActive }]}>
             {L.home}
           </a>
         </div>
 
-        <!-- Centro: nombre -->
-        <a href={homeHref} class="font-heading text-base font-semibold tracking-tight whitespace-nowrap" style="font-family: 'Syne', system-ui, sans-serif;">
-          Juan Segundo Barrio
+        {/* Centro: brand lockup */}
+        <a href={homeHref} class="nav-brand" aria-label="Juan Segundo Barrio">
+          <BrandLockup variant="mark" size="s" />
         </a>
 
-        <!-- Desktop: links (der) -->
-        <div class="nav-desktop flex items-center gap-8 flex-1 justify-end">
-          <a
-            href={expHref}
-            class="text-sm tracking-wide transition-colors duration-200"
-            style={expActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
-          >
+        {/* Desktop: links (der) */}
+        <div class="nav-desktop nav-right">
+          <a href={expHref} class:list={['nav-link', { 'is-active': expActive }]}>
             {L.exp}
           </a>
-          <a
-            href={portHref}
-            class="text-sm tracking-wide transition-colors duration-200"
-            style={portActive ? 'color: #f0f0f0;' : 'color: #6b6b6b;'}
-          >
+          <a href={portHref} class:list={['nav-link', { 'is-active': portActive }]}>
             {L.port}
           </a>
+
+          {/* JS80 dropdown — conservado como estaba */}
           <div class="js80-dropdown" data-js80-dropdown>
             <button
               type="button"
               id="js80-trigger"
-              class="js80-trigger text-sm tracking-wide transition-colors duration-200"
+              class:list={['js80-trigger', 'nav-link', { 'is-active': js80Active }]}
               aria-haspopup="menu"
               aria-expanded="false"
               aria-controls="js80-menu"
-              style={`color: ${js80Active ? '#f0f0f0' : '#6b6b6b'};`}
             >
               <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
                 <defs>
@@ -206,68 +225,41 @@ const L = isEnglish
                 <path d="M2 3.5L5 6.5L8 3.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <div
-              id="js80-menu"
-              class="js80-menu"
-              role="menu"
-              aria-labelledby="js80-trigger"
-            >
-              <a
-                href={js80Href}
-                role="menuitem"
-                class="js80-menu-overview"
-                style={js80OverviewActive ? 'color: #f0f0f0;' : ''}
-              >
+            <div id="js80-menu" class="js80-menu" role="menu" aria-labelledby="js80-trigger">
+              <a href={js80Href} role="menuitem" class:list={['js80-menu-overview', { 'is-active': js80OverviewActive }]}>
                 {L.studio}
               </a>
               <div class="js80-menu-divider"></div>
               <div class="js80-menu-label">{L.products}</div>
-              <a
-                href={cardioHref}
-                role="menuitem"
-                class="js80-menu-item"
-                style={cardioActive ? 'color: #f0f0f0;' : ''}
-              >
+              <a href={cardioHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': cardioActive }]}>
                 Cardiología B·S
               </a>
-              <a
-                href={turneroHref}
-                role="menuitem"
-                class="js80-menu-item"
-                style={turneroActive ? 'color: #f0f0f0;' : ''}
-              >
+              <a href={turneroHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': turneroActive }]}>
                 Turnero Digital
               </a>
-              <a
-                href={inmobiliariaHref}
-                role="menuitem"
-                class="js80-menu-item js80-menu-item-ext"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={inmobiliariaHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
                 {L.inmobiliaria}
                 <span class="js80-menu-ext" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
-          <a
-            href={switchPath}
-            class="text-sm tracking-wide transition-colors duration-200 lang-switch"
-            style="color: #6b6b6b; border: 1px solid rgba(240,240,240,0.12); padding: 2px 8px; border-radius: 3px; font-size: 0.75rem; letter-spacing: 0.08em;"
-            aria-label={isEnglish ? 'Switch to Spanish' : 'Switch to English'}
-          >
+
+          {/* Lang switch */}
+          <a href={switchPath} class="lang-switch" aria-label={isEnglish ? 'Switch to Spanish' : 'Switch to English'}>
             {switchLabel}
           </a>
+
+          {/* Theme switch */}
+          <ThemeSwitch />
         </div>
 
-        <!-- Mobile: botón hamburguesa -->
+        {/* Mobile: hamburguesa */}
         <button
           id="nav-toggle"
-          class="nav-mobile"
+          class="nav-mobile nav-toggle"
           aria-label="Abrir menú"
           aria-expanded="false"
           aria-controls="nav-mobile-menu"
-          style="background:none; border:none; cursor:pointer; padding:4px; color:#6b6b6b; display:flex; align-items:center; justify-content:center;"
         >
           <svg id="nav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
             <line x1="2" y1="5" x2="18" y2="5"/>
@@ -282,28 +274,20 @@ const L = isEnglish
 
       </nav>
 
-      <!-- Mobile menu -->
-      <div
-        id="nav-mobile-menu"
-        style="display:none; border-top: 1px solid rgba(255,255,255,0.05);"
-      >
-        <div style="padding: 8px 24px 16px; display:flex; flex-direction:column; gap:0;">
+      {/* Mobile menu */}
+      <div id="nav-mobile-menu" class="nav-mobile-menu" hidden>
+        <div class="nav-mobile-inner">
           {[
             { href: homeHref, label: L.home, active: homeActive },
             { href: expHref, label: L.exp, active: expActive },
             { href: portHref, label: L.port, active: portActive },
           ].map(link => (
-            <a
-              href={link.href}
-              style={`display:block; padding: 14px 0; font-size:0.9375rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: ${link.active ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
-            >
+            <a href={link.href} class:list={['nav-mobile-link', { 'is-active': link.active }]}>
               {link.label}
             </a>
           ))}
-          <a
-            href={js80Href}
-            style={`display:flex; align-items:center; gap:8px; padding: 14px 0; font-size:0.9375rem; color: ${js80OverviewActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
-          >
+
+          <a href={js80Href} class:list={['nav-mobile-link', 'nav-mobile-js80', { 'is-active': js80OverviewActive }]}>
             <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0; display:block;">
               <defs>
                 <radialGradient id="js80-mob-g" cx="35%" cy="35%">
@@ -317,160 +301,136 @@ const L = isEnglish
             {L.studio}
           </a>
 
-          <p style="margin: 14px 0 6px; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: #4a4a4a; font-weight: 500;">
-            {L.products}
-          </p>
-          <a
-            href={cardioHref}
-            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${cardioActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
-          >
-            Cardiología B·S
-          </a>
-          <a
-            href={turneroHref}
-            style={`display:block; padding: 10px 0 10px 22px; font-size:0.875rem; color: ${turneroActive ? '#f0f0f0' : '#6b6b6b'}; text-decoration:none; transition: color 0.2s;`}
-          >
-            Turnero Digital
-          </a>
-          <a
-            href={inmobiliariaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={`display:flex; align-items:center; justify-content:space-between; padding: 10px 0 10px 22px; font-size:0.875rem; color: #6b6b6b; text-decoration:none; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.04);`}
-          >
+          <p class="nav-mobile-label">{L.products}</p>
+          <a href={cardioHref} class:list={['nav-mobile-sublink', { 'is-active': cardioActive }]}>Cardiología B·S</a>
+          <a href={turneroHref} class:list={['nav-mobile-sublink', { 'is-active': turneroActive }]}>Turnero Digital</a>
+          <a href={inmobiliariaHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
             <span>{L.inmobiliaria}</span>
-            <span aria-hidden="true" style="color: #4a4a4a; font-size: 0.75rem; margin-right: 4px;">↗</span>
+            <span aria-hidden="true">↗</span>
           </a>
-          <a
-            href={switchPath}
-            style={`display:block; padding: 14px 0; font-size:0.8125rem; letter-spacing: 0.08em; color: #6b6b6b; text-decoration:none; border-top: 1px solid rgba(255,255,255,0.04);`}
-          >
-            {isEnglish ? '→ Español' : '→ English'}
-          </a>
+
+          <div class="nav-mobile-bottom">
+            <a href={switchPath} class="nav-mobile-lang">
+              {isEnglish ? '→ Español' : '→ English'}
+            </a>
+            <ThemeSwitch />
+          </div>
         </div>
       </div>
     </header>
 
-    <style>
-      .nav-mobile { display: none !important; }
+    <main class="flex-1">
+      <slot />
+    </main>
 
-      @media (max-width: 640px) {
-        .nav-desktop { display: none !important; }
-        .nav-mobile  { display: flex !important; }
-      }
+    {/* ════════════════════════════════════════════════════════════
+       FOOTER — adaptado a tokens
+       ════════════════════════════════════════════════════════════ */}
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <div class="footer-left">
+          <span class="footer-copy">© {new Date().getFullYear()} Juan Segundo Barrio</span>
+          <a href="https://www.linkedin.com/in/juansebarrio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:contacto@juansebarrio.com" aria-label="Enviar email" class="footer-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+          </a>
+        </div>
 
-      /* ── JS80 dropdown (desktop) ── */
-      .js80-dropdown {
-        position: relative;
-      }
+        <span class="footer-nda">
+          Los casos bajo NDA son confidenciales. Su acceso implica aceptar no compartir ni reproducir el contenido.
+        </span>
+      </div>
+    </footer>
 
-      .js80-trigger {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        font: inherit;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        line-height: 1;
-      }
+    {/* Vercel analytics */}
+    <script>
+      import { inject } from '@vercel/analytics';
+      import { injectSpeedInsights } from '@vercel/speed-insights';
+      inject();
+      injectSpeedInsights();
+    </script>
 
-      .js80-trigger:hover {
-        color: #f0f0f0 !important;
-      }
+    {/* ════════════════════════════════════════════════════════════
+       SCROLL PROGRESS · animación de la barra
+       Usa Scroll Timeline si está disponible (Chrome 115+).
+       Fallback: JS mínimo con rAF.
+       ════════════════════════════════════════════════════════════ */}
+    <script is:inline>
+      (function() {
+        var bar = document.querySelector('.scroll-progress');
+        if (!bar) return;
 
-      .js80-chevron {
-        opacity: 0.7;
-        transition: transform 0.2s ease;
-        margin-top: 1px;
-      }
+        // Si el browser soporta animation-timeline, el CSS se encarga
+        if (CSS.supports('animation-timeline: scroll()')) return;
 
-      .js80-dropdown.is-open .js80-chevron {
-        transform: rotate(180deg);
-      }
+        // Fallback JS
+        var ticking = false;
+        function update() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+          bar.style.transform = 'scaleX(' + pct + ')';
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+      })();
+    </script>
 
-      .js80-menu {
-        position: absolute;
-        top: calc(100% + 12px);
-        right: 0;
-        min-width: 220px;
-        background-color: rgba(14, 14, 14, 0.96);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-        padding: 8px 0;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-4px);
-        transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
-        z-index: 60;
-      }
+    {/* ════════════════════════════════════════════════════════════
+       CURSOR PARALLAX HALO · un halo sutil que sigue el cursor.
+       Solo en desktop, ignora touch y reduced-motion.
+       ════════════════════════════════════════════════════════════ */}
+    <div class="cursor-halo" aria-hidden="true"></div>
+    <script is:inline>
+      (function() {
+        var halo = document.querySelector('.cursor-halo');
+        if (!halo) return;
 
-      .js80-dropdown.is-open .js80-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
-      }
+        // No activar en touch ni reduced-motion
+        var isTouch = matchMedia('(pointer: coarse)').matches;
+        var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (isTouch || reduced) {
+          halo.remove();
+          return;
+        }
 
-      .js80-menu-overview,
-      .js80-menu-item {
-        display: block;
-        padding: 8px 16px;
-        font-size: 0.8125rem;
-        color: #b0b0b0;
-        text-decoration: none;
-        transition: color 0.15s ease, background-color 0.15s ease;
-        letter-spacing: 0.01em;
-      }
+        var x = window.innerWidth / 2;
+        var y = window.innerHeight / 2;
+        var tx = x, ty = y;
 
-      .js80-menu-overview {
-        font-weight: 500;
-        color: #d8d8d8;
-      }
+        document.addEventListener('pointermove', function(e) {
+          tx = e.clientX;
+          ty = e.clientY;
+        }, { passive: true });
 
-      .js80-menu-overview:hover,
-      .js80-menu-item:hover {
-        color: #f0f0f0;
-        background-color: rgba(255, 255, 255, 0.04);
-      }
+        function loop() {
+          // Smooth follow con lerp
+          x += (tx - x) * 0.12;
+          y += (ty - y) * 0.12;
+          halo.style.transform = 'translate3d(' + (x - 200) + 'px, ' + (y - 200) + 'px, 0)';
+          requestAnimationFrame(loop);
+        }
+        loop();
+      })();
+    </script>
 
-      .js80-menu-item-ext {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-      }
-
-      .js80-menu-ext {
-        font-size: 0.75rem;
-        color: #6b6b6b;
-        transition: color 0.15s ease;
-      }
-
-      .js80-menu-item-ext:hover .js80-menu-ext {
-        color: #f0f0f0;
-      }
-
-      .js80-menu-divider {
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.06);
-        margin: 6px 12px;
-      }
-
-      .js80-menu-label {
-        padding: 6px 16px 4px;
-        font-size: 0.625rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #4a4a4a;
-        font-weight: 500;
-      }
-    </style>
-
+    {/* ════════════════════════════════════════════════════════════
+       NAV INTERACTIVITY · hamburguesa + JS80 dropdown
+       ════════════════════════════════════════════════════════════ */}
     <script>
       const toggle   = document.getElementById('nav-toggle');
       const menu     = document.getElementById('nav-mobile-menu');
@@ -478,26 +438,26 @@ const L = isEnglish
       const iconClose = document.getElementById('nav-icon-close');
 
       toggle?.addEventListener('click', () => {
-        const isOpen = menu?.style.display !== 'none';
-        if (menu)     menu.style.display     = isOpen ? 'none' : 'block';
+        const isOpen = !menu?.hasAttribute('hidden');
+        if (menu) {
+          if (isOpen) menu.setAttribute('hidden', '');
+          else        menu.removeAttribute('hidden');
+        }
         if (iconOpen)  iconOpen.style.display  = isOpen ? 'block' : 'none';
         if (iconClose) iconClose.style.display = isOpen ? 'none' : 'block';
         toggle.setAttribute('aria-expanded', String(!isOpen));
-        toggle.style.color = isOpen ? '#6b6b6b' : '#f0f0f0';
       });
 
-      // Cerrar al hacer click en un link del menú
       menu?.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
-          if (menu)     menu.style.display     = 'none';
+          menu?.setAttribute('hidden', '');
           if (iconOpen)  iconOpen.style.display  = 'block';
           if (iconClose) iconClose.style.display = 'none';
           toggle?.setAttribute('aria-expanded', 'false');
-          if (toggle) toggle.style.color = '#6b6b6b';
         });
       });
 
-      // ── JS80 dropdown (desktop) ──
+      // JS80 dropdown
       const js80Dropdown = document.querySelector<HTMLElement>('[data-js80-dropdown]');
       const js80Trigger  = document.getElementById('js80-trigger');
 
@@ -524,42 +484,451 @@ const L = isEnglish
           js80Trigger?.focus();
         }
       });
+
+      // Theme-color meta dinámico (para PWA / iOS status bar)
+      const updateThemeColor = () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const meta = document.querySelector('meta[name="theme-color"]:not([media])');
+        if (meta) {
+          meta.setAttribute('content', theme === 'dark' ? '#0A0A0A' : '#FFFFFF');
+        }
+      };
+      window.addEventListener('themechange', updateThemeColor);
     </script>
 
-    <main class="flex-1">
-      <slot />
-    </main>
-
-    <footer class="border-t border-white/5 py-8 px-6">
-      <div class="max-w-5xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-
-        <div style="display:flex; align-items:center; gap:1.25rem;">
-          <span class="text-xs" style="color: #6b6b6b;">© {new Date().getFullYear()} Juan Segundo Barrio</span>
-          <a href="https://www.linkedin.com/in/juansebarrio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color: #6b6b6b; display:flex; align-items:center; transition: color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#6b6b6b'">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="mailto:contacto@juansebarrio.com" aria-label="Enviar email" style="color: #6b6b6b; display:flex; align-items:center; transition: color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#6b6b6b'">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="m2 7 10 7 10-7"/>
-            </svg>
-          </a>
-        </div>
-
-        <span class="text-xs" style="color: #4a4a4a; max-width: 32rem; text-align: right; line-height: 1.5;">
-          Los casos bajo NDA son confidenciales. Su acceso implica aceptar no compartir ni reproducir el contenido.
-        </span>
-
-      </div>
-    </footer>
-
-    <script>
-      import { inject } from '@vercel/analytics';
-      import { injectSpeedInsights } from '@vercel/speed-insights';
-      inject();
-      injectSpeedInsights();
+    {/* ════════════════════════════════════════════════════════════
+       REVEAL ON SCROLL · activa .reveal-up cuando entra a viewport
+       Disponible para toda la web — basta con poner clase reveal-up.
+       ════════════════════════════════════════════════════════════ */}
+    <script is:inline>
+      (function() {
+        var els = document.querySelectorAll('.reveal-up');
+        if (!els.length) return;
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function(el) { el.classList.add('is-in'); });
+          return;
+        }
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function(el) { obs.observe(el); });
+      })();
     </script>
+
+    <style is:global>
+      /* ════════════════════════════════════════════════════════════
+         SCROLL PROGRESS BAR
+         ════════════════════════════════════════════════════════════ */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--fg);
+        transform: scaleX(0);
+        transform-origin: left center;
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      @supports (animation-timeline: scroll()) {
+        .scroll-progress {
+          animation: scroll-grow linear forwards;
+          animation-timeline: scroll(root);
+        }
+        @keyframes scroll-grow {
+          from { transform: scaleX(0); }
+          to   { transform: scaleX(1); }
+        }
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         CURSOR HALO
+         ════════════════════════════════════════════════════════════ */
+      .cursor-halo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        background: radial-gradient(
+          circle at center,
+          color-mix(in oklab, var(--fg) 4%, transparent) 0%,
+          transparent 65%
+        );
+        mix-blend-mode: normal;
+        will-change: transform;
+        transform: translate3d(-9999px, -9999px, 0);
+      }
+
+      :root[data-theme="dark"] .cursor-halo {
+        background: radial-gradient(
+          circle at center,
+          color-mix(in oklab, var(--fg) 6%, transparent) 0%,
+          transparent 65%
+        );
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         HEADER
+         ════════════════════════════════════════════════════════════ */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: var(--nav-bg);
+        border-bottom: 1px solid var(--nav-border);
+        backdrop-filter: blur(14px) saturate(1.4);
+        -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      }
+
+      .site-nav {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 14px 24px;
+        /* Grid de 3 columnas: left | brand (centro) | right.
+           Garantiza que el brand quede SIEMPRE en el eje central
+           del nav, sin que lo desplace el ancho de los grupos. */
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .nav-left, .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-left  { grid-column: 1; justify-self: start; }
+      .nav-brand { grid-column: 2; justify-self: center; }
+      .nav-right { grid-column: 3; justify-self: end; }
+
+      /* La hamburguesa mobile reusa la columna 3 (nav-right está oculto) */
+      .nav-mobile.nav-toggle { grid-column: 3; justify-self: end; }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--fg);
+      }
+
+      .nav-link {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: var(--track-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color var(--dur-base) var(--ease-out);
+        position: relative;
+        padding: 4px 0;
+      }
+
+      .nav-link:hover { color: var(--fg); }
+
+      .nav-link.is-active {
+        color: var(--fg);
+      }
+
+      /* Underline minimal en activo */
+      .nav-link.is-active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 1px;
+        background-color: var(--fg);
+      }
+
+      .lang-switch {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: var(--track-mono);
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 4px 8px;
+        border-radius: 3px;
+        transition:
+          color var(--dur-base) var(--ease-out),
+          border-color var(--dur-base) var(--ease-out);
+      }
+
+      .lang-switch:hover {
+        color: var(--fg);
+        border-color: var(--fg);
+      }
+
+      /* ── JS80 dropdown ── */
+      .js80-dropdown { position: relative; }
+
+      .js80-trigger {
+        background: none;
+        border: none;
+        padding: 4px 0;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1;
+      }
+
+      .js80-chevron {
+        opacity: 0.7;
+        transition: transform var(--dur-fast) var(--ease-out);
+      }
+
+      .js80-dropdown.is-open .js80-chevron {
+        transform: rotate(180deg);
+      }
+
+      .js80-menu {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        min-width: 240px;
+        background-color: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 0;
+        box-shadow:
+          0 1px 0 var(--hairline),
+          0 20px 50px -10px color-mix(in oklab, var(--fg) 20%, transparent);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4px);
+        transition:
+          opacity var(--dur-fast) var(--ease-out),
+          transform var(--dur-fast) var(--ease-out),
+          visibility 0s linear var(--dur-fast);
+        z-index: 60;
+      }
+
+      .js80-dropdown.is-open .js80-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition:
+          opacity var(--dur-fast) var(--ease-out),
+          transform var(--dur-fast) var(--ease-out),
+          visibility 0s linear 0s;
+      }
+
+      .js80-menu-overview,
+      .js80-menu-item {
+        display: block;
+        padding: 9px 18px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+        letter-spacing: -0.005em;
+      }
+
+      .js80-menu-overview {
+        font-weight: 500;
+        color: var(--fg);
+      }
+
+      .js80-menu-overview:hover,
+      .js80-menu-item:hover,
+      .js80-menu-overview.is-active,
+      .js80-menu-item.is-active {
+        color: var(--fg);
+        background-color: var(--surface);
+      }
+
+      .js80-menu-item-ext {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .js80-menu-ext {
+        font-size: 11px;
+        color: var(--muted-soft);
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .js80-menu-item-ext:hover .js80-menu-ext { color: var(--fg); }
+
+      .js80-menu-divider {
+        height: 1px;
+        background-color: var(--border);
+        margin: 6px 14px;
+      }
+
+      .js80-menu-label {
+        padding: 8px 18px 4px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: var(--track-mono);
+        text-transform: uppercase;
+        color: var(--muted-soft);
+        font-weight: 500;
+      }
+
+      /* ── Mobile ── */
+      .nav-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+      .nav-toggle:hover { color: var(--fg); }
+
+      .nav-mobile { display: none; }
+
+      @media (max-width: 720px) {
+        .nav-desktop { display: none !important; }
+        .nav-mobile  { display: flex !important; }
+      }
+
+      .nav-mobile-menu {
+        border-top: 1px solid var(--border);
+      }
+      .nav-mobile-menu[hidden] { display: none; }
+
+      .nav-mobile-inner {
+        padding: 8px 24px 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-mobile-link {
+        display: block;
+        padding: 14px 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: var(--track-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+      .nav-mobile-link:hover,
+      .nav-mobile-link.is-active { color: var(--fg); }
+
+      .nav-mobile-js80 {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-mobile-label {
+        margin: 14px 0 6px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: var(--track-mono);
+        text-transform: uppercase;
+        color: var(--muted-soft);
+      }
+
+      .nav-mobile-sublink {
+        display: block;
+        padding: 10px 0 10px 22px;
+        font-size: 13px;
+        color: var(--muted);
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+      .nav-mobile-sublink:hover,
+      .nav-mobile-sublink.is-active { color: var(--fg); }
+
+      .nav-mobile-sublink-ext {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-mobile-bottom {
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .nav-mobile-lang {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: var(--track-mono);
+        color: var(--muted);
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         FOOTER
+         ════════════════════════════════════════════════════════════ */
+      .site-footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 24px;
+        background-color: var(--bg);
+      }
+
+      .site-footer-inner {
+        max-width: 80rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .footer-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .footer-copy {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: var(--track-mono);
+        color: var(--muted);
+      }
+
+      .footer-icon {
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+      .footer-icon:hover { color: var(--fg); }
+
+      .footer-nda {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        color: var(--muted-soft);
+        max-width: 32rem;
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 720px) {
+        .footer-nda { text-align: left; max-width: 100%; }
+      }
+    </style>
+
   </body>
 </html>
