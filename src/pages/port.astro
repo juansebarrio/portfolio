@@ -357,6 +357,13 @@ const casos = [
     transform-origin: left center;
   }
 
+  /* Mobile: bajar el zoom para que el texto del strip no se vea apretado. */
+  @media (max-width: 600px) {
+    .page-motion-strip--zoom-left .motion-strip-bleed iframe {
+      transform: scale(1.5);
+    }
+  }
+
   .page-motion-strip .page-corner {
     z-index: 2;
   }
