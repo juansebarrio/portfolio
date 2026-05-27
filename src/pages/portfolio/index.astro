@@ -112,37 +112,41 @@ export const prerender = false;
         <p class="eyebrow">PROYECTOS PÚBLICOS</p>
       </div>
 
-      <!-- Tablero de leads — card completa -->
-      <a href="/portfolio/leads-tablero" class="caso-card">
-        <div class="caso-media caso-media-leads">
-          <img
-            src="/images/portfolio/leads-tablero/home.png"
-            alt="Pantalla del tablero principal con patrón detectado y leads que se enfrían"
-            loading="lazy" decoding="async" />
-        </div>
-        <div class="caso-info">
-          <p class="caso-meta">JS80 · 2026 · Producto SaaS</p>
-          <h2 class="caso-titulo">Tablero de leads para PyMEs</h2>
-          <p class="caso-desc">Un CRM ligero que prioriza una pregunta sobre todas las demás: ¿qué tengo que hacer hoy? Detección de patrones, kanban del pipeline y demo pública sin login.</p>
-          <p class="caso-cta">Ver caso →</p>
-        </div>
-      </a>
+      <div class="publicos-grid">
 
-      <!-- Impulse Bot — card completa -->
-      <a href="/portfolio/impulse-bot" class="caso-card">
-        <div class="caso-media caso-media-impulse">
-          <img
-            src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
-            alt="Indetectable e Intransmisible — los dos personajes del Impulse Bot"
-            loading="lazy" decoding="async" />
-        </div>
-        <div class="caso-info">
-          <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>
-          <h2 class="caso-titulo">Impulse Bot</h2>
-          <p class="caso-desc">El primer chatbot de Argentina dedicado 100% a salud sexual. 2,249 mensajes intercambiados, 82% de opt-in, dos olas de activación en el calendario LGBTIQ+.</p>
-          <p class="caso-cta">Ver caso →</p>
-        </div>
-      </a>
+        <!-- Tablero de leads -->
+        <a href="/portfolio/leads-tablero" class="caso-card caso-publico">
+          <div class="caso-media caso-media-leads">
+            <img
+              src="/images/portfolio/leads-tablero/home.png"
+              alt="Pantalla del tablero principal con patrón detectado y leads que se enfrían"
+              loading="lazy" decoding="async" />
+          </div>
+          <div class="caso-info">
+            <p class="caso-meta">JS80 · 2026 · Producto SaaS</p>
+            <h2 class="caso-titulo">Tablero de leads para PyMEs</h2>
+            <p class="caso-desc">CRM ligero que responde una sola pregunta: ¿qué hago hoy? Detección de patrones y kanban del pipeline.</p>
+            <p class="caso-cta">Ver caso →</p>
+          </div>
+        </a>
+
+        <!-- Impulse Bot -->
+        <a href="/portfolio/impulse-bot" class="caso-card caso-publico">
+          <div class="caso-media caso-media-impulse">
+            <img
+              src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
+              alt="Indetectable e Intransmisible — los dos personajes del Impulse Bot"
+              loading="lazy" decoding="async" />
+          </div>
+          <div class="caso-info">
+            <p class="caso-meta">AHF Argentina · 2025 · Conversational Design</p>
+            <h2 class="caso-titulo">Impulse Bot</h2>
+            <p class="caso-desc">Primer chatbot argentino 100% dedicado a salud sexual. 2.249 mensajes, 82% de opt-in.</p>
+            <p class="caso-cta">Ver caso →</p>
+          </div>
+        </a>
+
+      </div>
 
       <!-- JS80 — cards compactas -->
       <div class="js80-sub">
@@ -490,13 +494,23 @@ export const prerender = false;
 
   .publicos-header { margin-bottom: 1.5rem; }
 
-  .caso-media-impulse { background: #1a0f07; aspect-ratio: 16 / 6; }
-  .caso-media-impulse img { object-position: center 12%; }
+  .publicos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
 
-  .caso-media-leads { background: var(--surface); aspect-ratio: 16 / 9; }
+  .caso-publico .caso-media { aspect-ratio: 16 / 10; }
+  .caso-publico .caso-info { padding: 1.5rem; }
+  .caso-publico .caso-titulo { font-size: 1.125rem; margin-top: 0.625rem; }
+  .caso-publico .caso-desc { font-size: 0.875rem; margin-top: 0.5rem; }
+  .caso-publico .caso-cta { margin-top: 1rem; }
+
+  .caso-media-impulse { background: #1a0f07; }
+  .caso-media-impulse img { object-position: center 18%; }
+
+  .caso-media-leads { background: var(--surface); }
   .caso-media-leads img { object-fit: cover; object-position: center top; }
-
-  .casos-publicos > .caso-card + .caso-card { margin-top: 1.5rem; }
 
   /* JS80 subsección */
   .js80-sub {
@@ -590,6 +604,10 @@ export const prerender = false;
     .casos { grid-template-columns: 1fr 1fr; }
     .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
     .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
+  }
+
+  @media (max-width: 720px) {
+    .publicos-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {

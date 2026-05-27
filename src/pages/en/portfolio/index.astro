@@ -112,7 +112,7 @@ export const prerender = false;
         <p class="eyebrow">PUBLIC PROJECT</p>
       </div>
 
-      <a href="/en/portfolio/impulse-bot" class="caso-card">
+      <a href="/en/portfolio/impulse-bot" class="caso-card caso-publico caso-publico-solo">
         <div class="caso-media caso-media-impulse">
           <img
             src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
@@ -120,9 +120,9 @@ export const prerender = false;
             loading="lazy" decoding="async" />
         </div>
         <div class="caso-info">
-          <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>
+          <p class="caso-meta">AHF Argentina · 2025 · Conversational Design</p>
           <h2 class="caso-titulo">Impulse Bot</h2>
-          <p class="caso-desc">Argentina's first chatbot fully dedicated to sexual health. 2,249 messages exchanged, 82% opt-in rate, two activation waves in the LGBTIQ+ calendar.</p>
+          <p class="caso-desc">Argentina's first chatbot 100% dedicated to sexual health. 2,249 messages exchanged, 82% opt-in rate.</p>
           <p class="caso-cta">View case →</p>
         </div>
       </a>
@@ -472,8 +472,15 @@ export const prerender = false;
 
   .publicos-header { margin-bottom: 1.5rem; }
 
-  .caso-media-impulse { background: #1a0f07; aspect-ratio: 16 / 6; }
-  .caso-media-impulse img { object-position: center 12%; }
+  .caso-publico { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .caso-publico .caso-media { aspect-ratio: auto; min-height: 240px; }
+  .caso-publico .caso-info { padding: 1.75rem; justify-content: center; }
+  .caso-publico .caso-titulo { font-size: 1.25rem; margin-top: 0.625rem; }
+  .caso-publico .caso-desc { font-size: 0.9375rem; margin-top: 0.625rem; }
+  .caso-publico .caso-cta { margin-top: 1.25rem; }
+
+  .caso-media-impulse { background: #1a0f07; }
+  .caso-media-impulse img { object-position: center 18%; }
 
   /* JS80 subsection */
   .js80-sub { margin-top: 2.5rem; margin-bottom: 1rem; }
@@ -541,6 +548,11 @@ export const prerender = false;
     .casos { grid-template-columns: 1fr 1fr; }
     .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
     .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
+  }
+
+  @media (max-width: 720px) {
+    .caso-publico { grid-template-columns: 1fr; }
+    .caso-publico .caso-media { min-height: unset; aspect-ratio: 16 / 10; }
   }
 
   @media (max-width: 600px) {
