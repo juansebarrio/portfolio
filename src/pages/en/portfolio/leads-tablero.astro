@@ -1,0 +1,768 @@
+---
+export const prerender = false;
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Leads dashboard for small businesses · Case study · Juan Segundo Barrio"
+  description="How I designed and built a lean CRM that puts one question above all others: what do I need to do today? Case study of the product I shipped at JS80."
+  ogImage="/images/portfolio/leads-tablero/home.png"
+  ogType="article"
+>
+
+  <div class="case-page">
+
+    <header class="case-hero reveal-up" style="--i: 0">
+      <p class="meta-label">Case study · Product · 6 min read</p>
+
+      <h1 class="case-title">
+        Leads dashboard for <em>small businesses</em>
+      </h1>
+
+      <p class="case-lede">
+        A lean CRM that puts one question above all others:
+        <em>what do I need to do today?</em>
+      </p>
+
+      <dl class="case-meta">
+        <div>
+          <dt>Type</dt>
+          <dd>SaaS product · public demo</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>Product design & technical lead</dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>Next.js 15 · Supabase · Tailwind v4</dd>
+        </div>
+        <div>
+          <dt>Studio</dt>
+          <dd>
+            <a href="https://js80.studio" target="_blank" rel="noopener" class="js80-tag">
+              <span class="js80-nucleus" aria-hidden="true"></span>
+              JS80
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="case-actions">
+        <a href="https://leads.js80.studio" target="_blank" rel="noopener" class="btn-primary">
+          See live demo
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://github.com/juansebarrio/leads-tablero" target="_blank" rel="noopener" class="btn-secondary">
+          Code on GitHub
+        </a>
+      </div>
+    </header>
+
+    <article class="case-prose">
+
+      <h2 class="reveal-up" style="--i: 1">The starting point</h2>
+
+      <p>The CRMs that Argentine small businesses use share one problem: <strong>they show everything, they action little</strong>. The salesperson logs in, sees a dashboard with 40 widgets, and goes back to WhatsApp to actually work.</p>
+
+      <p>I wanted to design the opposite. A product that tells you, day one, without you having to think about it:</p>
+
+      <blockquote>
+        <em>"Today call these 3. Aliaga's quote expired yesterday. Sofía has capacity — hand her Diego's cold leads."</em>
+      </blockquote>
+
+      <p>This is what the owner of a small business asks their salesperson every Monday. What was missing was a product that said it first.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The dashboard isn't a dashboard</h2>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/home.png"
+             alt="Main dashboard screen with a detected pattern and leads cooling down"
+             loading="eager" />
+      </figure>
+
+      <p>The home has an intentional structure:</p>
+
+      <ol>
+        <li><strong>Pipeline state</strong> — active USD distributed across stages</li>
+        <li><strong>Detected pattern</strong> — the system tells you what's happening; it doesn't wait for you to find out</li>
+        <li><strong>Cooling leads</strong> — the ones losing temperature, sorted by urgency</li>
+        <li><strong>Opportunities to move today</strong> — the next steps committed with a time</li>
+      </ol>
+
+      <p>No charts up front. No big KPIs. Those are one click away. The home takes care of <strong>what to do now</strong>.</p>
+
+      <p>The greeting changes with the time of day — <em>"Hi Mariana, good evening"</em> — because the product talks to you, it doesn't report to you.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">Honest intelligence</h2>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/patrones.png"
+             alt="Detected patterns screen showing the 5 types of insights"
+             loading="lazy" />
+      </figure>
+
+      <p>Five detectors that cross the pipeline, the team and the historical record:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>What it detects</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Operational</td><td>Web-form leads with no salesperson assigned</td></tr>
+          <tr><td>Stuck</td><td>Leads &gt;14 days without movement in a stage</td></tr>
+          <tr><td>Opportunity</td><td>Concentration of wins on a given day or time slot</td></tr>
+          <tr><td>Trend</td><td>Imbalance between leads created vs closed</td></tr>
+          <tr><td>Suggestion</td><td>Workload imbalance across the team</td></tr>
+        </tbody>
+      </table>
+
+      <p>Behind the "AI" label there are <strong>deterministic SQL queries</strong>. I did it that way on purpose: the "AI" most CRMs sell is exactly that. Being honest about it was a product decision, not a technical one.</p>
+
+      <pre><code>-- "Stuck" detector (simplified)
+SELECT l.*
+FROM leads l
+JOIN last_change lc ON lc.lead_id = l.id
+WHERE l.stage = 'proposal'
+  AND lc.last_date &lt; now() - interval '14 days';</code></pre>
+
+      <p>Each pattern can be marked as resolved, but it stays in the history — that protects the user from "losing" an insight if they close it by mistake, and lets the system learn which patterns actually help.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The lead detail</h2>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/lead-detalle.png"
+             alt="Lead detail view with value, stage, schedule and contacts"
+             loading="lazy" />
+      </figure>
+
+      <p>Each lead is a full page with four status cards (value, stage, days in pipeline, owner), a prominent <em>what's next</em> block, the contact history and the schedule.</p>
+
+      <p>Three primary actions on top: <em>Log contact</em> (the most frequent, in black), <em>Move to proposal</em>, <em>Edit</em>. The "…" menu keeps the secondary ones.</p>
+
+      <p>The progress bar under the current stage shows <strong>where it is and which stage you can move it to</strong>. A small but important decision: the user always sees the full path, not just the box they're standing in.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The pipeline kanban</h2>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/pipeline.png"
+             alt="Pipeline kanban with lead cards across 5 columns"
+             loading="lazy" />
+      </figure>
+
+      <p>Drag &amp; drop with <code>@dnd-kit</code>, spring animations with <code>framer-motion</code>. Five columns, each with its own color accent on the top bar.</p>
+
+      <p>The detail I like most: <strong>stuck warnings appear as yellow cards inside the column</strong>, mixed with the rest. The insight lives where the work is, not in a separate tab.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">Conversion and closed</h2>
+
+      <p>Two sides of the same month, with two different audiences.</p>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/conversion.png"
+             alt="Conversion screen with funnel and month insights"
+             loading="lazy" />
+      </figure>
+
+      <p>The title of <code>/conversion</code> reads <strong>"Where we're <em>losing leads</em>"</strong> — not "Conversion funnel". Framing matters: the owner opens this screen looking for a problem, not contemplating a metric.</p>
+
+      <p>An insight of the month in the header. Funnel with conversion rates between stages. Time per stage with the bottleneck highlighted. A 3-month trend line.</p>
+
+      <figure class="case-figure reveal-up" style="--i: 2">
+        <img src="/images/portfolio/leads-tablero/cerrados.png"
+             alt="Closed-deals screen with salesperson ranking and list of wins"
+             loading="lazy" />
+      </figure>
+
+      <p><code>/closed</code> is the counterpart: the tangible outcome. Salesperson ranking with gold, silver and bronze. Subtle gamification <strong>works in sales</strong>, and the ranking is calculated by closed value, not by ratio — which protects the rep who closes few but big.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The visual system</h2>
+
+      <p>Four decisions kept consistent across the product:</p>
+
+      <ol>
+        <li><strong>One display typeface</strong> in italic for one keyword per title. <em>Watching</em>. <em>Closed</em>. <em>Losing</em>. <em>At stake</em>. Each screen has its verb.</li>
+        <li><strong>Three semantic colors</strong> (red, yellow, green) and <strong>four brand colors</strong> (blue, violet, teal, coral). Nothing else.</li>
+        <li><strong>One hero element per screen.</strong> If there's a nucleus, nothing else competes.</li>
+        <li><strong>Rioplatense voice across the UI</strong>. <em>"Tenés 21 leads que pidieron seguimiento"</em>. No jargon. A small business in Bahía Blanca has to feel the product is talking to them, not to a San Francisco startup.</li>
+      </ol>
+
+
+      <h2 class="reveal-up" style="--i: 0">Mobile-first without being mobile-only</h2>
+
+      <figure class="case-figure reveal-up" style="--i: 1">
+        <img src="/images/portfolio/leads-tablero/cerrados-mobile.png"
+             alt="Mobile version of the closed-deals screen"
+             loading="lazy" />
+      </figure>
+
+      <p>The 7 main screens have a full mobile redesign. It's not automatic responsive: KPIs rearrange to 2×2, accordions collapse differently, tables compact down to only what matters.</p>
+
+      <p>On mobile, data loses columns (owner, exact date) and only what matters on a small screen stays. Density changes, hierarchy doesn't.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">What I left out (on purpose)</h2>
+
+      <p>Three things a "complete" CRM would have and this one doesn't:</p>
+
+      <ul>
+        <li><strong>Email and WhatsApp integrated</strong>: the product pre-fills and opens your client, but it doesn't send. Integrating Meta Cloud API plus Resend adds two weeks of work and 60% of the real bugs.</li>
+        <li><strong>Separate owner dashboard</strong>: today everyone sees the same view. When it scales beyond five people, a toggle will be needed. Not today.</li>
+        <li><strong>PDF reports</strong>: I have the system, I didn't wire it because the product doesn't need it yet.</li>
+      </ul>
+
+      <p>Saying "not this" is as much part of design as saying "this".</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">How it's built</h2>
+
+      <p>Small, opinionated stack, no over-engineering: <strong>Next.js 15</strong> with App Router, <strong>Supabase</strong> (Postgres with RLS), <strong>Tailwind v4</strong> with design tokens, <strong>framer-motion</strong> and <strong>@dnd-kit</strong>, deploy on <strong>Vercel</strong> with a nightly cron that resets the seed at 03:00 ART.</p>
+
+      <p>The product's 42 screens and components were built in roughly five days by splitting the work across three Claude instances: one in chat for design and product decisions, another in VS Code for implementation, and another in Chrome for post-deploy audits.</p>
+
+      <p>That split — <em>design, build, audit</em> — lets one person move at the pace of a team of four.</p>
+
+    </article>
+
+    <aside class="case-cta reveal-up" style="--i: 0">
+      <p class="meta-label">Try the product</p>
+      <h2>Public demo, no login.</h2>
+      <p>Synthetic data that resets every night at 03:00 ART. Feel free to break things.</p>
+      <div class="case-cta-actions">
+        <a href="https://leads.js80.studio" target="_blank" rel="noopener" class="btn-primary">
+          Open leads.js80.studio
+          <span class="arrow">→</span>
+        </a>
+        <a href="mailto:contacto@js80.studio" class="btn-secondary">
+          Let's talk about yours
+        </a>
+      </div>
+    </aside>
+
+    <footer class="case-signature reveal-up" style="--i: 0">
+      <a href="https://js80.studio" target="_blank" rel="noopener" class="signature-block">
+        <span class="js80-nucleus js80-nucleus-lg" aria-hidden="true"></span>
+        <span class="signature-text">
+          <strong>JS80</strong>
+          <em>Digital solutions studio · Buenos Aires</em>
+        </span>
+      </a>
+
+      <a href="/en/portfolio" class="back-link">
+        ← Back to all work
+      </a>
+    </footer>
+
+  </div>
+
+  <script>
+    document.querySelectorAll<HTMLImageElement>('.case-figure img').forEach(img => {
+      if (img.complete) {
+        img.classList.add('is-loaded');
+      } else {
+        img.addEventListener('load', () => img.classList.add('is-loaded'));
+      }
+    });
+  </script>
+
+</Layout>
+
+<style>
+  /* ═══════════════════════════════════════════════════
+     CASE STUDY — leads-tablero (EN)
+     ═══════════════════════════════════════════════════ */
+
+  .case-page {
+    padding: var(--s-9) var(--gutter);
+    max-width: var(--container);
+    margin-inline: auto;
+  }
+
+  /* ── JS80 nucleus (único punto de color de marca) ── */
+  .js80-nucleus {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 200deg,
+      #FF8AA0 0deg, #FFB088 60deg, #6B8CFF 160deg,
+      #8B6FFF 230deg, #5DC7E0 310deg, #FF8AA0 360deg
+    );
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .js80-nucleus-lg {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .case-hero {
+    max-width: 920px;
+    margin-bottom: var(--s-10);
+    padding-top: var(--s-7);
+  }
+
+  .case-title {
+    font-size: var(--fs-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--track-display);
+    font-weight: 500;
+    margin-top: var(--s-5);
+    color: var(--fg);
+  }
+
+  .case-title em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .case-lede {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+    color: var(--muted);
+    margin-top: var(--s-5);
+    max-width: 720px;
+    font-weight: 400;
+  }
+
+  .case-lede em {
+    font-style: italic;
+    color: var(--fg);
+  }
+
+  .case-meta {
+    margin-top: var(--s-7);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--s-5);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--border);
+  }
+
+  .case-meta dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--s-2);
+  }
+
+  .case-meta dd {
+    font-size: var(--fs-small);
+    color: var(--fg);
+  }
+
+  .js80-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    color: var(--fg);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .js80-tag:hover {
+    border-bottom-color: var(--fg);
+  }
+
+  .case-actions {
+    margin-top: var(--s-6);
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-3) var(--s-5);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    border-radius: 999px;
+    transition:
+      transform var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+    border: 1px solid var(--border);
+  }
+
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--fg);
+  }
+
+  .btn-secondary:hover {
+    background: var(--surface);
+  }
+
+  .btn-primary .arrow {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .btn-primary:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* ── PROSE ─────────────────────────────────────────── */
+  .case-prose {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .case-prose h2 {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--track-h1);
+    font-weight: 500;
+    margin-top: var(--s-9);
+    margin-bottom: var(--s-5);
+    color: var(--fg);
+  }
+
+  .case-prose h2 em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .case-prose h3 {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--track-h2);
+    font-weight: 500;
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-4);
+    color: var(--fg);
+  }
+
+  .case-prose p {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--fg);
+    margin-bottom: var(--s-5);
+  }
+
+  .case-prose p em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .case-prose strong {
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  .case-prose a {
+    color: var(--fg);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .case-prose a:hover {
+    border-bottom-color: var(--fg);
+  }
+
+  .case-prose blockquote {
+    border-left: 2px solid var(--fg);
+    padding-left: var(--s-5);
+    margin: var(--s-6) 0;
+    color: var(--muted);
+    font-style: italic;
+    font-size: var(--fs-body);
+  }
+
+  .case-prose blockquote em {
+    font-style: italic;
+    color: var(--fg);
+  }
+
+  .case-prose ul,
+  .case-prose ol {
+    margin: var(--s-4) 0 var(--s-5);
+    padding-left: var(--s-5);
+  }
+
+  .case-prose li {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--fg);
+    margin-bottom: var(--s-3);
+  }
+
+  .case-prose ol {
+    list-style: decimal;
+  }
+
+  .case-prose ul {
+    list-style: disc;
+  }
+
+  /* ── TABLAS ─────────────────────────────────────────── */
+  .case-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--s-5) 0 var(--s-6);
+    font-size: var(--fs-small);
+  }
+
+  .case-prose th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: var(--s-3) var(--s-4);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  .case-prose td {
+    padding: var(--s-3) var(--s-4);
+    border-bottom: 1px solid var(--hairline);
+    color: var(--fg);
+    vertical-align: top;
+  }
+
+  .case-prose td:first-child {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ── CÓDIGO ─────────────────────────────────────────── */
+  .case-prose pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--s-5);
+    margin: var(--s-5) 0;
+    overflow-x: auto;
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: var(--lh-mono);
+    color: var(--fg);
+  }
+
+  .case-prose pre::before {
+    content: 'SQL';
+    position: absolute;
+    top: var(--s-3);
+    right: var(--s-4);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .case-prose code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--hairline);
+  }
+
+  .case-prose pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  /* ── IMÁGENES (figures) ───────────────────────────── */
+  .case-figure {
+    margin: var(--s-7) calc((720px - 1100px) / 2);
+    max-width: 1100px;
+  }
+
+  @media (max-width: 1100px) {
+    .case-figure {
+      margin: var(--s-6) 0;
+      max-width: 100%;
+    }
+  }
+
+  .case-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(10, 10, 10, 0.08);
+    opacity: 0;
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+
+  .case-figure img.is-loaded {
+    opacity: 1;
+  }
+
+  :root[data-theme="dark"] .case-figure img {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .case-figure figcaption {
+    margin-top: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── CTA FINAL ─────────────────────────────────────── */
+  .case-cta {
+    margin-top: var(--s-10);
+    padding: var(--s-8);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .case-cta h2 {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--track-h1);
+    font-weight: 500;
+    margin: var(--s-3) 0 var(--s-4);
+  }
+
+  .case-cta p {
+    font-size: var(--fs-body);
+    color: var(--muted);
+    margin-bottom: var(--s-5);
+  }
+
+  .case-cta-actions {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  /* ── SIGNATURE / FOOTER DEL CASE ───────────────────── */
+  .case-signature {
+    margin-top: var(--s-10);
+    padding-top: var(--s-6);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-5);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .signature-block {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    color: var(--fg);
+  }
+
+  .signature-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .signature-text strong {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    letter-spacing: var(--track-wordmark);
+  }
+
+  .signature-text em {
+    font-size: var(--fs-meta);
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .back-link:hover {
+    color: var(--fg);
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .case-page {
+      padding: var(--s-6) var(--gutter);
+    }
+
+    .case-hero {
+      padding-top: var(--s-5);
+      margin-bottom: var(--s-7);
+    }
+
+    .case-prose h2 {
+      margin-top: var(--s-7);
+    }
+
+    .case-figure img {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      margin-inline: calc(var(--gutter) * -1);
+      width: calc(100% + var(--gutter) * 2);
+    }
+
+    .case-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      justify-content: center;
+    }
+
+    .case-cta {
+      padding: var(--s-6);
+    }
+
+    .case-signature {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
