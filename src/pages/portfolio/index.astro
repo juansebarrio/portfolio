@@ -112,6 +112,22 @@ export const prerender = false;
         <p class="eyebrow">PROYECTOS PÚBLICOS</p>
       </div>
 
+      <!-- Tablero de leads — card completa -->
+      <a href="/portfolio/leads-tablero" class="caso-card">
+        <div class="caso-media caso-media-leads">
+          <img
+            src="/images/portfolio/leads-tablero/home.png"
+            alt="Pantalla del tablero principal con patrón detectado y leads que se enfrían"
+            loading="lazy" decoding="async" />
+        </div>
+        <div class="caso-info">
+          <p class="caso-meta">JS80 · 2026 · Producto SaaS</p>
+          <h2 class="caso-titulo">Tablero de leads para PyMEs</h2>
+          <p class="caso-desc">Un CRM ligero que prioriza una pregunta sobre todas las demás: ¿qué tengo que hacer hoy? Detección de patrones, kanban del pipeline y demo pública sin login.</p>
+          <p class="caso-cta">Ver caso →</p>
+        </div>
+      </a>
+
       <!-- Impulse Bot — card completa -->
       <a href="/portfolio/impulse-bot" class="caso-card">
         <div class="caso-media caso-media-impulse">
@@ -476,6 +492,11 @@ export const prerender = false;
 
   .caso-media-impulse { background: #1a0f07; aspect-ratio: 16 / 6; }
   .caso-media-impulse img { object-position: center 12%; }
+
+  .caso-media-leads { background: var(--surface); aspect-ratio: 16 / 9; }
+  .caso-media-leads img { object-fit: cover; object-position: center top; }
+
+  .casos-publicos > .caso-card + .caso-card { margin-top: 1.5rem; }
 
   /* JS80 subsección */
   .js80-sub {
