@@ -154,6 +154,20 @@ export const prerender = false;
       </div>
       <div class="casos-mini">
 
+        <!-- VidrierAI — featured with priority -->
+        <a href="https://www.js80.studio/vidriera" target="_blank" rel="noopener noreferrer" class="caso-mini caso-mini-priority">
+          <span class="mini-badge">New</span>
+          <div class="mini-media mini-media-vidriera" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10v9.3h15V10"/><path d="M3.5 19.3h17"/><path d="M3 10l1.7-4.3A1 1 0 0 1 5.6 5h12.8a1 1 0 0 1 .9.7L21 10z"/><path d="M7.5 5.3 7 10M12 5v5M16.5 5.3 17 10"/><path d="M7.3 13h4.2v6.3H7.3z"/><path d="M16 12.2q.55 2.5 3 3-2.45.5-3 3-.55-2.5-3-3 2.45-.5 3-3Z" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="mini-info">
+            <p class="caso-meta">JS80 · 2026 · AI + E-commerce</p>
+            <h3 class="mini-titulo">VidrierAI</h3>
+            <p class="mini-desc">From a photo to a ready-to-sell listing: title, description, tags and caption for each product, generated with AI.</p>
+            <p class="caso-cta">View case ↗</p>
+          </div>
+        </a>
+
         <a href="/en/js80/turnero-digital" class="caso-mini">
           <div class="mini-media mini-media-turnero" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><rect x="8" y="14" width="3" height="3" rx="0.5"/></svg>
@@ -520,25 +534,55 @@ export const prerender = false;
   /* JS80 subsection */
   .js80-sub { margin-top: 2.5rem; margin-bottom: 1rem; }
 
-  .casos-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .casos-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 
   .caso-mini {
-    display: grid;
-    grid-template-columns: 100px 1fr;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    transition: transform 300ms ease, background 300ms ease;
-    min-height: 100px;
+    transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
   }
 
   .caso-mini:hover { transform: translateY(-3px); background: var(--surface); }
   .caso-mini:hover .caso-cta { color: var(--fg); }
 
+  /* VidrierAI — featured with priority */
+  .caso-mini-priority {
+    border-color: color-mix(in oklab, #7158d6 45%, var(--border));
+    box-shadow: 0 0 0 1px color-mix(in oklab, #7158d6 28%, transparent),
+                0 8px 24px color-mix(in oklab, #7158d6 12%, transparent);
+  }
+
+  .caso-mini-priority:hover {
+    box-shadow: 0 0 0 1px color-mix(in oklab, #7158d6 45%, transparent),
+                0 12px 30px color-mix(in oklab, #7158d6 18%, transparent);
+  }
+
+  .mini-badge {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    z-index: 2;
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #7158d6;
+    border-radius: 999px;
+    padding: 0.2rem 0.5rem;
+    line-height: 1;
+  }
+
   .mini-media {
+    height: 96px;
     background: var(--bg);
     display: flex;
     align-items: center;
@@ -556,7 +600,9 @@ export const prerender = false;
 
   .mini-media-tablero { background: color-mix(in oklab, #4a8a7a 14%, var(--surface)); color: #4a8a7a; }
 
-  .mini-info { padding: 1.125rem 1.125rem 1.125rem 1rem; display: flex; flex-direction: column; }
+  .mini-media-vidriera { background: color-mix(in oklab, #7158d6 16%, var(--surface)); color: #7158d6; }
+
+  .mini-info { padding: 1.125rem; display: flex; flex-direction: column; }
 
   .mini-titulo {
     font-family: var(--font-sans);
@@ -583,6 +629,7 @@ export const prerender = false;
     .casos { grid-template-columns: 1fr 1fr; }
     .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
     .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
+    .casos-mini { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
