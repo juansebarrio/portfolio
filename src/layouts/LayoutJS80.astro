@@ -44,16 +44,19 @@ const prefix = isEnglish ? '/en' : '';
 const js80Href    = `${prefix}/js80`;
 const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
 const turneroHref = `${prefix}/js80/turnero-digital`;
+const leadsHref   = `${prefix}/portfolio/leads-tablero`;
 
 const cardioActive       = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive      = basePath === '/js80/turnero-digital';
+const leadsActive        = basePath === '/portfolio/leads-tablero';
 const js80OverviewActive = basePath === '/js80';
 
 const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
+const vidrieraHref     = 'https://www.js80.studio/vidriera';
 
 const N = isEnglish
-  ? { studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard' }
-  : { studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria' };
+  ? { studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard', leads: 'Leads Dashboard' }
+  : { studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria', leads: 'Tablero de leads' };
 
 const breadcrumbItems = segments.length > 0
   ? [
@@ -330,12 +333,14 @@ const breadcrumbItems = segments.length > 0
             <div class="js80-products-divider"></div>
             <div class="js80-products-label">{N.products}</div>
             <a
-              href={cardioHref}
+              href={vidrieraHref}
               role="menuitem"
-              class="js80-products-item"
-              style={cardioActive ? 'color: #2c2c2a;' : ''}
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Cardiología B·S
+              <span>VidrierAI</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
             </a>
             <a
               href={turneroHref}
@@ -344,6 +349,22 @@ const breadcrumbItems = segments.length > 0
               style={turneroActive ? 'color: #2c2c2a;' : ''}
             >
               Turnero Digital
+            </a>
+            <a
+              href={cardioHref}
+              role="menuitem"
+              class="js80-products-item"
+              style={cardioActive ? 'color: #2c2c2a;' : ''}
+            >
+              Cardiología B·S
+            </a>
+            <a
+              href={leadsHref}
+              role="menuitem"
+              class="js80-products-item"
+              style={leadsActive ? 'color: #2c2c2a;' : ''}
+            >
+              {N.leads}
             </a>
             <a
               href={inmobiliariaHref}
