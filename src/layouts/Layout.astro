@@ -62,6 +62,7 @@ const portHref    = `${prefix}/portfolio`;
 const js80Href    = `${prefix}/js80`;
 const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
 const turneroHref = `${prefix}/js80/turnero-digital`;
+const leadsHref   = `${prefix}/portfolio/leads-tablero`;
 
 const homeActive    = basePath === '/';
 const expActive     = basePath === '/experiencia';
@@ -69,13 +70,15 @@ const portActive    = basePath.startsWith('/portfolio');
 const js80Active    = basePath === '/js80' || basePath.startsWith('/js80/');
 const cardioActive  = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive = basePath === '/js80/turnero-digital';
+const leadsActive   = basePath === '/portfolio/leads-tablero';
 const js80OverviewActive = basePath === '/js80';
 
 const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
+const vidrieraHref     = 'https://www.js80.studio/vidriera';
 
 const L = isEnglish
-  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard' }
-  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria' };
+  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard', leads: 'Leads Dashboard' }
+  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria', leads: 'Tablero de leads' };
 ---
 
 <!doctype html>
@@ -231,11 +234,18 @@ const L = isEnglish
               </a>
               <div class="js80-menu-divider"></div>
               <div class="js80-menu-label">{L.products}</div>
-              <a href={cardioHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': cardioActive }]}>
-                Cardiología B·S
+              <a href={vidrieraHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
+                VidrierAI
+                <span class="js80-menu-ext" aria-hidden="true">↗</span>
               </a>
               <a href={turneroHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': turneroActive }]}>
                 Turnero Digital
+              </a>
+              <a href={cardioHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': cardioActive }]}>
+                Cardiología B·S
+              </a>
+              <a href={leadsHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': leadsActive }]}>
+                {L.leads}
               </a>
               <a href={inmobiliariaHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
                 {L.inmobiliaria}
@@ -302,8 +312,13 @@ const L = isEnglish
           </a>
 
           <p class="nav-mobile-label">{L.products}</p>
-          <a href={cardioHref} class:list={['nav-mobile-sublink', { 'is-active': cardioActive }]}>Cardiología B·S</a>
+          <a href={vidrieraHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
+            <span>VidrierAI</span>
+            <span aria-hidden="true">↗</span>
+          </a>
           <a href={turneroHref} class:list={['nav-mobile-sublink', { 'is-active': turneroActive }]}>Turnero Digital</a>
+          <a href={cardioHref} class:list={['nav-mobile-sublink', { 'is-active': cardioActive }]}>Cardiología B·S</a>
+          <a href={leadsHref} class:list={['nav-mobile-sublink', { 'is-active': leadsActive }]}>{L.leads}</a>
           <a href={inmobiliariaHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
             <span>{L.inmobiliaria}</span>
             <span aria-hidden="true">↗</span>
