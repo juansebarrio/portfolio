@@ -109,6 +109,30 @@ const L = isEnglish
       })();
     </script>
 
+    {/* ════════════════════════════════════════════════════════════
+       ACCESO DIRECTO PARA RECLUTADORES
+       Un link con ?acceso=reclutador pre-autoriza los casos bajo NDA
+       sin pedir contraseña — pensado para compartir con recruiters.
+       Setea la misma flag que el password gate (sessionStorage) y
+       limpia el token de la URL para no dejarlo a la vista.
+       Para cambiar el token, editá el valor de RECRUITER_TOKEN.
+       ════════════════════════════════════════════════════════════ */}
+    <script is:inline>
+      (function() {
+        var RECRUITER_TOKEN = 'reclutador';
+        try {
+          var params = new URLSearchParams(window.location.search);
+          if (params.get('acceso') === RECRUITER_TOKEN) {
+            sessionStorage.setItem('portfolio-auth', 'true');
+            params.delete('acceso');
+            var qs = params.toString();
+            var clean = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+            window.history.replaceState(null, '', clean);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
