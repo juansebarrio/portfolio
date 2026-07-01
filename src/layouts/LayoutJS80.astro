@@ -42,13 +42,11 @@ const homeLabel = isEnglish ? 'Home' : 'Inicio';
 
 const prefix = isEnglish ? '/en' : '';
 const js80Href    = `${prefix}/js80`;
-const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
-const turneroHref = `${prefix}/js80/turnero-digital`;
-const leadsHref   = `${prefix}/portfolio/leads-tablero`;
+const aureHref     = 'https://aure-ebon.vercel.app/';
+const leadsHref    = 'https://www.js80.studio/proyectos/leads-tablero/';
+const cardioHref  = 'https://consulcardiologico.vercel.app/';
+const hospitalHref = 'https://institucionalmultiple.js80.studio/';
 
-const cardioActive       = basePath === '/js80/cardiologia-barrio-scarano';
-const turneroActive      = basePath === '/js80/turnero-digital';
-const leadsActive        = basePath === '/portfolio/leads-tablero';
 const js80OverviewActive = basePath === '/js80';
 
 const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
@@ -333,6 +331,29 @@ const breadcrumbItems = segments.length > 0
             <div class="js80-products-divider"></div>
             <div class="js80-products-label">{N.products}</div>
             <a
+              href={aureHref}
+              role="menuitem"
+              class="js80-products-item js80-products-item-ext js80-products-item-featured"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="js80-products-featured-name">
+                <span class="js80-products-featured-dot" aria-hidden="true"></span>
+                AURE Real Estate
+              </span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={leadsHref}
+              role="menuitem"
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>{N.leads}</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
+            </a>
+            <a
               href={vidrieraHref}
               role="menuitem"
               class="js80-products-item js80-products-item-ext"
@@ -343,28 +364,24 @@ const breadcrumbItems = segments.length > 0
               <span class="js80-products-ext" aria-hidden="true">↗</span>
             </a>
             <a
-              href={turneroHref}
-              role="menuitem"
-              class="js80-products-item"
-              style={turneroActive ? 'color: #2c2c2a;' : ''}
-            >
-              Turnero Digital
-            </a>
-            <a
               href={cardioHref}
               role="menuitem"
-              class="js80-products-item"
-              style={cardioActive ? 'color: #2c2c2a;' : ''}
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Cardiología B·S
+              <span>Cardiología B·S</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
             </a>
             <a
-              href={leadsHref}
+              href={hospitalHref}
               role="menuitem"
-              class="js80-products-item"
-              style={leadsActive ? 'color: #2c2c2a;' : ''}
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {N.leads}
+              <span>Hospital Aranda</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
             </a>
             <a
               href={inmobiliariaHref}
@@ -585,6 +602,25 @@ const breadcrumbItems = segments.length > 0
 
   .js80-products-item-ext:hover .js80-products-ext {
     color: #2c2c2a;
+  }
+
+  .js80-products-item-featured {
+    color: #2c2c2a;
+    font-weight: 600;
+  }
+
+  .js80-products-featured-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .js80-products-featured-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #6B8CFF, #8B6FFF);
+    flex-shrink: 0;
   }
 
   .js80-products-divider {
