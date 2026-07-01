@@ -14,10 +14,8 @@ Copiar el contenido de `impulse/` a `public/images/impulse/` y el de `udesa/` a 
 
 ### Marcha del Orgullo 2025 — Campaña "Hablemos de VIH"
 - `pride-congreso-noche.jpg` — **HERO**: Congreso iluminado de fondo, escenario Impulse de noche
-- `pride-drag-queen.jpg` — drag queen corona rosa (primer plano)
 - `pride-hablemos-vih.jpg` — cartel "Hablemos de VIH" sobre escenario
 - `pride-carroza-campania.jpg` — cartel "No me dejes sin tratamiento"
-- `pride-personaje-lila.jpg` — personaje con galera lila y flores *(opcional, para caso interno)*
 
 ### Chatbot "Indetectable = Intransmisible"
 - `chatbot-presentacion.jpg` — Juanse presentando con micrófono

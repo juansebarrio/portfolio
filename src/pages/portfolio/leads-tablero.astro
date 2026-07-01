@@ -1,12 +1,13 @@
 ---
 export const prerender = false;
 import Layout from '../../layouts/Layout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
 ---
 
 <Layout
   title="Tablero de leads para PyMEs · Caso de estudio · Juan Segundo Barrio"
   description="Cómo diseñé y construí un CRM ligero que prioriza una pregunta sobre todas: ¿qué tengo que hacer hoy? Caso de estudio del producto que armé en JS80."
-  ogImage="/images/portfolio/leads-tablero/home.png"
+  ogImage="/images/portfolio/leads-tablero/og-leads-tablero.jpg"
   ogType="article"
 >
 
@@ -77,9 +78,9 @@ import Layout from '../../layouts/Layout.astro';
       <h2 class="reveal-up" style="--i: 0">El tablero no es un dashboard</h2>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/home.png"
+        <img src="/images/portfolio/leads-tablero/home.webp"
              alt="Pantalla del tablero principal con patrón detectado y leads que se enfrían"
-             loading="eager" />
+             loading="eager" fetchpriority="high" width="1920" height="2081" />
       </figure>
 
       <p>La home tiene una estructura intencional:</p>
@@ -99,9 +100,9 @@ import Layout from '../../layouts/Layout.astro';
       <h2 class="reveal-up" style="--i: 0">La inteligencia honesta</h2>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/patrones.png"
+        <img src="/images/portfolio/leads-tablero/patrones.webp"
              alt="Pantalla de patrones detectados con los 5 tipos de insights"
-             loading="lazy" />
+             loading="lazy" width="1920" height="2624" />
       </figure>
 
       <p>Cinco detectores que cruzan el pipeline, el equipo y el histórico:</p>
@@ -137,9 +138,9 @@ WHERE l.estado = 'propuesta'
       <h2 class="reveal-up" style="--i: 0">La ficha del lead</h2>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/lead-detalle.png"
+        <img src="/images/portfolio/leads-tablero/lead-detalle.webp"
              alt="Ficha de detalle de un lead con valor, estado, agenda y contactos"
-             loading="lazy" />
+             loading="lazy" width="1920" height="1200" />
       </figure>
 
       <p>Cada lead es una página completa con cuatro cards de estado (valor, etapa, días en pipeline, responsable), un bloque destacado de <em>lo siguiente</em>, el historial de contactos y la agenda.</p>
@@ -152,9 +153,9 @@ WHERE l.estado = 'propuesta'
       <h2 class="reveal-up" style="--i: 0">El kanban del pipeline</h2>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/pipeline.png"
+        <img src="/images/portfolio/leads-tablero/pipeline.webp"
              alt="Kanban del pipeline con cards de leads distribuidas en 5 columnas"
-             loading="lazy" />
+             loading="lazy" width="1920" height="1200" />
       </figure>
 
       <p>Drag &amp; drop con <code>@dnd-kit</code>, animaciones de spring con <code>framer-motion</code>. Cinco columnas, cada una con su propio acento de color en la barra superior.</p>
@@ -167,9 +168,9 @@ WHERE l.estado = 'propuesta'
       <p>Dos caras del mismo mes, con dos audiencias distintas.</p>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/conversion.png"
+        <img src="/images/portfolio/leads-tablero/conversion.webp"
              alt="Pantalla de conversión con el embudo y los insights del mes"
-             loading="lazy" />
+             loading="lazy" width="1920" height="2373" />
       </figure>
 
       <p>El título de <code>/conversion</code> dice <strong>"Dónde estamos <em>perdiendo leads</em>"</strong> — no "Embudo de conversión". El framing importa: el dueño abre esta pantalla buscando un problema, no contemplando una métrica.</p>
@@ -177,9 +178,9 @@ WHERE l.estado = 'propuesta'
       <p>Un insight del mes en el header. Embudo con tasas de conversión entre etapas. Tiempo en cada etapa con la etapa cuello destacada. Línea de tendencia de 3 meses.</p>
 
       <figure class="case-figure reveal-up" style="--i: 2">
-        <img src="/images/portfolio/leads-tablero/cerrados.png"
+        <img src="/images/portfolio/leads-tablero/cerrados.webp"
              alt="Pantalla de cerrados con ranking de comerciales y lista de cierres"
-             loading="lazy" />
+             loading="lazy" width="1920" height="1788" />
       </figure>
 
       <p><code>/cerrados</code> es la contraparte: el resultado tangible. Ranking de comerciales con podio de medallas oro, plata, bronce. La gamificación sutil <strong>funciona en ventas</strong>, y el ranking se calcula por valor cerrado, no por ratio — eso protege al comercial que cierra pocos pero grandes.</p>
@@ -200,9 +201,9 @@ WHERE l.estado = 'propuesta'
       <h2 class="reveal-up" style="--i: 0">Mobile-first sin ser mobile-only</h2>
 
       <figure class="case-figure reveal-up" style="--i: 1">
-        <img src="/images/portfolio/leads-tablero/cerrados-mobile.png"
+        <img src="/images/portfolio/leads-tablero/cerrados-mobile.webp"
              alt="Versión mobile de la pantalla de cerrados"
-             loading="lazy" />
+             loading="lazy" width="780" height="3776" />
       </figure>
 
       <p>Las 7 pantallas principales tienen rediseño mobile completo. No es responsive automático: los KPIs se reordenan en 2×2, los acordeones se colapsan distinto, las tablas se compactan dejando solo lo esencial.</p>
@@ -261,6 +262,8 @@ WHERE l.estado = 'propuesta'
         ← Volver a todos los trabajos
       </a>
     </footer>
+
+    <ContactCTA />
 
   </div>
 

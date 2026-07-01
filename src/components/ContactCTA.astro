@@ -1,0 +1,137 @@
+---
+interface Props {
+  lang?: 'es' | 'en';
+}
+const { lang = 'es' } = Astro.props;
+
+const t = lang === 'en'
+  ? {
+      eyebrow: 'Contact',
+      title: "Let's talk?",
+      body: "I'm open to opportunities as a Product Designer with an AI focus. I'm also interested in collaborations with social organizations and projects that blend technology with purpose. I'm authorized to work across Mercosur and the European Union, both as a freelancer and as an employee.",
+      schedule: 'Schedule a meeting',
+    }
+  : {
+      eyebrow: 'Contacto',
+      title: '¿Conversamos?',
+      body: 'Estoy abierto a oportunidades como Product Designer con foco en IA. También me interesan colaboraciones con organizaciones sociales y proyectos que mezclen tecnología y propósito. Cuento con autorización para trabajar en todo el Mercosur y la Unión Europea, tanto de manera autónoma como en relación de dependencia.',
+      schedule: 'Agendar una reunión',
+    };
+---
+
+<section class="contact-cta">
+  <p class="cta-eyebrow">{t.eyebrow}</p>
+  <h2 class="cta-title">{t.title}</h2>
+  <p class="cta-body">{t.body}</p>
+  <div class="cta-links">
+    <a href="mailto:contacto@juansebarrio.com" class="cta-link">
+      contacto@juansebarrio.com&nbsp;↗
+    </a>
+    <span class="cta-sep" aria-hidden="true">·</span>
+    <a
+      href="https://www.linkedin.com/in/juansebarrio"
+      class="cta-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      LinkedIn&nbsp;↗
+    </a>
+    <span class="cta-sep" aria-hidden="true">·</span>
+    <a
+      href="https://calendar.app.google/ZCQuzHpjeGnoKUrp6"
+      class="cta-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {t.schedule}&nbsp;↗
+    </a>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    padding: clamp(4rem, 10vw, 8rem) 0 clamp(2rem, 5vw, 4rem);
+    border-top: 1px solid var(--hairline);
+    margin-top: clamp(3rem, 8vw, 6rem);
+  }
+
+  .cta-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .cta-title {
+    font-family: var(--font-sans);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--fg);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 2rem;
+  }
+
+  .cta-body {
+    font-size: 1.125rem;
+    color: var(--muted);
+    max-width: 40rem;
+    line-height: 1.6;
+    margin: 0 0 3rem;
+    font-family: var(--font-sans);
+  }
+
+  .cta-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-link {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--fg);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .cta-sep {
+    color: var(--muted);
+    font-size: 1.25rem;
+    line-height: 1;
+    user-select: none;
+  }
+
+  @media (max-width: 640px) {
+    .cta-title {
+      font-size: clamp(1.75rem, 8vw, 3.5rem);
+      letter-spacing: -0.01em;
+    }
+
+    .cta-body {
+      font-size: 1rem;
+    }
+
+    .cta-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .cta-link {
+      font-size: 1rem;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .cta-sep {
+      display: none;
+    }
+  }
+</style>

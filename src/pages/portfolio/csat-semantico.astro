@@ -2,11 +2,13 @@
 export const prerender = false;
 
 import Layout from '../../layouts/Layout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
 ---
 
 <Layout
   title="Convertir la voz del cliente en backlog — Juanse Barrio"
   description="Caso de estudio: sistema mensual que transforma comentarios de CSAT en un backlog accionable para los squads de Banco Galicia. Base del squad de Visión Digital."
+  noindex
 >
 
   <script is:inline>
@@ -240,6 +242,8 @@ import Layout from '../../layouts/Layout.astro';
       <a href="/portfolio" class="nav-link">← Ver todos los casos</a>
       <a href="/portfolio/upgrade" class="nav-link">Siguiente caso: Upgrade de paquetes →</a>
     </nav>
+
+    <ContactCTA />
 
   </div>
 

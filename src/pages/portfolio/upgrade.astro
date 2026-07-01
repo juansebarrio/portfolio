@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
 
 export const prerender = false;
 ---
 
-<Layout title="El upgrade más rápido del sistema financiero argentino — Juanse Barrio" description="Caso de estudio: rediseño del flujo de upgrade de paquetes de Banco Galicia. De una webview inconsistente a una experiencia nativa sin fricción.">
+<Layout title="El upgrade más rápido del sistema financiero argentino — Juanse Barrio" description="Caso de estudio: rediseño del flujo de upgrade de paquetes de Banco Galicia. De una webview inconsistente a una experiencia nativa sin fricción." noindex>
 
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
@@ -126,12 +127,12 @@ export const prerender = false;
       <p class="intro-text">Prototipo de alta fidelidad construido en Figma, usado para validación interna con producto, tecnología y stakeholders antes de pasar a desarrollo.</p>
       <div class="video-wrapper">
         <video
-          src="/images/portfolio/upgrade/07-video-final.mov"
+          src="/images/portfolio/upgrade/07-video-final.mp4"
+          poster="/images/portfolio/upgrade/07-video-poster.webp"
           autoplay
           muted
           loop
           playsinline
-          loading="lazy"
         ></video>
       </div>
     </section>
@@ -153,6 +154,8 @@ export const prerender = false;
       <a href="/portfolio" class="nav-link">← Ver todos los casos</a>
       <a href="/portfolio/csat-semantico" class="nav-link">Siguiente caso: CSAT con IA →</a>
     </nav>
+
+    <ContactCTA />
 
   </div>
 

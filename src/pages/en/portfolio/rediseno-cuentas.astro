@@ -1,10 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
 
 export const prerender = false;
 ---
 
-<Layout title="Designing accounts from scratch — Juanse Barrio" description="Case study: redesign of Banco Galicia's Accounts Overview, the most-used screen in the app.">
+<Layout title="Designing accounts from scratch — Juanse Barrio" description="Case study: redesign of Banco Galicia's Accounts Overview, the most-used screen in the app." noindex>
 
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
@@ -276,9 +277,11 @@ export const prerender = false;
       </a>
       <a href="/en/portfolio/csat-semantico" class="nav-item nav-item-right">
         <span class="nav-label">Next case →</span>
-        <span class="nav-titulo">From 10,000 opinions to a prioritized backlog</span>
+        <span class="nav-titulo">From hundreds of monthly comments to a prioritized backlog</span>
       </a>
     </nav>
+
+    <ContactCTA lang="en" />
 
   </div>
 

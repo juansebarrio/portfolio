@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
 
 export const prerender = false;
 ---
 
-<Layout title="El primer PFM argentino hecho por un banco — Juanse Barrio" description="Caso de estudio: Personal Finance Manager nativo de Banco Galicia con categorización automática de tarjetas de crédito.">
+<Layout title="El primer PFM argentino hecho por un banco — Juanse Barrio" description="Caso de estudio: Personal Finance Manager nativo de Banco Galicia con categorización automática de tarjetas de crédito." noindex>
 
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
@@ -68,7 +69,7 @@ export const prerender = false;
       </ul>
 
       <div class="mockup-frame wide">
-        <img src="/images/portfolio/pfm/research-slides.png" alt="Grilla de slides del research cualitativo con hallazgos por perfil" loading="lazy" decoding="async" />
+        <img src="/images/portfolio/pfm/research-slides.webp" alt="Grilla de slides del research cualitativo con hallazgos por perfil" loading="lazy" decoding="async" />
       </div>
       <p class="fig-caption">Research Overview Ideal — antecedentes, análisis y perfiles detectados.</p>
 
@@ -265,9 +266,11 @@ export const prerender = false;
       </a>
       <a href="/portfolio/csat-semantico" class="nav-item nav-item-right">
         <span class="nav-label">Caso siguiente →</span>
-        <span class="nav-titulo">De 10.000 opiniones a un backlog priorizado</span>
+        <span class="nav-titulo">De cientos de comentarios por mes a un backlog priorizado</span>
       </a>
     </nav>
+
+    <ContactCTA />
 
   </div>
 

@@ -1,11 +1,13 @@
 ---
 export const prerender = false;
 import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
 ---
 
 <Layout
   title="Turning the voice of the customer into a backlog — Juanse Barrio"
   description="Case study: a monthly system that transforms CSAT comments into an actionable backlog for Banco Galicia squads. Foundation of the Digital Vision squad."
+  noindex
 >
 
   <script is:inline>
@@ -229,6 +231,8 @@ import Layout from '../../../layouts/Layout.astro';
       <a href="/en/portfolio" class="nav-link">← View all cases</a>
       <a href="/en/portfolio/upgrade" class="nav-link">Next case: Package upgrade →</a>
     </nav>
+
+    <ContactCTA lang="en" />
 
   </div>
 

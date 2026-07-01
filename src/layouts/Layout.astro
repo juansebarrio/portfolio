@@ -2,12 +2,14 @@
 import '../styles/global.css';
 import BrandLockup from '../components/BrandLockup.astro';
 import ThemeSwitch from '../components/ThemeSwitch.astro';
+import { PRODUCTS, productLabel as productLabelFor } from '../data/products';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   ogType?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = 'Portafolio de Juan Segundo Barrio',
   ogImage = '/og-image.jpg',
   ogType = 'website',
+  noindex = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -60,10 +63,6 @@ const homeHref    = isEnglish ? '/en' : '/';
 const expHref     = `${prefix}/experiencia`;
 const portHref    = `${prefix}/portfolio`;
 const js80Href    = `${prefix}/js80`;
-const aureHref     = 'https://aure-ebon.vercel.app/';
-const leadsHref    = 'https://www.js80.studio/proyectos/leads-tablero/';
-const cardioHref  = 'https://consulcardiologico.vercel.app/';
-const hospitalHref = 'https://institucionalmultiple.js80.studio/';
 
 const homeActive    = basePath === '/';
 const expActive     = basePath === '/experiencia';
@@ -71,12 +70,11 @@ const portActive    = basePath.startsWith('/portfolio');
 const js80Active    = basePath === '/js80' || basePath.startsWith('/js80/');
 const js80OverviewActive = basePath === '/js80';
 
-const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
-const vidrieraHref     = 'https://www.js80.studio/vidriera';
+const productLabel = (p: (typeof PRODUCTS)[number]) => productLabelFor(p, isEnglish);
 
 const L = isEnglish
-  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard', leads: 'Leads Dashboard' }
-  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria', leads: 'Tablero de leads' };
+  ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', openMenu: 'Open menu', sendEmail: 'Send email', nda: 'NDA cases are confidential. Accessing them implies agreeing not to share or reproduce their content.' }
+  : { home: 'Inicio', exp: 'Experiencia', port: 'Portfolio', studio: 'Estudio JS80', products: 'Productos a medida', openMenu: 'Abrir menú', sendEmail: 'Enviar email', nda: 'Los casos bajo NDA son confidenciales. Su acceso implica aceptar no compartir ni reproducir el contenido.' };
 ---
 
 <!doctype html>
@@ -140,6 +138,7 @@ const L = isEnglish
     {/* theme-color: arranca oscuro (tema por defecto) y se sincroniza vía JS más abajo */}
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{title}</title>
 
     <link rel="canonical" href={canonicalUrl} />
@@ -202,6 +201,8 @@ const L = isEnglish
        ════════════════════════════════════════════════════════════ */}
     <div class="scroll-progress" aria-hidden="true"></div>
 
+    <a href="#main" class="skip-link">{isEnglish ? 'Skip to content' : 'Saltar al contenido'}</a>
+
     <header class="site-header">
       <nav class="site-nav">
 
@@ -232,7 +233,6 @@ const L = isEnglish
               type="button"
               id="js80-trigger"
               class:list={['js80-trigger', 'nav-link', { 'is-active': js80Active }]}
-              aria-haspopup="menu"
               aria-expanded="false"
               aria-controls="js80-menu"
             >
@@ -251,39 +251,30 @@ const L = isEnglish
                 <path d="M2 3.5L5 6.5L8 3.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <div id="js80-menu" class="js80-menu" role="menu" aria-labelledby="js80-trigger">
-              <a href={js80Href} role="menuitem" class:list={['js80-menu-overview', { 'is-active': js80OverviewActive }]}>
+            <div id="js80-menu" class="js80-menu">
+              <a href={js80Href} class:list={['js80-menu-overview', { 'is-active': js80OverviewActive }]}>
                 {L.studio}
               </a>
               <div class="js80-menu-divider"></div>
               <div class="js80-menu-label">{L.products}</div>
-              <a href={aureHref} role="menuitem" class="js80-menu-item js80-menu-item-ext js80-menu-item-featured" target="_blank" rel="noopener noreferrer">
-                <span class="js80-menu-featured-name">
-                  <span class="js80-menu-featured-dot" aria-hidden="true"></span>
-                  AURE Real Estate
-                </span>
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
-              <a href={leadsHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
-                {L.leads}
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
-              <a href={vidrieraHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
-                VidrierAI
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
-              <a href={cardioHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
-                Cardiología B·S
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
-              <a href={hospitalHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
-                Hospital Aranda
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
-              <a href={inmobiliariaHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
-                {L.inmobiliaria}
-                <span class="js80-menu-ext" aria-hidden="true">↗</span>
-              </a>
+              {PRODUCTS.map((p) => (
+                <a
+                  href={p.href}
+                  class:list={['js80-menu-item', 'js80-menu-item-ext', { 'js80-menu-item-featured': p.featured }]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {p.featured ? (
+                    <span class="js80-menu-featured-name">
+                      <span class="js80-menu-featured-dot" aria-hidden="true"></span>
+                      {productLabel(p)}
+                    </span>
+                  ) : (
+                    productLabel(p)
+                  )}
+                  <span class="js80-menu-ext" aria-hidden="true">↗</span>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -300,7 +291,7 @@ const L = isEnglish
         <button
           id="nav-toggle"
           class="nav-mobile nav-toggle"
-          aria-label="Abrir menú"
+          aria-label={L.openMenu}
           aria-expanded="false"
           aria-controls="nav-mobile-menu"
         >
@@ -345,33 +336,24 @@ const L = isEnglish
           </a>
 
           <p class="nav-mobile-label">{L.products}</p>
-          <a href={aureHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext nav-mobile-sublink-featured">
-            <span class="nav-mobile-featured-name">
-              <span class="nav-mobile-featured-dot" aria-hidden="true"></span>
-              AURE Real Estate
-            </span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={leadsHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
-            <span>{L.leads}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={vidrieraHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
-            <span>VidrierAI</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={cardioHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
-            <span>Cardiología B·S</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={hospitalHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
-            <span>Hospital Aranda</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={inmobiliariaHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
-            <span>{L.inmobiliaria}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
+          {PRODUCTS.map((p) => (
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={['nav-mobile-sublink', 'nav-mobile-sublink-ext', { 'nav-mobile-sublink-featured': p.featured }]}
+            >
+              {p.featured ? (
+                <span class="nav-mobile-featured-name">
+                  <span class="nav-mobile-featured-dot" aria-hidden="true"></span>
+                  {productLabel(p)}
+                </span>
+              ) : (
+                <span>{productLabel(p)}</span>
+              )}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
 
           <div class="nav-mobile-bottom">
             <a href={switchPath} class="nav-mobile-lang">
@@ -383,7 +365,7 @@ const L = isEnglish
       </div>
     </header>
 
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
 
@@ -399,7 +381,7 @@ const L = isEnglish
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
-          <a href="mailto:contacto@juansebarrio.com" aria-label="Enviar email" class="footer-icon">
+          <a href="mailto:contacto@juansebarrio.com" aria-label={L.sendEmail} class="footer-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
               <path d="m2 7 10 7 10-7"/>
@@ -408,18 +390,10 @@ const L = isEnglish
         </div>
 
         <span class="footer-nda">
-          Los casos bajo NDA son confidenciales. Su acceso implica aceptar no compartir ni reproducir el contenido.
+          {L.nda}
         </span>
       </div>
     </footer>
-
-    {/* Vercel analytics */}
-    <script>
-      import { inject } from '@vercel/analytics';
-      import { injectSpeedInsights } from '@vercel/speed-insights';
-      inject();
-      injectSpeedInsights();
-    </script>
 
     {/* ════════════════════════════════════════════════════════════
        SCROLL PROGRESS · animación de la barra
