@@ -58,7 +58,7 @@ export const prerender = false;
               <img
                 src="/images/portfolio/csat-semantico/csat-tile.webp"
                 alt="Juanse presentando los resultados del análisis CSAT a una audiencia de Galicia Design"
-                loading="eager" fetchpriority="high"
+                loading="lazy"
                 width="1600"
                 height="1000" decoding="async" />
             </div>
@@ -72,7 +72,7 @@ export const prerender = false;
 
           <a href="/portfolio/upgrade" class="caso-card">
             <div class="caso-media">
-              <video src="/images/portfolio/upgrade/07-video-final.mov" autoplay muted loop playsinline></video>
+              <img src="/images/portfolio/upgrade/07-video-poster.webp" alt="Pantalla final del flujo de upgrade rediseñado" loading="lazy" decoding="async" width="1384" height="720" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2026 · Product Design</p>
@@ -84,7 +84,7 @@ export const prerender = false;
 
           <a href="/portfolio/rediseno-cuentas" class="caso-card">
             <div class="caso-media">
-              <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Taller de alineación entre bancas: equipo revisando pantallas del rediseño en monitores grandes" loading="lazy" decoding="async" />
+              <img src="/images/portfolio/rediseno-cuentas/rediseno-card-preview.jpg" alt="Taller de alineación entre bancas: equipo revisando pantallas del rediseño en monitores grandes" loading="lazy" decoding="async" width="1920" height="1440" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2025 · Rediseño</p>
@@ -96,7 +96,7 @@ export const prerender = false;
 
           <a href="/portfolio/pfm" class="caso-card">
             <div class="caso-media">
-              <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Testeo guerrilla en sucursal: una persona usando el PFM en el celular mientras el equipo toma notas" loading="lazy" decoding="async" />
+              <img src="/images/portfolio/pfm/pfm-card-preview.jpg" alt="Testeo guerrilla en sucursal: una persona usando el PFM en el celular mientras el equipo toma notas" loading="lazy" decoding="async" width="1920" height="1080" />
             </div>
             <div class="caso-info">
               <p class="caso-meta">Banco Galicia · 2024 · Product Design</p>
@@ -122,9 +122,9 @@ export const prerender = false;
         <a href="/portfolio/leads-tablero" class="caso-card">
           <div class="caso-media caso-media-leads">
             <img
-              src="/images/portfolio/leads-tablero/home.png"
+              src="/images/portfolio/leads-tablero/home.webp"
               alt="Pantalla del tablero principal con patrón detectado y leads que se enfrían"
-              loading="lazy" decoding="async" />
+              loading="eager" fetchpriority="high" decoding="async" width="1920" height="2081" />
           </div>
           <div class="caso-info">
             <p class="caso-meta">JS80 · 2026 · Producto SaaS</p>
@@ -140,7 +140,7 @@ export const prerender = false;
             <img
               src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
               alt="Indetectable e Intransmisible — los dos personajes del Impulse Bot"
-              loading="lazy" decoding="async" />
+              loading="lazy" decoding="async" width="710" height="709" />
           </div>
           <div class="caso-info">
             <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>

@@ -85,7 +85,9 @@ const showCta  = !!(ctaLabel && ctaHref);
 </section>
 
 <script>
-  import { Conversation } from '@11labs/client';
+  // @11labs/client pesa ~500 KB: se importa recién al click del orbe
+  // para no cargarlo en el critical path de las páginas que lo incluyen.
+  type ElevenLabs = typeof import('@11labs/client');
 
   type State = 'idle' | 'connecting' | 'listening' | 'speaking' | 'error';
 
@@ -96,7 +98,7 @@ const showCta  = !!(ctaLabel && ctaHref);
     const idleHint = section.querySelector<HTMLElement>('.idle-hint')!;
     const AGENT_ID = section.dataset.agent!;
 
-    let convo: Awaited<ReturnType<typeof Conversation.startSession>> | null = null;
+    let convo: Awaited<ReturnType<ElevenLabs['Conversation']['startSession']>> | null = null;
 
     const getLabel = (state: State): string =>
       (section.dataset as Record<string, string>)[state] ?? '';
@@ -114,6 +116,7 @@ const showCta  = !!(ctaLabel && ctaHref);
       if (s !== 'idle' && s !== 'error') return;
       try {
         setState('connecting');
+        const { Conversation } = await import('@11labs/client');
         convo = await Conversation.startSession({
           agentId     : AGENT_ID,
           onConnect   : ()         => setState('listening'),
