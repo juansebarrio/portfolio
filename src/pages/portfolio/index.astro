@@ -474,14 +474,7 @@ export const prerender = false;
     justify-content: center;
   }
 
-  .caso-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms ease; }
-
-  .caso-card:hover .caso-media img { transform: scale(1.03); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .caso-media img { transition: none; }
-    .caso-card:hover .caso-media img { transform: none; }
-  }
+  .caso-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .caso-info { padding: 1.75rem; display: flex; flex-direction: column; }
 

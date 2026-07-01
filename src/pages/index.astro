@@ -962,7 +962,7 @@ const casosGalicia = [
   }
 
   .publico-card:hover .publico-img img {
-    transform: scale(1.03);
+    transform: scale(1.02);
   }
 
   .publico-bajada {
@@ -1038,11 +1038,6 @@ const casosGalicia = [
     filter: blur(16px) saturate(0.7);
     transform: scale(1.1);
     opacity: 0.4;
-    transition: transform 600ms ease;
-  }
-
-  .caso-card-locked:hover .caso-preview-blurred {
-    transform: scale(1.14);
   }
 
   .lock-overlay {
@@ -1308,8 +1303,6 @@ const casosGalicia = [
   @media (prefers-reduced-motion: reduce) {
     .js80-sphere-wrap { animation: none; }
     .js80-sphere      { animation: none; }
-    .publico-img img,
-    .caso-preview-blurred { transition: none; }
   }
 
   /* ─────────────────────────────
