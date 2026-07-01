@@ -421,11 +421,6 @@ const breadcrumbItems = segments.length > 0
     </footer>
 
     <script>
-      import { inject } from '@vercel/analytics';
-      import { injectSpeedInsights } from '@vercel/speed-insights';
-      inject();
-      injectSpeedInsights();
-
       // ── JS80 products dropdown ──
       const productsDropdown = document.querySelector<HTMLElement>('[data-js80-products]');
       const productsTrigger  = document.getElementById('js80-products-trigger');

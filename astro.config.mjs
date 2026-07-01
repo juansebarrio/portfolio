@@ -8,6 +8,13 @@ export default defineConfig({
   site: 'https://juansebarrio.com',
   output: 'static',
   adapter: vercel(),
+  redirects: {
+    // Casos JS80 deprecados: los productos viven en sus sitios externos
+    '/js80/cardiologia-barrio-scarano': 'https://consulcardiologico.vercel.app/',
+    '/en/js80/cardiologia-barrio-scarano': 'https://consulcardiologico.vercel.app/',
+    '/js80/turnero-digital': '/js80',
+    '/en/js80/turnero-digital': '/en/js80',
+  },
   integrations: [
     sitemap({
       filter: (page) => !/\/(acceso|port)\/?$/.test(page),
