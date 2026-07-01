@@ -76,6 +76,34 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
+   Accesibilidad — foco visible + skip link
+   ════════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 16px;
+  background-color: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
    Utilidades editoriales — accesibles desde toda la web
    ════════════════════════════════════════════════════════════════ */
 .meta-label {

@@ -5,6 +5,8 @@
  * → cualquier regla sin layer tiene mayor especificidad y la pisa).
  */
 
+import { PRODUCTS } from '../data/products';
+
 interface Props {
   title?: string;
   description?: string;
@@ -42,19 +44,14 @@ const homeLabel = isEnglish ? 'Home' : 'Inicio';
 
 const prefix = isEnglish ? '/en' : '';
 const js80Href    = `${prefix}/js80`;
-const aureHref     = 'https://aure-ebon.vercel.app/';
-const leadsHref    = 'https://www.js80.studio/proyectos/leads-tablero/';
-const cardioHref  = 'https://consulcardiologico.vercel.app/';
-const hospitalHref = 'https://institucionalmultiple.js80.studio/';
 
 const js80OverviewActive = basePath === '/js80';
 
-const inmobiliariaHref = 'https://www.js80.studio/trabajo/inmobiliaria';
-const vidrieraHref     = 'https://www.js80.studio/vidriera';
+const productLabel = (p: (typeof PRODUCTS)[number]) => p.labels[isEnglish ? 'en' : 'es'];
 
 const N = isEnglish
-  ? { studio: 'JS80 Studio', products: 'Custom Products', inmobiliaria: 'Real Estate Dashboard', leads: 'Leads Dashboard' }
-  : { studio: 'Estudio JS80', products: 'Productos a medida', inmobiliaria: 'Tablero para Inmobiliaria', leads: 'Tablero de leads' };
+  ? { studio: 'JS80 Studio', products: 'Custom Products' }
+  : { studio: 'Estudio JS80', products: 'Productos a medida' };
 
 const breadcrumbItems = segments.length > 0
   ? [
@@ -149,6 +146,11 @@ const breadcrumbItems = segments.length > 0
         -moz-osx-font-smoothing: grayscale;
       }
 
+      html[data-theme="js80"] .skip-link {
+        background-color: #2c2c2a;
+        color: #fafafa;
+      }
+
       html[data-theme="js80"] body {
         background-color: #fafafa;
         color: #2c2c2a;
@@ -205,8 +207,8 @@ const breadcrumbItems = segments.length > 0
         --text-primary:   #2c2c2a;
         --text-body:      #4a4a46;
         --text-secondary: #5a5a56;
-        --text-meta:      #8a8a84;
-        --text-ghost:     #a0a09a;
+        --text-meta:      #6b6b66;
+        --text-ghost:     #767670;
 
         --bg-main:        #fafafa;
         --bg-white:       #ffffff;
@@ -295,6 +297,8 @@ const breadcrumbItems = segments.length > 0
 
   <body>
 
+    <a href="#main" class="skip-link">{isEnglish ? 'Skip to content' : 'Saltar al contenido'}</a>
+
     <!-- ── NAV JS80 ── -->
     <header class="js80-nav">
       <div class="js80-nav-inner">
@@ -305,7 +309,6 @@ const breadcrumbItems = segments.length > 0
             type="button"
             id="js80-products-trigger"
             class="js80-nav-logo js80-products-trigger"
-            aria-haspopup="menu"
             aria-expanded="false"
             aria-controls="js80-products-menu"
           >
@@ -314,85 +317,33 @@ const breadcrumbItems = segments.length > 0
               <path d="M2 3.5L5 6.5L8 3.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <div
-            id="js80-products-menu"
-            class="js80-products-menu"
-            role="menu"
-            aria-labelledby="js80-products-trigger"
-          >
+          <div id="js80-products-menu" class="js80-products-menu">
             <a
               href={js80Href}
-              role="menuitem"
-              class="js80-products-overview"
-              style={js80OverviewActive ? 'color: #2c2c2a;' : ''}
+              class:list={['js80-products-overview', { 'is-active': js80OverviewActive }]}
             >
               {N.studio}
             </a>
             <div class="js80-products-divider"></div>
             <div class="js80-products-label">{N.products}</div>
-            <a
-              href={aureHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext js80-products-item-featured"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="js80-products-featured-name">
-                <span class="js80-products-featured-dot" aria-hidden="true"></span>
-                AURE Real Estate
-              </span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={leadsHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{N.leads}</span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={vidrieraHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>VidrierAI</span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={cardioHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Cardiología B·S</span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={hospitalHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Hospital Aranda</span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href={inmobiliariaHref}
-              role="menuitem"
-              class="js80-products-item js80-products-item-ext"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{N.inmobiliaria}</span>
-              <span class="js80-products-ext" aria-hidden="true">↗</span>
-            </a>
+            {PRODUCTS.map((p) => (
+              <a
+                href={p.href}
+                class:list={['js80-products-item', 'js80-products-item-ext', { 'js80-products-item-featured': p.featured }]}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {p.featured ? (
+                  <span class="js80-products-featured-name">
+                    <span class="js80-products-featured-dot" aria-hidden="true"></span>
+                    {productLabel(p)}
+                  </span>
+                ) : (
+                  <span>{productLabel(p)}</span>
+                )}
+                <span class="js80-products-ext" aria-hidden="true">↗</span>
+              </a>
+            ))}
           </div>
         </div>
 
@@ -408,7 +359,7 @@ const breadcrumbItems = segments.length > 0
     </header>
 
     <!-- ── CONTENIDO ── -->
-    <main>
+    <main id="main">
       <slot />
     </main>
 
@@ -478,7 +429,7 @@ const breadcrumbItems = segments.length > 0
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 12px;
     font-weight: 500;
-    color: #a0a09a;
+    color: #767670;
     text-decoration: none;
     letter-spacing: 0.02em;
     transition: color 0.2s ease;
@@ -525,7 +476,7 @@ const breadcrumbItems = segments.length > 0
   }
 
   .js80-products-chevron {
-    color: #a0a09a;
+    color: #767670;
     transition: transform 0.2s ease, color 0.2s ease;
     margin-top: 4px;
   }
@@ -576,6 +527,12 @@ const breadcrumbItems = segments.length > 0
     color: #2c2c2a;
   }
 
+  .js80-products-overview.is-active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: #6B8CFF;
+  }
+
   .js80-products-overview:hover,
   .js80-products-item:hover {
     color: #2c2c2a;
@@ -591,7 +548,7 @@ const breadcrumbItems = segments.length > 0
 
   .js80-products-ext {
     font-size: 11px;
-    color: #a0a09a;
+    color: #767670;
     transition: color 0.15s ease;
   }
 
@@ -630,7 +587,7 @@ const breadcrumbItems = segments.length > 0
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #a0a09a;
+    color: #767670;
     font-weight: 500;
   }
 
@@ -638,7 +595,7 @@ const breadcrumbItems = segments.length > 0
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 12px;
     font-weight: 500;
-    color: #a0a09a;
+    color: #767670;
     text-decoration: none;
     letter-spacing: 0.02em;
     transition: color 0.2s ease;
@@ -666,11 +623,11 @@ const breadcrumbItems = segments.length > 0
     gap: 1rem;
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 12px;
-    color: #a0a09a;
+    color: #767670;
   }
 
   .js80-footer-inner a {
-    color: #a0a09a;
+    color: #767670;
     text-decoration: none;
     transition: color 0.2s ease;
   }

@@ -248,6 +248,11 @@ const showCta  = !!(ctaLabel && ctaHref);
   .orb:hover { filter: brightness(1.1); }
   .orb:disabled { cursor: default; }
 
+  .orb:focus-visible {
+    outline: 2px solid var(--c-blue, #6B8CFF);
+    outline-offset: 6px;
+  }
+
   .ring {
     position: absolute;
     width: 300px;

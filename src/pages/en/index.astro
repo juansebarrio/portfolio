@@ -58,6 +58,8 @@ const casosGalicia = [
 
   <!-- ── HERO ── -->
   <section class="hero">
+
+    <!-- Ghost background marquee -->
     <div class="hero-marquee" aria-hidden="true">
       <div class="marquee-track">
         {[...Array(3)].map(() => (
@@ -66,21 +68,44 @@ const casosGalicia = [
       </div>
     </div>
 
+    <!-- Corner meta — brand manual language -->
+    <div class="hero-corner hero-corner-tl">
+      <span class="hero-dot" aria-hidden="true"></span>
+      <span>AVAILABLE · BUENOS AIRES</span>
+    </div>
+    <div class="hero-corner hero-corner-tr">— 2026</div>
+
+    <!-- Content -->
     <div class="hero-content">
+
       <div class="hero-heading">
-        <h1 class="hero-title">AI Product Designer</h1>
-        <p class="hero-subtitle">Banco Galicia&nbsp;·&nbsp;NGO Vice President&nbsp;·&nbsp;Diversity &amp; Inclusion</p>
+        <p class="hero-descriptor reveal-up" style="--i: 0">
+          AI PRODUCT DESIGNER · BANCO GALICIA&nbsp;&nbsp;/&nbsp;&nbsp;NGO VICE PRESIDENT&nbsp;&nbsp;/&nbsp;&nbsp;DEI
+        </p>
+        <h1 class="hero-title reveal-up" style="--i: 1">
+          I design products<br />
+          focused on <em>real people</em>.
+        </h1>
+        <p class="hero-bio reveal-up" style="--i: 2">
+          I work at the intersection of AI and underrepresented communities.
+          I design with honesty and rigor. No ornament.
+        </p>
       </div>
 
-      <p class="hero-bio">
-        Technology has always been part of my story. Today I design digital products
-        born from that same passion: creating useful, human, and meaningful experiences.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="/en/portfolio" class="btn-primary">View portfolio</a>
-        <a href="/en/experiencia" class="btn-text">My experience →</a>
+      <div class="hero-buttons reveal-up" style="--i: 3">
+        <a href="/en/portfolio" class="btn-primary">
+          <span>View portfolio</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/en/experiencia" class="btn-text">My experience</a>
       </div>
+
+    </div>
+
+    <!-- Editorial scroll hint -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="hero-scroll-line"></span>
+      <span class="hero-scroll-label">SCROLL</span>
     </div>
   </section>
 
@@ -356,6 +381,10 @@ const casosGalicia = [
     pointer-events: none;
     user-select: none;
     z-index: 0;
+    opacity: 0.05;
+  }
+
+  :root[data-theme="dark"] .hero-marquee {
     opacity: 0.08;
   }
 
@@ -368,12 +397,45 @@ const casosGalicia = [
 
   .marquee-bg-item {
     flex-shrink: 0;
-    font-family: 'Syne', system-ui, sans-serif;
+    font-family: var(--font-sans) !important;
     font-size: clamp(4rem, 9vw, 8rem);
     font-weight: 700;
     line-height: 1;
-    color: #f0f0f0;
+    color: var(--fg);
     padding-right: 2rem;
+  }
+
+  /* Hero editorial corners */
+  .hero-corner {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-corner-tl { top: 24px; left: clamp(1.5rem, 4vw, 4rem); }
+  .hero-corner-tr { top: 24px; right: clamp(1.5rem, 4vw, 4rem); }
+
+  .hero-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+    animation: hero-dot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes hero-dot-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+    70%  { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
   }
 
   .hero-content {
@@ -389,40 +451,157 @@ const casosGalicia = [
 
   .hero-heading { display: flex; flex-direction: column; gap: 0.75rem; }
 
-  .hero-title {
-    font-family: 'Syne', system-ui, sans-serif !important;
-    font-size: clamp(2.5rem, 6vw, 5rem) !important;
-    font-weight: 700 !important;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: #f0f0f0;
+  /* Hero: mono editorial descriptor */
+  .hero-descriptor {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1vw, 13px);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
     margin: 0;
   }
 
-  .hero-subtitle { font-size: clamp(0.875rem, 1.5vw, 1rem); font-weight: 500; color: #6b6b6b; margin: 0; }
+  .hero-title {
+    font-family: var(--font-sans) !important;
+    font-size: clamp(2.5rem, 6vw, 5rem) !important;
+    font-weight: 500 !important;
+    line-height: var(--lh-display);
+    letter-spacing: var(--track-display);
+    color: var(--fg) !important;
+    margin: 0;
+  }
 
-  .hero-bio { color: #a0a0a0; line-height: 1.75; font-size: 1rem; max-width: 38ch; margin: 0; }
+  .hero-title em {
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.08em;
+    height: 0.08em;
+    background-color: var(--fg);
+    opacity: 0.18;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: hero-underline-grow 1.4s var(--ease-out) 0.8s forwards;
+  }
+
+  @keyframes hero-underline-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .hero-bio {
+    color: var(--muted) !important;
+    font-family: var(--font-sans) !important;
+    font-size: clamp(1rem, 1.4vw, 1.125rem) !important;
+    line-height: 1.65 !important;
+    max-width: 38ch;
+    margin: 0;
+  }
 
   .hero-buttons { display: flex; align-items: center; gap: 2rem; }
 
+  /* btn-primary: full ink, strong contrast */
   .btn-primary {
     display: inline-flex;
     align-items: center;
-    padding: 0.7rem 1.5rem;
-    font-size: 0.875rem;
+    gap: 10px;
+    padding: 12px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #f0f0f0;
-    background-color: #141414;
-    border: 1px solid rgba(240, 240, 240, 0.15);
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--bg);
+    background-color: var(--fg);
+    border: 1px solid var(--fg);
     text-decoration: none;
-    transition: border-color 0.2s ease;
+    transition:
+      gap var(--dur-base) var(--ease-out),
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
   }
 
-  .btn-primary:hover { border-color: rgba(240, 240, 240, 0.4); }
+  .btn-primary:hover {
+    gap: 16px;
+    background-color: var(--bg);
+    color: var(--fg);
+    border-color: var(--fg);
+  }
 
-  .btn-text { font-size: 0.875rem; font-weight: 500; color: #6b6b6b; text-decoration: none; transition: color 0.2s ease; }
-  .btn-text:hover { color: #f0f0f0; }
+  .btn-arrow { display: inline-block; }
+
+  /* btn-text: animated underline */
+  .btn-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .btn-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .btn-text:hover { color: var(--fg); }
+  .btn-text:hover::after { transform: scaleX(1); }
+
+  /* Hero scroll hint */
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 32px;
+    background-color: var(--fg);
+    transform-origin: top;
+    animation: hero-scroll-line 2s var(--ease-in-out) infinite;
+  }
+
+  .hero-scroll-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: var(--track-mono);
+    color: var(--muted);
+  }
+
+  @keyframes hero-scroll-line {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
 
   .taller-section {
     padding: 6rem 0;
@@ -615,6 +794,25 @@ const casosGalicia = [
     .js80-sphere-sm .js80-sphere { width: 40px; height: 40px; animation: js80-spin 40s linear infinite; box-shadow: 0 0 0 1px rgba(107,140,255,0.2), 0 0 0 4px rgba(107,140,255,0.07); }
     .js80-logo-text { display: flex; flex-direction: column; gap: 3px; }
     .js80-dot-sep { display: none; }
+  }
+
+  /* Hero responsive (redesigned hero) */
+  @media (max-width: 720px) {
+    .hero-corner-tl,
+    .hero-corner-tr {
+      font-size: 9px;
+      top: 16px;
+    }
+    .hero-scroll-hint {
+      display: none;
+    }
+  }
+
+  /* Hero reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title em::after { transform: scaleX(1); animation: none; }
+    .hero-scroll-line { animation: none; }
+    .hero-dot { animation: none; }
   }
 </style>
 
