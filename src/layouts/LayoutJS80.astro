@@ -42,11 +42,10 @@ const homeLabel = isEnglish ? 'Home' : 'Inicio';
 
 const prefix = isEnglish ? '/en' : '';
 const js80Href    = `${prefix}/js80`;
-const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
+const cardioHref  = 'https://consulcardiologico.vercel.app/';
 const turneroHref = `${prefix}/js80/turnero-digital`;
 const leadsHref   = `${prefix}/portfolio/leads-tablero`;
 
-const cardioActive       = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive      = basePath === '/js80/turnero-digital';
 const leadsActive        = basePath === '/portfolio/leads-tablero';
 const js80OverviewActive = basePath === '/js80';
@@ -353,10 +352,12 @@ const breadcrumbItems = segments.length > 0
             <a
               href={cardioHref}
               role="menuitem"
-              class="js80-products-item"
-              style={cardioActive ? 'color: #2c2c2a;' : ''}
+              class="js80-products-item js80-products-item-ext"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Cardiología B·S
+              <span>Cardiología B·S</span>
+              <span class="js80-products-ext" aria-hidden="true">↗</span>
             </a>
             <a
               href={leadsHref}

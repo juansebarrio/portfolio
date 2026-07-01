@@ -60,7 +60,7 @@ const homeHref    = isEnglish ? '/en' : '/';
 const expHref     = `${prefix}/experiencia`;
 const portHref    = `${prefix}/portfolio`;
 const js80Href    = `${prefix}/js80`;
-const cardioHref  = `${prefix}/js80/cardiologia-barrio-scarano`;
+const cardioHref  = 'https://consulcardiologico.vercel.app/';
 const turneroHref = `${prefix}/js80/turnero-digital`;
 const leadsHref   = `${prefix}/portfolio/leads-tablero`;
 
@@ -68,7 +68,6 @@ const homeActive    = basePath === '/';
 const expActive     = basePath === '/experiencia';
 const portActive    = basePath.startsWith('/portfolio');
 const js80Active    = basePath === '/js80' || basePath.startsWith('/js80/');
-const cardioActive  = basePath === '/js80/cardiologia-barrio-scarano';
 const turneroActive = basePath === '/js80/turnero-digital';
 const leadsActive   = basePath === '/portfolio/leads-tablero';
 const js80OverviewActive = basePath === '/js80';
@@ -266,8 +265,9 @@ const L = isEnglish
               <a href={turneroHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': turneroActive }]}>
                 Turnero Digital
               </a>
-              <a href={cardioHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': cardioActive }]}>
+              <a href={cardioHref} role="menuitem" class="js80-menu-item js80-menu-item-ext" target="_blank" rel="noopener noreferrer">
                 Cardiología B·S
+                <span class="js80-menu-ext" aria-hidden="true">↗</span>
               </a>
               <a href={leadsHref} role="menuitem" class:list={['js80-menu-item', { 'is-active': leadsActive }]}>
                 {L.leads}
@@ -342,7 +342,10 @@ const L = isEnglish
             <span aria-hidden="true">↗</span>
           </a>
           <a href={turneroHref} class:list={['nav-mobile-sublink', { 'is-active': turneroActive }]}>Turnero Digital</a>
-          <a href={cardioHref} class:list={['nav-mobile-sublink', { 'is-active': cardioActive }]}>Cardiología B·S</a>
+          <a href={cardioHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
+            <span>Cardiología B·S</span>
+            <span aria-hidden="true">↗</span>
+          </a>
           <a href={leadsHref} class:list={['nav-mobile-sublink', { 'is-active': leadsActive }]}>{L.leads}</a>
           <a href={inmobiliariaHref} target="_blank" rel="noopener noreferrer" class="nav-mobile-sublink nav-mobile-sublink-ext">
             <span>{L.inmobiliaria}</span>
