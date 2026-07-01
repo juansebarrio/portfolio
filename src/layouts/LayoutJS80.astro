@@ -5,7 +5,7 @@
  * → cualquier regla sin layer tiene mayor especificidad y la pisa).
  */
 
-import { PRODUCTS } from '../data/products';
+import { PRODUCTS, productLabel as productLabelFor } from '../data/products';
 
 interface Props {
   title?: string;
@@ -47,7 +47,7 @@ const js80Href    = `${prefix}/js80`;
 
 const js80OverviewActive = basePath === '/js80';
 
-const productLabel = (p: (typeof PRODUCTS)[number]) => p.labels[isEnglish ? 'en' : 'es'];
+const productLabel = (p: (typeof PRODUCTS)[number]) => productLabelFor(p, isEnglish);
 
 const N = isEnglish
   ? { studio: 'JS80 Studio', products: 'Custom Products' }
@@ -146,9 +146,24 @@ const breadcrumbItems = segments.length > 0
         -moz-osx-font-smoothing: grayscale;
       }
 
+      /* Skip link autocontenido: este layout no importa global.css */
       html[data-theme="js80"] .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 1000;
+        padding: 10px 16px;
         background-color: #2c2c2a;
         color: #fafafa;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border-radius: 0 0 8px 0;
+        text-decoration: none;
+      }
+
+      html[data-theme="js80"] .skip-link:focus-visible {
+        left: 0;
       }
 
       html[data-theme="js80"] body {

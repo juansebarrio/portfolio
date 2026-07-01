@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import BrandLockup from '../components/BrandLockup.astro';
 import ThemeSwitch from '../components/ThemeSwitch.astro';
-import { PRODUCTS } from '../data/products';
+import { PRODUCTS, productLabel as productLabelFor } from '../data/products';
 
 interface Props {
   title?: string;
@@ -70,7 +70,7 @@ const portActive    = basePath.startsWith('/portfolio');
 const js80Active    = basePath === '/js80' || basePath.startsWith('/js80/');
 const js80OverviewActive = basePath === '/js80';
 
-const productLabel = (p: (typeof PRODUCTS)[number]) => p.labels[isEnglish ? 'en' : 'es'];
+const productLabel = (p: (typeof PRODUCTS)[number]) => productLabelFor(p, isEnglish);
 
 const L = isEnglish
   ? { home: 'Home', exp: 'Experience', port: 'Portfolio', studio: 'JS80 Studio', products: 'Custom Products', openMenu: 'Open menu', sendEmail: 'Send email', nda: 'NDA cases are confidential. Accessing them implies agreeing not to share or reproduce their content.' }

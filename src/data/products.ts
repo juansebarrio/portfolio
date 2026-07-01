@@ -7,6 +7,9 @@ export interface Product {
   featured?: boolean;
 }
 
+export const productLabel = (p: Product, isEnglish: boolean) =>
+  p.labels[isEnglish ? 'en' : 'es'];
+
 export const PRODUCTS: Product[] = [
   {
     key: 'aure',
