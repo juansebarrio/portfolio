@@ -17,7 +17,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !/\/(acceso|port)\/?$/.test(page),
+      // Fuera del sitemap: páginas utilitarias y casos bajo NDA (noindex)
+      filter: (page) =>
+        !/\/(acceso|port)\/?$/.test(page) &&
+        !/\/portfolio\/(csat-semantico|pfm|rediseno-cuentas|upgrade)\/?$/.test(page),
       i18n: {
         defaultLocale: 'es',
         locales: {

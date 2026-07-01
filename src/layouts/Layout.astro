@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description = 'Portafolio de Juan Segundo Barrio',
   ogImage = '/og-image.jpg',
   ogType = 'website',
+  noindex = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -140,6 +142,7 @@ const L = isEnglish
     {/* theme-color: arranca oscuro (tema por defecto) y se sincroniza vía JS más abajo */}
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{title}</title>
 
     <link rel="canonical" href={canonicalUrl} />
