@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
 ---
 
 <Layout
@@ -261,6 +262,8 @@ WHERE l.stage = 'proposal'
         ← Back to all work
       </a>
     </footer>
+
+    <ContactCTA lang="en" />
 
   </div>
 

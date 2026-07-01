@@ -33,6 +33,10 @@ export const prerender = false;
             <p id="inline-error" class="inline-error" hidden>Incorrect password. Try again.</p>
             <button type="submit" class="inline-submit">Unlock</button>
           </form>
+          <p class="lock-recruiter">
+            Recruiter without the password?
+            <a href="mailto:contacto@juansebarrio.com?subject=Access%20to%20NDA%20case%20studies">Request access by email →</a>
+          </p>
         </div>
         <div class="lock-preview" aria-hidden="true">
           <div class="preview-card preview-featured"></div>
@@ -354,6 +358,20 @@ export const prerender = false;
     width: 100%;
     max-width: 22rem;
     margin-top: 0.5rem;
+  }
+
+  .lock-recruiter {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin: 0.75rem 0 0;
+  }
+
+  .lock-recruiter a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
   }
 
   .inline-input {
