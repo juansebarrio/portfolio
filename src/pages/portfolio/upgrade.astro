@@ -39,12 +39,13 @@ export const prerender = false;
       </div>
     </div>
 
-    <!-- ── EL PROBLEMA ── -->
+    <!-- ── EL DIAGNÓSTICO ── -->
     <section class="seccion">
-      <p class="eyebrow">EL PROBLEMA</p>
-      <h2 class="seccion-titulo">Una webview que contaminaba todo</h2>
-      <p class="body-text">El flujo de upgrade de Banco Galicia vivía dentro de una SPA embebida como webview en la app. Esto generaba una experiencia visualmente degradada, inconsistente con el design system nativo, y con métricas imposibles de confiar: el 70% de los usuarios que entraba al funnel no tenía ninguna oferta disponible, lo que contaminaba la tasa de conversión real y generaba ruido operativo.</p>
-      <p class="body-text">El conversion rate oficial del flujo era del 6%. Pero ese número mentía: incluía usuarios sin oferta, usuarios explorando sin intención de compra, y fricción técnica propia de una webview. No había forma de saber cuántos usuarios con oferta real efectivamente convertían. Además, el flujo no existía como experiencia nativa, lo que lo dejaba fuera del design system, sin acceso a componentes actualizados y con limitaciones de performance.</p>
+      <p class="eyebrow">EL DIAGNÓSTICO</p>
+      <h2 class="seccion-titulo">El 6% escondía un 80%</h2>
+      <p class="body-text">El flujo de upgrade vivía en una SPA embebida como webview dentro de la app. La experiencia era inconsistente con el design system nativo y la conversión oficial era del 6%.</p>
+      <p class="body-text">Ese número no explicaba nada. Procesé las bases de clientes con IA para reconstruir el funnel real y encontré que el 70% de los usuarios que entraban no tenía ninguna oferta disponible: exploraban sin poder comprar. Entre quienes sí tenían oferta, la conversión era del 20%. El dropout real entre usuarios elegibles era del 80%.</p>
+      <p class="body-text">Con ese dato, la pregunta del proyecto cambió. No era cómo subir un 6%. Era cómo medir intención real y diseñar solo para quien podía convertir.</p>
     </section>
 
     <!-- ── LAS DECISIONES DE DISEÑO ── -->
