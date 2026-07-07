@@ -5,7 +5,7 @@ import ContactCTA from '../../../components/ContactCTA.astro';
 export const prerender = false;
 ---
 
-<Layout title="Argentina's fastest financial system upgrade — Juanse Barrio" description="Case study: redesign of Banco Galicia's package upgrade flow. From an inconsistent webview to a friction-free native experience." noindex>
+<Layout title="A conversion problem that was a measurement problem — Juanse Barrio" description="Case study: redesign of Banco Galicia's package upgrade flow. From an embedded webview to a native experience that first decides who gets to see what." noindex>
 
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
@@ -19,47 +19,48 @@ export const prerender = false;
     <!-- ── HERO ── -->
     <section class="hero">
       <p class="eyebrow">CASE STUDY · BANCO GALICIA · 2026</p>
-      <h1 class="hero-title">Argentina's fastest financial system upgrade</h1>
-      <p class="hero-sub">Redesign of the bank's package upgrade flow: from an inconsistent webview to a native experience that eliminates friction from the very first step.</p>
+      <h1 class="hero-title">A conversion problem that was a measurement problem</h1>
+      <p class="hero-sub">Redesign of the bank's package upgrade flow: from an embedded webview to a native experience that first decides who gets to see what.</p>
     </section>
 
     <!-- ── 30-SECOND SUMMARY ── -->
     <div class="resumen">
       <div class="resumen-col">
         <p class="resumen-eyebrow">THE PROBLEM</p>
-        <p class="resumen-frase">70% of users who entered the funnel had no available offer.</p>
+        <p class="resumen-frase">Official conversion was 6%, but 70% of the people entering the funnel had no available offer. The number measured nothing.</p>
       </div>
       <div class="resumen-col">
-        <p class="resumen-eyebrow">THE SOLUTION</p>
-        <p class="resumen-frase">Offer evaluation as a prerequisite and a native 3-step flow.</p>
+        <p class="resumen-eyebrow">THE DECISION</p>
+        <p class="resumen-frase">Offer evaluation as an entry prerequisite and a native 3-step flow.</p>
       </div>
       <div class="resumen-col">
-        <p class="resumen-eyebrow">THE IMPACT</p>
-        <p class="resumen-frase">Reliable metrics, experience consistent with the design system, and zero technical friction.</p>
+        <p class="resumen-eyebrow">THE OUTCOME</p>
+        <p class="resumen-frase">Flow designed, validated and built. It didn't reach production before I left the bank.</p>
       </div>
     </div>
 
-    <!-- ── THE PROBLEM ── -->
+    <!-- ── THE DIAGNOSIS ── -->
     <section class="seccion">
-      <p class="eyebrow">THE PROBLEM</p>
-      <h2 class="seccion-titulo">A webview that contaminated everything</h2>
-      <p class="body-text">Banco Galicia's upgrade flow lived inside a SPA embedded as a webview in the app. This created a visually degraded experience, inconsistent with the native design system, and with metrics impossible to trust: 70% of users who entered the funnel had no available offer, which contaminated the real conversion rate and generated operational noise.</p>
-      <p class="body-text">The official conversion rate for the flow was 6%. But that number was misleading: it included users without an offer, users browsing without purchase intent, and technical friction inherent to a webview. There was no way to know how many users with a real offer actually converted. Moreover, the flow didn't exist as a native experience, which left it outside the design system, without access to updated components and with performance limitations.</p>
+      <p class="eyebrow">THE DIAGNOSIS</p>
+      <h2 class="seccion-titulo">The 6% hid an 80%</h2>
+      <p class="body-text">The upgrade flow lived in a SPA embedded as a webview inside the app. The experience was inconsistent with the native design system and official conversion was 6%.</p>
+      <p class="body-text">That number explained nothing. I processed the customer databases with AI to reconstruct the real funnel and found that 70% of the users entering it had no available offer: they were browsing without being able to buy. Among those who did have an offer, conversion was 20%. Real dropout among eligible users was 80%.</p>
+      <p class="body-text">That data changed the project's question. It wasn't how to push 6% higher. It was how to measure real intent and design only for those who could convert.</p>
     </section>
 
     <!-- ── DESIGN DECISIONS ── -->
     <section class="seccion">
       <p class="eyebrow">THE DECISIONS</p>
-      <h2 class="seccion-titulo">Four decisions that changed the product</h2>
-      <p class="intro-text">I designed the full flow independently: from mapping the problem and defining scope to high-fidelity prototypes. I worked in coordination with product and technology to define technical constraints and business rules.</p>
+      <h2 class="seccion-titulo">Four decisions, with their cost</h2>
+      <p class="intro-text">I led the design team end to end: problem mapping, scope, flows and high-fidelity prototypes. I worked with Melanie on content design and with Nico, from the design system team, on custom components validated to scale across the bank. I used AI to analyze benchmarks and explore screen variants before defining the final flow. Technical constraints and business rules came out of the work with product and engineering.</p>
 
       <div class="decisiones">
 
         <div class="decision">
           <span class="decision-num">01</span>
           <div class="decision-body">
-            <h3 class="decision-titulo">Offer evaluation as a prerequisite</h3>
-            <p class="decision-texto">The most important decision wasn't visual — it was structural. The new flow doesn't show the plan comparator to all users. It first evaluates whether the customer has an available offer. If they don't, they don't enter the funnel. This cleans up metrics and eliminates the biggest source of noise.</p>
+            <h3 class="decision-titulo">Offer as a prerequisite</h3>
+            <p class="decision-texto">The finding: 70% of traffic had no offer. The decision: evaluate the offer before letting anyone in. No offer, no funnel. The alternative was to keep showing the catalog to everyone and live with dirty metrics. The cost: the flow's traffic would drop by about 70% overnight. It was the hardest decision to defend internally, because it changed how the team measured success.</p>
           </div>
         </div>
 
@@ -67,7 +68,7 @@ export const prerender = false;
           <span class="decision-num">02</span>
           <div class="decision-body">
             <h3 class="decision-titulo">No plan comparator</h3>
-            <p class="decision-texto">The previous flow tried to display all available packages like a store. The new version directly presents the customer's offer, without distractions. Fewer options, more clarity, more intent.</p>
+            <p class="decision-texto">The previous flow worked like a store: every package for everyone. The new version shows only the customer's offer. The comparator moved outside the funnel, as a separate discovery surface. You lose in-context comparison. You gain measurable intent: whoever enters, enters to convert.</p>
           </div>
         </div>
 
@@ -75,7 +76,7 @@ export const prerender = false;
           <span class="decision-num">03</span>
           <div class="decision-body">
             <h3 class="decision-titulo">3-step flow</h3>
-            <p class="decision-texto">Evaluation → Selection → Success confirmation. No unnecessary detours. The focus is on converting users who arrived with a real offer.</p>
+            <p class="decision-texto">Evaluation, selection, confirmation. I cut intermediate product-education steps: whoever gets here already passed the offer filter. Every extra screen was an exit point with no function.</p>
           </div>
         </div>
 
@@ -83,7 +84,7 @@ export const prerender = false;
           <span class="decision-num">04</span>
           <div class="decision-body">
             <h3 class="decision-titulo">100% native</h3>
-            <p class="decision-texto">Migrating to native components wasn't just an aesthetic improvement: it enabled the use of the updated design system, better performance, and real event tracking.</p>
+            <p class="decision-texto">Rebuilding the SPA was the cheap option. Going native cost more development, but it enabled the updated design system, better performance and per-step event tracking. Without that tracking, the new funnel would be as blind as the old one.</p>
           </div>
         </div>
 
@@ -124,7 +125,7 @@ export const prerender = false;
     <section class="seccion">
       <p class="eyebrow">PROTOTYPE</p>
       <h2 class="seccion-titulo">The full flow, in motion</h2>
-      <p class="intro-text">High-fidelity prototype built in Figma, used for internal validation with product, technology, and stakeholders before moving to development.</p>
+      <p class="intro-text">High-fidelity prototype built in Figma, used to validate the flow with product, engineering and business before moving to development.</p>
       <div class="video-wrapper">
         <video
           src="/images/portfolio/upgrade/07-video-final.mp4"
@@ -137,16 +138,13 @@ export const prerender = false;
       </div>
     </section>
 
-    <!-- ── IMPACT & LEARNINGS ── -->
+    <!-- ── STATUS ── -->
     <section class="seccion">
-      <p class="eyebrow">IMPACT</p>
-      <h2 class="seccion-titulo">What changed</h2>
-      <ul class="bullets">
-        <li><span class="bullet-dash">—</span>Clean, reliable metrics: conversion now reflects only users with a real available offer.</li>
-        <li><span class="bullet-dash">—</span>Experience consistent with the bank's native design system.</li>
-        <li><span class="bullet-dash">—</span>Better performance and event tracking for product and data teams.</li>
-        <li><span class="bullet-dash">—</span>Solid foundation for iterating on the funnel without technical noise.</li>
-      </ul>
+      <p class="eyebrow">STATUS</p>
+      <h2 class="seccion-titulo">How far it got</h2>
+      <p class="body-text">The design passed validation with product and engineering and the flow was fully built as a native experience. It didn't reach production before I left the bank.</p>
+      <p class="body-text">What was left in place: conversion measured on real offers instead of total traffic, the native flow on the current design system, and per-step event tracking.</p>
+      <p class="body-text">Designing a funnel doesn't start at the screen: it starts with the logic of who gets to see what. The decision with the most impact was the one you can't see.</p>
     </section>
 
     <!-- ── NAVIGATION ── -->
