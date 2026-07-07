@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import BrandLockup from '../components/BrandLockup.astro';
-import ThemeSwitch from '../components/ThemeSwitch.astro';
 import { PRODUCTS, productLabel as productLabelFor } from '../data/products';
 
 interface Props {
@@ -84,26 +83,22 @@ const L = isEnglish
 
     {/* ════════════════════════════════════════════════════════════
        PRE-PAINT THEME SCRIPT
-       Inyecta data-theme antes del primer paint para evitar flash.
-       El tema por defecto es OSCURO: solo se usa 'light' si el visitante
-       lo eligió antes (queda guardado en localStorage). El <html> ya
-       viene con data-theme="dark" del server para que funcione sin JS.
+       El sitio es SOLO OSCURO: el <html> ya viene con data-theme="dark"
+       del server. Acá se descarta cualquier preferencia 'light' guardada
+       por visitantes previos (cuando existía el theme switch) y se marca
+       data-theme-ready para habilitar las transiciones.
        MUY IMPORTANTE: este script va PRIMERO, antes de cualquier CSS.
        ════════════════════════════════════════════════════════════ */}
     <script is:inline>
       (function() {
         try {
-          var saved = localStorage.getItem('theme');
-          var theme = saved || 'dark';
-          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.removeItem('theme');
           // Marcar como listo en el próximo frame, así las transiciones de tema
           // no se disparan en el primer render.
           requestAnimationFrame(function() {
             document.documentElement.setAttribute('data-theme-ready', '');
           });
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        } catch (e) {}
       })();
     </script>
 
@@ -135,7 +130,7 @@ const L = isEnglish
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* theme-color: arranca oscuro (tema por defecto) y se sincroniza vía JS más abajo */}
+    {/* theme-color: el sitio es solo oscuro */}
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -283,8 +278,6 @@ const L = isEnglish
             {switchLabel}
           </a>
 
-          {/* Theme switch */}
-          <ThemeSwitch />
         </div>
 
         {/* Mobile: hamburguesa */}
@@ -359,7 +352,6 @@ const L = isEnglish
             <a href={switchPath} class="nav-mobile-lang">
               {isEnglish ? '→ Español' : '→ English'}
             </a>
-            <ThemeSwitch />
           </div>
         </div>
       </div>
@@ -522,18 +514,6 @@ const L = isEnglish
           js80Trigger?.focus();
         }
       });
-
-      // Theme-color meta dinámico (para PWA / iOS status bar)
-      const updateThemeColor = () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        const meta = document.querySelector('meta[name="theme-color"]:not([media])');
-        if (meta) {
-          meta.setAttribute('content', theme === 'dark' ? '#0A0A0A' : '#FFFFFF');
-        }
-      };
-      window.addEventListener('themechange', updateThemeColor);
-      // Sincronizar al cargar: si el visitante tiene 'light' guardado, ajusta el chrome.
-      updateThemeColor();
     </script>
 
     {/* ════════════════════════════════════════════════════════════
