@@ -5,7 +5,7 @@ import ContactCTA from '../../components/ContactCTA.astro';
 export const prerender = false;
 ---
 
-<Layout title="El primer PFM argentino hecho por un banco — Juanse Barrio" description="Caso de estudio: Personal Finance Manager nativo de Banco Galicia con categorización automática de tarjetas de crédito." noindex>
+<Layout title="Diseñar para un hábito que ya existía — Juanse Barrio" description="Caso de estudio: Personal Finance Manager nativo de Banco Galicia con categorización automática de tarjetas de crédito." noindex>
 
   <script is:inline>
     if (sessionStorage.getItem('portfolio-auth') !== 'true') {
@@ -19,8 +19,8 @@ export const prerender = false;
     <!-- ── HERO ── -->
     <section class="hero">
       <p class="eyebrow">BANCO GALICIA · 2024 · PRODUCT DESIGN</p>
-      <h1 class="hero-title">El primer PFM argentino hecho por un banco</h1>
-      <p class="hero-sub">Personal Finance Manager nativo, con categorización automática de tarjetas de crédito — algo que ningún otro PFM había logrado en Argentina.</p>
+      <h1 class="hero-title">Diseñar para un hábito que ya existía</h1>
+      <p class="hero-sub">Personal Finance Manager nativo del banco. Los clientes ya gestionaban su plata en Excel y cuadernos; el producto trajo ese hábito a la app y automatizó lo más difícil: la tarjeta de crédito.</p>
       <div class="mockup-frame">
         <img src="/images/portfolio/pfm/screen-ingresos.png" alt="Pantalla de Ingresos" loading="lazy" decoding="async" />
         <img src="/images/portfolio/pfm/hero-gastos.png" alt="Pantalla de Gastos" loading="lazy" decoding="async" />
@@ -38,11 +38,11 @@ export const prerender = false;
         </div>
         <div class="resumen-bloque">
           <p class="resumen-label">QUÉ HICE</p>
-          <p class="resumen-texto">Diseñé el primer PFM bancario nativo de Argentina, que automatiza la categorización de movimientos incluyendo consumos de tarjeta de crédito: el desafío técnico que ningún competidor había resuelto por cómo funcionan las liquidaciones en el país.</p>
+          <p class="resumen-texto">Diseñé el primer PFM hecho por un banco en Argentina: categorización automática de movimientos, incluidos los consumos de tarjeta de crédito, sin input manual del usuario.</p>
         </div>
         <div class="resumen-bloque">
           <p class="resumen-label">RESULTADO</p>
-          <p class="resumen-texto">Salió a producción con un CSAT de 3.5/5 sobre 183 respuestas en un lanzamiento Friends & Family. Validó la demanda y dejó un backlog priorizado de mejoras.</p>
+          <p class="resumen-texto">Salió a producción en un lanzamiento Friends & Family: CSAT 3.5/5 sobre 183 respuestas, demanda validada y un backlog priorizado de mejoras.</p>
         </div>
       </div>
     </section>
@@ -50,16 +50,16 @@ export const prerender = false;
     <!-- ── EL PROBLEMA ── -->
     <section class="seccion">
       <p class="eyebrow">EL PROBLEMA</p>
-      <h2 class="seccion-titulo">El problema</h2>
-      <p class="body-text">Galicia tenía más de 3 millones de usuarios activos en la app, y un objetivo claro: aumentar la cotidianidad de uso y el cross-sell con otras herramientas. Pero la app seguía siendo mayormente transaccional — entrabas, pagabas, salías.</p>
-      <p class="body-text">El research reveló algo contundente: los clientes ya hacían el trabajo de gestionar sus finanzas, solo que lo hacían afuera. En Excel, cuadernos, agendas, tacos financieros o mensajes de WhatsApp a sí mismos. Manual, fragmentado, propenso a errores.</p>
-      <p class="body-text callout">El diferencial técnico que nadie había podido cerrar: en Argentina, las tarjetas de crédito son el consumo más difícil de trackear automáticamente — por cómo se liquidan las compras, las cuotas, los cierres. Los PFMs existentes vivían en billeteras virtuales donde el problema no existe. Ningún banco tradicional había logrado automatizar esto. Ahí estaba la oportunidad real.</p>
+      <h2 class="seccion-titulo">La plata se gestionaba afuera del banco</h2>
+      <p class="body-text">Galicia tenía más de 3 millones de usuarios activos en la app y un objetivo: aumentar la frecuencia de uso y el cross-sell con otras herramientas. Pero la app era transaccional: entrabas, pagabas, salías.</p>
+      <p class="body-text">El research mostró que los clientes ya hacían el trabajo de gestionar sus finanzas, solo que afuera: Excel, cuadernos, agendas y mensajes de WhatsApp a sí mismos. Un proceso manual y propenso a errores.</p>
+      <p class="body-text callout">El diferencial técnico estaba en la tarjeta de crédito. En Argentina, entre liquidaciones, cuotas y cierres, es el consumo más difícil de trackear automáticamente. Los PFMs existentes vivían en billeteras virtuales, donde ese problema no existe. Ahí estaba la oportunidad.</p>
     </section>
 
     <!-- ── LA INVESTIGACIÓN ── -->
     <section class="seccion">
       <p class="eyebrow">LA INVESTIGACIÓN</p>
-      <h2 class="seccion-titulo">La investigación</h2>
+      <h2 class="seccion-titulo">Cuatro perfiles, un mismo ciclo mensual</h2>
 
       <h3 class="sub-titulo">Proceso</h3>
       <ul class="lista-dash">
@@ -71,18 +71,18 @@ export const prerender = false;
       <div class="mockup-frame wide">
         <img src="/images/portfolio/pfm/research-slides.webp" alt="Grilla de slides del research cualitativo con hallazgos por perfil" loading="lazy" decoding="async" />
       </div>
-      <p class="fig-caption">Research Overview Ideal — antecedentes, análisis y perfiles detectados.</p>
+      <p class="fig-caption">Research overview: antecedentes, análisis y perfiles detectados.</p>
 
       <h3 class="sub-titulo mt-3">Cuatro hallazgos clave</h3>
       <ol class="lista-numerada">
-        <li><span class="num">1.</span>Gestión manual y fragmentada — Excel, cuadernos, agendas, WhatsApp.</li>
-        <li><span class="num">2.</span>Chequeo continuo — abrían la app varias veces al día para controlar movimientos, sobre todo de tarjeta.</li>
-        <li><span class="num">3.</span>Patrón mensual — principio de mes para pagos fijos, resto del mes para gustos y ahorro.</li>
-        <li><span class="num">4.</span>Baja educación financiera en inversión — plazo fijo o compra de dólares como método de ahorro predominante.</li>
+        <li><span class="num">1.</span>Gestión manual: Excel, cuadernos, agendas, WhatsApp.</li>
+        <li><span class="num">2.</span>Chequeo continuo: abrían la app varias veces al día para controlar movimientos, sobre todo de tarjeta.</li>
+        <li><span class="num">3.</span>Patrón mensual: principio de mes para pagos fijos, resto del mes para gustos y ahorro.</li>
+        <li><span class="num">4.</span>Baja educación financiera en inversión: plazo fijo o compra de dólares como método de ahorro predominante.</li>
       </ol>
 
       <blockquote class="quote-block">
-        El research nos mostró algo simple pero contundente: la gente ya hacía el trabajo. Solo había que hacerlo más fácil.
+        La gente ya hacía el trabajo. Solo había que hacerlo más fácil.
       </blockquote>
 
       <h3 class="sub-titulo mt-3">Cuatro perfiles de relación con la plata</h3>
@@ -101,7 +101,7 @@ export const prerender = false;
         </div>
         <div class="perfil-card">
           <h4 class="perfil-nombre">Familia</h4>
-          <p class="perfil-desc">Planifica vacaciones, anticipa gastos grandes, busca beneficios. Gestiona finanzas con horizonte largo y múltiples prioridades compartidas.</p>
+          <p class="perfil-desc">Planifica vacaciones, anticipa gastos grandes, busca beneficios. Piensa la plata a largo plazo y para varios a la vez.</p>
         </div>
       </div>
 
@@ -121,8 +121,8 @@ export const prerender = false;
     <!-- ── LAS DECISIONES DE DISEÑO ── -->
     <section class="seccion decisiones-section">
       <p class="eyebrow">LAS DECISIONES</p>
-      <h2 class="seccion-titulo">Las decisiones</h2>
-      <p class="intro-text">Cinco decisiones que definieron el producto.</p>
+      <h2 class="seccion-titulo">Cinco decisiones, con su porqué</h2>
+      <p class="intro-text">Fui el único diseñador del producto. Llevé el proceso de punta a punta y coordiné con research, analistas, desarrolladores y negocio: de las entrevistas y los testeos en sucursal a la lógica de categorización y las reglas del producto.</p>
 
       <div class="decisiones">
 
@@ -130,7 +130,7 @@ export const prerender = false;
           <span class="decision-num">01</span>
           <div class="decision-body">
             <h3 class="decision-titulo">Categorización automática de tarjetas de crédito</h3>
-            <p class="decision-texto">La decisión técnica más difícil y la que define el caso. Trabajé con analistas y devs para armar la lógica que interpretara consumos de CC y los asignara a categorías sin input manual del usuario. Esto era lo que nadie había resuelto — y lo que justificaba que Galicia entrara en un espacio donde las fintechs ya estaban jugando.</p>
+            <p class="decision-texto">El hallazgo: los usuarios abrían la app varias veces al día para controlar movimientos, sobre todo de tarjeta. La decisión: categorizar los consumos de crédito sin input manual. Armé la lógica con analistas y devs para interpretar liquidaciones, cuotas y cierres. La alternativa era lanzar solo con débito y efectivo, como los PFMs de billetera. El costo: la parte más difícil del desarrollo, con dependencia fuerte de equipos fuera de diseño.</p>
             <div class="mockup-frame">
               <img src="/images/portfolio/pfm/decision-cc-supermercados.png" alt="Categorización automática en supermercados" loading="lazy" decoding="async" />
               <img src="/images/portfolio/pfm/decision-cc-detalle.png" alt="Detalle de consumo de tarjeta de crédito categorizado" loading="lazy" decoding="async" />
@@ -142,7 +142,7 @@ export const prerender = false;
           <span class="decision-num">02</span>
           <div class="decision-body">
             <h3 class="decision-titulo">Benchmark fuera del mundo bancario</h3>
-            <p class="decision-texto">Como no había PFM bancario en Argentina para comparar, tomé referencias de billeteras virtuales y fintechs globales. Adapté el lenguaje de data viz al contexto bancario (más conservador, con usuarios de menos educación financiera) sin perder la claridad visual de las apps modernas.</p>
+            <p class="decision-texto">No había PFM bancario en Argentina para comparar. Tomé referencias de billeteras virtuales y fintechs globales en lugar de patrones bancarios tradicionales. El costo: traducir ese lenguaje de data viz a usuarios más conservadores y con menor educación financiera, sin perder claridad visual.</p>
             <div class="mockup-frame wide">
               <img src="/images/portfolio/pfm/decision-benchmark-wireframes.png" alt="Tres iteraciones de wireframes de la pantalla de Inversiones" loading="lazy" decoding="async" />
             </div>
@@ -154,7 +154,7 @@ export const prerender = false;
           <span class="decision-num">03</span>
           <div class="decision-body">
             <h3 class="decision-titulo">Tres vistas en una pantalla: Ingresos, Gastos, Inversiones</h3>
-            <p class="decision-texto">Separadas por tabs para no saturar, pero accesibles en un gesto. Con selector de moneda ARS/USD — fundamental en el contexto argentino.</p>
+            <p class="decision-texto">Tabs en una misma pantalla: todo a un gesto, sin saturar. La alternativa era una sección aparte por vista, más limpia pero con la información repartida. Selector de moneda ARS y USD, imprescindible en el contexto argentino.</p>
             <div class="mockup-frame">
               <img src="/images/portfolio/pfm/screen-ingresos.png" alt="Vista de ingresos" loading="lazy" decoding="async" />
               <img src="/images/portfolio/pfm/hero-gastos.png" alt="Vista de gastos" loading="lazy" decoding="async" />
@@ -167,7 +167,7 @@ export const prerender = false;
           <span class="decision-num">04</span>
           <div class="decision-body">
             <h3 class="decision-titulo">Sistema de iconografía y color accesible desde día uno</h3>
-            <p class="decision-texto">15 categorías con iconos simples y encapsulados. Paleta alternativa cuando los colores del brand no pasaban contraste. Esto se terminó convirtiendo en un pequeño sistema que hoy usan otros productos del banco.</p>
+            <p class="decision-texto">15 categorías con iconos simples y encapsulados. Cuando los colores del brand no pasaban contraste, armé una paleta alternativa accesible. El costo: apartarse de la paleta oficial en un banco donde eso no se decide a la ligera. El sistema hoy lo usan otros productos del banco.</p>
             <div class="mockup-frame wide extra-padding">
               <img src="/images/portfolio/pfm/decision-design-system.png" alt="Sistema de categorías, iconos y colores con alternativa accesible" loading="lazy" decoding="async" />
             </div>
@@ -178,7 +178,7 @@ export const prerender = false;
           <span class="decision-num">05</span>
           <div class="decision-body">
             <h3 class="decision-titulo">Vista mensual por defecto, no semanal ni diaria</h3>
-            <p class="decision-texto">El research mostraba que los usuarios piensan sus finanzas en ciclos mensuales (cobro → fijos → resto). Forzar esa vista respetaba el modelo mental real.</p>
+            <p class="decision-texto">El research mostraba que la plata se piensa en ciclos mensuales: cobro, gastos fijos, resto. El default respetó ese modelo mental. El costo: quien entraba a controlar el día a día tenía un toque más para llegar.</p>
             <div class="mockup-frame single">
               <img src="/images/portfolio/pfm/decision-mes-selector.png" alt="Selector de mes mostrando el calendario anual" loading="lazy" decoding="async" />
             </div>
@@ -191,8 +191,8 @@ export const prerender = false;
     <!-- ── EL IMPACTO ── -->
     <section class="seccion">
       <p class="eyebrow">EL IMPACTO</p>
-      <h2 class="seccion-titulo">El impacto</h2>
-      <p class="body-text">Por restricciones regulatorias del BCRA, no se pudo lanzar masivo de entrada. Optamos por un lanzamiento controlado Friends & Family con el objetivo de obtener feedback real antes de un rollout general.</p>
+      <h2 class="seccion-titulo">Un 3.5 que había que saber leer</h2>
+      <p class="body-text">Por restricciones regulatorias del BCRA no se pudo lanzar masivo de entrada. Salió como lanzamiento controlado Friends & Family, para conseguir feedback real antes del rollout general.</p>
 
       <div class="mockup-frame wide">
         <img src="/images/portfolio/pfm/impacto-csat-chart.png" alt="Gráfico de CSAT con 3.5 de 5 sobre 183 respuestas" loading="lazy" decoding="async" />
@@ -240,8 +240,8 @@ export const prerender = false;
 
       <h3 class="sub-titulo mt-3">Lo que me llevé como diseñador</h3>
       <ul class="lista-dash">
-        <li><span class="dash">—</span>Lanzar con F&F + Hotjar en lugar de esperar a un testeo cerrado de alta fidelidad me dio feedback más real en mucho menos tiempo. Lo adopté como práctica para los proyectos siguientes.</li>
-        <li><span class="dash">—</span>El CSAT parecía bajo a primera vista, pero el análisis cualitativo mostró que los dolores eran técnicos, no conceptuales. El producto funcionaba, la implementación pedía ajuste. Ese aprendizaje fue el que disparó el siguiente caso — el análisis semántico de CSAT con IA.</li>
+        <li><span class="dash">—</span>Lanzar con Friends & Family y Hotjar en lugar de esperar un testeo cerrado de alta fidelidad dio feedback más real en menos tiempo. Lo adopté como práctica en los proyectos siguientes.</li>
+        <li><span class="dash">—</span>El CSAT parecía bajo, pero el análisis cualitativo mostró que los dolores eran técnicos (performance, duplicados, webviews) y no conceptuales. Ese aprendizaje disparó el siguiente caso: el análisis semántico de CSAT con IA.</li>
       </ul>
     </section>
 
@@ -250,7 +250,7 @@ export const prerender = false;
       <p class="eyebrow">QUÉ PASÓ DESPUÉS</p>
       <h2 class="seccion-titulo">Qué pasó después</h2>
       <div class="cierre-grid">
-        <p class="body-text">El proyecto entró en pausa por la adquisición de HSBC por parte de Galicia, que absorbió los esfuerzos de producto del banco hacia la migración de clientes. Hoy, con esos clientes ya integrados, se está analizando reintroducir el PFM en otros productos y reinterpretar las categorías.</p>
+        <p class="body-text">El proyecto entró en pausa cuando Galicia compró HSBC y el foco de producto pasó a la migración de clientes. Con esa migración terminada, hoy se analiza reintroducir el PFM en otros productos del banco y reinterpretar las categorías.</p>
         <figure class="cierre-foto">
           <img src="/images/portfolio/pfm/cierre-cookies.jpg" alt="Cookies del equipo EDB frente a una sucursal de Galicia el día del lanzamiento" loading="lazy" decoding="async" />
           <figcaption>Festejo del lanzamiento F&F con cookies caseras para el equipo.</figcaption>
