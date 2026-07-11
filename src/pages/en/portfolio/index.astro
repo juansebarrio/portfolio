@@ -118,6 +118,22 @@ export const prerender = false;
 
       <div class="casos-destacados">
 
+        <!-- Fin de mes (PFM) — featured card -->
+        <a href="https://pfm.js80.studio/" target="_blank" rel="noopener noreferrer" class="caso-card">
+          <div class="caso-media caso-media-pfm">
+            <img
+              src="/images/portfolio/fin-de-mes/portada-16x9.webp"
+              alt="Fin de mes cover: “Take back control of your finances in Argentina” next to the household budget screen"
+              loading="lazy" decoding="async" width="1920" height="1080" />
+          </div>
+          <div class="caso-info">
+            <p class="caso-meta">JS80 · 2026 · Personal Finance</p>
+            <h2 class="caso-titulo">Fin de mes</h2>
+            <p class="caso-desc">Personal and household PFM built for Argentina: budgets by category, credit cards with real billing cycles, installments and net worth.</p>
+            <p class="caso-cta">View demo ↗</p>
+          </div>
+        </a>
+
         <!-- Leads dashboard — featured card -->
         <a href="/en/portfolio/leads-tablero" class="caso-card">
           <div class="caso-media caso-media-leads">
@@ -527,7 +543,7 @@ export const prerender = false;
   /* ── Cards destacadas: 2 columnas en desktop ── */
   .casos-destacados {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
@@ -538,6 +554,8 @@ export const prerender = false;
 
   .caso-media-leads { background: var(--surface); aspect-ratio: 16 / 9; }
   .caso-media-leads img { object-fit: cover; object-position: center top; }
+
+  .caso-media-pfm { background: #141312; aspect-ratio: 16 / 9; }
 
   .casos-destacados .caso-info { padding: 1.5rem; }
   .casos-destacados .caso-titulo { font-size: 1.125rem; margin-top: 0.5rem; }
