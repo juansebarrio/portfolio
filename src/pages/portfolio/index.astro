@@ -118,6 +118,22 @@ export const prerender = false;
 
       <div class="casos-destacados">
 
+        <!-- Fin de mes (PFM) — card destacada -->
+        <a href="https://pfm.js80.studio/" target="_blank" rel="noopener noreferrer" class="caso-card">
+          <div class="caso-media caso-media-pfm">
+            <img
+              src="/images/portfolio/fin-de-mes/portada-16x9.webp"
+              alt="Portada de Fin de mes: «Retomá el control de tus finanzas en Argentina» junto a la pantalla del presupuesto del hogar"
+              loading="lazy" decoding="async" width="1920" height="1080" />
+          </div>
+          <div class="caso-info">
+            <p class="caso-meta">JS80 · 2026 · Finanzas personales</p>
+            <h2 class="caso-titulo">Fin de mes</h2>
+            <p class="caso-desc">PFM personal y del hogar hecho para Argentina: presupuesto por partidas, tarjetas con ciclos reales, cuotas y patrimonio.</p>
+            <p class="caso-cta">Ver demo ↗</p>
+          </div>
+        </a>
+
         <!-- Tablero de leads — card destacada -->
         <a href="/portfolio/leads-tablero" class="caso-card">
           <div class="caso-media caso-media-leads">
@@ -158,22 +174,9 @@ export const prerender = false;
       </div>
       <div class="casos-mini">
 
-        <!-- Fin de mes (PFM) — nuevo, destacado en verde -->
-        <a href="https://pfm.js80.studio/" target="_blank" rel="noopener noreferrer" class="caso-mini caso-mini-pfm">
-          <span class="mini-badge">Nuevo</span>
-          <div class="mini-media mini-media-pfm" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg>
-          </div>
-          <div class="mini-info">
-            <p class="caso-meta">JS80 · 2026 · Finanzas personales</p>
-            <h3 class="mini-titulo">Fin de mes</h3>
-            <p class="mini-desc">PFM personal y del hogar hecho para Argentina: presupuesto por partidas, tarjetas con ciclos reales, cuotas y patrimonio.</p>
-            <p class="caso-cta">Ver demo ↗</p>
-          </div>
-        </a>
-
         <!-- VidrierAI — destacado con prioridad -->
         <a href="https://www.js80.studio/vidriera" target="_blank" rel="noopener noreferrer" class="caso-mini caso-mini-priority">
+          <span class="mini-badge">Nuevo</span>
           <div class="mini-media mini-media-vidriera" aria-hidden="true">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10v9.3h15V10"/><path d="M3.5 19.3h17"/><path d="M3 10l1.7-4.3A1 1 0 0 1 5.6 5h12.8a1 1 0 0 1 .9.7L21 10z"/><path d="M7.5 5.3 7 10M12 5v5M16.5 5.3 17 10"/><path d="M7.3 13h4.2v6.3H7.3z"/><path d="M16 12.2q.55 2.5 3 3-2.45.5-3 3-.55-2.5-3-3 2.45-.5 3-3Z" fill="currentColor" stroke="none"/></svg>
           </div>
@@ -538,10 +541,10 @@ export const prerender = false;
 
   .publicos-header { margin-bottom: 1.5rem; }
 
-  /* ── Cards destacadas: 2 columnas en desktop ── */
+  /* ── Cards destacadas: 3 columnas en desktop ── */
   .casos-destacados {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
@@ -552,6 +555,8 @@ export const prerender = false;
 
   .caso-media-leads { background: var(--surface); aspect-ratio: 16 / 9; }
   .caso-media-leads img { object-fit: cover; object-position: center top; }
+
+  .caso-media-pfm { background: #141312; aspect-ratio: 16 / 9; }
 
   .casos-destacados .caso-info { padding: 1.5rem; }
   .casos-destacados .caso-titulo { font-size: 1.125rem; margin-top: 0.5rem; }
@@ -568,10 +573,10 @@ export const prerender = false;
     margin-bottom: 1rem;
   }
 
-  /* Mini cards JS80 — una fila en desktop ancho, envuelve si no entran */
+  /* Mini cards JS80 — grid 4 col vertical */
   .casos-mini {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
   }
 
@@ -602,20 +607,6 @@ export const prerender = false;
     box-shadow: 0 0 0 1px color-mix(in oklab, #7158d6 45%, transparent),
                 0 12px 30px color-mix(in oklab, #7158d6 18%, transparent);
   }
-
-  /* Fin de mes — nuevo, destacado con el verde de su marca */
-  .caso-mini-pfm {
-    border-color: color-mix(in oklab, #4fa37f 45%, var(--border));
-    box-shadow: 0 0 0 1px color-mix(in oklab, #4fa37f 28%, transparent),
-                0 8px 24px color-mix(in oklab, #4fa37f 12%, transparent);
-  }
-
-  .caso-mini-pfm:hover {
-    box-shadow: 0 0 0 1px color-mix(in oklab, #4fa37f 45%, transparent),
-                0 12px 30px color-mix(in oklab, #4fa37f 18%, transparent);
-  }
-
-  .caso-mini-pfm .mini-badge { background: #1e6e52; }
 
   .mini-badge {
     position: absolute;
@@ -670,11 +661,6 @@ export const prerender = false;
   .mini-media-vidriera {
     background: color-mix(in oklab, #7158d6 16%, var(--surface));
     color: #7158d6;
-  }
-
-  .mini-media-pfm {
-    background: color-mix(in oklab, #4fa37f 14%, var(--surface));
-    color: #4fa37f;
   }
 
   .mini-info {
