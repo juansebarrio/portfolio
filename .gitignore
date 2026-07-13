@@ -25,6 +25,8 @@ pnpm-debug.log*
 *.mp4
 # excepción: video final del caso upgrade (transcodificado, 512 KB)
 !public/images/portfolio/upgrade/07-video-final.mp4
+# excepción: intro en inglés (doblada) del caso rediseño de cuentas
+!public/images/portfolio/rediseno-cuentas/intro-en.mp4
 public/videos/
 .vercel
 .claude/
