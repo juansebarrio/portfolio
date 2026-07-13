@@ -20,10 +20,47 @@ export const prerender = false;
     <section class="video-intro">
       <p class="eyebrow">INTRODUCCIÓN · 5 MIN</p>
       <h2 class="video-intro-titulo">Una intro a la iniciativa</h2>
+
+      <div class="video-tabs" role="tablist" aria-label="Idioma del video">
+        <button type="button" class="video-tab is-active" role="tab" aria-selected="true" aria-controls="video-panel-es" id="video-tab-es" data-lang="es">Español</button>
+        <button type="button" class="video-tab" role="tab" aria-selected="false" aria-controls="video-panel-en" id="video-tab-en" data-lang="en">English</button>
+      </div>
+
       <div class="video-embed">
-        <div style="position: relative; padding-bottom: 62.391681109185434%; height: 0;"><iframe src="https://www.loom.com/embed/6f313702e0c84204892e12965362954d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+        <div class="video-panel is-active" id="video-panel-es" role="tabpanel" aria-labelledby="video-tab-es" data-lang="es">
+          <div class="video-aspect"><iframe src="https://www.loom.com/embed/6f313702e0c84204892e12965362954d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe></div>
+        </div>
+        <div class="video-panel" id="video-panel-en" role="tabpanel" aria-labelledby="video-tab-en" data-lang="en" hidden>
+          <div class="video-aspect"><video controls preload="none" playsinline poster="/images/portfolio/rediseno-cuentas/hero-owdc.png" src="/images/portfolio/rediseno-cuentas/intro-en.mp4"></video></div>
+        </div>
       </div>
     </section>
+
+    <script is:inline>
+      (function () {
+        const tabs = document.querySelectorAll('.video-tab');
+        const panels = document.querySelectorAll('.video-panel');
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const lang = tab.dataset.lang;
+            tabs.forEach((t) => {
+              const active = t === tab;
+              t.classList.toggle('is-active', active);
+              t.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+            panels.forEach((p) => {
+              const active = p.dataset.lang === lang;
+              p.classList.toggle('is-active', active);
+              p.hidden = !active;
+              if (!active) {
+                const vid = p.querySelector('video');
+                if (vid) vid.pause();
+              }
+            });
+          });
+        });
+      })();
+    </script>
 
     <!-- ── HERO ── -->
     <section class="hero">
@@ -449,12 +486,72 @@ export const prerender = false;
     margin: 1rem 0 2rem;
   }
 
+  .video-tabs {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    margin: 0 0 1rem;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 999px;
+  }
+
+  .video-tab {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #a0a0a0;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .video-tab:hover {
+    color: #f0f0f0;
+  }
+
+  .video-tab.is-active {
+    background: #ff6b3d;
+    color: #ffffff;
+  }
+
   .video-embed {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
     border-radius: 16px;
     padding: clamp(1rem, 3vw, 2rem);
     max-width: 56rem;
+  }
+
+  .video-panel[hidden] {
+    display: none;
+  }
+
+  .video-aspect {
+    position: relative;
+    padding-bottom: 62.391681109185434%;
+    height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .video-aspect iframe,
+  .video-aspect video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #000;
+  }
+
+  .video-aspect video {
+    object-fit: contain;
   }
 
   /* ── HERO ── */
