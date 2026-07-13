@@ -79,28 +79,47 @@ const casosGalicia = [
     <div class="hero-corner hero-corner-tr">— 2026</div>
 
     <!-- Contenido -->
-    <div class="hero-content">
+    <div class="hero-content hero-content-split">
 
-      <div class="hero-heading">
-        <p class="hero-descriptor reveal-up" style="--i: 0">
-          AI PRODUCT DESIGNER · BANCO GALICIA&nbsp;&nbsp;/&nbsp;&nbsp;NGO VICE PRESIDENT&nbsp;&nbsp;/&nbsp;&nbsp;DEI
-        </p>
-        <h1 class="hero-title reveal-up" style="--i: 1">
-          Diseño productos<br />
-          con foco en <em>personas reales</em>.
-        </h1>
-        <p class="hero-bio reveal-up" style="--i: 2">
-          Trabajo en la intersección entre IA y comunidades subrepresentadas.
-          Diseño con honestidad y rigor. Sin ornamento.
-        </p>
+      <div class="hero-text">
+        <div class="hero-heading">
+          <p class="hero-descriptor reveal-up" style="--i: 0">
+            AI PRODUCT DESIGNER · BANCO GALICIA&nbsp;&nbsp;/&nbsp;&nbsp;NGO VICE PRESIDENT&nbsp;&nbsp;/&nbsp;&nbsp;DEI
+          </p>
+          <h1 class="hero-title reveal-up" style="--i: 1">
+            Diseño productos<br />
+            con foco en <em>personas reales</em>.
+          </h1>
+          <p class="hero-bio reveal-up" style="--i: 2">
+            Trabajo en la intersección entre IA y comunidades subrepresentadas.
+            Diseño con honestidad y rigor. Sin ornamento.
+          </p>
+        </div>
+
+        <div class="hero-buttons reveal-up" style="--i: 3">
+          <a href="/portfolio" class="btn-primary">
+            <span>Ver portfolio</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/experiencia" class="btn-text">Mi experiencia</a>
+        </div>
       </div>
 
-      <div class="hero-buttons reveal-up" style="--i: 3">
-        <a href="/portfolio" class="btn-primary">
-          <span>Ver portfolio</span>
-          <span class="btn-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="/experiencia" class="btn-text">Mi experiencia</a>
+      <div class="hero-video reveal-up" style="--i: 4">
+        <p class="hero-video-label">INTRO · 2 MIN</p>
+        <div class="hero-video-frame">
+          <div class="hero-video-aspect">
+            <iframe
+              src="https://www.loom.com/embed/1fa58b67d85947949eb3aa93cb585d75"
+              title="Video de introducción — Juanse Barrio"
+              frameborder="0"
+              webkitallowfullscreen
+              mozallowfullscreen
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -447,11 +466,12 @@ const casosGalicia = [
   ───────────────────────────── */
   .hero {
     position: relative;
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-block: 2rem;
   }
 
   .hero-marquee {
@@ -492,6 +512,69 @@ const casosGalicia = [
     display: flex;
     flex-direction: column;
     gap: 2rem;
+  }
+
+  /* Hero dividido en dos: texto + video de intro */
+  .hero-content-split {
+    max-width: 82rem;
+    width: 100%;
+    padding-right: 4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  /* En el split la columna es más angosta: bajamos el título para que
+     no envuelva a 4 líneas y empuje los botones fuera del viewport. */
+  .hero-content-split .hero-title {
+    font-size: clamp(2.25rem, 4vw, 3.5rem) !important;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-video {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-video-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--track-mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .hero-video-frame {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(0.5rem, 1.2vw, 0.875rem);
+  }
+
+  .hero-video-aspect {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-video-aspect iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
   }
 
   .hero-heading {
@@ -1320,9 +1403,34 @@ const casosGalicia = [
     }
   }
 
+  /* Hero dividido: colapsa a una columna y libera la altura fija */
+  @media (max-width: 900px) {
+    .hero {
+      height: auto;
+      min-height: calc(100vh - 64px);
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-content-split {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 2.5rem;
+      padding-right: 4rem;
+    }
+
+    .hero-video {
+      max-width: 34rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-content {
       padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .hero-content-split {
       padding-right: 1.5rem;
     }
 
