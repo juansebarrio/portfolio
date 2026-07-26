@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import framePresupuesto from '../assets/fin-de-mes/01a_Presupuesto_dark.png';
+import recorteDisponible from '../assets/fin-de-mes/presupuesto-numero-disponible.png';
+import recortePartida from '../assets/fin-de-mes/presupuesto-partida-super.png';
+---
+
+<section
+  id="e4"
+  data-scene="3"
+  aria-label="El corazón: el presupuesto del mes"
+  class="fdm-scene gap-[clamp(28px,3.6vw,48px)]"
+>
+  <span data-reveal class="fdm-eyebrow">El presupuesto del mes</span>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(28px,4vw,60px)]"
+  >
+    <div data-reveal="scale" class="flex justify-center">
+      <Image
+        src={framePresupuesto}
+        alt="Pantalla de presupuesto de julio con partidas por rubro"
+        widths={[320, 480, 640, 780]}
+        sizes="(min-width: 950px) 320px, 80vw"
+        format="webp"
+        class="fdm-phone max-w-[clamp(240px,30vw,320px)]"
+      />
+    </div>
+
+    <div class="flex flex-col gap-[clamp(20px,2.6vw,30px)]">
+      <div data-reveal data-reveal-delay="0.15" class="fdm-recorte">
+        <Image
+          src={recorteDisponible}
+          alt="Disponible en julio: $ 539.200, asignado $ 2.860.000, gastado $ 2.320.800"
+          widths={[390, 585, 780]}
+          sizes="(min-width: 950px) 560px, 92vw"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+
+      <p data-reveal data-reveal-delay="0.28" class="fdm-copy max-w-[46ch]">
+        Asignado, gastado y disponible por partida, con proyección de cierre. El color de cada
+        partida sale de cómo viene terminando el mes.
+      </p>
+
+      <div data-reveal="right" data-reveal-delay="0.45" class="fdm-recorte">
+        <Image
+          src={recortePartida}
+          alt="Partida Supermercado: queda $ 251.600, a este ritmo terminás $ 31.200 arriba"
+          widths={[360, 540, 720]}
+          sizes="(min-width: 950px) 560px, 92vw"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+    </div>
+  </div>
+</section>

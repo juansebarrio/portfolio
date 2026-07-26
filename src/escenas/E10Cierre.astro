@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import tile from '../assets/fin-de-mes/findemes-tile-512.png';
+
+interface Props {
+  webappUrl: string;
+}
+
+const { webappUrl } = Astro.props;
+---
+
+<section id="e10" data-scene="9" aria-label="Cierre" class="fdm-scene gap-[clamp(30px,4vw,46px)]">
+  <Image
+    data-reveal="scale"
+    src={tile}
+    alt="Fin de mes"
+    widths={[60, 120]}
+    sizes="(min-width: 950px) 60px, 6vw"
+    format="webp"
+    class="block w-[clamp(46px,6vw,60px)] h-auto"
+  />
+
+  <div
+    data-reveal
+    data-reveal-delay="0.14"
+    class="flex flex-col gap-3 font-money text-[clamp(12px,1.5vw,15px)] tracking-[0.12em]"
+  >
+    <span class="flex items-center gap-3 text-ink">
+      <span class="block h-[7px] w-[7px] rounded-full bg-green" aria-hidden="true"></span>
+      <span>WEBAPP EN PRODUCCIÓN Y EN USO REAL</span>
+    </span>
+    <span class="flex items-center gap-3 text-secondary">
+      <span class="block h-[7px] w-[7px] rounded-full bg-amber" aria-hidden="true"></span>
+      <span>APP PARA IOS EN REVISIÓN DE APP STORE</span>
+    </span>
+  </div>
+
+  <a
+    data-reveal
+    data-reveal-delay="0.28"
+    href={webappUrl}
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center gap-2.5 self-start rounded-xl bg-green px-[26px] py-4 text-[clamp(16px,1.9vw,20px)] font-semibold text-bg transition-colors hover:bg-green-soft hover:text-bg"
+  >
+    <span>Verla funcionando</span>
+    <span class="font-money" aria-hidden="true">↗</span>
+  </a>
+
+  <p data-reveal data-reveal-delay="0.4" class="text-[clamp(15px,1.7vw,18px)] text-tertiary">
+    Un proyecto de estudio de JS80 ·
+    <a href="https://js80.studio" target="_blank" rel="noopener">js80.studio</a>
+  </p>
+</section>

@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import tile from '../assets/fin-de-mes/findemes-tile-512.png';
+---
+
+<section
+  id="e1"
+  data-scene="0"
+  aria-label="Portada"
+  class="fdm-scene relative gap-[clamp(30px,4vw,48px)]"
+>
+  <div data-reveal="scale" class="flex items-center gap-4">
+    <Image
+      src={tile}
+      alt="Fin de mes"
+      widths={[76, 152]}
+      sizes="(min-width: 950px) 76px, 8vw"
+      format="webp"
+      loading="eager"
+      fetchpriority="high"
+      class="block w-[clamp(54px,8vw,76px)] h-auto"
+    />
+    <span class="text-[clamp(19px,2.8vw,26px)] font-medium tracking-[-0.01em]">Fin de mes</span>
+  </div>
+
+  <h1 class="flex max-w-[16ch] flex-col text-h1">
+    <span data-reveal data-reveal-delay="0.2">Retomá el control</span>
+    <span data-reveal data-reveal-delay="0.36">de tus finanzas</span>
+    <span data-reveal data-reveal-delay="0.52">en Argentina.</span>
+  </h1>
+
+  <div data-reveal data-reveal-delay="0.8" class="flex flex-col gap-2">
+    <span class="fdm-eyebrow">disponible en julio</span>
+    <span
+      data-pulse
+      class="fdm-nums origin-left text-[clamp(30px,5.4vw,52px)] font-medium tracking-[-0.01em]"
+      >$ 539.200</span
+    >
+  </div>
+
+  <div
+    class="fdm-nudge absolute bottom-[clamp(34px,6vh,64px)] left-[clamp(20px,5vw,64px)] flex items-center gap-2.5 font-money text-xs uppercase tracking-[0.18em] text-tertiary"
+    aria-hidden="true"
+  >
+    <span>bajá</span>
+    <span class="block h-[26px] w-px bg-hairline"></span>
+  </div>
+</section>

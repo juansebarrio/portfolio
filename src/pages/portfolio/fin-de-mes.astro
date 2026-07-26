@@ -1,0 +1,350 @@
+---
+import '@fontsource/rubik/400.css';
+import '@fontsource/rubik/500.css';
+import '@fontsource/rubik/600.css';
+import '@fontsource/spline-sans-mono/400.css';
+import '@fontsource/spline-sans-mono/500.css';
+import '../../styles/fin-de-mes.css';
+
+import E1Portada from '../../escenas/E1Portada.astro';
+import E2Problema from '../../escenas/E2Problema.astro';
+import E3Tesis from '../../escenas/E3Tesis.astro';
+import E4Presupuesto from '../../escenas/E4Presupuesto.astro';
+import E5CargarGasto from '../../escenas/E5CargarGasto.astro';
+import E6Tarjeta from '../../escenas/E6Tarjeta.astro';
+import E7Cuotas from '../../escenas/E7Cuotas.astro';
+import E8Hogar from '../../escenas/E8Hogar.astro';
+import E9Patrimonio from '../../escenas/E9Patrimonio.astro';
+import E10Cierre from '../../escenas/E10Cierre.astro';
+
+// Config de la pieza (props del prototipo)
+const WEBAPP_URL = 'https://pfm.js80.studio/resumen';
+const SHOW_DOT_INDEX = true;
+const SHOW_PROGRESS = true;
+
+const SITE = 'https://juansebarrio.com';
+const title = 'Fin de mes — Retomá el control de tus finanzas en Argentina';
+const description =
+  'Fin de mes: el gestor de finanzas para hogares argentinos. Presupuesto por partidas, ciclos de tarjeta, cuotas, hogar compartido y patrimonio en dos monedas.';
+const canonical = `${SITE}/portfolio/fin-de-mes`;
+const ogImage = `${SITE}/images/portfolio/fin-de-mes/og-fin-de-mes.jpg`;
+
+const ESCENAS = 10;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#141312" />
+    <link rel="icon" type="image/png" href="/images/portfolio/fin-de-mes/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/images/portfolio/fin-de-mes/findemes-tile-512.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+
+  <body>
+    {
+      SHOW_PROGRESS && (
+        <div data-progress class="fixed inset-x-0 top-0 z-[60] h-[2px] bg-hairline" aria-hidden="true">
+          <div
+            data-progress-fill
+            class="h-full w-full origin-left bg-green"
+            style="transform: scaleX(0)"
+          />
+        </div>
+      )
+    }
+
+    {
+      SHOW_DOT_INDEX && (
+        <nav
+          data-rail
+          aria-label="Índice de escenas"
+          class="fixed right-[22px] top-1/2 z-[60] hidden -translate-y-1/2 flex-col gap-[14px] min-[900px]:flex"
+        >
+          {Array.from({ length: ESCENAS }, (_, i) => (
+            <button
+              data-dot={i}
+              type="button"
+              aria-label={`Escena ${i + 1}`}
+              class="h-[7px] w-[7px] cursor-pointer rounded-full border-0 bg-hairline p-0 transition-[background-color,transform] duration-300"
+            />
+          ))}
+        </nav>
+      )
+    }
+
+    <main class="overflow-x-hidden">
+      <E1Portada />
+      <E2Problema />
+      <E3Tesis />
+      <E4Presupuesto />
+      <E5CargarGasto />
+      <E6Tarjeta />
+      <E7Cuotas />
+      <E8Hogar />
+      <E9Patrimonio />
+      <E10Cierre webappUrl={WEBAPP_URL} />
+    </main>
+
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fmt = new Intl.NumberFormat('es-AR');
+      const EASE = 'power3.out';
+
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-scene]'));
+      const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+      const bar = document.querySelector<HTMLElement>('[data-progress-fill]');
+
+      /* ── Progreso + punto activo (corre también con reduced motion) ── */
+      let nav = 0;
+      let navLocked = false;
+      let active = -1;
+      let raf = 0;
+
+      const tick = () => {
+        raf = 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const y = window.scrollY;
+        if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, y / max)) : 0})`;
+        let idx = 0;
+        const mid = y + window.innerHeight * 0.4;
+        sections.forEach((s, i) => {
+          if (s.getBoundingClientRect().top + y <= mid) idx = i;
+        });
+        if (!navLocked) nav = idx;
+        if (idx !== active) {
+          active = idx;
+          dots.forEach((d, i) => {
+            const on = i === idx;
+            d.style.background = on ? '#4FA37F' : '#34302B';
+            d.style.transform = on ? 'scale(1.6)' : 'scale(1)';
+          });
+        }
+      };
+
+      const onScroll = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+
+      /* ── Navegación: teclado + riel de puntos ──────────────────────
+         El índice de navegación es propio (no derivado del scroll al
+         momento de la tecla): con el tween en curso, derivarlo de
+         scrollY pierde pulsaciones rápidas e invierte la dirección. */
+      let tween: gsap.core.Tween | null = null;
+
+      const goTo = (i: number) => {
+        const idx = Math.max(0, Math.min(sections.length - 1, i));
+        const sec = sections[idx];
+        if (!sec) return;
+        nav = idx;
+        const y = Math.round(sec.getBoundingClientRect().top + window.scrollY);
+        tween?.kill();
+        if (reduced) {
+          window.scrollTo(0, y);
+          tick();
+          return;
+        }
+        navLocked = true;
+        const dist = Math.abs(y - window.scrollY);
+        tween = gsap.to(window, {
+          scrollTo: { y, autoKill: true },
+          duration: Math.min(0.76, Math.max(0.38, dist * 0.00055)),
+          ease: 'power2.inOut',
+          onComplete: () => {
+            tween = null;
+            navLocked = false;
+            tick();
+          },
+          onInterrupt: () => {
+            navLocked = false;
+          },
+        });
+      };
+
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+      window.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const t = e.target as HTMLElement | null;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        const fwd = ['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key);
+        const back = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key);
+        if (!fwd && !back) return;
+        e.preventDefault();
+        if (!navLocked) tick();
+        goTo(nav + (fwd ? 1 : -1));
+      });
+
+      /* ── Secuencias por escena ─────────────────────────────────── */
+
+      const count = (el: HTMLElement, delay: number) => {
+        const target = parseFloat(el.dataset.count ?? '0');
+        const prefix = el.dataset.prefix ?? '';
+        const dur = parseFloat(el.dataset.dur ?? '1.2');
+        const obj = { v: 0 };
+        el.textContent = prefix + fmt.format(0);
+        gsap.to(obj, {
+          v: target,
+          duration: dur,
+          delay,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = prefix + fmt.format(Math.round(obj.v));
+          },
+        });
+      };
+
+      const type = (el: HTMLElement) => {
+        const digits = (el.dataset.type ?? '').replace('$ ', '');
+        const caret = el.parentElement?.querySelector<HTMLElement>('[data-caret]') ?? null;
+        let i = 0;
+        el.textContent = '$ ';
+        if (caret) {
+          caret.style.opacity = '1';
+          caret.style.animation = 'fdm-blink 1s steps(1,end) infinite';
+        }
+        const next = () => {
+          i += 1;
+          el.textContent = '$ ' + digits.slice(0, i);
+          if (i < digits.length) gsap.delayedCall(0.105, next);
+          else if (caret)
+            gsap.delayedCall(1.5, () => {
+              caret.style.animation = 'none';
+              caret.style.opacity = '0';
+            });
+        };
+        gsap.delayedCall(0.42, next);
+      };
+
+      const timeline = (tl: HTMLElement) => {
+        const fill = tl.querySelector<HTMLElement>('[data-tl-fill]');
+        const knob = tl.querySelector<HTMLElement>('[data-tl-knob]');
+        const hoy = tl.querySelector<HTMLElement>('[data-tl-hoy]');
+        const badge = tl.querySelector<HTMLElement>('[data-tl-badge]');
+        const dot = tl.querySelector<HTMLElement>('[data-tl-dot="cierre"]');
+        const confirm = tl.querySelector<HTMLElement>('[data-tl-confirm]');
+        if (!fill || !knob || !hoy || !badge || !dot) return;
+
+        gsap.set(fill, { width: '0%' });
+        gsap.set(knob, { left: '0%' });
+        gsap.set(hoy, { left: '0%', opacity: 0 });
+
+        const seq = gsap.timeline();
+        seq
+          .to(fill, { width: '32%', duration: 1.2, ease: EASE }, 0)
+          .to(knob, { left: '32%', duration: 1.2, ease: EASE }, 0)
+          .to(hoy, { left: '32%', duration: 1.2, ease: EASE }, 0)
+          .to(hoy, { opacity: 1, duration: 0.6 }, 0.4)
+          /* Se detiene antes del marcador de cierre (70%) a propósito:
+             si el knob se superpone, el estado verde no se ve. */
+          .to(fill, { width: '63%', duration: 1.6, ease: EASE }, 2.2)
+          .to(knob, { left: '63%', duration: 1.6, ease: EASE }, 2.2)
+          .to(hoy, { left: '63%', duration: 1.6, ease: EASE }, 2.2)
+          .to(badge, { opacity: 0, duration: 0.3 }, 3.9);
+        if (confirm) seq.to(confirm, { opacity: 0, duration: 0.4 }, 3.9);
+        seq
+          .call(
+            () => {
+              badge.textContent = 'CONFIRMADA';
+              badge.style.color = '#4FA37F';
+              badge.style.border = '1px solid #1E6E52';
+              badge.style.background = 'rgba(79,163,127,0.16)';
+              dot.style.border = '2px solid #1E6E52';
+              dot.style.background = 'rgba(79,163,127,0.22)';
+            },
+            [],
+            4.22
+          )
+          .to(badge, { opacity: 1, duration: 0.3 }, 4.22);
+      };
+
+      const playScene = (sec: HTMLElement) => {
+        sec
+          .querySelectorAll<HTMLElement>('[data-count]')
+          .forEach((el, i) => count(el, 0.15 + i * 0.1));
+        sec.querySelectorAll<HTMLElement>('[data-bar]').forEach((el, i) => {
+          gsap.to(el, {
+            height: el.dataset.barH ?? el.style.height,
+            duration: 0.9,
+            ease: EASE,
+            delay: 0.26 + i * 0.07,
+          });
+        });
+        const typer = sec.querySelector<HTMLElement>('[data-type]');
+        if (typer) type(typer);
+        const tl = sec.querySelector<HTMLElement>('[data-timeline]');
+        if (tl) gsap.delayedCall(0.5, () => timeline(tl));
+        const pulse = sec.querySelector<HTMLElement>('[data-pulse]');
+        if (pulse)
+          gsap.delayedCall(1.4, () => {
+            pulse.style.animation = 'fdm-pulse 1.2s cubic-bezier(0.4,0,0.2,1) 1';
+          });
+      };
+
+      /* ── Animación de entrada ──────────────────────────────────────
+         Con prefers-reduced-motion todo queda en su estado final: el
+         HTML ya contiene cada número, alto de barra y posición. */
+      if (!reduced) {
+        const from = (el: HTMLElement): gsap.TweenVars => {
+          const kind = el.getAttribute('data-reveal');
+          if (kind === 'scale') return { scale: 0.965 };
+          if (kind === 'right') return { x: 28 };
+          return { y: 16 };
+        };
+
+        document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+          const delay = parseFloat(el.dataset.revealDelay ?? '0');
+          gsap.set(el, { opacity: 0, ...from(el) });
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 90%',
+            once: true,
+            onEnter: () => {
+              gsap.to(el, { opacity: 1, duration: 0.7, ease: EASE, delay });
+              gsap.to(el, { x: 0, y: 0, scale: 1, duration: 0.85, ease: EASE, delay });
+            },
+          });
+        });
+
+        // Las barras guardan su alto final (degradación sin JS) y arrancan en cero
+        document.querySelectorAll<HTMLElement>('[data-bar]').forEach((el) => {
+          el.dataset.barH = el.style.height;
+          gsap.set(el, { height: 0 });
+        });
+
+        sections.forEach((sec) => {
+          ScrollTrigger.create({
+            trigger: sec,
+            start: 'top 75%',
+            once: true,
+            onEnter: () => playScene(sec),
+          });
+        });
+      }
+
+      tick();
+    </script>
+  </body>
+</html>

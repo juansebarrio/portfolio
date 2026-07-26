@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import frameHogar from '../assets/fin-de-mes/09_Hogar_dark.png';
+import recorteMiembros from '../assets/fin-de-mes/hogar-miembros.png';
+---
+
+<section
+  id="e8"
+  data-scene="7"
+  aria-label="El hogar"
+  class="fdm-scene gap-[clamp(28px,3.6vw,48px)]"
+>
+  <span data-reveal class="fdm-eyebrow">Compartir sin resignar lo propio</span>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(28px,4vw,60px)]"
+  >
+    <div class="flex flex-col gap-[clamp(22px,2.8vw,32px)]">
+      <div data-reveal data-reveal-delay="0.12" class="fdm-recorte">
+        <Image
+          src={recorteMiembros}
+          alt="Hogar Coghlan con dos miembros: Juanse administrador y Vale adulta del hogar"
+          widths={[360, 540, 720]}
+          sizes="(min-width: 950px) 560px, 92vw"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+
+      <p data-reveal data-reveal-delay="0.26" class="fdm-copy max-w-[46ch]">
+        Presupuesto compartido entre los adultos, presupuestos personales invisibles para el
+        resto. La privacidad dentro de la pareja se diseña a propósito.
+      </p>
+    </div>
+
+    <div data-reveal="scale" class="flex justify-center">
+      <Image
+        src={frameHogar}
+        alt="Pantalla de hogar con miembros, invitación pendiente y reglas de privacidad"
+        widths={[320, 480, 640, 780]}
+        sizes="(min-width: 950px) 320px, 80vw"
+        format="webp"
+        class="fdm-phone max-w-[clamp(240px,30vw,320px)]"
+      />
+    </div>
+  </div>
+</section>

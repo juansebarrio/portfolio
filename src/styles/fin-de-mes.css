@@ -1,0 +1,166 @@
+/* ════════════════════════════════════════════════════════════════
+   Fin de mes — presentación (10 escenas)
+   Hoja propia de la página: no comparte tokens ni tipografías con
+   el resto del portfolio. Solo escanea sus propios archivos.
+   ════════════════════════════════════════════════════════════════ */
+@import "tailwindcss" source(none);
+
+@source "../escenas";
+@source "../pages/portfolio/fin-de-mes.astro";
+
+@theme {
+  /* Identidad — modo oscuro únicamente */
+  --color-bg:         #141312;
+  --color-surface:    #1E1C1A;
+  --color-ink:        #F2EFE9;
+  --color-secondary:  #A39D93;
+  --color-tertiary:   #7F796F;
+  --color-hairline:   #34302B;
+  --color-green:      #4FA37F;
+  --color-green-soft: #6FBF9A;
+  --color-green-deep: #1E6E52;
+  --color-amber:      #C6913B;
+  --color-amber-soft: #D9AE62;
+  --color-red:        #D4685A;
+
+  --font-ui:    "Rubik", system-ui, sans-serif;
+  --font-money: "Spline Sans Mono", ui-monospace, monospace;
+
+  /* Escala de tipo (clamp, mobile-first) */
+  --text-h1: clamp(38px, 7.6vw, 82px);
+  --text-h1--line-height: 1.03;
+  --text-h1--letter-spacing: -0.028em;
+  --text-h1--font-weight: 500;
+
+  --text-h2: clamp(30px, 5vw, 58px);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 500;
+
+  --text-tesis: clamp(30px, 5.6vw, 64px);
+  --text-tesis--line-height: 1.14;
+  --text-tesis--letter-spacing: -0.022em;
+  --text-tesis--font-weight: 500;
+
+  --text-item: clamp(18px, 2.4vw, 28px);
+  --text-item--line-height: 1.34;
+
+  --text-copy: clamp(17px, 1.9vw, 22px);
+  --text-copy--line-height: 1.5;
+
+  --text-eyebrow: clamp(11px, 1.3vw, 13px);
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(79, 163, 127, 0.3);
+  }
+
+  a {
+    color: var(--color-green);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-green-soft);
+  }
+}
+
+/* ── Utilidades compuestas del sistema ─────────────────────────── */
+
+/* Sección-escena: una pantalla, contenido centrado verticalmente */
+@utility fdm-scene {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: clamp(96px, 12vh, 150px) clamp(20px, 5vw, 64px);
+}
+
+/* Eyebrow mono en mayúsculas */
+@utility fdm-eyebrow {
+  font-family: var(--font-money);
+  font-size: clamp(11px, 1.3vw, 13px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-tertiary);
+}
+
+/* Copy de párrafo */
+@utility fdm-copy {
+  font-size: clamp(17px, 1.9vw, 22px);
+  line-height: 1.5;
+  color: var(--color-secondary);
+  text-wrap: pretty;
+}
+
+/* Recorte de UI: tarjeta surface con hairline y sombra */
+@utility fdm-recorte {
+  border: 1px solid var(--color-hairline);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
+}
+
+/* Frame de teléfono (PNG con esquinas transparentes): drop-shadow, no box-shadow */
+@utility fdm-phone {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 34px 70px rgba(0, 0, 0, 0.6));
+}
+
+/* Cifras: mono con números tabulares */
+@utility fdm-nums {
+  font-family: var(--font-money);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Animaciones CSS ───────────────────────────────────────────── */
+
+@keyframes fdm-pulse {
+  0%   { transform: scale(1); }
+  34%  { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fdm-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes fdm-nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+
+@keyframes fdm-live {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Loops decorativos: solo si el usuario no pidió menos movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  .fdm-nudge {
+    animation: fdm-nudge 2.6s ease-in-out infinite;
+  }
+
+  .fdm-live {
+    animation: fdm-live 2.2s ease-in-out infinite;
+  }
+}

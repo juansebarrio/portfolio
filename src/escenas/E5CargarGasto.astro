@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import recorteTeclado from '../assets/fin-de-mes/alta-teclado.png';
+import recorteCuotasCiclo from '../assets/fin-de-mes/alta-cuotas-ciclo.png';
+---
+
+<section
+  id="e5"
+  data-scene="4"
+  aria-label="Cargar un gasto"
+  class="fdm-scene gap-[clamp(28px,3.6vw,48px)]"
+>
+  <span data-reveal class="fdm-eyebrow">Menos de diez segundos</span>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(28px,4vw,60px)]"
+  >
+    <div class="flex flex-col gap-[clamp(22px,2.8vw,32px)]">
+      <div data-reveal class="flex flex-col gap-3">
+        <span class="fdm-eyebrow">nuevo gasto</span>
+        <div class="flex items-center gap-1.5">
+          <span
+            data-type="$ 84.320"
+            class="fdm-nums text-[clamp(38px,8vw,80px)] font-medium leading-none tracking-[-0.02em]"
+            >$ 84.320</span
+          >
+          <span
+            data-caret
+            class="block h-[clamp(34px,6.6vw,66px)] w-[3px] bg-green opacity-0"
+            aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <p data-reveal data-reveal-delay="0.2" class="fdm-copy max-w-[44ch]">
+        Una sola pantalla, teclado propio y la categoría puede esperar: primero se anota, después
+        se ordena.
+      </p>
+    </div>
+
+    <div
+      data-reveal="scale"
+      data-reveal-delay="0.15"
+      class="fdm-recorte shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+    >
+      <Image
+        src={recorteTeclado}
+        alt="Teclado numérico propio de la app para cargar el monto"
+        widths={[390, 585, 780]}
+        sizes="(min-width: 950px) 560px, 92vw"
+        format="webp"
+        class="block w-full h-auto"
+      />
+    </div>
+  </div>
+
+  <div data-reveal="right" data-reveal-delay="0.1" class="fdm-recorte max-w-[720px]">
+    <Image
+      src={recorteCuotasCiclo}
+      alt="Selector de cuotas y ciclo al que cae el consumo: cierra el 28 jul, estimada"
+      widths={[390, 585, 780]}
+      sizes="(min-width: 950px) 720px, 92vw"
+      format="webp"
+      class="block w-full h-auto"
+    />
+  </div>
+</section>
