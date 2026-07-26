@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+/* La presentación de Fin de mes tiene su propia hoja (fin-de-mes.css):
+   sus clases no deben engordar el bundle del resto del sitio. */
+@source not "../escenas";
+@source not "../pages/portfolio/fin-de-mes.astro";
+
 /* ════════════════════════════════════════════════════════════════
    Tailwind theme — los nombres se mantienen para no romper el
    markup existente (bg-bg, text-fg, text-muted), pero ahora

@@ -1,0 +1,32 @@
+---
+const palabras: Array<{ t: string; d: number; verde?: boolean }> = [
+  { t: 'Presupuestar', d: 0 },
+  { t: 'en', d: 0.06 },
+  { t: 'Argentina', d: 0.12 },
+  { t: 'no', d: 0.18 },
+  { t: 'es', d: 0.24 },
+  { t: 'fijar', d: 0.3 },
+  { t: 'números', d: 0.36 },
+  { t: 'una', d: 0.42 },
+  { t: 'vez:', d: 0.48 },
+  { t: 'es', d: 0.62 },
+  { t: 'volver', d: 0.68 },
+  { t: 'a', d: 0.74 },
+  { t: 'hacerlo', d: 0.8 },
+  { t: 'todos', d: 0.9, verde: true },
+  { t: 'los', d: 1 },
+  { t: 'meses.', d: 1.06 },
+];
+---
+
+<section id="e3" data-scene="2" aria-label="La tesis" class="fdm-scene">
+  <p class="flex max-w-[24ch] flex-wrap gap-x-[0.28em] gap-y-0 text-tesis">
+    {
+      palabras.map((p) => (
+        <span data-reveal data-reveal-delay={p.d} class:list={[p.verde && 'text-green']}>
+          {p.t}
+        </span>
+      ))
+    }
+  </p>
+</section>

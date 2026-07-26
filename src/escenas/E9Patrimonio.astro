@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import recortePatrimonio from '../assets/fin-de-mes/patrimonio-total-tc.png';
+---
+
+<section
+  id="e9"
+  data-scene="8"
+  aria-label="Patrimonio"
+  class="fdm-scene gap-[clamp(28px,3.6vw,48px)]"
+>
+  <span data-reveal class="fdm-eyebrow">Las dos monedas</span>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(28px,4vw,60px)]"
+  >
+    <div class="flex flex-col gap-[clamp(20px,2.6vw,30px)]">
+      <div data-reveal class="flex flex-col gap-2.5">
+        <span class="fdm-eyebrow">total del hogar</span>
+        <span
+          data-count="47400000"
+          data-prefix="$ "
+          data-dur="1.5"
+          class="fdm-nums text-[clamp(32px,6vw,62px)] font-medium leading-none tracking-[-0.02em]"
+          >$ 47.400.000</span
+        >
+        <span
+          class="fdm-nums flex items-baseline gap-2 text-[clamp(18px,2.6vw,28px)] text-secondary"
+        >
+          <span>≈</span>
+          <span data-count="32200" data-prefix="USD " data-dur="1.5">USD 32.200</span>
+        </span>
+      </div>
+
+      <div
+        data-reveal
+        data-reveal-delay="0.3"
+        class="fdm-nums flex items-center gap-2.5 self-start rounded-full border border-hairline px-3.5 py-[7px] text-[clamp(12px,1.4vw,14px)] text-secondary"
+      >
+        <span class="fdm-live block h-[7px] w-[7px] rounded-full bg-green" aria-hidden="true"
+        ></span>
+        <span>MEP $ 1.470 · 10 jul</span>
+      </div>
+
+      <p data-reveal data-reveal-delay="0.42" class="fdm-copy max-w-[44ch]">
+        Todo lo que hay, en pesos y en dólares, con el tipo de cambio elegido siempre a la vista.
+      </p>
+    </div>
+
+    <div
+      data-reveal="scale"
+      data-reveal-delay="0.12"
+      class="fdm-recorte shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+    >
+      <Image
+        src={recortePatrimonio}
+        alt="Patrimonio total del hogar $ 47.400.000, equivalente a USD 32.200, con tipo de cambio MEP"
+        widths={[390, 585, 780]}
+        sizes="(min-width: 950px) 560px, 92vw"
+        format="webp"
+        class="block w-full h-auto"
+      />
+    </div>
+  </div>
+</section>

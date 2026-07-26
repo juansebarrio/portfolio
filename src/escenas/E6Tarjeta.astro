@@ -1,0 +1,143 @@
+---
+import { Image } from 'astro:assets';
+import frameTarjeta from '../assets/fin-de-mes/06_Tarjeta_ciclo_Visa_dark.png';
+import recorteResumen from '../assets/fin-de-mes/tarjeta-resumen-proyectado.png';
+
+const filas = [
+  { label: 'Consumos del ciclo', valor: '$ 486.200', count: 486200 },
+  { label: 'Cuotas del mes', valor: '$ 296.250', count: 296250 },
+  { label: 'Impuestos y cargos estimados', valor: '$ 58.000', count: 58000 },
+];
+---
+
+<section
+  id="e6"
+  data-scene="5"
+  aria-label="La tarjeta, a la argentina"
+  class="fdm-scene gap-[clamp(28px,3.6vw,48px)]"
+>
+  <div class="flex flex-col gap-[clamp(16px,2vw,22px)]">
+    <span data-reveal class="fdm-eyebrow">El diferencial</span>
+    <p data-reveal data-reveal-delay="0.12" class="fdm-copy max-w-[52ch]">
+      Cierre y vencimiento propios de cada mes. Las fechas estimadas se distinguen de las
+      confirmadas, y el resumen se conoce antes de que llegue.
+    </p>
+  </div>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-[clamp(28px,4vw,56px)]"
+  >
+    <div class="flex flex-col gap-[clamp(20px,2.6vw,28px)]">
+      <!-- Línea de tiempo del ciclo -->
+      <div
+        data-timeline
+        data-reveal
+        class="flex flex-col gap-[clamp(16px,2vw,22px)] rounded-[18px] border border-hairline bg-surface p-[clamp(20px,2.8vw,30px)]"
+      >
+        <div class="relative h-[26px]">
+          <div class="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 bg-hairline"></div>
+          <div data-tl-fill class="absolute left-0 top-1/2 h-[2px] w-[32%] -translate-y-1/2 bg-ink">
+          </div>
+          <span class="absolute left-0 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-ink"
+          ></span>
+          <span
+            data-tl-dot="cierre"
+            class="absolute left-[70%] top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-amber"
+          ></span>
+          <span
+            class="absolute left-[95%] top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-amber"
+          ></span>
+          <span
+            data-tl-knob
+            class="absolute left-[32%] top-1/2 h-[22px] w-[22px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-ink bg-bg"
+          ></span>
+        </div>
+
+        <div class="relative h-[18px] font-money text-[13px]">
+          <span class="absolute left-0 text-tertiary">29 jun</span>
+          <span data-tl-hoy class="absolute left-[32%] -translate-x-1/2 font-medium text-ink"
+            >hoy</span
+          >
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 border-t border-hairline pt-[clamp(16px,2vw,20px)]">
+          <div class="flex flex-col items-start gap-2.5">
+            <span class="font-money text-[clamp(13px,1.5vw,15px)] text-secondary"
+              >cierre <span class="font-medium text-ink">28 jul</span></span
+            >
+            <span
+              data-tl-badge
+              class="rounded-[6px] border border-dashed border-amber px-[9px] py-[5px] font-money text-[11px] tracking-[0.14em] text-amber-soft"
+              >ESTIMADA</span
+            >
+            <span data-tl-confirm class="font-money text-[13px] text-green">confirmar fecha</span>
+          </div>
+          <div class="flex flex-col items-start gap-2.5">
+            <span class="font-money text-[clamp(13px,1.5vw,15px)] text-secondary"
+              >vence <span class="font-medium text-ink">6 ago</span></span
+            >
+            <span
+              class="rounded-[6px] border border-dashed border-amber px-[9px] py-[5px] font-money text-[11px] tracking-[0.14em] text-amber-soft"
+              >ESTIMADA</span
+            >
+            <span class="font-money text-[13px] text-green">confirmar fecha</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen proyectado -->
+      <div data-reveal data-reveal-delay="0.2" class="flex flex-col">
+        {
+          filas.map((fila) => (
+            <div class="flex items-baseline justify-between gap-4 py-[11px]">
+              <span class="text-[clamp(15px,1.7vw,18px)] text-secondary">{fila.label}</span>
+              <span
+                data-count={fila.count}
+                data-prefix="$ "
+                class="fdm-nums text-[clamp(15px,1.7vw,19px)]"
+              >
+                {fila.valor}
+              </span>
+            </div>
+          ))
+        }
+        <div
+          class="mt-2 flex items-baseline justify-between gap-4 border-t border-hairline pt-[clamp(16px,2vw,20px)]"
+        >
+          <span class="font-money text-[clamp(11px,1.3vw,13px)] uppercase tracking-[0.16em] text-tertiary"
+            >Resumen proyectado</span
+          >
+          <span
+            data-count="840450"
+            data-prefix="$ "
+            data-dur="1.4"
+            class="fdm-nums text-[clamp(26px,3.6vw,40px)] font-medium tracking-[-0.01em]"
+            >$ 840.450</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="scale" data-reveal-delay="0.1" class="flex justify-center">
+      <Image
+        src={frameTarjeta}
+        alt="Pantalla del ciclo de la Visa Galicia con resumen proyectado y consumos"
+        widths={[320, 480, 640, 780]}
+        sizes="(min-width: 950px) 320px, 80vw"
+        format="webp"
+        class="fdm-phone max-w-[clamp(240px,30vw,320px)]"
+      />
+    </div>
+  </div>
+
+  <div data-reveal data-reveal-delay="0.15" class="fdm-recorte max-w-[640px]">
+    <Image
+      src={recorteResumen}
+      alt="Resumen proyectado $ 840.450 con consumos, cuotas e impuestos estimados"
+      widths={[360, 540, 720]}
+      sizes="(min-width: 950px) 640px, 92vw"
+      format="webp"
+      class="block w-full h-auto"
+    />
+  </div>
+</section>

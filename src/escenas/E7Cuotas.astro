@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import frameCuotas from '../assets/fin-de-mes/07_Cuotas_activas_dark.png';
+import recorteBarras from '../assets/fin-de-mes/cuotas-barras-12-meses.png';
+
+// ago 100% · sep–feb 25.4% · mar–jul stubs de 3px
+const barras = [
+  { altura: '100%', color: 'bg-ink', radio: 'rounded-t-[4px]' },
+  ...Array.from({ length: 6 }, () => ({
+    altura: '25.4%',
+    color: 'bg-secondary',
+    radio: 'rounded-t-[4px]',
+  })),
+  ...Array.from({ length: 5 }, () => ({
+    altura: '3px',
+    color: 'bg-hairline',
+    radio: 'rounded-[2px]',
+  })),
+];
+
+const meses = ['ago', 'sep', 'oct', 'nov', 'dic', 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul'];
+---
+
+<section id="e7" data-scene="6" aria-label="Cuotas" class="fdm-scene gap-[clamp(28px,3.6vw,44px)]">
+  <div class="flex flex-col gap-[clamp(16px,2vw,22px)]">
+    <span data-reveal class="fdm-eyebrow">El sueldo que viene</span>
+    <p data-reveal data-reveal-delay="0.12" class="fdm-copy max-w-[46ch]">
+      Una compra en cuotas se carga una sola vez. El sistema reparte el resto.
+    </p>
+  </div>
+
+  <div
+    data-reveal
+    data-reveal-delay="0.1"
+    class="rounded-[18px] border border-hairline bg-surface p-[clamp(20px,2.8vw,32px)]"
+  >
+    <span class="fdm-eyebrow">Próximos 12 meses</span>
+
+    <div
+      class="mt-[clamp(18px,2.4vw,26px)] grid h-[clamp(130px,18vw,190px)] grid-cols-12 gap-[clamp(5px,0.9vw,12px)]"
+    >
+      {
+        barras.map((barra) => (
+          <div class="flex h-full items-end">
+            <div
+              data-bar
+              class:list={['w-full', barra.color, barra.radio]}
+              style={`height:${barra.altura}`}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-3 grid grid-cols-12 gap-[clamp(5px,0.9vw,12px)] text-center font-money text-[clamp(10px,1.2vw,13px)] text-tertiary"
+    >
+      {meses.map((mes) => <span>{mes}</span>)}
+    </div>
+
+    <div
+      class="mt-[clamp(18px,2.4vw,26px)] flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-t border-hairline pt-[clamp(16px,2vw,20px)]"
+    >
+      <span class="fdm-nums text-[clamp(13px,1.5vw,16px)] text-secondary"
+        >ago <span class="text-ink">$ 339.550</span> · desde sep <span class="text-ink"
+          >$ 86.250</span
+        ></span
+      >
+      <span
+        data-reveal
+        data-reveal-delay="1.1"
+        class="text-[clamp(15px,1.7vw,19px)] font-medium text-green">en marzo quedás libre</span
+      >
+    </div>
+  </div>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(28px,4vw,56px)]"
+  >
+    <div data-reveal="right" class="fdm-recorte">
+      <Image
+        src={recorteBarras}
+        alt="Barras de cuotas de los próximos doce meses"
+        widths={[360, 540, 720]}
+        sizes="(min-width: 950px) 560px, 92vw"
+        format="webp"
+        class="block w-full h-auto"
+      />
+    </div>
+    <div data-reveal="scale" data-reveal-delay="0.12" class="flex justify-center">
+      <Image
+        src={frameCuotas}
+        alt="Pantalla de cuotas activas: comprometido por mes $ 339.550 y tres compras en cuotas"
+        widths={[300, 450, 600, 780]}
+        sizes="(min-width: 950px) 300px, 80vw"
+        format="webp"
+        class="fdm-phone max-w-[clamp(240px,28vw,300px)]"
+      />
+    </div>
+  </div>
+</section>

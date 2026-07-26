@@ -1,0 +1,37 @@
+---
+const items = [
+  { num: '01', texto: 'Tarjetas con cierre y vencimiento que cambian todos los meses.', delay: 0.1 },
+  { num: '02', texto: 'Cuotas que comprometen sueldos futuros.', delay: 0.28 },
+  { num: '03', texto: 'Se cobra en pesos, se ahorra en dólares.', delay: 0.46 },
+  { num: '04', texto: 'Inflación que vuelve viejo cualquier número.', delay: 0.64 },
+];
+---
+
+<section
+  id="e2"
+  data-scene="1"
+  aria-label="El problema"
+  class="fdm-scene gap-[clamp(30px,4vw,52px)]"
+>
+  <h2 data-reveal class="max-w-[24ch] text-pretty text-h2">
+    Las apps de finanzas fueron pensadas para otro país.
+  </h2>
+
+  <div class="flex max-w-[960px] flex-col">
+    {
+      items.map((item, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={item.delay}
+          class:list={[
+            'flex items-baseline gap-[clamp(16px,3vw,36px)] border-t border-hairline py-[clamp(18px,2.4vw,26px)]',
+            i === items.length - 1 && 'border-b',
+          ]}
+        >
+          <span class="font-money text-[13px] text-tertiary">{item.num}</span>
+          <span class="text-pretty text-item">{item.texto}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>
