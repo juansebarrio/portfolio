@@ -23,6 +23,12 @@
   --color-amber-soft: #D9AE62;
   --color-red:        #D4685A;
 
+  /* Asistente: superficies propias del panel conversacional */
+  --color-panel:      #1A1917;
+  --color-chip:       #211F1D;
+  --color-send:       #3E6F58;
+  --color-faint:      #5F5A53;
+
   --font-ui:    "Rubik", system-ui, sans-serif;
   --font-money: "Spline Sans Mono", ui-monospace, monospace;
 

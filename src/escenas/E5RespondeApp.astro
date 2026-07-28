@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import capturaPartida from '../assets/fin-de-mes/asistente-partida-oscuro.png';
+---
+
+<section
+  id="e5"
+  data-scene="4"
+  aria-label="Responde con la app"
+  class="fdm-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <span data-reveal class="fdm-eyebrow">Responde con la app</span>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+    <div class="flex min-w-0 flex-[1_1_360px] flex-col gap-[clamp(20px,2.6vw,30px)]">
+      <h2
+        data-reveal
+        data-reveal-delay="0.08"
+        class="max-w-[20ch] text-pretty text-[clamp(28px,4.4vw,48px)] font-medium leading-[1.1] tracking-[-0.02em]"
+      >
+        Te muestra la plata, no te la cuenta.
+      </h2>
+
+      <p data-reveal data-reveal-delay="0.18" class="fdm-copy max-w-[46ch]">
+        La respuesta no es un párrafo con números adentro: es la misma cifra del Resumen, la misma
+        barra del Presupuesto y el mismo cartel ámbar de la tarjeta que cierra. Los importes van
+        copiados de tus datos, nunca calculados por el modelo.
+      </p>
+
+      <!-- Partida recreada en HTML: el mismo componente que devuelve el producto -->
+      <div
+        data-reveal
+        data-reveal-delay="0.3"
+        class="flex flex-col gap-3.5 rounded-2xl border border-hairline bg-panel p-[clamp(16px,2vw,22px)]"
+      >
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2.5">
+          <span class="text-[clamp(16px,1.7vw,19px)] font-medium">Supermercado</span>
+          <span class="fdm-nums text-[clamp(15px,1.6vw,18px)] text-tertiary">
+            <span data-count="268400" data-prefix="$ " data-at="500" data-dur="1" class="text-ink"
+              >$ 268.400</span
+            > de $ 520.000
+          </span>
+        </div>
+        <div class="h-[7px] overflow-hidden rounded-[4px] bg-hairline">
+          <!-- 268.400 / 520.000 — el único cálculo permitido, igual que en el producto -->
+          <div data-hbar class="h-full rounded-[4px] bg-green-soft" style="width:51.6%"></div>
+        </div>
+      </div>
+
+      <p
+        data-reveal
+        data-reveal-delay="0.42"
+        class="max-w-[52ch] text-pretty border-t border-hairline pt-[clamp(16px,2vw,20px)] text-[clamp(15px,1.7vw,18px)] leading-[1.5] text-tertiary"
+      >
+        La conversación no se guarda, tus datos no entrenan a nadie y no te va a decir qué acciones
+        comprar. Es tu presupuesto explicado, nada más.
+      </p>
+    </div>
+
+    <div data-reveal="right" data-reveal-delay="0.2" class="flex flex-[0_1_250px] flex-col gap-3.5">
+      <div
+        class="overflow-hidden rounded-[26px] border border-hairline bg-bg shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+      >
+        <Image
+          src={capturaPartida}
+          alt="Respuesta del asistente con la partida Supermercado y su barra: $ 268.400 de $ 520.000"
+          widths={[250, 375, 500]}
+          sizes="250px"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+      <span class="font-money text-xs leading-[1.5] text-tertiary">
+        Te contesta con la barra de tu presupuesto, no con un párrafo lleno de números.
+      </span>
+    </div>
+  </div>
+</section>
