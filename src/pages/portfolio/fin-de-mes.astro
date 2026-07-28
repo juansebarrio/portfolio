@@ -9,13 +9,15 @@ import '../../styles/fin-de-mes.css';
 import E1Portada from '../../escenas/E1Portada.astro';
 import E2Problema from '../../escenas/E2Problema.astro';
 import E3Tesis from '../../escenas/E3Tesis.astro';
-import E4Presupuesto from '../../escenas/E4Presupuesto.astro';
-import E5CargarGasto from '../../escenas/E5CargarGasto.astro';
-import E6Tarjeta from '../../escenas/E6Tarjeta.astro';
-import E7Cuotas from '../../escenas/E7Cuotas.astro';
-import E8Hogar from '../../escenas/E8Hogar.astro';
-import E9Patrimonio from '../../escenas/E9Patrimonio.astro';
-import E10Cierre from '../../escenas/E10Cierre.astro';
+import E4Asistente from '../../escenas/E4Asistente.astro';
+import E5RespondeApp from '../../escenas/E5RespondeApp.astro';
+import E6Presupuesto from '../../escenas/E6Presupuesto.astro';
+import E7CargarGasto from '../../escenas/E7CargarGasto.astro';
+import E8Tarjeta from '../../escenas/E8Tarjeta.astro';
+import E9Cuotas from '../../escenas/E9Cuotas.astro';
+import E10Hogar from '../../escenas/E10Hogar.astro';
+import E11Patrimonio from '../../escenas/E11Patrimonio.astro';
+import E12Cierre from '../../escenas/E12Cierre.astro';
 
 // Config de la pieza (props del prototipo)
 const WEBAPP_URL = 'https://pfm.js80.studio/resumen';
@@ -29,7 +31,7 @@ const description =
 const canonical = `${SITE}/portfolio/fin-de-mes`;
 const ogImage = `${SITE}/images/portfolio/fin-de-mes/og-fin-de-mes.jpg`;
 
-const ESCENAS = 10;
+const ESCENAS = 12;
 ---
 
 <!doctype html>
@@ -56,9 +58,11 @@ const ESCENAS = 10;
   </head>
 
   <body>
+    <!-- Fijo sobre escenas que superan el viewport: lleva fondo propio para no
+         pisarse con el contenido que pasa por debajo. -->
     <a
       href="/portfolio"
-      class="fixed left-[clamp(20px,5vw,64px)] top-[22px] z-[60] font-money text-[clamp(11px,1.3vw,13px)] uppercase tracking-[0.2em] text-tertiary transition-colors hover:text-ink"
+      class="fixed left-[clamp(20px,5vw,64px)] top-[18px] z-[60] rounded-full border border-hairline bg-bg/85 px-3 py-1.5 font-money text-[clamp(11px,1.3vw,13px)] uppercase tracking-[0.2em] text-tertiary backdrop-blur-sm transition-colors hover:text-ink"
     >
       ← volver
     </a>
@@ -98,13 +102,15 @@ const ESCENAS = 10;
       <E1Portada />
       <E2Problema />
       <E3Tesis />
-      <E4Presupuesto />
-      <E5CargarGasto />
-      <E6Tarjeta />
-      <E7Cuotas />
-      <E8Hogar />
-      <E9Patrimonio />
-      <E10Cierre webappUrl={WEBAPP_URL} />
+      <E4Asistente />
+      <E5RespondeApp />
+      <E6Presupuesto />
+      <E7CargarGasto />
+      <E8Tarjeta />
+      <E9Cuotas />
+      <E10Hogar />
+      <E11Patrimonio />
+      <E12Cierre webappUrl={WEBAPP_URL} />
     </main>
 
     <script>
@@ -287,10 +293,29 @@ const ESCENAS = 10;
           .to(badge, { opacity: 1, duration: 0.3 }, 4.22);
       };
 
+      /* El hilo del asistente: los puntos de "pensando" y cada paso en su ms. */
+      const assistant = (panel: HTMLElement) => {
+        const dots = panel.querySelector<HTMLElement>('[data-as-dots]');
+        if (dots) {
+          gsap.set(dots, { opacity: 1 });
+          Array.from(dots.children).forEach((d, i) => {
+            (d as HTMLElement).style.animation = `fdm-live 1.05s ease-in-out ${i * 0.16}s infinite`;
+          });
+          gsap.to(dots, { opacity: 0, duration: 0.3, delay: 0.95 });
+        }
+        panel.querySelectorAll<HTMLElement>('[data-as]').forEach((step) => {
+          const at = parseFloat(step.dataset.as ?? '0') / 1000;
+          gsap.to(step, { opacity: 1, duration: 0.5, ease: EASE, delay: at });
+          gsap.to(step, { y: 0, duration: 0.6, ease: EASE, delay: at });
+        });
+      };
+
       const playScene = (sec: HTMLElement) => {
-        sec
-          .querySelectorAll<HTMLElement>('[data-count]')
-          .forEach((el, i) => count(el, 0.15 + i * 0.1));
+        sec.querySelectorAll<HTMLElement>('[data-count]').forEach((el, i) => {
+          // data-at fija el arranque; si no está, se escalona automáticamente
+          const at = el.dataset.at;
+          count(el, at === undefined ? 0.15 + i * 0.1 : parseFloat(at) / 1000);
+        });
         sec.querySelectorAll<HTMLElement>('[data-bar]').forEach((el, i) => {
           gsap.to(el, {
             height: el.dataset.barH ?? el.style.height,
@@ -299,6 +324,16 @@ const ESCENAS = 10;
             delay: 0.26 + i * 0.07,
           });
         });
+        sec.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el, i) => {
+          gsap.to(el, {
+            width: el.dataset.hbarW ?? el.style.width,
+            duration: 0.9,
+            ease: EASE,
+            delay: 0.64 + i * 0.09,
+          });
+        });
+        const panel = sec.querySelector<HTMLElement>('[data-assistant]');
+        if (panel) assistant(panel);
         const typer = sec.querySelector<HTMLElement>('[data-type]');
         if (typer) type(typer);
         const tl = sec.querySelector<HTMLElement>('[data-timeline]');
@@ -335,10 +370,20 @@ const ESCENAS = 10;
           });
         });
 
-        // Las barras guardan su alto final (degradación sin JS) y arrancan en cero
+        // Las barras guardan su medida final (degradación sin JS) y arrancan en cero
         document.querySelectorAll<HTMLElement>('[data-bar]').forEach((el) => {
           el.dataset.barH = el.style.height;
           gsap.set(el, { height: 0 });
+        });
+
+        document.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el) => {
+          el.dataset.hbarW = el.style.width;
+          gsap.set(el, { width: '0%' });
+        });
+
+        // Los pasos del hilo del asistente esperan su turno
+        document.querySelectorAll<HTMLElement>('[data-assistant] [data-as]').forEach((el) => {
+          gsap.set(el, { opacity: 0, y: 10 });
         });
 
         sections.forEach((sec) => {

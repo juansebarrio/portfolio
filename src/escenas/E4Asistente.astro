@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import capturaApertura from '../assets/fin-de-mes/asistente-apertura-oscuro.png';
+
+const pilares = [
+  {
+    titulo: 'Abre él, no vos',
+    texto: 'No empieza con una pantalla en blanco. Empieza con tu mes.',
+    delay: 0.1,
+  },
+  {
+    titulo: 'Entiende la plata de acá',
+    texto: 'Ciclos de tarjeta, cuotas y dólares. No traduce consejos de otro país.',
+    delay: 0.22,
+  },
+  {
+    titulo: 'Propone la repregunta',
+    texto: 'Cada respuesta sugiere por dónde seguir. No son cuatro botones fijos.',
+    delay: 0.34,
+  },
+];
+---
+
+<section
+  id="e4"
+  data-scene="3"
+  aria-label="El asistente"
+  class="fdm-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="fdm-eyebrow">El asistente</span>
+    <h2
+      data-reveal
+      data-reveal-delay="0.1"
+      class="max-w-[23ch] text-pretty text-[clamp(30px,5vw,54px)] font-medium leading-[1.08] tracking-[-0.02em]"
+    >
+      No es un chatbot al que le contás tu vida. Ya sabe tus números.
+    </h2>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+    <!-- Panel del asistente, recreado en HTML: es la pieza animada -->
+    <div
+      data-assistant
+      data-reveal="scale"
+      data-reveal-delay="0.15"
+      class="flex min-h-[clamp(500px,58vh,600px)] min-w-0 flex-[1_1_380px] flex-col gap-[clamp(14px,1.8vw,18px)] rounded-[26px] border border-hairline bg-panel p-[clamp(20px,2.6vw,28px)] shadow-[0_26px_54px_rgba(0,0,0,0.45)]"
+    >
+      <div class="flex items-start gap-3">
+        <span class="mt-[5px] text-[22px] leading-none text-secondary" aria-hidden="true">‹</span>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-[clamp(20px,2.2vw,25px)] font-semibold tracking-[-0.015em]"
+            >Tus números</span
+          >
+          <span class="text-[clamp(13px,1.4vw,15px)] text-tertiary">Al día de hoy, Juanse</span>
+        </div>
+      </div>
+
+      <div class="flex flex-1 flex-col gap-[clamp(12px,1.6vw,16px)]">
+        <div class="relative">
+          <!-- Puntos de "pensando": ocultos por defecto, los muestra el JS al animar -->
+          <div
+            data-as-dots
+            class="absolute left-0 top-[7px] flex items-center gap-[7px] opacity-0"
+            aria-hidden="true"
+          >
+            <span class="block h-[7px] w-[7px] rounded-full bg-tertiary"></span>
+            <span class="block h-[7px] w-[7px] rounded-full bg-tertiary"></span>
+            <span class="block h-[7px] w-[7px] rounded-full bg-tertiary"></span>
+          </div>
+          <p data-as="1000" class="text-pretty text-[clamp(16px,1.7vw,19px)] leading-[1.45]">
+            Julio viene ordenado: quedan tres días y todavía tenés margen en el hogar, con
+            supermercado como el sobre que más aire tiene.
+          </p>
+        </div>
+
+        <div
+          data-as="1500"
+          class="flex flex-col gap-1.5 rounded-2xl border border-hairline p-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-[clamp(13px,1.4vw,15px)] text-secondary">Disponible en julio</span>
+          <span
+            data-count="564900"
+            data-prefix="$ "
+            data-at="1500"
+            data-dur="1.1"
+            class="fdm-nums text-[clamp(28px,3.4vw,40px)] font-medium tracking-[-0.01em] text-green-soft"
+            >$ 564.900</span
+          >
+        </div>
+
+        <div
+          data-as="2300"
+          class="flex items-center gap-[11px] rounded-[14px] border border-amber bg-[rgba(198,145,59,0.09)] px-4 py-[13px] text-[clamp(14px,1.5vw,17px)] text-amber-soft"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="flex-none"
+            aria-hidden="true"
+            ><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
+            ></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
+          >
+          <span>La Visa Galicia cierra hoy: proyectado $ 823.650</span>
+        </div>
+
+        <div class="flex flex-col items-start gap-2.5">
+          <span
+            data-as="2900"
+            class="rounded-[14px] border border-hairline bg-chip px-[15px] py-[11px] text-[clamp(13px,1.4vw,16px)]"
+            >¿Cómo viene la tarjeta?</span
+          >
+          <span
+            data-as="3060"
+            class="rounded-[14px] border border-hairline bg-chip px-[15px] py-[11px] text-[clamp(13px,1.4vw,16px)]"
+            >¿Qué son los 3 movimientos sin categorizar?</span
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2.5">
+        <div class="flex items-stretch gap-2.5">
+          <div
+            class="flex-1 rounded-[14px] border border-hairline bg-chip px-4 py-[14px] text-[clamp(14px,1.5vw,16px)] text-tertiary"
+          >
+            Preguntá lo que quieras…
+          </div>
+          <div
+            class="flex w-[52px] flex-none items-center justify-center rounded-[14px] bg-send text-[20px]"
+            aria-hidden="true"
+          >
+            ↑
+          </div>
+        </div>
+        <span class="text-center text-xs leading-[1.45] text-faint">
+          Orientación general con IA — no es asesoramiento financiero profesional.
+        </span>
+      </div>
+    </div>
+
+    <div data-reveal="right" data-reveal-delay="0.3" class="flex flex-[0_1_250px] flex-col gap-3.5">
+      <div
+        class="overflow-hidden rounded-[26px] border border-hairline bg-bg shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+      >
+        <Image
+          src={capturaApertura}
+          alt="Pantalla del asistente al abrir: lectura del mes, disponible en julio y aviso de cierre de la Visa"
+          widths={[250, 375, 500]}
+          sizes="250px"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+      <span class="font-money text-xs leading-[1.5] text-tertiary">
+        Entrás y ya sabe cómo venís. No escribiste nada todavía.
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[clamp(20px,2.6vw,36px)]"
+  >
+    {
+      pilares.map((pilar) => (
+        <div
+          data-reveal
+          data-reveal-delay={pilar.delay}
+          class="flex flex-col gap-2 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-[clamp(17px,1.8vw,21px)] font-medium">{pilar.titulo}</span>
+          <span class="text-pretty text-[clamp(15px,1.6vw,17px)] leading-[1.45] text-secondary">
+            {pilar.texto}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>
