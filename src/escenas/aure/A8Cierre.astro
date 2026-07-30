@@ -1,0 +1,58 @@
+---
+/**
+ * E8 · Cierre.
+ *
+ * El estado de la entrega con el punto dorado latiendo, y una sola
+ * salida: el sitio en vivo.
+ */
+interface Props {
+  /** Destino del botón de cierre. */
+  sitioUrl: string;
+  /** Texto del botón. */
+  cta?: string;
+}
+const { sitioUrl, cta = 'Ver el sitio' } = Astro.props;
+---
+
+<section
+  id="e8"
+  data-scene="7"
+  data-screen-label="E8 · Cierre"
+  aria-label="Cierre"
+  class="aure-scene gap-[clamp(30px,4vw,46px)]"
+>
+  <h2 data-reveal class="max-w-[15ch] text-h1-cierre text-pretty">
+    De la idea al negocio funcionando.
+  </h2>
+
+  <div
+    data-reveal
+    data-reveal-delay="0.14"
+    class="flex flex-col gap-3 font-money text-[clamp(12px,1.5vw,15px)] tracking-[0.12em]"
+  >
+    <span class="flex items-center gap-3 text-ink">
+      <span data-live class="aure-live block h-[7px] w-[7px] rounded-full bg-gold"></span>
+      <span>MARCA Y SITIO ENTREGADOS</span>
+    </span>
+  </div>
+
+  <a
+    data-reveal
+    data-reveal-delay="0.28"
+    href={sitioUrl}
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center gap-2.5 self-start rounded-xl bg-gold px-[26px] py-4 text-[clamp(16px,1.9vw,20px)] font-semibold text-bg transition-colors hover:bg-gold-soft hover:text-bg"
+  >
+    <span>{cta}</span>
+    <span class="font-money" aria-hidden="true">↗</span>
+  </a>
+
+  <p
+    data-reveal
+    data-reveal-delay="0.4"
+    class="font-money text-[clamp(12px,1.4vw,14px)] uppercase tracking-[0.14em] text-tertiary"
+  >
+    JS80 · Estudio de soluciones digitales
+  </p>
+</section>

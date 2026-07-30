@@ -1,232 +1,448 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactCTA from '../../components/ContactCTA.astro';
-import PortadaEmbed from '../../components/PortadaEmbed.astro';
-import AureTokko from '../../components/aure/AureTokko.astro';
-import AureCartera from '../../components/aure/AureCartera.astro';
-import AureEtapas from '../../components/aure/AureEtapas.astro';
-import '../../styles/aure.css';
+import '@fontsource/rubik/400.css';
+import '@fontsource/rubik/500.css';
+import '@fontsource/rubik/600.css';
+import '@fontsource/spline-sans-mono/400.css';
+import '@fontsource/spline-sans-mono/500.css';
+import '../../styles/aure-caso.css';
+
+import A1Portada from '../../escenas/aure/A1Portada.astro';
+import A2Pedido from '../../escenas/aure/A2Pedido.astro';
+import A3Tesis from '../../escenas/aure/A3Tesis.astro';
+import A4Giro from '../../escenas/aure/A4Giro.astro';
+import A5Marca from '../../escenas/aure/A5Marca.astro';
+import A6Tokko from '../../escenas/aure/A6Tokko.astro';
+import A7Metodo from '../../escenas/aure/A7Metodo.astro';
+import A8Cierre from '../../escenas/aure/A8Cierre.astro';
+
+// Config de la pieza (props del prototipo)
+const SITIO_URL = 'https://aure-ebon.vercel.app/';
+const DESTACADO: 'palabra' | 'linea' = 'palabra';
+const SHOW_DOT_INDEX = true;
+const SHOW_PROGRESS = true;
+
+const SITE = 'https://juansebarrio.com';
+const title = 'AURE — Caso JS80';
+const description =
+  'Caso AURE: marca reconstruida, sitio como método y consultas identificadas desde el sitio, conectadas al sistema de gestión de siempre.';
+const canonical = `${SITE}/portfolio/aure`;
+
+const ESCENAS = 8;
 ---
 
-<Layout
-  title="AURE · Web inmobiliaria conectada a Tokko · Caso de estudio · Juan Segundo Barrio"
-  description="Cómo diseñé y construí la web de AURE, una comercializadora de desarrollos en Buenos Aires: cartera sincronizada desde Tokko Broker y una identidad en movimiento pensada para venta en pozo."
-  ogType="article"
->
-  {/* Outfit e IBM Plex Sans son las fuentes reales de aure.ar. Se cargan solo
-      acá, para que las escenas se lean con la tipografía del producto. */}
-  <Fragment slot="head">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=IBM+Plex+Sans:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
-  </Fragment>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#141312" />
+    {/* El diseño llega con noindex: la pieza se comparte por link mientras
+        falten los OK del cliente sobre los assets y la historia del discovery. */}
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
 
-  <div class="case-page">
-
-    <header class="case-hero reveal-up" style="--i: 0">
-      <p class="meta-label">Caso de estudio · Web + Integración · 6 min de lectura</p>
-
-      <h1 class="case-title">
-        AURE, una inmobiliaria que <em>no vende metros</em>
-      </h1>
-
-      <p class="case-lede">
-        Web de comercialización con la cartera sincronizada desde Tokko Broker, y una
-        marca que <em>se arma en pantalla</em> antes de decir una sola palabra.
-      </p>
-
-      <dl class="case-meta">
-        <div>
-          <dt>Tipo</dt>
-          <dd>Sitio institucional + cartera · en producción</dd>
+  <body>
+    {
+      SHOW_PROGRESS && (
+        <div data-progress class="fixed inset-x-0 top-0 z-[60] h-[2px] bg-hairline" aria-hidden="true">
+          <div
+            data-progress-fill
+            class="h-full w-full origin-left bg-gold"
+            style="transform: scaleX(0)"
+          />
         </div>
-        <div>
-          <dt>Rol</dt>
-          <dd>Diseño, marca y dirección técnica</dd>
-        </div>
-        <div>
-          <dt>Stack</dt>
-          <dd>Next.js · Tailwind v4 · API de Tokko Broker</dd>
-        </div>
-        <div>
-          <dt>Estudio</dt>
-          <dd>
-            <a href="https://js80.studio" target="_blank" rel="noopener" class="js80-tag">
-              <span class="js80-nucleus" aria-hidden="true"></span>
-              JS80
-            </a>
-          </dd>
-        </div>
-      </dl>
+      )
+    }
 
-      <div class="case-actions">
-        <a href="https://aure-ebon.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
-          Ver el sitio en vivo
-          <span class="arrow">→</span>
-        </a>
-        <a href="#tokko" class="btn-secondary">
-          Cómo funciona la sincronización
-        </a>
-      </div>
-    </header>
+    {/* Fijo sobre escenas que superan el viewport: lleva fondo propio para no
+        pisarse con el contenido que pasa por debajo. */}
+    <a
+      href="/portfolio"
+      class="fixed left-[clamp(20px,5vw,64px)] top-[clamp(18px,3vh,28px)] z-[61] inline-flex items-center gap-[9px] rounded-full border border-hairline bg-bg/80 py-[9px] pl-[13px] pr-4 font-money text-xs uppercase tracking-[0.14em] text-secondary backdrop-blur-sm transition-colors hover:border-gold-deep hover:text-gold"
+    >
+      <span aria-hidden="true">←</span>
+      <span>volver</span>
+    </a>
 
-    <article class="case-prose">
+    {
+      SHOW_DOT_INDEX && (
+        <nav
+          data-rail
+          aria-label="Índice de escenas"
+          class="fixed right-[22px] top-1/2 z-[60] hidden -translate-y-1/2 flex-col gap-[14px] min-[900px]:flex"
+        >
+          {Array.from({ length: ESCENAS }, (_, i) => (
+            <button
+              data-dot={i}
+              type="button"
+              aria-label={`Escena ${i + 1}`}
+              class="h-[7px] w-[7px] cursor-pointer rounded-full border-0 bg-hairline p-0 transition-[background-color,transform] duration-300"
+            />
+          ))}
+        </nav>
+      )
+    }
 
-      <figure class="aure-stage">
-        <PortadaEmbed file="portada-aure.html" title="AURE" bg="#212A45" />
-        <figcaption class="aure-caption">La portada de AURE: el logotipo, la promesa y la fachada que se enciende</figcaption>
-      </figure>
+    <main class="overflow-x-hidden">
+      <A1Portada destacado={DESTACADO} />
+      <A2Pedido />
+      <A3Tesis />
+      <A4Giro />
+      <A5Marca />
+      <A6Tokko />
+      <A7Metodo />
+      <A8Cierre sitioUrl={SITIO_URL} />
+    </main>
 
-      <h2 class="reveal-up" style="--i: 0">El punto de partida</h2>
+    <script>
+      /* ════════════════════════════════════════════════════════════
+         Animación de la pieza — sin librerías, como llegó del diseño:
+         IntersectionObserver para entradas y escenas, rAF para el
+         scroll. Con prefers-reduced-motion nada se mueve: el HTML ya
+         contiene cada número, ancho de barra y chip encendido.
+         ════════════════════════════════════════════════════════════ */
+      const EASE = 'cubic-bezier(0.22,0.61,0.36,1)';
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fmt = new Intl.NumberFormat('es-AR');
 
-      <p>AURE es una comercializadora joven: selecciona desarrollos de terceros —sobre todo en pozo— y acompaña la compra de punta a punta. No construye, no administra alquileres como negocio central. <strong>Vende decisiones patrimoniales.</strong></p>
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-scene]'));
+      const rail = document.querySelector<HTMLElement>('[data-rail]');
+      const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+      const bar = document.querySelector<HTMLElement>('[data-progress-fill]');
 
-      <p>El brief venía con un diagnóstico del propio equipo sobre el sector: información escasa, procesos opacos, una mirada puramente transaccional. La web tenía que ser la primera prueba de lo contrario. Si el argumento comercial es <em>«comprá con claridad»</em>, el sitio no puede ser el primer lugar donde algo no queda claro.</p>
+      const timers: number[] = [];
+      const wait = (fn: () => void, ms: number) => timers.push(window.setTimeout(fn, ms));
 
-      <blockquote>
-        <em>«No vendemos metros: te ayudamos a elegir bien, con respaldo y sin letra chica.»</em>
-      </blockquote>
+      /* ── Entradas ───────────────────────────────────────────────── */
+      const revealFrom = (el: HTMLElement) => {
+        const k = el.getAttribute('data-reveal');
+        if (k === 'scale') return 'scale(0.965)';
+        if (k === 'right') return 'translateX(28px)';
+        return 'translateY(16px)';
+      };
 
-      <p>De ahí salieron las dos decisiones que ordenan todo el proyecto: una identidad que se explica sola, y una cartera que nunca miente porque nadie la carga a mano.</p>
+      let revealIO: IntersectionObserver | null = null;
 
+      const initReveals = () => {
+        const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+        if (reduced) return;
+        els.forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = revealFrom(el);
+          el.style.transition = `opacity 0.7s ${EASE}, transform 0.85s ${EASE}`;
+          el.style.willChange = 'opacity, transform';
+        });
+        revealIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const el = e.target as HTMLElement;
+              revealIO?.unobserve(el);
+              wait(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                wait(() => {
+                  el.style.willChange = 'auto';
+                }, 1000);
+              }, parseFloat(el.getAttribute('data-reveal-delay') || '0') * 1000);
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        els.forEach((el) => revealIO?.observe(el));
+      };
 
-      <h2 class="reveal-up" style="--i: 0">La marca se arma en pantalla</h2>
+      /* ── Barras y chips: el HTML trae el estado final ──────────── */
+      const initBars = () => {
+        document.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el) => {
+          el.dataset.hbarW = el.style.width;
+          if (reduced) return;
+          el.style.transition = `width 0.9s ${EASE}`;
+          el.style.width = '0%';
+        });
+      };
 
-      <p>AURE es un acrónimo: <strong>a</strong>rquitectura, <strong>u</strong>rbanismo, <strong>r</strong>eal <strong>e</strong>state. En una placa estática eso hay que explicarlo con una bajada. En movimiento, se entiende sin leer nada.</p>
+      const initAssistant = () => {
+        if (reduced) return;
+        document.querySelectorAll<HTMLElement>('[data-as]').forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          el.style.transition = `opacity 0.5s ${EASE}, transform 0.6s ${EASE}`;
+        });
+        document.querySelectorAll<HTMLElement>('[data-chip]').forEach((el) => {
+          el.classList.remove('is-on');
+        });
+      };
 
-      <p>La apertura del sitio muestra las cuatro palabras completas, borra todo menos la inicial y deja que las cuatro letras colapsen sobre el logotipo. Dura poco más de cuatro segundos y no se repite en la sesión: es una presentación, no un peaje.</p>
+      const playAssistant = (panel: HTMLElement) => {
+        if (reduced) return;
+        panel.querySelectorAll<HTMLElement>('[data-as]').forEach((el) => {
+          wait(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          }, parseFloat(el.getAttribute('data-as') || '0'));
+        });
+        panel.querySelectorAll<HTMLElement>('[data-chip]').forEach((el) => {
+          wait(() => {
+            el.classList.add('is-on');
+            el.style.animation = 'aure-pulse 0.7s cubic-bezier(0.4,0,0.2,1) 1';
+            wait(() => {
+              el.style.animation = 'none';
+            }, 800);
+          }, parseFloat(el.getAttribute('data-chip') || '0'));
+        });
+      };
 
-      <p>El movimiento está calibrado en el mismo registro que el negocio. Curvas largas, sin rebote, sin nada que aparezca de golpe. En una web que vende departamentos de USD 390.000, <strong>la velocidad se lee como apuro y el apuro se lee como barato</strong>. Todo entra con salidas de más de un segundo.</p>
+      const count = (el: HTMLElement, delay: number) => {
+        const target = parseFloat(el.getAttribute('data-count') || '0');
+        const prefix = el.getAttribute('data-prefix') || '';
+        const dur = parseFloat(el.getAttribute('data-dur') || '1.2') * 1000;
+        el.textContent = prefix + fmt.format(0);
+        const t0 = performance.now() + delay * 1000;
+        const step = (now: number) => {
+          const p = Math.min(1, Math.max(0, (now - t0) / dur));
+          const e = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + fmt.format(Math.round(target * e));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
 
-      <p>La portada de arriba trabaja con las mismas piezas: el logotipo, la promesa, la fachada que se enciende ventana por ventana y, al final, una ficha real de la cartera. Misma paleta —azul <code>#212A45</code>, dorado <code>#C0A872</code>— y las tipografías del producto: IBM Plex Sans para la marca, Outfit para el resto.</p>
+      const playScene = (sec: HTMLElement) => {
+        if (reduced) return;
+        sec.querySelectorAll<HTMLElement>('[data-count]').forEach((el, i) => {
+          const at = el.getAttribute('data-at');
+          count(el, at === null ? 0.15 + i * 0.1 : parseFloat(at) / 1000);
+        });
+        sec.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el, i) => {
+          wait(() => {
+            el.style.width = el.dataset.hbarW ?? '100%';
+          }, 640 + i * 90);
+        });
+        const panel = sec.querySelector<HTMLElement>('[data-assistant]');
+        if (panel) playAssistant(panel);
+        const pulse = sec.querySelector<HTMLElement>('[data-pulse]');
+        if (pulse)
+          wait(() => {
+            pulse.style.animation = 'aure-pulse 1.2s cubic-bezier(0.4,0,0.2,1) 1';
+          }, 1400);
+      };
 
+      let sceneIO: IntersectionObserver | null = null;
+      const initScenes = () => {
+        sceneIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              sceneIO?.unobserve(e.target);
+              playScene(e.target as HTMLElement);
+            });
+          },
+          { threshold: 0.25 }
+        );
+        sections.forEach((s) => sceneIO?.observe(s));
+      };
 
-      <h2 class="reveal-up" style="--i: 0" id="tokko">Una cartera que nadie carga a mano</h2>
+      /* ── Efectos atados al scroll ──────────────────────────────────
+         Parallax de bloques, la frase que se enciende palabra por
+         palabra y el foco de la fila más cercana al centro. */
+      let parallax: HTMLElement[] = [];
+      let wordGroups: HTMLElement[] = [];
+      let rowGroups: HTMLElement[][] = [];
 
-      <p>El equipo ya trabajaba con <strong>Tokko Broker</strong>, el CRM inmobiliario donde viven las publicaciones, las fotos y los estados de cada unidad. La tentación era duplicar: exportar una vez, maquetar lindo, actualizar «cuando haya un rato».</p>
+      const initScrollFx = () => {
+        if (reduced) return;
+        parallax = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+        wordGroups = Array.from(document.querySelectorAll<HTMLElement>('[data-scroll-words]'));
+        parallax.forEach((el) => {
+          el.style.willChange = 'transform';
+        });
+        wordGroups.forEach((g) =>
+          Array.from(g.children).forEach((w) => {
+            const el = w as HTMLElement;
+            el.style.opacity = '0.16';
+            el.style.transition = 'opacity 0.3s linear';
+          })
+        );
+        const map = new Map<Element, HTMLElement[]>();
+        document.querySelectorAll<HTMLElement>('[data-focus-row]').forEach((r) => {
+          const key = r.parentElement;
+          if (!key) return;
+          if (!map.has(key)) map.set(key, []);
+          map.get(key)!.push(r);
+          Array.from(r.children).forEach((c) => {
+            (c as HTMLElement).style.transition = 'color 0.4s ease';
+          });
+        });
+        rowGroups = Array.from(map.values());
+      };
 
-      <p>Esa es exactamente la forma en que una web inmobiliaria empieza a mentir. Una propiedad vendida que sigue publicada quema una consulta y, peor, quema la confianza que el resto del sitio se pasó cinco pantallas construyendo.</p>
+      const scrollFx = () => {
+        const vh = window.innerHeight;
 
-      <AureTokko lang="es" />
+        parallax.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.bottom < -260 || r.top > vh + 260) return;
+          const f = parseFloat(el.getAttribute('data-parallax') || '0');
+          const off = Math.max(-64, Math.min(64, (vh / 2 - (r.top + r.height / 2)) * f));
+          el.style.transform = `translate3d(0,${off.toFixed(1)}px,0)`;
+        });
 
-      <p>La cartera se consume desde la API de Tokko y se renderiza en el sistema visual de AURE. El CRM sigue siendo la única fuente de verdad: el equipo comercial trabaja donde siempre trabajó y <strong>la web es un reflejo, no una segunda base de datos</strong>.</p>
+        wordGroups.forEach((g) => {
+          const r = g.getBoundingClientRect();
+          if (r.bottom < -120 || r.top > vh + 120) return;
+          const words = Array.from(g.children) as HTMLElement[];
+          const p = Math.max(0, Math.min(1, (vh * 0.84 - r.top) / (r.height + vh * 0.32)));
+          const head = p * (words.length + 2.5);
+          words.forEach((w, i) => {
+            const local = Math.max(0, Math.min(1, (head - i) / 1.5));
+            w.style.opacity = (0.16 + 0.84 * local).toFixed(3);
+          });
+        });
 
-      <p>El trabajo de diseño acá no es la ficha, es el mapeo. Los campos de un CRM inmobiliario son operativos y hablan en su propio idioma; la ficha pública tiene que decidir qué se muestra, en qué orden y con qué nombre. La regla que usé: <strong>en la card entra lo que sirve para descartar</strong> —zona, operación, precio, ambientes, superficie— y todo lo demás espera en la ficha completa.</p>
+        rowGroups.forEach((rows) => {
+          let best: HTMLElement | null = null;
+          let bestD = Infinity;
+          rows.forEach((r) => {
+            const rect = r.getBoundingClientRect();
+            const d = Math.abs(rect.top + rect.height / 2 - vh * 0.46);
+            if (d < bestD) {
+              bestD = d;
+              best = r;
+            }
+          });
+          const near = bestD < vh * 0.34;
+          rows.forEach((r) => {
+            const on = near && r === best;
+            const num = r.children[0] as HTMLElement | undefined;
+            const txt = r.children[1] as HTMLElement | undefined;
+            if (num) num.style.color = on ? '#C0A872' : '#7F796F';
+            if (txt) txt.style.color = on ? '#F2EFE9' : '#A39D93';
+          });
+        });
+      };
 
+      /* ── Progreso, punto activo y navegación ───────────────────── */
+      let nav = 0;
+      let navLocked = false;
+      let active = -1;
+      let raf = 0;
+      let tween = 0;
 
-      <h2 class="reveal-up" style="--i: 0">La cartera desfila</h2>
+      const syncRail = () => {
+        if (rail) rail.style.display = window.innerWidth >= 900 ? 'flex' : 'none';
+      };
 
-      <p>Con la sincronización resuelta aparece un problema de presentación: la cartera es heterogénea. Conviven un monoambiente en Villa Gesell y un departamento en Recoleta, ventas y alquileres, unidades terminadas y desarrollos en obra.</p>
+      const tick = () => {
+        raf = 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const y = window.scrollY;
+        if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, y / max)) : 0})`;
+        let idx = 0;
+        const mid = y + window.innerHeight * 0.4;
+        sections.forEach((s, i) => {
+          if (s.getBoundingClientRect().top + y <= mid) idx = i;
+        });
+        if (!navLocked) nav = idx;
+        if (idx !== active) {
+          active = idx;
+          dots.forEach((d, i) => {
+            const on = i === idx;
+            d.style.background = on ? '#C0A872' : '#34302B';
+            d.style.transform = on ? 'scale(1.6)' : 'scale(1)';
+          });
+        }
+        scrollFx();
+      };
 
-      <AureCartera lang="es" />
+      const onScroll = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
 
-      <p>La solución fue tratar la tira como una vidriera y no como una grilla: dos filas que derivan lento en sentidos opuestos, con las puntas desvanecidas para que nada entre ni salga de golpe. El movimiento se frena al pasar el mouse o al llegar con el teclado, así que <strong>mirar no compite con elegir</strong>.</p>
+      /* El índice de navegación es propio (no derivado del scroll al momento
+         de la tecla): con el tween en curso, derivarlo de scrollY pierde
+         pulsaciones rápidas e invierte la dirección. */
+      const goTo = (i: number) => {
+        const idx = Math.max(0, Math.min(sections.length - 1, i));
+        const sec = sections[idx];
+        if (!sec) return;
+        nav = idx;
+        const y = Math.round(sec.getBoundingClientRect().top + window.scrollY);
+        if (tween) cancelAnimationFrame(tween);
+        if (reduced) {
+          window.scrollTo(0, y);
+          navLocked = false;
+          tick();
+          return;
+        }
+        navLocked = true;
+        const start = window.scrollY;
+        const dist = y - start;
+        const dur = Math.min(760, Math.max(380, Math.abs(dist) * 0.55));
+        const t0 = performance.now();
+        const step = (now: number) => {
+          const p = Math.min(1, (now - t0) / dur);
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          window.scrollTo(0, Math.round(start + dist * e));
+          if (p < 1) tween = requestAnimationFrame(step);
+          else {
+            tween = 0;
+            navLocked = false;
+            tick();
+          }
+        };
+        tween = requestAnimationFrame(step);
+      };
 
-      <p>Es un recurso caro de la categoría —lo usan las marcas de real estate premium— y funciona por una razón concreta: transmite que hay cartera. Una grilla de nueve fichas dice «tenemos nueve». Una tira que desfila dice «esto sigue».</p>
+      initReveals();
+      initBars();
+      initAssistant();
+      initScenes();
+      initScrollFx();
 
+      if (!reduced) {
+        const live = document.querySelector<HTMLElement>('[data-live]');
+        if (live) live.style.animation = 'aure-live 2.2s ease-in-out infinite';
+      }
 
-      <h2 class="reveal-up" style="--i: 0">El pozo, que es donde está el miedo</h2>
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('scrollend', () => {
+        if (!tween) {
+          navLocked = false;
+          tick();
+        }
+      });
+      window.addEventListener('resize', () => {
+        syncRail();
+        tick();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const t = e.target as HTMLElement | null;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        const fwd = ['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key);
+        const back = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key);
+        if (!fwd && !back) return;
+        e.preventDefault();
+        if (!navLocked) tick();
+        goTo(nav + (fwd ? 1 : -1));
+      });
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
-      <p>El grueso del negocio de AURE es venta en pozo. Comprar algo que todavía no existe, pagando en cuotas durante la obra, es la operación que más ansiedad genera y la que más preguntas incómodas tiene: qué pasa si se demora, quién es el desarrollador, puedo vender antes de la entrega.</p>
-
-      <p>La respuesta de producto fue no esconder el recorrido en ningún lado. Cada desarrollo declara su etapa en la propia card, con el mismo vocabulario en toda la web: <em>en desarrollo</em>, <em>listo para escriturar</em>.</p>
-
-      <AureEtapas lang="es" />
-
-      <p>Sobre el riel están los dos desarrollos de la cartera actual, cada uno anclado donde está de verdad. Es una sola idea repetida en cinco lugares del sitio: <strong>el usuario tiene que ver siempre el camino completo, no solo el casillero en el que está parado</strong>.</p>
-
-      <p>El mismo criterio ordena el bloque de preguntas frecuentes. Está escrito con las preguntas que la gente hace de verdad —«¿qué pasa si el desarrollo se demora?», «¿qué gastos adicionales tengo que tener en cuenta?»— y no con las que dejan mejor parada a la inmobiliaria.</p>
-
-
-      <h2 class="reveal-up" style="--i: 0">Decisiones chicas que sostienen el tono</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Decisión</th>
-            <th>Por qué</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Dorado solo en acentos</td>
-            <td>Un dorado del 20% de la pantalla es un casino. Al 2% —filetes, estados, un punto en el logotipo— es una marca cara.</td>
-          </tr>
-          <tr>
-            <td>Radio de 4px</td>
-            <td>Las esquinas muy redondeadas leen como app de consumo. La arquitectura tiene aristas.</td>
-          </tr>
-          <tr>
-            <td>Precios en tabular</td>
-            <td>Las cifras se comparan en columna. Con ancho variable, comparar cuesta.</td>
-          </tr>
-          <tr>
-            <td>Equipo con cara y nombre</td>
-            <td>El diferencial declarado es la cercanía. Una inmobiliaria sin caras la contradice en la primera pantalla.</td>
-          </tr>
-          <tr>
-            <td>Contacto sin formulario obligatorio</td>
-            <td>WhatsApp directo, mail y reunión antes que el formulario. El formulario está, pero no es el peaje.</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      <h2 class="reveal-up" style="--i: 0">Movimiento que se puede apagar</h2>
-
-      <p>Todo lo que se mueve en este caso —y en el sitio— tiene un estado final escrito en el HTML. Con <code>prefers-reduced-motion</code> activado no hay deriva, no hay contadores y no hay colapso: la marca ya está armada, la cartera se recorre a mano y el riel de etapas está completo desde el primer frame.</p>
-
-      <p>No es una concesión de accesibilidad al final del proyecto. Es la misma disciplina que hace que la animación se vea bien: <strong>si la escena no se entiende quieta, la animación está tapando un problema de diseño</strong>.</p>
-
-
-      <h2 class="reveal-up" style="--i: 0">Lo que sigue</h2>
-
-      <ul>
-        <li><strong>Fichas individuales desde Tokko</strong>: hoy la ficha completa existe; el próximo paso es que las galerías y los showrooms 3D salgan del mismo origen que el resto de los datos.</li>
-        <li><strong>Guías de compra</strong>: la navegación ya reserva el lugar. El contenido es el activo que le falta a la web para trabajar sola.</li>
-        <li><strong>Testimonios reales</strong>: el bloque está diseñado y funcionando con textos de referencia, esperando las operaciones cerradas que lo llenen.</li>
-      </ul>
-
-      <p>Es una web joven de una empresa joven. Lo que ya está resuelto es lo caro de resolver después: la identidad, el tono y el hecho de que la cartera se actualice sola.</p>
-
-    </article>
-
-    <aside class="case-cta reveal-up" style="--i: 0">
-      <p class="meta-label">Vela funcionando</p>
-      <h2>El sitio está en producción.</h2>
-      <p>Cartera en vivo desde Tokko, desarrollos, equipo y contacto. La intro se ve una vez por sesión.</p>
-      <div class="case-cta-actions">
-        <a href="https://aure-ebon.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
-          Abrir el sitio de AURE
-          <span class="arrow">→</span>
-        </a>
-        <a href="mailto:contacto@js80.studio" class="btn-secondary">
-          Hablemos del tuyo
-        </a>
-      </div>
-    </aside>
-
-    <footer class="case-signature reveal-up" style="--i: 0">
-      <a href="https://js80.studio" target="_blank" rel="noopener" class="signature-block">
-        <span class="js80-nucleus js80-nucleus-lg" aria-hidden="true"></span>
-        <span class="signature-text">
-          <strong>JS80</strong>
-          <em>Estudio de soluciones digitales · Buenos Aires</em>
-        </span>
-      </a>
-
-      <a href="/portfolio" class="back-link">
-        ← Volver a todos los trabajos
-      </a>
-    </footer>
-
-    <ContactCTA />
-
-  </div>
-
-  <script>
-    import { initAureScenes } from '../../components/aure/scenes';
-    initAureScenes();
-  </script>
-</Layout>
+      syncRail();
+      tick();
+    </script>
+  </body>
+</html>

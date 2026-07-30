@@ -1,0 +1,62 @@
+---
+/**
+ * E4 · El giro.
+ *
+ * Lo que salió del discovery: la frase es del cliente, no del estudio.
+ *
+ * El bloque de la cita textual del discovery queda fuera hasta que AURE
+ * autorice contarla. Está en el diseño como comentario y acá como prop
+ * apagada: cuando llegue el OK, alcanza con pasar `cita`.
+ */
+interface Props {
+  /** Cita del discovery. Solo con autorización explícita del cliente. */
+  cita?: string;
+}
+const { cita } = Astro.props;
+---
+
+<section
+  id="e4"
+  data-scene="3"
+  data-screen-label="E4 · El giro"
+  aria-label="El giro"
+  class="aure-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <span data-reveal class="aure-eyebrow">El giro · discovery</span>
+
+  <h2 data-reveal data-reveal-delay="0.1" class="max-w-[26ch] text-h3 text-pretty">
+    Un departamento de 60.000 dólares y uno de 600.000 necesitan lo mismo: un asesor
+    serio y transparente.
+  </h2>
+
+  <div class="flex max-w-[980px] flex-wrap gap-[clamp(24px,3.4vw,56px)]">
+    <p data-reveal data-reveal-delay="0.22" class="aure-copy flex-[1_1_340px]">
+      Eso lo dijeron ellos, en un cuestionario largo sobre cómo trabajan. Lo único que
+      hicimos fue leerles sus propias respuestas.
+    </p>
+
+    <p
+      data-reveal
+      data-reveal-delay="0.34"
+      class="flex-[1_1_300px] border-t border-hairline pt-[clamp(16px,2vw,20px)] text-[clamp(15px,1.7vw,18px)]/[1.5] text-tertiary text-pretty"
+    >
+      La marca premium era el pedido. El profesionalismo ya lo tenían y el sitio no lo
+      mostraba.
+    </p>
+  </div>
+
+  {
+    cita && (
+      <div
+        data-reveal
+        data-reveal-delay="0.44"
+        class="flex max-w-[640px] flex-col gap-2.5 border-l border-gold py-[clamp(6px,1vw,10px)] pl-[clamp(18px,2.4vw,26px)]"
+      >
+        <span class="text-[clamp(18px,2.2vw,26px)]/[1.35] text-pretty">{cita}</span>
+        <span class="font-money text-xs uppercase tracking-[0.14em] text-tertiary">
+          del discovery
+        </span>
+      </div>
+    )
+  }
+</section>

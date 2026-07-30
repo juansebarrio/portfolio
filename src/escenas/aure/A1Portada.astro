@@ -1,0 +1,46 @@
+---
+/**
+ * E1 · Portada.
+ *
+ * El título entra línea por línea y cierra con el giro: lo que pidieron
+ * contra lo que necesitaban. `destacado` decide si el remate se marca en
+ * una palabra («otra») o en toda la línea.
+ */
+interface Props {
+  destacado?: 'palabra' | 'linea';
+}
+const { destacado = 'palabra' } = Astro.props;
+
+const linea = destacado === 'linea';
+---
+
+<section
+  id="e1"
+  data-scene="0"
+  data-screen-label="E1 · Portada"
+  aria-label="Portada"
+  class="aure-scene relative gap-[clamp(30px,4vw,48px)]"
+>
+  <span data-reveal class="aure-eyebrow">Caso · JS80</span>
+
+  <h1 class="flex max-w-[16ch] flex-col text-h1">
+    <span data-reveal data-reveal-delay="0.2">AURE pidió</span>
+    <span data-reveal data-reveal-delay="0.36">una marca premium.</span>
+    <span
+      data-h-line
+      data-reveal
+      data-reveal-delay="0.52"
+      class:list={[linea && 'text-gold']}
+    >
+      Necesitaba <span data-h-word class:list={[linea ? 'text-inherit' : 'text-gold']}>otra</span> cosa.
+    </span>
+  </h1>
+
+  <div
+    class="aure-nudge absolute bottom-[clamp(34px,6vh,64px)] left-[clamp(20px,5vw,64px)] flex items-center gap-2.5 font-money text-xs uppercase tracking-[0.18em] text-tertiary"
+    aria-hidden="true"
+  >
+    <span>bajá</span>
+    <span class="block h-[26px] w-px bg-hairline"></span>
+  </div>
+</section>

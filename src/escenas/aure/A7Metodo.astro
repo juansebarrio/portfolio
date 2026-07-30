@@ -1,0 +1,111 @@
+---
+/**
+ * E7 · El sitio como método.
+ *
+ * El orden del sitio: primero cómo trabaja AURE, después las unidades.
+ * A la derecha, la apertura del sitio en un recorte de browser. Mientras
+ * no esté el video aprobado, el hueco lo dice en vez de disimularlo.
+ */
+interface Props {
+  /** Loop de la apertura del sitio, sin audio, cuando esté aprobado. */
+  intro?: { src: string; poster?: string };
+}
+const { intro } = Astro.props;
+
+const PASOS = [
+  'Se entiende cómo trabaja.',
+  'Después se mira qué hay.',
+  'Recién ahí se consulta.',
+];
+---
+
+<section
+  id="e7"
+  data-scene="6"
+  data-screen-label="E7 · El sitio como método"
+  aria-label="El sitio como método"
+  class="aure-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <span data-reveal class="aure-eyebrow">El sitio como método</span>
+
+  <div
+    class="grid items-center gap-[clamp(28px,4vw,56px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))]"
+  >
+    <div class="flex flex-col gap-[clamp(20px,2.6vw,30px)]">
+      <h2 data-reveal data-reveal-delay="0.08" class="max-w-[16ch] text-h2 text-pretty">
+        El catálogo está. No manda.
+      </h2>
+
+      <p data-reveal data-reveal-delay="0.18" class="aure-copy max-w-[44ch]">
+        Primero está el método: cómo AURE acompaña una compra en pozo. Las unidades vienen
+        después.
+      </p>
+
+      <div data-reveal data-reveal-delay="0.3" class="flex flex-col">
+        {
+          PASOS.map((paso, i) => (
+            <div
+              data-focus-row
+              class:list={[
+                'aure-row gap-4 py-3.5',
+                i === PASOS.length - 1 && 'border-b border-hairline',
+              ]}
+            >
+              <span class="font-money text-xs text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+              <span class="text-[clamp(15px,1.7vw,18px)]">{paso}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* ── El recorte del sitio ── */}
+    <div data-parallax="0.055">
+      <div data-reveal="scale" data-reveal-delay="0.2" class="flex flex-col gap-3.5">
+        <div class="aure-recorte">
+          <div class="flex items-center gap-3 border-b border-hairline bg-surface px-3.5 py-[11px]">
+            <span class="flex gap-1.5" aria-hidden="true">
+              <span class="block h-[9px] w-[9px] rounded-full bg-hairline"></span>
+              <span class="block h-[9px] w-[9px] rounded-full bg-hairline"></span>
+              <span class="block h-[9px] w-[9px] rounded-full bg-hairline"></span>
+            </span>
+            <span class="flex-1 rounded-[7px] bg-bg px-3 py-1.5 font-money text-xs text-tertiary">
+              aure.ar
+            </span>
+          </div>
+
+          {
+            intro ? (
+              <video
+                src={intro.src}
+                poster={intro.poster}
+                autoplay
+                muted
+                loop
+                playsinline
+                class="block aspect-video w-full bg-navy object-cover"
+              ></video>
+            ) : (
+              /* Placeholder del diseño: espera el loop de la apertura. */
+              <div
+                class="flex aspect-video flex-col items-center justify-center gap-2.5 bg-navy p-[22px] text-center"
+              >
+                <span class="font-money text-[11px] uppercase tracking-[0.16em] text-navy-ink">
+                  asset pendiente
+                </span>
+                <span class="font-money text-[12px]/[1.5] text-gold-soft">
+                  intro-aure.mp4 · loop, sin audio
+                </span>
+              </div>
+            )
+          }
+        </div>
+
+        <span class="aure-note">
+          Se ve una vez por visita. Respeta el movimiento reducido. No le cuesta nada al
+          buscador.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
