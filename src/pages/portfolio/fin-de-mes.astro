@@ -11,13 +11,14 @@ import E2Problema from '../../escenas/E2Problema.astro';
 import E3Tesis from '../../escenas/E3Tesis.astro';
 import E4Asistente from '../../escenas/E4Asistente.astro';
 import E5RespondeApp from '../../escenas/E5RespondeApp.astro';
-import E6Presupuesto from '../../escenas/E6Presupuesto.astro';
-import E7CargarGasto from '../../escenas/E7CargarGasto.astro';
-import E8Tarjeta from '../../escenas/E8Tarjeta.astro';
-import E9Cuotas from '../../escenas/E9Cuotas.astro';
-import E10Hogar from '../../escenas/E10Hogar.astro';
-import E11Patrimonio from '../../escenas/E11Patrimonio.astro';
-import E12Cierre from '../../escenas/E12Cierre.astro';
+import E6Comprobantes from '../../escenas/E6Comprobantes.astro';
+import E7Presupuesto from '../../escenas/E7Presupuesto.astro';
+import E8CargarGasto from '../../escenas/E8CargarGasto.astro';
+import E9Tarjeta from '../../escenas/E9Tarjeta.astro';
+import E10Cuotas from '../../escenas/E10Cuotas.astro';
+import E11Hogar from '../../escenas/E11Hogar.astro';
+import E12Patrimonio from '../../escenas/E12Patrimonio.astro';
+import E13Cierre from '../../escenas/E13Cierre.astro';
 
 // Config de la pieza (props del prototipo)
 const WEBAPP_URL = 'https://pfm.js80.studio/resumen';
@@ -31,7 +32,7 @@ const description =
 const canonical = `${SITE}/portfolio/fin-de-mes`;
 const ogImage = `${SITE}/images/portfolio/fin-de-mes/og-fin-de-mes.jpg`;
 
-const ESCENAS = 12;
+const ESCENAS = 13;
 ---
 
 <!doctype html>
@@ -104,13 +105,14 @@ const ESCENAS = 12;
       <E3Tesis />
       <E4Asistente />
       <E5RespondeApp />
-      <E6Presupuesto />
-      <E7CargarGasto />
-      <E8Tarjeta />
-      <E9Cuotas />
-      <E10Hogar />
-      <E11Patrimonio />
-      <E12Cierre webappUrl={WEBAPP_URL} />
+      <E6Comprobantes />
+      <E7Presupuesto />
+      <E8CargarGasto />
+      <E9Tarjeta />
+      <E10Cuotas />
+      <E11Hogar />
+      <E12Patrimonio />
+      <E13Cierre webappUrl={WEBAPP_URL} />
     </main>
 
     <script>
@@ -308,6 +310,28 @@ const ESCENAS = 12;
           gsap.to(step, { opacity: 1, duration: 0.5, ease: EASE, delay: at });
           gsap.to(step, { y: 0, duration: 0.6, ease: EASE, delay: at });
         });
+
+        // La línea que recorre el ticket: dos pasadas y se apaga justo antes
+        // de que empiece a aparecer la tarjeta de lectura.
+        const scan = panel.querySelector<HTMLElement>('[data-scan]');
+        if (scan) {
+          gsap.delayedCall(0.3, () => {
+            scan.style.opacity = '1';
+            scan.style.animation = 'fdm-scan 0.95s ease-in-out 2';
+          });
+          gsap.delayedCall(2.25, () => {
+            scan.style.animation = 'none';
+            scan.style.opacity = '0';
+          });
+        }
+
+        // Los chips que el asistente eligió: vuelven a encenderse, uno por uno
+        panel.querySelectorAll<HTMLElement>('[data-chip]').forEach((chip) => {
+          gsap.delayedCall(parseFloat(chip.dataset.chip ?? '0') / 1000, () => {
+            chip.classList.add('is-on');
+            chip.style.animation = 'fdm-pulse 0.7s cubic-bezier(0.4,0,0.2,1) 1';
+          });
+        });
       };
 
       const playScene = (sec: HTMLElement) => {
@@ -384,6 +408,13 @@ const ESCENAS = 12;
         // Los pasos del hilo del asistente esperan su turno
         document.querySelectorAll<HTMLElement>('[data-assistant] [data-as]').forEach((el) => {
           gsap.set(el, { opacity: 0, y: 10 });
+        });
+
+        /* Los chips vienen encendidos del HTML —así la escena se entiende sin
+           JS y con movimiento reducido—, así que acá se apagan para que la
+           secuencia pueda encenderlos a su tiempo. */
+        document.querySelectorAll<HTMLElement>('[data-chip]').forEach((el) => {
+          el.classList.remove('is-on');
         });
 
         sections.forEach((sec) => {
