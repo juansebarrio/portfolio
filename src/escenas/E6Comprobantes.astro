@@ -1,0 +1,251 @@
+---
+import { Image } from 'astro:assets';
+// El export nombró este archivo "adjunto", pero es la tarjeta de confirmación:
+// lo que describen el alt y el epígrafe de la escena.
+import capturaConfirmacion from '../assets/fin-de-mes/asistente-confirmacion-oscuro.png';
+
+// Los chips con `at` se encienden solos: es el beat de la escena.
+const medios = [
+  { texto: 'Efectivo' },
+  { texto: 'Galicia' },
+  { texto: 'Mercado Pago' },
+  { texto: 'Visa •• 4321', at: 3980 },
+  { texto: 'MC •• 8810' },
+];
+
+const ambitos = [{ texto: 'Del hogar', at: 3800 }, { texto: 'Solo mío' }];
+
+const categorias = [
+  { texto: 'Alquiler' },
+  { texto: 'Expensas' },
+  { texto: 'Supermercado', at: 4160 },
+  { texto: 'Delivery' },
+  { texto: 'Restaurantes' },
+  { texto: 'Farmacia' },
+];
+
+const limites = [
+  {
+    titulo: 'No carga nada solo',
+    texto: 'Aunque los seis campos salgan perfectos, espera tu toque. La foto propone, vos disponés.',
+    delay: 0.1,
+  },
+  {
+    titulo: 'No inventa lo que no leyó',
+    texto: 'El campo dudoso queda vacío y te lo pide. No supone la tarjeta porque es la que más usás.',
+    delay: 0.22,
+  },
+  {
+    titulo: 'No guarda tus fotos',
+    texto: 'La imagen se lee y se descarta: no queda en el teléfono, ni en el servidor, ni adjunta al gasto.',
+    delay: 0.34,
+  },
+];
+
+const CHIP = 'fdm-chip px-3 py-2 text-[clamp(12px,1.35vw,14px)]';
+---
+
+<section
+  id="e6"
+  data-scene="5"
+  aria-label="Comprobantes por foto"
+  class="fdm-scene gap-[clamp(26px,3.4vw,42px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="fdm-eyebrow">Comprobantes por foto</span>
+    <h2
+      data-reveal
+      data-reveal-delay="0.1"
+      class="max-w-[20ch] text-pretty text-[clamp(28px,4.6vw,50px)] font-medium leading-[1.08] tracking-[-0.02em]"
+    >
+      Sacale una foto al ticket y confirmá. Eso es toda la carga.
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="fdm-copy max-w-[54ch]">
+      Una foto de un ticket, el screenshot de un mail de compra o el comprobante de una
+      transferencia, y te devuelve el movimiento armado: comercio, importe, fecha, con qué tarjeta
+      se pagó y en qué categoría va.
+    </p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+    <!-- El panel que se arma solo -->
+    <div
+      data-assistant
+      data-reveal="scale"
+      data-reveal-delay="0.2"
+      class="flex min-h-[clamp(540px,64vh,680px)] min-w-0 flex-[1_1_400px] flex-col gap-[clamp(12px,1.6vw,16px)] rounded-[26px] border border-hairline bg-panel p-[clamp(18px,2.4vw,26px)] shadow-[0_26px_54px_rgba(0,0,0,0.45)]"
+    >
+      <!-- Compositor con el ticket adjunto -->
+      <div
+        data-as="0"
+        class="flex items-center gap-[13px] rounded-2xl border border-hairline bg-chip px-3.5 py-3"
+      >
+        <div
+          class="relative flex h-14 w-11 flex-none flex-col items-center gap-[3px] overflow-hidden rounded-[7px] bg-[#EDE9E2] px-[5px] py-1.5"
+          aria-hidden="true"
+        >
+          <span class="block h-[3px] w-2/3 rounded-[1px] bg-[#A9A296]"></span>
+          <span class="block h-[2px] w-full bg-[#D2CCC3]"></span>
+          <span class="block h-[2px] w-full bg-[#D2CCC3]"></span>
+          <span class="mr-auto block h-[2px] w-[82%] bg-[#D2CCC3]"></span>
+          <span class="block h-[2px] w-full bg-[#D2CCC3]"></span>
+          <span class="ml-auto mt-[3px] block h-[3px] w-[56%] rounded-[1px] bg-[#8C857A]"></span>
+          <div
+            data-scan
+            class="absolute inset-x-0 top-0 h-[2px] bg-green-soft opacity-0 shadow-[0_0_9px_rgba(111,191,154,0.85)]"
+          >
+          </div>
+        </div>
+        <span class="text-pretty text-[clamp(14px,1.5vw,16px)] leading-[1.4] text-secondary">
+          Comprobante listo. Mandalo y te digo qué movimiento cargar.
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-[clamp(11px,1.4vw,14px)]">
+        <span
+          data-as="2100"
+          class="font-money text-[clamp(10px,1.2vw,12px)] uppercase tracking-[0.18em] text-tertiary"
+          >Lo que leí del comprobante</span
+        >
+
+        <div
+          data-as="2100"
+          class="rounded-[14px] border border-hairline bg-chip px-4 py-[13px] text-[clamp(15px,1.6vw,18px)] font-medium"
+        >
+          Coto
+        </div>
+
+        <div data-as="2350" class="rounded-[14px] border border-hairline bg-chip px-4 py-[13px]">
+          <span
+            data-count="84320"
+            data-prefix="$ "
+            data-at="2350"
+            data-dur="0.8"
+            class="fdm-nums text-[clamp(26px,3.2vw,38px)] font-medium tracking-[-0.01em]"
+            >$ 84.320</span
+          >
+        </div>
+
+        <div data-as="2650" class="flex flex-wrap gap-x-4 gap-y-3">
+          <div class="flex flex-[1_1_150px] flex-col gap-[7px]">
+            <span class="text-[clamp(12px,1.3vw,14px)] text-tertiary">Fecha</span>
+            <div
+              class="fdm-nums rounded-xl border border-hairline bg-chip px-[13px] py-2.5 text-[clamp(13px,1.4vw,15px)]"
+            >
+              29/07/2026
+            </div>
+          </div>
+          <div class="flex flex-[1_1_150px] flex-col gap-[7px]">
+            <span class="text-[clamp(12px,1.3vw,14px)] text-tertiary">Tipo</span>
+            <div class="flex gap-1.5 rounded-xl border border-hairline bg-chip p-1">
+              <span
+                class="flex-1 rounded-[9px] bg-hairline px-2.5 py-[7px] text-center text-[clamp(13px,1.4vw,15px)] font-medium"
+                >Gasto</span
+              >
+              <span
+                class="flex-1 rounded-[9px] px-2.5 py-[7px] text-center text-[clamp(13px,1.4vw,15px)] text-tertiary"
+                >Ingreso</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div data-as="2900" class="flex flex-col gap-[9px]">
+          <span class="text-[clamp(12px,1.3vw,14px)] text-tertiary">Se pagó con</span>
+          <div class="flex flex-wrap gap-2">
+            {
+              medios.map((c) => (
+                <span data-chip={c.at} class:list={[CHIP, c.at && 'is-on']}>
+                  {c.texto}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div data-as="3150" class="flex flex-col gap-[9px]">
+          <span class="text-[clamp(12px,1.3vw,14px)] text-tertiary">Ámbito</span>
+          <div class="flex flex-wrap gap-2">
+            {
+              ambitos.map((c) => (
+                <span data-chip={c.at} class:list={[CHIP, c.at && 'is-on']}>
+                  {c.texto}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div data-as="3350" class="flex flex-col gap-[9px]">
+          <span class="text-[clamp(12px,1.3vw,14px)] text-tertiary">Categoría</span>
+          <div class="flex flex-wrap gap-2">
+            {
+              categorias.map((c) => (
+                <span data-chip={c.at} class:list={[CHIP, c.at && 'is-on']}>
+                  {c.texto}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div
+          data-as="4500"
+          class="flex items-start gap-[9px] text-pretty text-[clamp(13px,1.4vw,15px)] leading-[1.45] text-green-soft"
+        >
+          <span class="mt-px flex-none" aria-hidden="true">↑</span>
+          <span>Eso no lo elegiste vos: cruzó el ticket con tus tarjetas y tus categorías.</span>
+        </div>
+
+        <div data-as="4700" class="mt-0.5 flex items-center gap-3.5">
+          <span
+            class="flex-1 rounded-[13px] bg-green px-[18px] py-[13px] text-center text-[clamp(15px,1.6vw,18px)] font-semibold text-bg"
+            >✓ Cargar</span
+          >
+          <span class="text-[clamp(15px,1.6vw,18px)] text-secondary">Descartar</span>
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-reveal="right"
+      data-reveal-delay="0.34"
+      class="flex flex-[0_1_250px] flex-col gap-3.5"
+    >
+      <div
+        class="overflow-hidden rounded-[26px] border border-hairline bg-bg shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+      >
+        <Image
+          src={capturaConfirmacion}
+          alt="Tarjeta de confirmación del comprobante: Coto, $ 84.320, 29/07/2026, Visa •• 4321 y Supermercado ya seleccionados"
+          widths={[250, 375, 500]}
+          sizes="250px"
+          format="webp"
+          class="block w-full h-auto"
+        />
+      </div>
+      <span class="font-money text-xs leading-[1.5] text-tertiary">
+        Leyó el total, la fecha y con qué tarjeta pagaste. Vos solo confirmás.
+      </span>
+    </div>
+  </div>
+
+  <div
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[clamp(20px,2.6vw,36px)]"
+  >
+    {
+      limites.map((limite) => (
+        <div
+          data-reveal
+          data-reveal-delay={limite.delay}
+          class="flex flex-col gap-2 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-[clamp(17px,1.8vw,21px)] font-medium">{limite.titulo}</span>
+          <span class="text-pretty text-[clamp(15px,1.6vw,17px)] leading-[1.45] text-secondary">
+            {limite.texto}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

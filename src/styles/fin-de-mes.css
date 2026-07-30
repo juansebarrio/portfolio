@@ -32,6 +32,9 @@
   --font-ui:    "Rubik", system-ui, sans-serif;
   --font-money: "Spline Sans Mono", ui-monospace, monospace;
 
+  /* El easing de toda la pieza */
+  --ease-fdm: cubic-bezier(0.22, 0.61, 0.36, 1);
+
   /* Escala de tipo (clamp, mobile-first) */
   --text-h1: clamp(38px, 7.6vw, 82px);
   --text-h1--line-height: 1.03;
@@ -137,6 +140,30 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ── CHIPS DEL COMPROBANTE ─────────────────────────────────────
+   Nacen encendidos en el HTML: que el asistente haya elegido la
+   tarjeta y la categoría es el contenido de la escena, así que
+   tiene que leerse sin JS y con prefers-reduced-motion. La
+   animación les quita el estado al arrancar y lo devuelve a su
+   tiempo. */
+.fdm-chip {
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  background: var(--color-chip);
+  color: var(--color-secondary);
+  transition:
+    color 0.4s var(--ease-fdm),
+    border-color 0.4s var(--ease-fdm),
+    background-color 0.4s var(--ease-fdm);
+}
+
+.fdm-chip.is-on {
+  border-color: var(--color-send);
+  background: rgba(79, 163, 127, 0.1);
+  color: var(--color-green-soft);
+  font-weight: 500;
+}
+
 /* ── Animaciones CSS ───────────────────────────────────────────── */
 
 @keyframes fdm-pulse {
@@ -158,6 +185,14 @@
 @keyframes fdm-live {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0.35; }
+}
+
+/* La línea que recorre el ticket mientras lo lee */
+@keyframes fdm-scan {
+  0%   { top: 0%;   opacity: 0; }
+  14%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
 /* Loops decorativos: solo si el usuario no pidió menos movimiento */
