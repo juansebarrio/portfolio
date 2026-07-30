@@ -1,0 +1,179 @@
+---
+/**
+ * E5 · La marca reconstruida.
+ *
+ * El manual existía en PDF, sin vectores. A la izquierda lo que había, a
+ * la derecha el set redibujado. Los cuatro recuadros del set y el bloque
+ * «antes / después» esperan los SVG y la imagen aprobados: cuando estén,
+ * se pasan por props y el resto de la escena no se toca.
+ */
+interface Props {
+  /** Imagen del antes/después de los logos, cuando el cliente la autorice. */
+  comparativa?: { src: string; alt: string };
+}
+const { comparativa } = Astro.props;
+
+const PIEZAS = [
+  { label: 'isotipo · svg', negativo: false },
+  { label: 'logotipo · svg', negativo: false },
+  { label: 'imagotipo · svg', negativo: false },
+  { label: 'negativo · svg', negativo: true },
+];
+
+const CLAVES = [
+  {
+    titulo: 'Medido al píxel',
+    texto: 'Redibujado sobre una grilla, con las proporciones anotadas.',
+  },
+  {
+    titulo: 'Sin depender de fuentes',
+    texto: 'El logotipo va convertido a curvas. Se ve igual en cualquier máquina.',
+  },
+  {
+    titulo: 'Listo para cualquier tamaño',
+    texto: 'Sirve para un favicon y para un cartel de obra, en positivo y en negativo.',
+  },
+];
+---
+
+<section
+  id="e5"
+  data-scene="4"
+  data-screen-label="E5 · La marca reconstruida"
+  aria-label="La marca reconstruida"
+  class="aure-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="aure-eyebrow">La marca reconstruida</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[22ch] text-h3 text-pretty">
+      El manual existía. Los vectores, no.
+    </h2>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+
+    {/* ── El panel azul: de PDF a set de vectores ── */}
+    <div data-parallax="0.04" class="min-w-0 flex-[1_1_420px]">
+      <div
+        data-reveal="scale"
+        data-reveal-delay="0.15"
+        class="aure-panel flex w-full flex-col gap-[clamp(16px,2vw,22px)] p-[clamp(20px,2.6vw,30px)]"
+      >
+        <div class="flex flex-wrap items-stretch gap-[clamp(16px,2.2vw,24px)]">
+
+          {/* Lo que había: una página de manual sin vectores */}
+          <div class="flex flex-[0_1_150px] flex-col gap-2.5">
+            <span class="aure-tag">lo que había</span>
+            <div class="aure-card flex min-h-[190px] flex-1 flex-col gap-[7px] p-3.5">
+              <span class="block h-[9px] w-[62%] rounded-sm bg-navy-dash"></span>
+              <span class="block h-1 w-full bg-navy-fill"></span>
+              <span class="block h-1 w-full bg-navy-fill"></span>
+              <span class="block h-1 w-[74%] bg-navy-fill"></span>
+              <span class="block h-1 w-full bg-navy-fill"></span>
+              <span class="block h-1 w-[88%] bg-navy-fill"></span>
+              <span class="mt-auto font-money text-[11px]/[1.5] text-navy-mute">
+                manual-de-marca.pdf<br />sin vectores
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="flex-none self-center font-money text-[clamp(15px,1.8vw,19px)] text-gold"
+            aria-hidden="true"
+          >
+            →
+          </div>
+
+          {/* El set reconstruido */}
+          <div class="flex min-w-0 flex-[1_1_220px] flex-col gap-2.5">
+            <span class="aure-tag">
+              el set reconstruido · <span data-count="4" data-at="600" data-dur="0.6" class="text-gold-soft">4</span> piezas
+            </span>
+            <div class="grid grid-cols-2 gap-2.5">
+              {
+                PIEZAS.map((p, i) => (
+                  <div
+                    data-reveal="scale"
+                    data-reveal-delay={(0.4 + i * 0.16).toFixed(2)}
+                    class:list={[
+                      'flex min-h-[88px] flex-col gap-2.5 rounded-[14px] border p-3',
+                      p.negativo ? 'border-gold bg-ink' : 'aure-card',
+                    ]}
+                  >
+                    <div
+                      class:list={[
+                        'flex-1 rounded-[9px] border border-dashed',
+                        p.negativo ? 'border-gold' : 'border-navy-dash',
+                      ]}
+                    ></div>
+                    <span
+                      class:list={[
+                        'font-money text-[10px] uppercase tracking-[0.12em]',
+                        p.negativo ? 'text-gold-ink' : 'text-navy-mute',
+                      ]}
+                    >
+                      {p.label}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <span class="border-t border-navy-line pt-3.5 font-money text-[11px]/[1.5] text-navy-mute">
+          Los recuadros esperan los SVG del set. Reemplazar por archivo cuando estén aprobados.
+        </span>
+      </div>
+    </div>
+
+    {/* ── Columna derecha: el antes / después ── */}
+    <div data-parallax="-0.07" class="flex-[0_1_260px]">
+      <div data-reveal="right" data-reveal-delay="0.3" class="flex w-full flex-col gap-3.5">
+        {
+          comparativa ? (
+            <img
+              src={comparativa.src}
+              alt={comparativa.alt}
+              loading="lazy"
+              decoding="async"
+              class="block w-full rounded-[26px] border border-hairline shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+            />
+          ) : (
+            /* Placeholder del diseño: el manual sin vectores contra la grilla
+               reconstruida. Espera el OK del cliente sobre el asset. */
+            <div
+              class="flex aspect-3/4 flex-col items-center justify-center gap-2.5 rounded-[26px] border border-hairline bg-panel p-[22px] text-center shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
+            >
+              <span class="font-money text-[11px] uppercase tracking-[0.16em] text-tertiary">
+                asset pendiente
+              </span>
+              <span class="font-money text-[12px]/[1.5] text-secondary">logos-antes-despues</span>
+            </div>
+          )
+        }
+        <span class="aure-note">Los redibujamos al píxel, encima del manual original.</span>
+      </div>
+    </div>
+  </div>
+
+  {/* ── Las tres claves del set ── */}
+  <div
+    class="grid gap-[clamp(20px,2.6vw,36px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))]"
+  >
+    {
+      CLAVES.map((c, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.12).toFixed(2)}
+          class="flex flex-col gap-2 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-lead font-medium">{c.titulo}</span>
+          <span class="text-[clamp(15px,1.6vw,17px)]/[1.45] text-secondary text-pretty">
+            {c.texto}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,46 @@
+---
+/**
+ * E2 · El pedido.
+ *
+ * Las cuatro constataciones del punto de partida. Cada fila se ilumina
+ * cuando queda en el centro de la pantalla (data-focus-row), así que la
+ * lectura avanza con el scroll en vez de entregarse toda junta.
+ */
+const FILAS = [
+  'Comercializa desarrollos en pozo de terceros en Buenos Aires.',
+  'Su sitio anterior corría sobre la plantilla del CRM del rubro.',
+  'El brief apuntaba a premium, lujo, inversión.',
+  'Nada en el sitio decía qué hacía distinta a AURE.',
+];
+---
+
+<section
+  id="e2"
+  data-scene="1"
+  data-screen-label="E2 · El pedido"
+  aria-label="El pedido"
+  class="aure-scene gap-[clamp(30px,4vw,52px)]"
+>
+  <h2 data-reveal class="max-w-[24ch] text-h2 text-pretty">
+    AURE comercializa desarrollos en pozo. El brief pedía una marca premium.
+  </h2>
+
+  <div class="flex max-w-[960px] flex-col">
+    {
+      FILAS.map((texto, i) => (
+        <div
+          data-focus-row
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.18).toFixed(2)}
+          class:list={[
+            'aure-row gap-[clamp(16px,3vw,36px)] py-[clamp(18px,2.4vw,26px)]',
+            i === FILAS.length - 1 && 'border-b border-hairline',
+          ]}
+        >
+          <span class="font-money text-[13px] text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+          <span class="text-item text-pretty">{texto}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,198 @@
+---
+/**
+ * E6 · Conectado a Tokko.
+ *
+ * La escena más larga en movimiento: el panel se arma solo. Primero
+ * llegan los desarrollos del sistema de gestión, después se completa una
+ * consulta nueva y al final se encienden los chips del origen — que es el
+ * remate: ese dato no lo cargó nadie a mano.
+ *
+ * Los chips nacen encendidos en el HTML para que la escena se entienda
+ * sin JS y con prefers-reduced-motion; la animación se los apaga al
+ * arrancar y se los devuelve a su tiempo.
+ */
+const DESARROLLOS = [
+  { nombre: 'Av. Elcano 2906', at: 500 },
+  { nombre: 'Nogoyá 2590', at: 800 },
+  { nombre: 'Vuelta de Obligado 3830', at: 1100 },
+];
+
+const CIRCUITO = [
+  { tag: 'sistema de gestión', texto: 'Los desarrollos se cargan acá', gold: false, d: 0.44 },
+  { tag: 'sitio', texto: 'Los publica con el método primero', gold: false, d: 0.56 },
+  { tag: 'consultas', texto: 'Vuelven con el origen puesto', gold: true, d: 0.68 },
+];
+
+const CLAVES = [
+  {
+    titulo: 'El equipo sigue en su sistema de siempre',
+    texto: 'Nadie tuvo que aprender una herramienta nueva para publicar.',
+  },
+  {
+    titulo: 'Cada consulta con su origen',
+    texto: 'Se sabe de qué desarrollo y de qué parte del sitio vino.',
+  },
+  {
+    titulo: 'Nada se pierde en un chat suelto',
+    texto: 'La consulta entra al mismo lugar donde el equipo ya trabaja.',
+  },
+];
+---
+
+<section
+  id="e6"
+  data-scene="5"
+  data-screen-label="E6 · Conectado a Tokko"
+  aria-label="Conectado a Tokko"
+  class="aure-scene gap-[clamp(26px,3.4vw,42px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="aure-eyebrow">Conectado a Tokko</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[20ch] text-h3 text-pretty">
+      No le cambiamos el sistema. Construimos encima.
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="aure-copy max-w-[54ch]">
+      Los desarrollos se siguen cargando donde siempre. El sitio los lee y devuelve cada
+      consulta con el origen puesto.
+    </p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+
+    {/* ── El panel: llega del sistema, sale una consulta ── */}
+    <div data-parallax="0.04" class="min-w-0 flex-[1_1_400px]">
+      <div
+        data-assistant
+        data-reveal="scale"
+        data-reveal-delay="0.2"
+        class="aure-panel flex min-h-[clamp(520px,60vh,640px)] w-full flex-col gap-[clamp(14px,1.8vw,18px)] p-[clamp(20px,2.6vw,30px)]"
+      >
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <span class="aure-tag">llegando del sistema de gestión</span>
+          <span class="aure-tag">
+            <span data-count="3" data-at="1400" data-dur="0.6" class="text-gold-soft">3</span> desarrollos
+          </span>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          {
+            DESARROLLOS.map((d) => (
+              <div data-as={d.at} class="aure-card flex items-center gap-[13px] px-4 py-[13px]">
+                <span class="h-[34px] w-[34px] flex-none rounded-[9px] bg-navy-fill"></span>
+                <span class="text-[clamp(14px,1.5vw,17px)] font-medium">{d.nombre}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* ── La consulta nueva ── */}
+        <div
+          class="flex flex-col gap-[clamp(12px,1.6vw,15px)] border-t border-navy-line pt-[clamp(16px,2vw,20px)]"
+        >
+          <span data-as="1900" class="aure-tag">consulta nueva</span>
+
+          <div data-as="2100" class="flex flex-col gap-[7px]">
+            <span class="text-[clamp(12px,1.3vw,14px)] text-navy-ink">Nombre</span>
+            <div
+              class="rounded-xl border border-navy-line-2 bg-navy-soft px-3.5 py-3 text-[clamp(14px,1.5vw,16px)] text-navy-mute"
+            >
+              Nombre y apellido
+            </div>
+          </div>
+
+          <div data-as="2400" class="flex flex-col gap-[7px]">
+            <span class="text-[clamp(12px,1.3vw,14px)] text-navy-ink">Desarrollo de interés</span>
+            <div
+              class="rounded-xl border border-navy-line-2 bg-navy-soft px-3.5 py-3 text-[clamp(14px,1.5vw,16px)] font-medium"
+            >
+              Av. Elcano 2906
+            </div>
+          </div>
+
+          <div data-as="2700" class="flex flex-col gap-[9px]">
+            <span class="text-[clamp(12px,1.3vw,14px)] text-navy-ink">Origen</span>
+            <div class="flex flex-wrap gap-2">
+              <span
+                data-chip="3300"
+                class="aure-chip is-on px-3 py-2 text-[clamp(12px,1.35vw,14px)]"
+              >
+                Sitio · aure.ar
+              </span>
+              <span
+                data-chip="3480"
+                class="aure-chip is-on px-3 py-2 text-[clamp(12px,1.35vw,14px)]"
+              >
+                Ficha del desarrollo
+              </span>
+              <span class="aure-chip px-3 py-2 text-[clamp(12px,1.35vw,14px)]">Carga manual</span>
+            </div>
+          </div>
+
+          <div
+            data-as="3900"
+            class="flex items-start gap-[9px] text-[clamp(13px,1.4vw,15px)]/[1.45] text-gold-soft text-pretty"
+          >
+            <span class="mt-px flex-none" aria-hidden="true">↑</span>
+            <span>Eso no lo cargó nadie a mano: llegó identificado desde el sitio.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* ── El circuito, en tres pasos ── */}
+    <div data-parallax="-0.07" class="flex-[1_1_260px]">
+      <div data-reveal="right" data-reveal-delay="0.34" class="flex w-full flex-col gap-4">
+        <div class="flex flex-col gap-2.5">
+          {
+            CIRCUITO.map((c, i) => (
+              <>
+                <div
+                  data-reveal
+                  data-reveal-delay={c.d}
+                  class:list={[
+                    'flex flex-col gap-1 rounded-2xl border px-4 py-3.5',
+                    c.gold ? 'border-gold bg-[rgba(192,168,114,0.08)]' : 'border-hairline bg-panel',
+                  ]}
+                >
+                  <span
+                    class:list={[
+                      'font-money text-[11px] uppercase tracking-[0.14em]',
+                      c.gold ? 'text-gold' : 'text-tertiary',
+                    ]}
+                  >
+                    {c.tag}
+                  </span>
+                  <span class="text-[clamp(14px,1.5vw,16px)]">{c.texto}</span>
+                </div>
+                {i < CIRCUITO.length - 1 && (
+                  <span class="text-center font-money text-[15px] text-gold" aria-hidden="true">↕</span>
+                )}
+              </>
+            ))
+          }
+        </div>
+        <span class="aure-note">Un solo circuito. Nadie copia y pega entre dos pantallas.</span>
+      </div>
+    </div>
+  </div>
+
+  {/* ── Las tres claves ── */}
+  <div
+    class="grid gap-[clamp(20px,2.6vw,36px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))]"
+  >
+    {
+      CLAVES.map((c, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.12).toFixed(2)}
+          class="flex flex-col gap-2 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-lead font-medium">{c.titulo}</span>
+          <span class="text-[clamp(15px,1.6vw,17px)]/[1.45] text-secondary text-pretty">
+            {c.texto}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

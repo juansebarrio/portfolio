@@ -1,0 +1,239 @@
+/* ════════════════════════════════════════════════════════════════
+   AURE — presentación del caso (8 escenas)
+   Hoja propia de la página, igual que fin-de-mes.css: no comparte
+   tokens ni tipografías con el resto del portfolio y solo escanea
+   sus propios archivos.
+   ════════════════════════════════════════════════════════════════ */
+@import "tailwindcss" source(none);
+
+@source "../escenas/aure";
+@source "../pages/portfolio/aure.astro";
+
+@theme {
+  /* ── Fondo de la pieza (madera oscura, igual que Fin de mes) ── */
+  --color-bg:         #141312;
+  --color-surface:    #1E1C1A;
+  --color-panel:      #1A1917;
+  --color-ink:        #F2EFE9;
+  --color-secondary:  #A39D93;
+  --color-tertiary:   #7F796F;
+  --color-hairline:   #34302B;
+  --color-hairline-soft: #241F1A;
+
+  /* ── Marca AURE: dorado + azul ── */
+  --color-gold:       #C0A872;
+  --color-gold-soft:  #D4BE8A;
+  --color-gold-deep:  #5C513A;
+  --color-gold-ink:   #8C7742;
+
+  /* Superficies del panel azul (el sistema de gestión y el sitio) */
+  --color-navy:        #212A45;
+  --color-navy-soft:   #1B2339;
+  --color-navy-line:   #2E3855;
+  --color-navy-line-2: #384263;
+  --color-navy-dash:   #3C4869;
+  --color-navy-fill:   #2C3552;
+  --color-navy-ink:    #9AA1B8;
+  --color-navy-mute:   #7A83A0;
+
+  --font-ui:    "Rubik", system-ui, sans-serif;
+  --font-money: "Spline Sans Mono", ui-monospace, monospace;
+
+  /* El easing de toda la pieza */
+  --ease-aure: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* ── Escala de tipo (clamp, mobile-first) ── */
+  --text-h1: clamp(38px, 7.6vw, 82px);
+  --text-h1--line-height: 1.03;
+  --text-h1--letter-spacing: -0.028em;
+  --text-h1--font-weight: 500;
+
+  /* El cierre pisa un poco menos que la portada */
+  --text-h1-cierre: clamp(36px, 7vw, 76px);
+  --text-h1-cierre--line-height: 1.04;
+  --text-h1-cierre--letter-spacing: -0.028em;
+  --text-h1-cierre--font-weight: 500;
+
+  --text-h2: clamp(30px, 5vw, 58px);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 500;
+
+  /* Los títulos de escena interior: un paso abajo del h2 de apertura */
+  --text-h3: clamp(28px, 4.6vw, 52px);
+  --text-h3--line-height: 1.09;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 500;
+
+  --text-tesis: clamp(30px, 5.6vw, 64px);
+  --text-tesis--line-height: 1.14;
+  --text-tesis--letter-spacing: -0.022em;
+  --text-tesis--font-weight: 500;
+
+  --text-item: clamp(18px, 2.4vw, 28px);
+  --text-item--line-height: 1.34;
+
+  --text-copy: clamp(17px, 1.9vw, 22px);
+  --text-copy--line-height: 1.5;
+
+  --text-lead: clamp(17px, 1.8vw, 21px);
+  --text-eyebrow: clamp(11px, 1.3vw, 13px);
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(192, 168, 114, 0.3);
+  }
+
+  a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-gold-soft);
+  }
+}
+
+/* ── Utilidades compuestas del sistema ─────────────────────────── */
+
+/* Sección-escena: una pantalla, contenido centrado verticalmente */
+@utility aure-scene {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: clamp(96px, 12vh, 150px) clamp(20px, 5vw, 64px);
+}
+
+/* Eyebrow mono en mayúsculas */
+@utility aure-eyebrow {
+  font-family: var(--font-money);
+  font-size: clamp(11px, 1.3vw, 13px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-tertiary);
+}
+
+/* Etiqueta mono dentro del panel azul */
+@utility aure-tag {
+  font-family: var(--font-money);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-navy-ink);
+}
+
+/* Nota mono al pie de un bloque */
+@utility aure-note {
+  font-family: var(--font-money);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-tertiary);
+}
+
+/* Copy de párrafo */
+@utility aure-copy {
+  font-size: clamp(17px, 1.9vw, 22px);
+  line-height: 1.5;
+  color: var(--color-secondary);
+  text-wrap: pretty;
+}
+
+/* El panel azul: la superficie de marca de AURE dentro de la pieza */
+@utility aure-panel {
+  border: 1px solid var(--color-navy-line);
+  border-radius: 26px;
+  background: var(--color-navy);
+  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.45);
+}
+
+/* Tarjeta interior del panel azul */
+@utility aure-card {
+  border: 1px solid var(--color-navy-line-2);
+  border-radius: 14px;
+  background: var(--color-navy-soft);
+}
+
+/* Recorte de UI sobre el fondo de la pieza (no del panel azul) */
+@utility aure-recorte {
+  border: 1px solid var(--color-hairline);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-panel);
+  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.45);
+}
+
+/* Fila numerada con foco por scroll (data-focus-row) */
+@utility aure-row {
+  display: flex;
+  align-items: baseline;
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* ── CHIPS DEL ORIGEN ──────────────────────────────────────────
+   Nacen encendidos en el HTML: que la consulta llegue identificada
+   desde el sitio es el contenido de la escena, así que tiene que
+   leerse sin JS y con prefers-reduced-motion. La animación les
+   quita el estado al arrancar y lo devuelve a su tiempo. */
+.aure-chip {
+  border: 1px solid var(--color-navy-line-2);
+  border-radius: 12px;
+  background: var(--color-navy-soft);
+  color: var(--color-navy-ink);
+  transition:
+    color 0.4s var(--ease-aure),
+    border-color 0.4s var(--ease-aure),
+    background-color 0.4s var(--ease-aure);
+}
+
+.aure-chip.is-on {
+  border-color: var(--color-gold);
+  background: rgba(192, 168, 114, 0.14);
+  color: var(--color-gold-soft);
+  font-weight: 500;
+}
+
+/* ── Animaciones CSS ───────────────────────────────────────────── */
+
+@keyframes aure-pulse {
+  0%   { transform: scale(1); }
+  34%  { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+
+@keyframes aure-nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+
+@keyframes aure-live {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Loops decorativos: solo si el usuario no pidió menos movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  .aure-nudge {
+    animation: aure-nudge 2.6s ease-in-out infinite;
+  }
+
+  .aure-live {
+    animation: aure-live 2.2s ease-in-out infinite;
+  }
+}
