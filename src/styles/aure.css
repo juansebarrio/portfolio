@@ -1,0 +1,651 @@
+/* ════════════════════════════════════════════════════════════════
+   AURE · Caso de estudio
+   Dos capas en un archivo:
+   1. El shell de caso (.case-*), igual al del resto del portfolio.
+   2. Los tokens y primitivas de marca de AURE que usan las escenas
+      animadas de src/components/aure/.
+   Solo se carga en /portfolio/aure y /en/portfolio/aure.
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Paleta real de aure.ar (Tailwind theme del producto) */
+  --aure-azul:       #212A45;
+  --aure-profundo:   #161C2F;
+  --aure-dorado:     #C0A872;
+  --aure-blanco:     #FFFFFF;
+  --aure-gris:       #B3BACC;
+  --aure-gris-claro: #EBEAE8;
+  --aure-gris-texto: #878787;
+  --aure-borde:      #E4E1DB;
+
+  --aure-radio: 4px;
+  --aure-track-eyebrow: 0.3em;
+
+  /* Motion: largo y sin rebote. En real estate de alto nivel el
+     movimiento tiene que leerse caro, no rápido. */
+  --aure-ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --aure-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --aure-font: "Outfit", "Geist", system-ui, sans-serif;
+  --aure-font-logo: "IBM Plex Sans", "Outfit", system-ui, sans-serif;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ESCENAS — primitivas compartidas
+   ════════════════════════════════════════════════════════════════ */
+
+/* El lienzo azul de cada escena. Se sale del ancho de la prosa
+   (720px) hasta 1100px, igual que las .case-figure del resto. */
+.aure-stage {
+  margin: var(--s-8) calc((720px - 1100px) / 2);
+  max-width: 1100px;
+}
+
+@media (max-width: 1100px) {
+  .aure-stage {
+    margin: var(--s-7) 0;
+    max-width: 100%;
+  }
+}
+
+.aure-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, var(--aure-dorado) 16%, transparent);
+  background: var(--aure-azul);
+  color: var(--aure-blanco);
+  font-family: var(--aure-font);
+  isolation: isolate;
+}
+
+/* Textura de fondo: hairlines verticales, como una fachada.
+   Deriva muy lento — 60s por ciclo, apenas perceptible. */
+.aure-panel::before {
+  content: '';
+  position: absolute;
+  inset: -10% -20%;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    color-mix(in oklab, var(--aure-blanco) 4%, transparent) 0 1px,
+    transparent 1px 88px
+  );
+  animation: aure-drift 60s linear infinite;
+  pointer-events: none;
+}
+
+/* Luz dorada que respira, arriba a la derecha */
+.aure-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    62% 78% at 78% 8%,
+    color-mix(in oklab, var(--aure-dorado) 16%, transparent) 0%,
+    transparent 62%
+  );
+  animation: aure-breathe 14s var(--aure-ease-io) infinite;
+  pointer-events: none;
+}
+
+@keyframes aure-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(88px); }
+}
+
+@keyframes aure-breathe {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.aure-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Tipografía de marca dentro de las escenas ── */
+.aure-eyebrow {
+  font-family: var(--aure-font);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--aure-track-eyebrow);
+  text-transform: uppercase;
+  color: var(--aure-dorado);
+  margin: 0;
+}
+
+.aure-note {
+  font-family: var(--aure-font);
+  font-size: 13px;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--aure-blanco) 62%, transparent);
+  margin: 0;
+}
+
+/* ── Máscara de entrada: el texto sube desde abajo del borde ── */
+.aure-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.aure-mask > * {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1100ms var(--aure-ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.is-playing .aure-mask > * {
+  transform: translateY(0);
+}
+
+/* ── Fade + subida corta, para bloques que no son texto ── */
+.aure-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 900ms var(--aure-ease),
+    transform 900ms var(--aure-ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.is-playing .aure-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Filete dorado que se dibuja de izquierda a derecha ── */
+.aure-rule {
+  height: 1px;
+  background: var(--aure-dorado);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1200ms var(--aure-ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.is-playing .aure-rule {
+  transform: scaleX(1);
+}
+
+/* ── Pie de escena: qué se está mirando ── */
+.aure-caption {
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ── Botón "volver a reproducir" ── */
+.aure-replay {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid color-mix(in oklab, var(--aure-blanco) 16%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--aure-profundo) 70%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: color-mix(in oklab, var(--aure-blanco) 70%, transparent);
+  font-family: var(--aure-font);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 600ms var(--aure-ease),
+    color 200ms var(--aure-ease),
+    border-color 200ms var(--aure-ease);
+}
+
+.aure-replay.is-ready {
+  opacity: 1;
+}
+
+.aure-replay:hover {
+  color: var(--aure-blanco);
+  border-color: color-mix(in oklab, var(--aure-dorado) 60%, transparent);
+}
+
+/* Con movimiento reducido todo arranca —y se queda— en su estado
+   final: el HTML ya contiene cada texto y cada valor. */
+@media (prefers-reduced-motion: reduce) {
+  .aure-panel::before,
+  .aure-panel::after {
+    animation: none;
+  }
+
+  .aure-mask > *,
+  .aure-in,
+  .aure-rule {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .aure-replay {
+    display: none;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SHELL DE CASO — mismo sistema que el resto de /portfolio
+   ════════════════════════════════════════════════════════════════ */
+
+.case-page {
+  padding: var(--s-9) var(--gutter);
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* ── Núcleo JS80 (único punto de color de marca del estudio) ── */
+.js80-nucleus {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 200deg,
+    #FF8AA0 0deg, #FFB088 60deg, #6B8CFF 160deg,
+    #8B6FFF 230deg, #5DC7E0 310deg, #FF8AA0 360deg
+  );
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.js80-nucleus-lg {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.case-hero {
+  max-width: 920px;
+  margin-bottom: var(--s-8);
+  padding-top: var(--s-7);
+}
+
+.case-title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  font-weight: 500;
+  margin-top: var(--s-5);
+  color: var(--fg);
+}
+
+.case-title em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.case-lede {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  color: var(--muted);
+  margin-top: var(--s-5);
+  max-width: 720px;
+  font-weight: 400;
+}
+
+.case-lede em {
+  font-style: italic;
+  color: var(--fg);
+}
+
+.case-meta {
+  margin-top: var(--s-7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--border);
+}
+
+.case-meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--s-2);
+}
+
+.case-meta dd {
+  font-size: var(--fs-small);
+  color: var(--fg);
+}
+
+.js80-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--fg);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.js80-tag:hover {
+  border-bottom-color: var(--fg);
+}
+
+.case-actions {
+  margin-top: var(--s-6);
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  border-radius: 999px;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  border: 1px solid var(--border);
+}
+
+.btn-primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+}
+
+.btn-primary .arrow {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.btn-primary:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ── PROSA ─────────────────────────────────────────── */
+.case-prose {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Ojo con el combinador: las escenas animadas viven DENTRO de .case-prose y
+   también usan <p> y <h3>. Con selectores de descendiente, la tipografía
+   editorial —tamaño de párrafo y color de texto claro— pisaba el interior de
+   cada escena y dejaba, por ejemplo, el precio de una ficha en blanco sobre
+   blanco. La prosa siempre es hija directa; las escenas nunca. */
+.case-prose > h2 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-h1);
+  font-weight: 500;
+  margin-top: var(--s-9);
+  margin-bottom: var(--s-5);
+  color: var(--fg);
+}
+
+.case-prose > h2 em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.case-prose > h3 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-h2);
+  font-weight: 500;
+  margin-top: var(--s-7);
+  margin-bottom: var(--s-4);
+  color: var(--fg);
+}
+
+.case-prose > p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  margin-bottom: var(--s-5);
+}
+
+.case-prose > p em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.case-prose > * strong,
+.case-prose > strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.case-prose > * a {
+  color: var(--fg);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.case-prose > * a:hover {
+  border-bottom-color: var(--fg);
+}
+
+.case-prose > blockquote {
+  border-left: 2px solid var(--fg);
+  padding-left: var(--s-5);
+  margin: var(--s-6) 0;
+  color: var(--muted);
+  font-style: italic;
+  font-size: var(--fs-body);
+}
+
+.case-prose > blockquote em {
+  font-style: italic;
+  color: var(--fg);
+}
+
+.case-prose > ul,
+.case-prose > ol {
+  margin: var(--s-4) 0 var(--s-5);
+  padding-left: var(--s-5);
+}
+
+.case-prose > ul > li,
+.case-prose > ol > li {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  margin-bottom: var(--s-3);
+}
+
+.case-prose > ol { list-style: decimal; }
+.case-prose > ul { list-style: disc; }
+
+/* ── Tablas ─────────────────────────────────────────── */
+.case-prose > table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--s-5) 0 var(--s-6);
+  font-size: var(--fs-small);
+}
+
+.case-prose > table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.case-prose > table td {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--fg);
+  vertical-align: top;
+}
+
+.case-prose > table td:first-child {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.case-prose > * code,
+.case-prose > code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--hairline);
+}
+
+/* ── CTA final ─────────────────────────────────────── */
+.case-cta {
+  margin-top: var(--s-10);
+  padding: var(--s-8);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.case-cta h2 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-h1);
+  font-weight: 500;
+  margin: var(--s-3) 0 var(--s-4);
+}
+
+.case-cta p {
+  font-size: var(--fs-body);
+  color: var(--muted);
+  margin-bottom: var(--s-5);
+}
+
+.case-cta-actions {
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+/* ── Firma / footer del caso ───────────────────────── */
+.case-signature {
+  margin-top: var(--s-10);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.signature-block {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--fg);
+}
+
+.signature-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.signature-text strong {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--track-wordmark);
+}
+
+.signature-text em {
+  font-size: var(--fs-meta);
+  color: var(--muted);
+  font-style: normal;
+}
+
+.back-link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.back-link:hover {
+  color: var(--fg);
+}
+
+/* .meta-label vive en global.css — es utilidad editorial de todo el sitio. */
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .case-page {
+    padding: var(--s-6) var(--gutter);
+  }
+
+  .case-hero {
+    padding-top: var(--s-5);
+    margin-bottom: var(--s-7);
+  }
+
+  .case-prose h2 {
+    margin-top: var(--s-7);
+  }
+
+  .case-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    justify-content: center;
+  }
+
+  .case-cta {
+    padding: var(--s-6);
+  }
+
+  .case-signature {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
