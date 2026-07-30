@@ -1,0 +1,232 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
+import PortadaEmbed from '../../../components/PortadaEmbed.astro';
+import AureTokko from '../../../components/aure/AureTokko.astro';
+import AureCartera from '../../../components/aure/AureCartera.astro';
+import AureEtapas from '../../../components/aure/AureEtapas.astro';
+import '../../../styles/aure.css';
+---
+
+<Layout
+  title="AURE · Real estate site wired to Tokko · Case study · Juan Segundo Barrio"
+  description="How I designed and built AURE's website, a Buenos Aires brokerage selling off-plan developments: a listing portfolio synced from Tokko Broker and a brand that assembles itself on screen."
+  ogType="article"
+>
+  {/* Outfit and IBM Plex Sans are aure.ar's actual typefaces. Loaded only on
+      this page so the scenes read in the product's own type. */}
+  <Fragment slot="head">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=IBM+Plex+Sans:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+  </Fragment>
+
+  <div class="case-page">
+
+    <header class="case-hero reveal-up" style="--i: 0">
+      <p class="meta-label">Case study · Web + Integration · 6 min read</p>
+
+      <h1 class="case-title">
+        AURE, a brokerage that <em>doesn't sell square metres</em>
+      </h1>
+
+      <p class="case-lede">
+        A sales website with its portfolio synced from Tokko Broker, and a brand that
+        <em>assembles itself on screen</em> before saying a single word.
+      </p>
+
+      <dl class="case-meta">
+        <div>
+          <dt>Type</dt>
+          <dd>Marketing site + listings · in production</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>Design, brand & technical lead</dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>Next.js · Tailwind v4 · Tokko Broker API</dd>
+        </div>
+        <div>
+          <dt>Studio</dt>
+          <dd>
+            <a href="https://js80.studio" target="_blank" rel="noopener" class="js80-tag">
+              <span class="js80-nucleus" aria-hidden="true"></span>
+              JS80
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="case-actions">
+        <a href="https://aure-ebon.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
+          See the live site
+          <span class="arrow">→</span>
+        </a>
+        <a href="#tokko" class="btn-secondary">
+          How the sync works
+        </a>
+      </div>
+    </header>
+
+    <article class="case-prose">
+
+      <figure class="aure-stage">
+        <PortadaEmbed file="portada-aure.html" title="AURE" bg="#212A45" />
+        <figcaption class="aure-caption">AURE's cover: the logotype, the promise and the facade lighting up</figcaption>
+      </figure>
+
+      <h2 class="reveal-up" style="--i: 0">The starting point</h2>
+
+      <p>AURE is a young brokerage: it curates third-party developments —mostly off-plan— and walks buyers through the whole purchase. It doesn't build, and rentals aren't its core business. <strong>It sells wealth decisions.</strong></p>
+
+      <p>The brief arrived with the team's own diagnosis of the sector: thin information, opaque processes, a purely transactional posture. The website had to be the first proof of the opposite. If the sales argument is <em>"buy with clarity"</em>, the site can't be the first place where something isn't clear.</p>
+
+      <blockquote>
+        <em>"We don't sell square metres: we help you choose well, with backing and no fine print."</em>
+      </blockquote>
+
+      <p>Two decisions came out of that and shaped the whole project: an identity that explains itself, and a portfolio that never lies because nobody keys it in by hand.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The brand assembles itself on screen</h2>
+
+      <p>AURE is an acronym: <strong>a</strong>rquitectura, <strong>u</strong>rbanismo, <strong>r</strong>eal <strong>e</strong>state. On a static plate that needs a caption to explain. In motion, it lands without reading a word.</p>
+
+      <p>The site's opening shows the four words in full, wipes away everything but each initial, and lets the four letters collapse onto the logotype. It runs a little over four seconds and doesn't repeat within the session: it's an introduction, not a toll booth.</p>
+
+      <p>The motion is calibrated in the same register as the business. Long curves, no bounce, nothing that snaps into place. On a site selling USD 390,000 apartments, <strong>speed reads as hurry and hurry reads as cheap</strong>. Everything eases in over more than a second.</p>
+
+      <p>The cover above works with the same pieces: the logotype, the promise, the facade lighting up window by window and, at the end, a real listing from the portfolio. Same palette —navy <code>#212A45</code>, gold <code>#C0A872</code>— and the product's own typefaces: IBM Plex Sans for the mark, Outfit for everything else.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0" id="tokko">A portfolio nobody keys in</h2>
+
+      <p>The team already worked in <strong>Tokko Broker</strong>, the real estate CRM where listings, photos and unit statuses live. The tempting move was to duplicate: export once, lay it out nicely, update "when there's a minute".</p>
+
+      <p>That's exactly how a real estate website starts lying. A sold property still on the site burns an enquiry and, worse, burns the trust the previous five screens spent so long building.</p>
+
+      <AureTokko lang="en" />
+
+      <p>The portfolio is pulled from Tokko's API and rendered in AURE's visual system. The CRM stays the single source of truth: the sales team works where it always worked, and <strong>the website is a reflection, not a second database</strong>.</p>
+
+      <p>The design work here isn't the card, it's the mapping. A real estate CRM's fields are operational and speak their own language; the public card has to decide what shows, in what order, under what name. The rule I used: <strong>the card carries what helps you rule a property out</strong> —area, operation, price, rooms, surface— and everything else waits in the full listing.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">The portfolio drifts past</h2>
+
+      <p>With the sync solved, a presentation problem appears: the portfolio is heterogeneous. A studio in Villa Gesell sits next to an apartment in Recoleta, sales next to rentals, finished units next to buildings under construction.</p>
+
+      <AureCartera lang="en" />
+
+      <p>The answer was to treat the strip as a shop window rather than a grid: two rows drifting slowly in opposite directions, edges faded so nothing enters or leaves abruptly. The motion stops on hover or on keyboard focus, so <strong>looking never competes with choosing</strong>.</p>
+
+      <p>It's an expensive-looking device for the category —premium real estate brands use it— and it works for a concrete reason: it conveys that there <em>is</em> a portfolio. A grid of nine cards says "we have nine". A strip that drifts says "this keeps going".</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">Off-plan, which is where the fear lives</h2>
+
+      <p>Most of AURE's business is off-plan. Buying something that doesn't exist yet, paying in instalments as construction advances, is the most anxious transaction there is and the one with the most uncomfortable questions: what if it's delayed, who is the developer, can I sell before handover.</p>
+
+      <p>The product answer was to never hide the path. Every development declares its stage on the card itself, in the same vocabulary across the whole site: <em>under construction</em>, <em>ready to deed</em>.</p>
+
+      <AureEtapas lang="en" />
+
+      <p>On the rail are the two developments currently in the portfolio, each pinned to where it actually is. It's one idea repeated in five places on the site: <strong>the user should always see the whole path, not just the box they're standing in</strong>.</p>
+
+      <p>The same criterion orders the FAQ block. It's written around the questions people actually ask —"what happens if the development is delayed?", "what extra costs should I plan for?"— and not the ones that make the brokerage look good.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">Small decisions that hold the tone</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Decision</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gold on accents only</td>
+            <td>Gold across 20% of the screen is a casino. At 2% —hairlines, statuses, a dot in the logotype— it's an expensive brand.</td>
+          </tr>
+          <tr>
+            <td>4px radius</td>
+            <td>Heavily rounded corners read as a consumer app. Architecture has edges.</td>
+          </tr>
+          <tr>
+            <td>Tabular prices</td>
+            <td>Figures get compared in a column. Variable widths make comparing work.</td>
+          </tr>
+          <tr>
+            <td>A team with faces and names</td>
+            <td>The stated differentiator is closeness. A brokerage without faces contradicts it on the first screen.</td>
+          </tr>
+          <tr>
+            <td>Contact without a mandatory form</td>
+            <td>Direct WhatsApp, email and a meeting come before the form. The form exists, but it isn't the toll booth.</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h2 class="reveal-up" style="--i: 0">Motion you can switch off</h2>
+
+      <p>Everything that moves in this case study —and on the site— has its final state written into the HTML. With <code>prefers-reduced-motion</code> on there's no drift, no counters and no collapse: the mark is already assembled, the portfolio scrolls by hand, and the stage rail is complete from the first frame.</p>
+
+      <p>It isn't an accessibility concession bolted on at the end. It's the same discipline that makes the animation good: <strong>if a scene doesn't read while still, the animation is covering for a design problem</strong>.</p>
+
+
+      <h2 class="reveal-up" style="--i: 0">What's next</h2>
+
+      <ul>
+        <li><strong>Individual listings from Tokko</strong>: the full listing page exists today; the next step is having galleries and 3D showrooms come from the same source as the rest of the data.</li>
+        <li><strong>Buying guides</strong>: the navigation already holds the slot. The content is the asset the site needs to work on its own.</li>
+        <li><strong>Real testimonials</strong>: the block is designed and running on placeholder copy, waiting for the closed deals that will fill it.</li>
+      </ul>
+
+      <p>It's a young site for a young company. What's already settled is the part that's expensive to settle later: the identity, the tone, and the fact that the portfolio updates itself.</p>
+
+    </article>
+
+    <aside class="case-cta reveal-up" style="--i: 0">
+      <p class="meta-label">See it running</p>
+      <h2>The site is in production.</h2>
+      <p>Live portfolio from Tokko, developments, team and contact. The intro plays once per session.</p>
+      <div class="case-cta-actions">
+        <a href="https://aure-ebon.vercel.app/" target="_blank" rel="noopener" class="btn-primary">
+          Open AURE's website
+          <span class="arrow">→</span>
+        </a>
+        <a href="mailto:contacto@js80.studio" class="btn-secondary">
+          Let's talk about yours
+        </a>
+      </div>
+    </aside>
+
+    <footer class="case-signature reveal-up" style="--i: 0">
+      <a href="https://js80.studio" target="_blank" rel="noopener" class="signature-block">
+        <span class="js80-nucleus js80-nucleus-lg" aria-hidden="true"></span>
+        <span class="signature-text">
+          <strong>JS80</strong>
+          <em>Digital solutions studio · Buenos Aires</em>
+        </span>
+      </a>
+
+      <a href="/en/portfolio" class="back-link">
+        ← Back to all work
+      </a>
+    </footer>
+
+    <ContactCTA lang="en" />
+
+  </div>
+
+  <script>
+    import { initAureScenes } from '../../../components/aure/scenes';
+    initAureScenes();
+  </script>
+</Layout>

@@ -38,6 +38,10 @@ export default defineConfig({
     '/en/js80/cardiologia-barrio-scarano': 'https://consulcardiologico.vercel.app/',
     '/js80/turnero-digital': '/js80',
     '/en/js80/turnero-digital': '/en/js80',
+    // El tablero de leads salió del portfolio, pero el caso sigue publicado
+    // en el sitio del estudio: los links compartidos van ahí.
+    '/portfolio/leads-tablero': 'https://www.js80.studio/proyectos/leads-tablero/',
+    '/en/portfolio/leads-tablero': 'https://www.js80.studio/proyectos/leads-tablero/',
     // Páginas retiradas cuyos links pueden seguir vivos en emails/chats.
     // /port era la entrada pre-autorizada para recruiters → conserva esa
     // función vía el token; /acceso era la página de contraseña → abre el gate.

@@ -1,0 +1,97 @@
+---
+/**
+ * Portada animada embebida.
+ *
+ * Los archivos de /public/portadas/ son HTML autocontenidos —fuentes,
+ * imágenes y animación viajan adentro— así que se montan en un iframe,
+ * como indica el README que vino con ellos.
+ *
+ * El iframe se monta SIEMPRE a 1600×900, el tamaño de diseño de las piezas,
+ * y se achica entero con un transform desde acá. Si en cambio se le da al
+ * iframe el tamaño de la tarjeta, adentro el board de 1600px se encoge por
+ * flex-shrink antes de que corra su propio fit() y la animación aparece
+ * recortada. Con el viewport de diseño, adentro el fit() da 1 y la pieza se
+ * ve exactamente como fue armada.
+ *
+ * pointer-events:none es lo que hace que el click atraviese el iframe y
+ * llegue al <a> de la tarjeta: sin eso, la portada se come el "Ver caso".
+ */
+interface Props {
+  /** Nombre del archivo dentro de /portadas/ */
+  file: string;
+  /** Título accesible del iframe */
+  title: string;
+  /** Fondo del panel mientras la portada todavía no pintó */
+  bg?: string;
+}
+
+const { file, title, bg = '#141312' } = Astro.props;
+---
+
+<div class="portada" style={`--portada-bg:${bg}`}>
+  <iframe
+    src={`/portadas/${file}`}
+    title={title}
+    width="1600"
+    height="900"
+    loading="lazy"
+    scrolling="no"
+    tabindex="-1"
+    aria-hidden="true"
+  ></iframe>
+</div>
+
+<style>
+  .portada {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--portada-bg);
+  }
+
+  .portada iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1600px;
+    height: 900px;
+    /* global.css aplica `iframe { max-width: 100% }` a todo el sitio, y eso
+       recorta el viewport de diseño a lo que mide la tarjeta. */
+    max-width: none;
+    max-height: none;
+    border: 0;
+    display: block;
+    transform-origin: top left;
+    transform: scale(var(--portada-scale, 0.25));
+    /* Deja pasar el click al link de la tarjeta */
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  /* Mantiene el factor de escala al ancho real de cada portada.
+     Corre antes de que el iframe lazy empiece a cargar, así no hay salto. */
+  const DESIGN_WIDTH = 1600;
+
+  const fit = (el: HTMLElement) => {
+    const w = el.getBoundingClientRect().width;
+    if (w > 0) el.style.setProperty('--portada-scale', String(w / DESIGN_WIDTH));
+  };
+
+  const portadas = document.querySelectorAll<HTMLElement>('.portada');
+
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver((entries) => {
+      entries.forEach((e) => fit(e.target as HTMLElement));
+    });
+    portadas.forEach((el) => {
+      fit(el);
+      ro.observe(el);
+    });
+  } else {
+    const all = () => portadas.forEach(fit);
+    all();
+    window.addEventListener('resize', all);
+  }
+</script>

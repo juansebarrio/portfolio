@@ -1,0 +1,486 @@
+---
+/**
+ * Escena 2 — De Tokko a la ficha.
+ *
+ * A la izquierda, el registro crudo como sale del CRM. En el medio, la
+ * sincronización. A la derecha, la ficha de AURE armándose campo por campo
+ * en el mismo orden en que llegan los datos.
+ *
+ * Los valores son los de una publicación real del sitio.
+ */
+interface Props {
+  lang?: 'es' | 'en';
+}
+const { lang = 'es' } = Astro.props;
+
+const t =
+  lang === 'en'
+    ? {
+        source: 'Source · Tokko Broker',
+        output: 'Output · aure.ar',
+        sync: 'Syncing',
+        caption: 'One Tokko record becoming a listing card',
+        alt: 'Diagram: a Tokko Broker record travels to aure.ar and builds a listing card field by field.',
+        badge: 'For sale',
+        cta: 'View property',
+        rows: [
+          ['operation', 'Sale'],
+          ['price', 'USD 139000'],
+          ['rooms', '3'],
+          ['surface', '61 m²'],
+          ['location', 'Centro Playa'],
+          ['pictures', '8'],
+        ] as [string, string][],
+        title: 'Apartment — Centro Playa',
+        meta: '3 rooms · 61 m²',
+        price: 'USD 139,000',
+        locale: 'en-US',
+      }
+    : {
+        source: 'Origen · Tokko Broker',
+        output: 'Salida · aure.ar',
+        sync: 'Sincronizando',
+        caption: 'Un registro de Tokko convertido en ficha',
+        alt: 'Diagrama: un registro de Tokko Broker viaja hasta aure.ar y arma una ficha de propiedad campo por campo.',
+        badge: 'Venta',
+        cta: 'Ver propiedad',
+        rows: [
+          ['operacion', 'Venta'],
+          ['precio', 'USD 139000'],
+          ['ambientes', '3'],
+          ['superficie', '61 m²'],
+          ['ubicacion', 'Centro Playa'],
+          ['fotos', '8'],
+        ] as [string, string][],
+        title: 'Departamento — Centro Playa',
+        meta: '3 amb · 61 m²',
+        price: 'USD 139.000',
+        locale: 'es-AR',
+      };
+---
+
+<figure class="aure-stage" data-aure-scene>
+  <div class="aure-panel tk-panel">
+    <p class="sr-only">{t.alt}</p>
+
+    <div class="tk-grid" aria-hidden="true">
+
+      {/* ── Origen: el registro crudo ── */}
+      <div class="tk-col">
+        <p class="aure-eyebrow tk-in" style="--d:0ms">{t.source}</p>
+        <div class="tk-source tk-in" style="--d:120ms">
+          {
+            t.rows.map(([k, v], i) => (
+              <div class="tk-row" data-row style={`--d:${420 + i * 130}ms`}>
+                <span class="tk-key">{k}</span>
+                <span class="tk-val">{v}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* ── El cable: paquetes viajando ── */}
+      <div class="tk-wire" data-wire>
+        <span class="tk-wire-line"></span>
+        <span class="tk-packet" style="--p:0s"></span>
+        <span class="tk-packet" style="--p:0.9s"></span>
+        <span class="tk-packet" style="--p:1.8s"></span>
+        <span class="tk-wire-label">{t.sync}</span>
+      </div>
+
+      {/* ── Salida: la ficha ── */}
+      <div class="tk-col">
+        <p class="aure-eyebrow tk-in" style="--d:0ms">{t.output}</p>
+        <article class="tk-card tk-in" style="--d:200ms">
+          <div class="tk-photo" data-photo>
+            <span class="tk-shimmer"></span>
+            <span class="tk-badge" data-piece style="--d:1180ms">{t.badge}</span>
+          </div>
+          <div class="tk-card-body">
+            <p class="tk-place" data-piece style="--d:1740ms">{t.rows[4][1]}</p>
+            <h3 class="tk-title" data-piece style="--d:1880ms">{t.title}</h3>
+            <p class="tk-price" data-piece style="--d:2040ms">
+              <span data-count data-to="139000" data-locale={t.locale}>{t.price}</span>
+            </p>
+            <p class="tk-meta" data-piece style="--d:2200ms">{t.meta}</p>
+            <span class="tk-cta" data-piece style="--d:2360ms">{t.cta} →</span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+
+  <figcaption class="aure-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .tk-panel {
+    padding: clamp(26px, 4vw, 48px);
+  }
+
+  .tk-grid {
+    display: grid;
+    grid-template-columns: 1fr 92px 1fr;
+    /* Arriba, no al centro: así los dos eyebrows —origen y salida— quedan
+       a la misma altura aunque las columnas midan distinto. */
+    align-items: start;
+    gap: clamp(14px, 2vw, 26px);
+  }
+
+  .tk-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  /* ── Entrada compartida de los bloques grandes ── */
+  .tk-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 800ms var(--aure-ease),
+      transform 800ms var(--aure-ease);
+    transition-delay: var(--d, 0ms);
+  }
+
+  .is-playing .tk-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Origen ── */
+  .tk-source {
+    border: 1px solid color-mix(in oklab, var(--aure-blanco) 12%, transparent);
+    border-radius: 10px;
+    background: color-mix(in oklab, var(--aure-profundo) 70%, transparent);
+    padding: 6px 0;
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1.15vw, 12px);
+  }
+
+  .tk-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px clamp(10px, 1.4vw, 16px);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+      opacity 520ms var(--aure-ease),
+      transform 520ms var(--aure-ease);
+    transition-delay: var(--d, 0ms);
+  }
+
+  .is-playing .tk-row {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tk-key {
+    color: color-mix(in oklab, var(--aure-gris) 75%, transparent);
+    letter-spacing: 0.04em;
+  }
+
+  .tk-val {
+    color: var(--aure-blanco);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ── El cable ── */
+  .tk-wire {
+    position: relative;
+    align-self: center;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tk-wire-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in oklab, var(--aure-dorado) 55%, transparent),
+      transparent
+    );
+    transform: scaleX(0);
+    transition: transform 900ms var(--aure-ease) 380ms;
+  }
+
+  .is-playing .tk-wire-line {
+    transform: scaleX(1);
+  }
+
+  .tk-packet {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    margin-top: -2.5px;
+    border-radius: 50%;
+    background: var(--aure-dorado);
+    box-shadow: 0 0 10px color-mix(in oklab, var(--aure-dorado) 70%, transparent);
+    opacity: 0;
+  }
+
+  .is-playing .tk-packet {
+    animation: tk-travel 2.7s var(--aure-ease-io) infinite;
+    animation-delay: calc(700ms + var(--p, 0s));
+  }
+
+  @keyframes tk-travel {
+    0%        { transform: translateX(0);    opacity: 0; }
+    12%       { opacity: 1; }
+    88%       { opacity: 1; }
+    100%      { transform: translateX(92px); opacity: 0; }
+  }
+
+  .tk-wire-label {
+    position: absolute;
+    top: calc(50% + 16px);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--aure-dorado) 70%, transparent);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 700ms var(--aure-ease) 900ms;
+  }
+
+  .is-playing .tk-wire-label {
+    opacity: 1;
+  }
+
+  /* ── La ficha ── */
+  .tk-card {
+    /* Con la columna entera la ficha queda enorme y desbalancea la escena
+       contra el registro de la izquierda. */
+    max-width: 360px;
+    border: 1px solid var(--aure-borde);
+    border-radius: 12px;
+    background: var(--aure-blanco);
+    overflow: hidden;
+    color: var(--aure-azul);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  }
+
+  .tk-photo {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background:
+      linear-gradient(150deg,
+        color-mix(in oklab, var(--aure-azul) 82%, var(--aure-gris)) 0%,
+        color-mix(in oklab, var(--aure-azul) 45%, var(--aure-gris)) 58%,
+        var(--aure-gris-claro) 100%);
+  }
+
+  /* Barrido de carga sobre la foto, hasta que la ficha queda armada */
+  .tk-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      color-mix(in oklab, var(--aure-blanco) 34%, transparent) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .is-playing .tk-shimmer {
+    animation: tk-shimmer 1.15s var(--aure-ease-io) 3;
+    animation-delay: 300ms;
+  }
+
+  @keyframes tk-shimmer {
+    0%   { transform: translateX(-100%); opacity: 1; }
+    100% { transform: translateX(100%);  opacity: 1; }
+  }
+
+  .tk-badge {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 4px 9px;
+    border-radius: var(--aure-radio);
+    background: var(--aure-azul);
+    color: var(--aure-blanco);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .tk-card-body {
+    padding: clamp(12px, 1.6vw, 18px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Cada dato aparece cuando lo trae el cable */
+  [data-piece] {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 560ms var(--aure-ease),
+      transform 560ms var(--aure-ease);
+    transition-delay: var(--d, 0ms);
+  }
+
+  .is-playing [data-piece] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tk-place {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aure-gris-texto);
+  }
+
+  .tk-title {
+    margin: 0;
+    color: var(--aure-azul);
+    font-size: clamp(13px, 1.5vw, 16px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .tk-price {
+    margin: 2px 0 0;
+    color: var(--aure-azul);
+    font-size: clamp(15px, 1.9vw, 20px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tk-meta {
+    margin: 0;
+    font-size: 12px;
+    color: var(--aure-gris-texto);
+  }
+
+  .tk-cta {
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--aure-dorado);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────
+     En una columna el cable baja en vez de cruzar. No alcanza con
+     rotar la caja: rotada, sus 92px de ancho se vuelven 92px de alto
+     y la línea se mete adentro del registro de arriba. Se redefine. */
+  @media (max-width: 700px) {
+    .tk-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .tk-wire {
+      height: 76px;
+      width: 100%;
+    }
+
+    .tk-wire-line {
+      left: 50%;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      height: auto;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in oklab, var(--aure-dorado) 55%, transparent),
+        transparent
+      );
+      transform: scaleY(0);
+      transform-origin: top center;
+    }
+
+    .is-playing .tk-wire-line {
+      transform: scaleY(1);
+    }
+
+    .tk-packet {
+      left: 50%;
+      top: 0;
+      margin: 0 0 0 -2.5px;
+    }
+
+    .is-playing .tk-packet {
+      animation-name: tk-travel-v;
+    }
+
+    @keyframes tk-travel-v {
+      0%   { transform: translateY(0);    opacity: 0; }
+      12%  { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateY(76px); opacity: 0; }
+    }
+
+    .tk-wire-label {
+      top: 50%;
+      left: calc(50% + 14px);
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tk-in,
+    .tk-row,
+    [data-piece],
+    .tk-wire-label {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .tk-wire-line {
+      transform: scaleX(1);
+      transition: none;
+    }
+
+    .tk-packet,
+    .tk-shimmer {
+      display: none;
+    }
+  }
+</style>
+
+{/* El disparador de escenas vive en components/aure/scenes.ts y lo inicia la página. */}

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PortadaEmbed from '../../../components/PortadaEmbed.astro';
 
 export const prerender = false;
 ---
@@ -121,10 +122,7 @@ export const prerender = false;
         <!-- Fin de mes (PFM) — featured card -->
         <a href="/portfolio/fin-de-mes" class="caso-card">
           <div class="caso-media caso-media-pfm">
-            <img
-              src="/images/portfolio/fin-de-mes/portada-16x9.webp"
-              alt="Fin de mes cover: “Take back control of your finances in Argentina” next to the household budget screen"
-              loading="lazy" decoding="async" width="1920" height="1080" />
+            <PortadaEmbed file="portada-fin-de-mes.html" title="Fin de mes" bg="#141312" />
           </div>
           <div class="caso-info">
             <p class="caso-meta">JS80 · 2026 · Personal Finance</p>
@@ -134,18 +132,15 @@ export const prerender = false;
           </div>
         </a>
 
-        <!-- Leads dashboard — featured card -->
-        <a href="/en/portfolio/leads-tablero" class="caso-card">
-          <div class="caso-media caso-media-leads">
-            <img
-              src="/images/portfolio/leads-tablero/home.webp"
-              alt="Main dashboard screen with a detected pattern and leads cooling down"
-              loading="lazy" decoding="async" width="1920" height="2081" />
+        <!-- AURE — featured card -->
+        <a href="/en/portfolio/aure" class="caso-card">
+          <div class="caso-media caso-media-aure">
+            <PortadaEmbed file="portada-aure.html" title="AURE" bg="#212A45" />
           </div>
           <div class="caso-info">
-            <p class="caso-meta">JS80 · 2026 · SaaS Product</p>
-            <h2 class="caso-titulo">Leads dashboard for small businesses</h2>
-            <p class="caso-desc">A lean CRM that puts one question above all others: what do I need to do today?</p>
+            <p class="caso-meta">JS80 · 2026 · Real Estate</p>
+            <h2 class="caso-titulo">AURE</h2>
+            <p class="caso-desc">A real estate brokerage site in Buenos Aires, with its listing portfolio synced from Tokko Broker.</p>
             <p class="caso-cta">View case →</p>
           </div>
         </a>
@@ -153,10 +148,7 @@ export const prerender = false;
         <!-- Impulse Bot — featured card -->
         <a href="/en/portfolio/impulse-bot" class="caso-card">
           <div class="caso-media caso-media-impulse">
-            <img
-              src="/images/portfolio/impulse-bot/chatbot_impulse_portada.jpeg"
-              alt="Undetectable and Untransmittable — Impulse Bot's two characters"
-              loading="lazy" decoding="async" width="710" height="709" />
+            <PortadaEmbed file="portada-impulse-bot.html" title="Impulse Bot" bg="#1C0E0A" />
           </div>
           <div class="caso-info">
             <p class="caso-meta">Impulse · AHF Argentina · 2025 · Conversational Design</p>
@@ -549,13 +541,13 @@ export const prerender = false;
 
   /* Aspect ratios iguales para que ambas cards queden a la misma altura.
      16/9 + padding del info da un total más compacto. */
-  .caso-media-impulse { background: #1a0f07; aspect-ratio: 16 / 9; }
-  .caso-media-impulse img { object-position: center 12%; }
+  .caso-media-impulse { background: #1C0E0A; aspect-ratio: 16 / 9; display: block; }
 
-  .caso-media-leads { background: var(--surface); aspect-ratio: 16 / 9; }
-  .caso-media-leads img { object-fit: cover; object-position: center top; }
+  /* All three covers are embedded animations (public/portadas/): the
+     iframe paints the whole block, there's no <img> to frame. */
+  .caso-media-aure { background: #212A45; aspect-ratio: 16 / 9; display: block; }
 
-  .caso-media-pfm { background: #141312; aspect-ratio: 16 / 9; }
+  .caso-media-pfm     { background: #141312; aspect-ratio: 16 / 9; display: block; }
 
   .casos-destacados .caso-info { padding: 1.5rem; }
   .casos-destacados .caso-titulo { font-size: 1.125rem; margin-top: 0.5rem; }
