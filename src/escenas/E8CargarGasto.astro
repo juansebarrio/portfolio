@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import recorteTeclado from '../assets/fin-de-mes/alta-teclado.png';
-import recorteCuotasCiclo from '../assets/fin-de-mes/alta-cuotas-ciclo.png';
+import frameAlta from '../assets/fin-de-mes/alta-gasto-frame.png';
+import recorteBandeja from '../assets/fin-de-mes/alta-bandeja.png';
 ---
 
 <section
@@ -32,31 +32,27 @@ import recorteCuotasCiclo from '../assets/fin-de-mes/alta-cuotas-ciclo.png';
       </div>
 
       <p data-reveal data-reveal-delay="0.2" class="fdm-copy max-w-[44ch]">
-        Una sola pantalla, teclado propio y la categoría puede esperar: primero se anota, después
+        Una sola pantalla, todo en fichas y la categoría puede esperar: primero se anota, después
         se ordena.
       </p>
     </div>
 
-    <div
-      data-reveal="scale"
-      data-reveal-delay="0.15"
-      class="fdm-recorte shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
-    >
+    <div data-reveal="scale" data-reveal-delay="0.15" class="flex justify-center">
       <Image
-        src={recorteTeclado}
-        alt="Teclado numérico propio de la app para cargar el monto"
-        widths={[390, 585, 780]}
-        sizes="(min-width: 950px) 560px, 92vw"
+        src={frameAlta}
+        alt="Pantalla de carga del gasto: Coto $ 84.320 con medio, ámbito y categoría en fichas"
+        widths={[320, 480, 640, 780]}
+        sizes="(min-width: 950px) 320px, 80vw"
         format="webp"
-        class="block w-full h-auto"
+        class="fdm-phone max-w-[clamp(240px,30vw,320px)]"
       />
     </div>
   </div>
 
   <div data-reveal="right" data-reveal-delay="0.1" class="fdm-recorte max-w-[720px]">
     <Image
-      src={recorteCuotasCiclo}
-      alt="Selector de cuotas y ciclo al que cae el consumo: cierra el 28 jul, estimada"
+      src={recorteBandeja}
+      alt="Bandeja de entrada con tres movimientos por categorizar: Rappi, una transferencia recibida y MercadoLibre"
       widths={[390, 585, 780]}
       sizes="(min-width: 950px) 720px, 92vw"
       format="webp"

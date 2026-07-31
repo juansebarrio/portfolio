@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import tile from '../assets/fin-de-mes/findemes-tile-512.png';
+import icono from '../assets/fin-de-mes/findemes-icono.svg?raw';
 
 interface Props {
   webappUrl: string;
@@ -10,14 +9,12 @@ const { webappUrl } = Astro.props;
 ---
 
 <section id="e13" data-scene="12" aria-label="Cierre" class="fdm-scene gap-[clamp(30px,4vw,46px)]">
-  <Image
+  <span
     data-reveal="scale"
-    src={tile}
-    alt="Fin de mes"
-    widths={[60, 120]}
-    sizes="(min-width: 950px) 60px, 6vw"
-    format="webp"
-    class="block w-[clamp(46px,6vw,60px)] h-auto"
+    class="block w-[clamp(46px,6vw,60px)] [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
+    role="img"
+    aria-label="Fin de mes"
+    set:html={icono}
   />
 
   <div
