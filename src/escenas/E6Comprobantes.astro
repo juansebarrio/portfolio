@@ -1,16 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-// El export nombró este archivo "adjunto", pero es la tarjeta de confirmación:
-// lo que describen el alt y el epígrafe de la escena.
-import capturaConfirmacion from '../assets/fin-de-mes/asistente-confirmacion-oscuro.png';
+import capturaDetalle from '../assets/fin-de-mes/comprobante-detalle.png';
 
 // Los chips con `at` se encienden solos: es el beat de la escena.
 const medios = [
   { texto: 'Efectivo' },
   { texto: 'Galicia' },
-  { texto: 'Mercado Pago' },
-  { texto: 'Visa •• 4321', at: 3980 },
-  { texto: 'MC •• 8810' },
+  { texto: 'MP' },
+  { texto: 'Visa Galicia •• 4321', at: 3980 },
+  { texto: 'Mastercard BBVA •• 8810' },
 ];
 
 const ambitos = [{ texto: 'Del hogar', at: 3800 }, { texto: 'Solo mío' }];
@@ -132,7 +130,7 @@ const CHIP = 'fdm-chip px-3 py-2 text-[clamp(12px,1.35vw,14px)]';
             <div
               class="fdm-nums rounded-xl border border-hairline bg-chip px-[13px] py-2.5 text-[clamp(13px,1.4vw,15px)]"
             >
-              29/07/2026
+              10/07/2026
             </div>
           </div>
           <div class="flex flex-[1_1_150px] flex-col gap-[7px]">
@@ -216,8 +214,8 @@ const CHIP = 'fdm-chip px-3 py-2 text-[clamp(12px,1.35vw,14px)]';
         class="overflow-hidden rounded-[26px] border border-hairline bg-bg shadow-[0_24px_50px_rgba(0,0,0,0.4)]"
       >
         <Image
-          src={capturaConfirmacion}
-          alt="Tarjeta de confirmación del comprobante: Coto, $ 84.320, 29/07/2026, Visa •• 4321 y Supermercado ya seleccionados"
+          src={capturaDetalle}
+          alt="Detalle del movimiento cargado: Coto $ 84.320, Supermercado, Visa Galicia •• 4321, 10 jul 2026, ámbito hogar"
           widths={[250, 375, 500]}
           sizes="250px"
           format="webp"
@@ -225,7 +223,7 @@ const CHIP = 'fdm-chip px-3 py-2 text-[clamp(12px,1.35vw,14px)]';
         />
       </div>
       <span class="font-money text-xs leading-[1.5] text-tertiary">
-        Leyó el total, la fecha y con qué tarjeta pagaste. Vos solo confirmás.
+        Así queda cargado: total, fecha, medio y categoría. Nadie tipeó nada.
       </span>
     </div>
   </div>

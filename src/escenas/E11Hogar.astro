@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import frameHogar from '../assets/fin-de-mes/09_Hogar_dark.png';
+import frameHogar from '../assets/fin-de-mes/hogar-frame.png';
 import recorteMiembros from '../assets/fin-de-mes/hogar-miembros.png';
 ---
 
@@ -19,7 +19,7 @@ import recorteMiembros from '../assets/fin-de-mes/hogar-miembros.png';
       <div data-reveal data-reveal-delay="0.12" class="fdm-recorte">
         <Image
           src={recorteMiembros}
-          alt="Hogar Coghlan con dos miembros: Juanse administrador y Vale adulta del hogar"
+          alt="Hogar Coghlan con dos miembros: Juanse administrador y Vale miembro"
           widths={[360, 540, 720]}
           sizes="(min-width: 950px) 560px, 92vw"
           format="webp"
@@ -36,7 +36,7 @@ import recorteMiembros from '../assets/fin-de-mes/hogar-miembros.png';
     <div data-reveal="scale" class="flex justify-center">
       <Image
         src={frameHogar}
-        alt="Pantalla de hogar con miembros, invitación pendiente y reglas de privacidad"
+        alt="Pantalla de hogar con miembros, accesos y reglas de privacidad"
         widths={[320, 480, 640, 780]}
         sizes="(min-width: 950px) 320px, 80vw"
         format="webp"

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import capturaApertura from '../assets/fin-de-mes/asistente-apertura-oscuro.png';
+import capturaApertura from '../assets/fin-de-mes/asistente-apertura.png';
 
 const pilares = [
   {
@@ -69,8 +69,9 @@ const pilares = [
             <span class="block h-[7px] w-[7px] rounded-full bg-tertiary"></span>
           </div>
           <p data-as="1000" class="text-pretty text-[clamp(16px,1.7vw,19px)] leading-[1.45]">
-            Julio viene ordenado: quedan tres días y todavía tenés margen en el hogar, con
-            supermercado como el sobre que más aire tiene.
+            Último día de julio y el hogar cierra con aire: te sobran $ 625.500 sobre lo asignado.
+            Quedaron 3 movimientos sin categorizar que conviene acomodar antes de que arranque
+            agosto.
           </p>
         </div>
 
@@ -78,14 +79,16 @@ const pilares = [
           data-as="1500"
           class="flex flex-col gap-1.5 rounded-2xl border border-hairline p-[clamp(14px,1.8vw,18px)]"
         >
-          <span class="text-[clamp(13px,1.4vw,15px)] text-secondary">Disponible en julio</span>
+          <span class="text-[clamp(13px,1.4vw,15px)] text-secondary"
+            >Disponible en julio (hogar)</span
+          >
           <span
-            data-count="564900"
+            data-count="625500"
             data-prefix="$ "
             data-at="1500"
             data-dur="1.1"
             class="fdm-nums text-[clamp(28px,3.4vw,40px)] font-medium tracking-[-0.01em] text-green-soft"
-            >$ 564.900</span
+            >$ 625.500</span
           >
         </div>
 
@@ -107,20 +110,24 @@ const pilares = [
             ><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
             ></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
           >
-          <span>La Visa Galicia cierra hoy: proyectado $ 823.650</span>
+          <span>La Visa Galicia vence el 6 ago: proyectado $ 739.330</span>
         </div>
 
         <div class="flex flex-col items-start gap-2.5">
-          <span
-            data-as="2900"
-            class="rounded-[14px] border border-hairline bg-chip px-[15px] py-[11px] text-[clamp(13px,1.4vw,16px)]"
-            >¿Cómo viene la tarjeta?</span
-          >
-          <span
-            data-as="3060"
-            class="rounded-[14px] border border-hairline bg-chip px-[15px] py-[11px] text-[clamp(13px,1.4vw,16px)]"
-            >¿Qué son los 3 movimientos sin categorizar?</span
-          >
+          {
+            [
+              { texto: '¿Cuáles son los movimientos sin categorizar?', at: '2900' },
+              { texto: '¿Qué partidas me sobraron este mes?', at: '3060' },
+              { texto: '¿Cómo dejo armado agosto?', at: '3220' },
+            ].map((r) => (
+              <span
+                data-as={r.at}
+                class="rounded-[14px] border border-hairline bg-chip px-[15px] py-[11px] text-[clamp(13px,1.4vw,16px)]"
+              >
+                {r.texto}
+              </span>
+            ))
+          }
         </div>
       </div>
 
@@ -150,7 +157,7 @@ const pilares = [
       >
         <Image
           src={capturaApertura}
-          alt="Pantalla del asistente al abrir: lectura del mes, disponible en julio y aviso de cierre de la Visa"
+          alt="Pantalla del asistente al abrir: lectura del cierre de julio, disponible $ 625.500 y tres repreguntas sugeridas"
           widths={[250, 375, 500]}
           sizes="250px"
           format="webp"

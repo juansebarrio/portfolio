@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import framePresupuesto from '../assets/fin-de-mes/01a_Presupuesto_dark.png';
-import recorteDisponible from '../assets/fin-de-mes/presupuesto-numero-disponible.png';
+import framePresupuesto from '../assets/fin-de-mes/presupuesto-frame.png';
+import recorteDisponible from '../assets/fin-de-mes/presupuesto-disponible.png';
 import recortePartida from '../assets/fin-de-mes/presupuesto-partida-super.png';
 ---
 
@@ -19,7 +19,7 @@ import recortePartida from '../assets/fin-de-mes/presupuesto-partida-super.png';
     <div data-reveal="scale" class="flex justify-center">
       <Image
         src={framePresupuesto}
-        alt="Pantalla de presupuesto de julio con partidas por rubro"
+        alt="Pantalla de presupuesto de julio: disponible $ 625.500 y partidas por rubro"
         widths={[320, 480, 640, 780]}
         sizes="(min-width: 950px) 320px, 80vw"
         format="webp"
@@ -31,7 +31,7 @@ import recortePartida from '../assets/fin-de-mes/presupuesto-partida-super.png';
       <div data-reveal data-reveal-delay="0.15" class="fdm-recorte">
         <Image
           src={recorteDisponible}
-          alt="Disponible en julio: $ 539.200, asignado $ 2.860.000, gastado $ 2.320.800"
+          alt="Disponible en julio: $ 625.500, asignado $ 2.860.000, gastado $ 2.234.500"
           widths={[390, 585, 780]}
           sizes="(min-width: 950px) 560px, 92vw"
           format="webp"
@@ -40,14 +40,14 @@ import recortePartida from '../assets/fin-de-mes/presupuesto-partida-super.png';
       </div>
 
       <p data-reveal data-reveal-delay="0.28" class="fdm-copy max-w-[46ch]">
-        Asignado, gastado y disponible por partida, con proyección de cierre. El color de cada
-        partida sale de cómo viene terminando el mes.
+        Asignado, gastado y disponible por partida, en lista o en torta. Lo fijo se marca pagado;
+        lo variable muestra cuánto queda.
       </p>
 
       <div data-reveal="right" data-reveal-delay="0.45" class="fdm-recorte">
         <Image
           src={recortePartida}
-          alt="Partida Supermercado: queda $ 251.600, a este ritmo terminás $ 31.200 arriba"
+          alt="Partida Supermercado: $ 268.400 de $ 520.000, queda $ 251.600"
           widths={[360, 540, 720]}
           sizes="(min-width: 950px) 560px, 92vw"
           format="webp"

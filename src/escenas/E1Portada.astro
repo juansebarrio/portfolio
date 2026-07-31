@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import tile from '../assets/fin-de-mes/findemes-tile-512.png';
+import icono from '../assets/fin-de-mes/findemes-icono.svg?raw';
 ---
 
 <section
@@ -10,15 +9,11 @@ import tile from '../assets/fin-de-mes/findemes-tile-512.png';
   class="fdm-scene relative gap-[clamp(30px,4vw,48px)]"
 >
   <div data-reveal="scale" class="flex items-center gap-4">
-    <Image
-      src={tile}
-      alt="Fin de mes"
-      widths={[76, 152]}
-      sizes="(min-width: 950px) 76px, 8vw"
-      format="webp"
-      loading="eager"
-      fetchpriority="high"
-      class="block w-[clamp(54px,8vw,76px)] h-auto"
+    <span
+      class="block w-[clamp(54px,8vw,76px)] [&>svg]:block [&>svg]:h-auto [&>svg]:w-full"
+      role="img"
+      aria-label="Fin de mes"
+      set:html={icono}
     />
     <span class="text-[clamp(19px,2.8vw,26px)] font-medium tracking-[-0.01em]">Fin de mes</span>
   </div>
@@ -34,7 +29,7 @@ import tile from '../assets/fin-de-mes/findemes-tile-512.png';
     <span
       data-pulse
       class="fdm-nums origin-left text-[clamp(30px,5.4vw,52px)] font-medium tracking-[-0.01em]"
-      >$ 539.200</span
+      >$ 625.500</span
     >
   </div>
 

@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import frameTarjeta from '../assets/fin-de-mes/06_Tarjeta_ciclo_Visa_dark.png';
-import recorteResumen from '../assets/fin-de-mes/tarjeta-resumen-proyectado.png';
+import frameTarjeta from '../assets/fin-de-mes/tarjeta-ciclos-frame.png';
+import recorteCiclo from '../assets/fin-de-mes/tarjeta-ciclo-jul.png';
 
 const filas = [
-  { label: 'Consumos del ciclo', valor: '$ 486.200', count: 486200 },
-  { label: 'Cuotas del mes', valor: '$ 296.250', count: 296250 },
+  { label: 'Cierre del 28 jun · confirmado', valor: '$ 734.500', count: 734500 },
   { label: 'Impuestos y cargos estimados', valor: '$ 58.000', count: 58000 },
+  { label: 'Cierre del 28 ago · ya proyectado', valor: '$ 142.320', count: 142320 },
 ];
 ---
 
@@ -105,14 +105,14 @@ const filas = [
           class="mt-2 flex items-baseline justify-between gap-4 border-t border-hairline pt-[clamp(16px,2vw,20px)]"
         >
           <span class="font-money text-[clamp(11px,1.3vw,13px)] uppercase tracking-[0.16em] text-tertiary"
-            >Resumen proyectado</span
+            >Cierra el 28 jul · proyectado</span
           >
           <span
-            data-count="840450"
+            data-count="739330"
             data-prefix="$ "
             data-dur="1.4"
-            class="fdm-nums text-[clamp(26px,3.6vw,40px)] font-medium tracking-[-0.01em]"
-            >$ 840.450</span
+            class="fdm-nums whitespace-nowrap text-[clamp(26px,3.6vw,40px)] font-medium tracking-[-0.01em]"
+            >$ 739.330</span
           >
         </div>
       </div>
@@ -121,7 +121,7 @@ const filas = [
     <div data-reveal="scale" data-reveal-delay="0.1" class="flex justify-center">
       <Image
         src={frameTarjeta}
-        alt="Pantalla del ciclo de la Visa Galicia con resumen proyectado y consumos"
+        alt="Pantalla de la Visa Galicia con sus ciclos: proyectados estimados y resúmenes confirmados"
         widths={[320, 480, 640, 780]}
         sizes="(min-width: 950px) 320px, 80vw"
         format="webp"
@@ -132,8 +132,8 @@ const filas = [
 
   <div data-reveal data-reveal-delay="0.15" class="fdm-recorte max-w-[640px]">
     <Image
-      src={recorteResumen}
-      alt="Resumen proyectado $ 840.450 con consumos, cuotas e impuestos estimados"
+      src={recorteCiclo}
+      alt="Ciclo que cierra el 28 jul: estimada, vence el 6 ago, proyectado $ 739.330"
       widths={[360, 540, 720]}
       sizes="(min-width: 950px) 640px, 92vw"
       format="webp"
