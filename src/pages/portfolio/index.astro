@@ -224,12 +224,18 @@ export const prerender = false;
   <script>
     const STORAGE_KEY = 'portfolio-auth';
     const PASSWORD = 'libertador123456';
+    const ACCESS_KEY = '51867e76';
 
     function applyAuth() {
       const lock = document.getElementById('nda-lock');
       const content = document.getElementById('nda-content');
       if (lock) lock.style.display = 'none';
       if (content) content.style.display = 'block';
+    }
+
+    if (new URLSearchParams(window.location.search).get('key') === ACCESS_KEY) {
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+      history.replaceState(null, '', window.location.pathname);
     }
 
     if (sessionStorage.getItem(STORAGE_KEY) === 'true') applyAuth();
