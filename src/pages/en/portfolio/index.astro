@@ -160,63 +160,6 @@ export const prerender = false;
 
       </div>
 
-      <!-- JS80 — compact cards -->
-      <div class="js80-sub">
-        <p class="eyebrow">JS80 STUDIO</p>
-      </div>
-      <div class="casos-mini">
-
-        <!-- VidrierAI — featured with priority -->
-        <a href="https://www.js80.studio/vidriera" target="_blank" rel="noopener noreferrer" class="caso-mini caso-mini-priority">
-          <span class="mini-badge">New</span>
-          <div class="mini-media mini-media-vidriera" aria-hidden="true">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10v9.3h15V10"/><path d="M3.5 19.3h17"/><path d="M3 10l1.7-4.3A1 1 0 0 1 5.6 5h12.8a1 1 0 0 1 .9.7L21 10z"/><path d="M7.5 5.3 7 10M12 5v5M16.5 5.3 17 10"/><path d="M7.3 13h4.2v6.3H7.3z"/><path d="M16 12.2q.55 2.5 3 3-2.45.5-3 3-.55-2.5-3-3 2.45-.5 3-3Z" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <div class="mini-info">
-            <p class="caso-meta">JS80 · 2026 · AI + E-commerce</p>
-            <h3 class="mini-titulo">VidrierAI</h3>
-            <p class="mini-desc">From a photo to a ready-to-sell listing: title, description, tags and caption for each product, generated with AI.</p>
-            <p class="caso-cta">View case ↗</p>
-          </div>
-        </a>
-
-        <a href="https://institucionalmultiple.js80.studio/" target="_blank" rel="noopener noreferrer" class="caso-mini">
-          <div class="mini-media mini-media-turnero" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="15" rx="1.5"/><path d="M12 10v6M9 13h6"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/></svg>
-          </div>
-          <div class="mini-info">
-            <p class="caso-meta">JS80 · 2026 · Health</p>
-            <h3 class="mini-titulo">Hospital Aranda</h3>
-            <p class="mini-desc">Institutional website for a hospital, designed and shipped to production by the studio.</p>
-            <p class="caso-cta">View case ↗</p>
-          </div>
-        </a>
-
-        <a href="https://consulcardiologico.vercel.app/" target="_blank" rel="noopener noreferrer" class="caso-mini">
-          <div class="mini-media mini-media-cardio" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <div class="mini-info">
-            <p class="caso-meta">JS80 · 2026 · Branding + Web</p>
-            <h3 class="mini-titulo">Cardiología Barrio · Scarano</h3>
-            <p class="mini-desc">Brand, web and AI voice agent for a cardiology practice in Bahía Blanca.</p>
-            <p class="caso-cta">View case ↗</p>
-          </div>
-        </a>
-
-        <a href="https://www.js80.studio/trabajo/inmobiliaria" target="_blank" rel="noopener noreferrer" class="caso-mini">
-          <div class="mini-media mini-media-tablero" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="20" x2="21" y2="20"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/></svg>
-          </div>
-          <div class="mini-info">
-            <p class="caso-meta">JS80 · 2026 · Real Estate</p>
-            <h3 class="mini-titulo">Real Estate Dashboard</h3>
-            <p class="mini-desc">Real estate dashboard with sales KPIs, unit management, and real-time operational metrics.</p>
-            <p class="caso-cta">View case ↗</p>
-          </div>
-        </a>
-
-      </div>
     </section>
 
   </div>
@@ -564,97 +507,6 @@ export const prerender = false;
     .casos-destacados { grid-template-columns: 1fr; }
   }
 
-  /* JS80 subsection */
-  .js80-sub { margin-top: 2.5rem; margin-bottom: 1rem; }
-
-  .casos-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-
-  .caso-mini {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
-  }
-
-  .caso-mini:hover { transform: translateY(-3px); background: var(--surface); }
-  .caso-mini:hover .caso-cta { color: var(--fg); }
-
-  /* VidrierAI — featured with priority */
-  .caso-mini-priority {
-    border-color: color-mix(in oklab, #7158d6 45%, var(--border));
-    box-shadow: 0 0 0 1px color-mix(in oklab, #7158d6 28%, transparent),
-                0 8px 24px color-mix(in oklab, #7158d6 12%, transparent);
-  }
-
-  .caso-mini-priority:hover {
-    box-shadow: 0 0 0 1px color-mix(in oklab, #7158d6 45%, transparent),
-                0 12px 30px color-mix(in oklab, #7158d6 18%, transparent);
-  }
-
-  .mini-badge {
-    position: absolute;
-    top: 0.625rem;
-    right: 0.625rem;
-    z-index: 2;
-    font-family: var(--font-sans);
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #fff;
-    background: #7158d6;
-    border-radius: 999px;
-    padding: 0.2rem 0.5rem;
-    line-height: 1;
-  }
-
-  .mini-media {
-    height: 96px;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .mini-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* Brand tints — color del producto sobre surface del theme.
-     En light: tinta pastel. En dark: tinta profunda. */
-  .mini-media-turnero { background: color-mix(in oklab, #4a7fa8 14%, var(--surface)); color: #4a7fa8; }
-
-  .mini-media-cardio  { background: color-mix(in oklab, #8a4450 14%, var(--surface)); color: #8a4450; }
-
-  .mini-media-tablero { background: color-mix(in oklab, #4a8a7a 14%, var(--surface)); color: #4a8a7a; }
-
-  .mini-media-vidriera { background: color-mix(in oklab, #7158d6 16%, var(--surface)); color: #7158d6; }
-
-  .mini-info { padding: 1.125rem; display: flex; flex-direction: column; }
-
-  .mini-titulo {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--fg);
-    line-height: 1.2;
-    margin: 0.5rem 0 0;
-  }
-
-  .mini-desc {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0.5rem 0 0;
-    flex: 1;
-  }
-
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .nda-lock { grid-template-columns: 1fr; }
@@ -662,13 +514,11 @@ export const prerender = false;
     .casos { grid-template-columns: 1fr 1fr; }
     .caso-featured { grid-column: 1 / -1; grid-template-columns: 1fr; }
     .caso-featured .caso-media { aspect-ratio: 16 / 9; min-height: unset; }
-    .casos-mini { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
     .nda-lock { padding: 2rem; }
     .casos { grid-template-columns: 1fr; }
     .caso-featured { grid-template-columns: 1fr; }
-    .casos-mini { grid-template-columns: 1fr; }
   }
 </style>
