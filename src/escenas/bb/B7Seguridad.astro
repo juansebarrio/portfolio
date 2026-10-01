@@ -1,0 +1,118 @@
+---
+/**
+ * src/escenas/bb/B7Seguridad.astro — E7 · Seguridad.
+ *
+ * Los tres caminos de la moderación (riesgo alto encendido en musgo, los
+ * otros dos apagados) con parallax suave, y a la derecha la pantalla de
+ * crisis como tarjeta de papel: la marca con los ojos cerrados entra desde
+ * la derecha. Debajo, tres claves en grilla; la tercera arranca con el
+ * contador de la matriz de pruebas (21 de 21), que nace en su valor final
+ * en el HTML para leerse sin JS y con prefers-reduced-motion.
+ */
+import Marca from './Marca.astro';
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e7;
+
+/** Casos de la matriz de pruebas: el contador de la tercera clave. */
+const MATRIZ = 21;
+/** Índice de la clave que arranca con el contador («de 21» / «of 21»). */
+const CLAVE_CONTADOR = 2;
+---
+
+<section
+  id="e7"
+  data-scene="6"
+  data-screen-label="E7 · Seguridad"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(26px,3.4vw,42px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[24ch] text-h3 text-pretty">
+      {c.h2}
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="bb-copy max-w-[54ch]">
+      {c.copy}
+    </p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+    {/* ── Los tres caminos de la moderación ── */}
+    <div data-parallax="0.04" class="flex min-w-0 flex-[1_1_400px] flex-col gap-2.5">
+      {
+        c.paths.map((p, i) => (
+          <div
+            data-reveal
+            data-reveal-delay={(0.26 + i * 0.12).toFixed(2)}
+            class:list={[
+              'flex flex-col gap-1 rounded-2xl border px-4 py-3.5',
+              p.accent ? 'border-moss bg-[rgba(143,179,138,.08)]' : 'border-hairline bg-panel',
+            ]}
+          >
+            <span
+              class:list={[
+                'font-money text-[11px] uppercase tracking-[0.14em]',
+                p.accent ? 'text-moss' : 'text-tertiary',
+              ]}
+            >
+              {p.tag}
+            </span>
+            <span class="text-[clamp(14px,1.5vw,16px)]/[1.45] text-pretty">{p.text}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* ── La pantalla de crisis: la marca con los ojos cerrados ── */}
+    <div data-parallax="-0.07" class="min-w-0 flex-[0_1_260px]">
+      <div data-reveal="right" data-reveal-delay="0.3" class="flex flex-col gap-3.5">
+        <div class="bb-paper flex aspect-[3/4] flex-col items-center justify-center gap-[26px] p-[22px]">
+          <span class="flex items-center justify-center">
+            <Marca size={150} eyes={58} gaze="closed" />
+          </span>
+          <span class="text-center font-money text-[11px] uppercase tracking-[0.16em] text-bb-gold">
+            {c.crisisTag}
+          </span>
+        </div>
+        <span class="bb-note">{c.crisisNote}</span>
+      </div>
+    </div>
+  </div>
+
+  {/* ── Las tres claves ── */}
+  <div
+    class="grid gap-[clamp(20px,2.6vw,36px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))]"
+  >
+    {
+      c.claves.map((k, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.12).toFixed(2)}
+          class="flex flex-col gap-2 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="text-lead font-medium">
+            {i === CLAVE_CONTADOR ? (
+              <>
+                <span data-count={MATRIZ} data-at="600" data-dur="0.8" class="bb-nums">{MATRIZ}</span>{' '}{k.title}
+              </>
+            ) : (
+              k.title
+            )}
+          </span>
+          <span class="text-[clamp(15px,1.6vw,17px)]/[1.45] text-secondary text-pretty">
+            {k.text}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+
+  <p data-reveal data-reveal-delay="0.46" class="bb-note max-w-[70ch]">
+    {c.note}
+  </p>
+</section>

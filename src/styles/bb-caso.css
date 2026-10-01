@@ -1,0 +1,301 @@
+/* ════════════════════════════════════════════════════════════════
+   bb. — presentación del caso (12 escenas)
+   Hoja propia de la página, igual que aure-caso.css y fin-de-mes.css:
+   no comparte tokens ni tipografías con el resto del portfolio y solo
+   escanea sus propios archivos. Sirve a /portfolio/bb y /en/portfolio/bb.
+   ════════════════════════════════════════════════════════════════ */
+@import "tailwindcss" source(none);
+
+@source "../escenas/bb";
+@source "../pages/portfolio/bb.astro";
+@source "../pages/en/portfolio/bb.astro";
+
+@theme {
+  /* ── Fondo de la pieza (madera oscura, igual que AURE y Fin de mes) ── */
+  --color-bg:            #141312;
+  --color-surface:       #1E1C1A;
+  --color-panel:         #1A1917;
+  --color-ink:           #F2EFE9;
+  --color-secondary:     #A39D93;
+  --color-tertiary:      #7F796F;
+  --color-hairline:      #34302B;
+  --color-hairline-soft: #241F1A;
+
+  /* ── Acento del caso: musgo (AURE usa dorado, Fin de mes verde) ── */
+  --color-moss:      #8FB38A;
+  --color-moss-soft: #A8C9A3;
+  --color-moss-deep: #3F5A3F;
+  --color-amber:     #C6913B;
+
+  /* ── Superficies de bb., el producto (direction-E tokens de juansebarrio/bb) ── */
+  --color-bb-green:      #0f2018;
+  --color-bb-green-2:    #1e3a2c;
+  --color-bb-paper:      #faf6ee;
+  --color-bb-paper-line: #e3ddd0;
+  --color-bb-ink:        #13261d;
+  --color-bb-olive:      #4f5b32;
+  --color-bb-lime:       #a6b84c;
+  --color-bb-lime-soft:  #c4d08a;
+  --color-bb-sage:       #bcc69a;
+  --color-bb-mist:       #d6dcc4;
+  --color-bb-gold:       #8a6a32;
+  --color-bb-moss-dark:  #5d6b3a;
+
+  --font-ui:       "Rubik", system-ui, sans-serif;
+  --font-money:    "Spline Sans Mono", ui-monospace, monospace;
+  /* Solo para el producto recreado (home, Unpack, marca) */
+  --font-bb-ui:    "Instrument Sans", system-ui, sans-serif;
+  --font-bb-serif: "Petrona", Georgia, serif;
+
+  /* El easing de toda la pieza */
+  --ease-bb: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* ── Escala de tipo (clamp, mobile-first) — idéntica a AURE ── */
+  --text-h1: clamp(38px, 7.6vw, 82px);
+  --text-h1--line-height: 1.03;
+  --text-h1--letter-spacing: -0.028em;
+  --text-h1--font-weight: 500;
+
+  --text-h1-cierre: clamp(36px, 7vw, 76px);
+  --text-h1-cierre--line-height: 1.04;
+  --text-h1-cierre--letter-spacing: -0.028em;
+  --text-h1-cierre--font-weight: 500;
+
+  --text-h2: clamp(30px, 5vw, 58px);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 500;
+
+  --text-h3: clamp(28px, 4.6vw, 52px);
+  --text-h3--line-height: 1.09;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 500;
+
+  --text-tesis: clamp(30px, 5.6vw, 64px);
+  --text-tesis--line-height: 1.14;
+  --text-tesis--letter-spacing: -0.022em;
+  --text-tesis--font-weight: 500;
+
+  --text-item: clamp(18px, 2.4vw, 28px);
+  --text-item--line-height: 1.34;
+
+  --text-copy: clamp(17px, 1.9vw, 22px);
+  --text-copy--line-height: 1.5;
+
+  --text-lead: clamp(17px, 1.8vw, 21px);
+  --text-eyebrow: clamp(11px, 1.3vw, 13px);
+
+  /* Cifras grandes de las escenas Medido y Cómo está hecho */
+  --text-stat: clamp(34px, 5vw, 60px);
+  --text-stat--line-height: 1;
+  --text-stat--font-weight: 500;
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(143, 179, 138, 0.3);
+  }
+
+  a {
+    color: var(--color-moss);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-moss-soft);
+  }
+}
+
+/* ── Utilidades compuestas del sistema ─────────────────────────── */
+
+/* Sección-escena: una pantalla, contenido centrado verticalmente */
+@utility bb-scene {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: clamp(96px, 12vh, 150px) clamp(20px, 5vw, 64px);
+}
+
+/* Eyebrow mono en mayúsculas */
+@utility bb-eyebrow {
+  font-family: var(--font-money);
+  font-size: clamp(11px, 1.3vw, 13px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-tertiary);
+}
+
+/* Etiqueta mono dentro del panel verde (la superficie de bb.) */
+@utility bb-tag {
+  font-family: var(--font-money);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-bb-sage);
+}
+
+/* Etiqueta mono dentro de una tarjeta de papel */
+@utility bb-tag-paper {
+  font-family: var(--font-money);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bb-olive);
+}
+
+/* Nota mono al pie de un bloque */
+@utility bb-note {
+  font-family: var(--font-money);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-tertiary);
+}
+
+/* Copy de párrafo */
+@utility bb-copy {
+  font-size: clamp(17px, 1.9vw, 22px);
+  line-height: 1.5;
+  color: var(--color-secondary);
+  text-wrap: pretty;
+}
+
+/* El panel verde: la superficie de marca de bb. dentro de la pieza */
+@utility bb-panel {
+  border: 1px solid var(--color-bb-green-2);
+  border-radius: 26px;
+  background: var(--color-bb-green);
+  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.45);
+}
+
+/* Tarjeta de papel adentro del panel verde (los Unpacks, la home) */
+@utility bb-card {
+  border-radius: 14px;
+  background: var(--color-bb-paper);
+  color: var(--color-bb-ink);
+}
+
+/* Tarjeta de papel suelta sobre el fondo de la pieza */
+@utility bb-paper {
+  border: 1px solid var(--color-bb-paper-line);
+  border-radius: 26px;
+  background: var(--color-bb-paper);
+  color: var(--color-bb-ink);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Bloque oscuro de datos (voces en producción, primeros usuarios) */
+@utility bb-bloque {
+  border: 1px solid var(--color-hairline);
+  border-radius: 26px;
+  background: var(--color-panel);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Fila numerada con foco por scroll (data-focus-row) */
+@utility bb-row {
+  display: flex;
+  align-items: baseline;
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* Cifras: mono con números tabulares */
+@utility bb-nums {
+  font-family: var(--font-money);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── CHIPS DEL PANEL (lo que pidió Wided) ───────────────────────
+   Nacen encendidos en el HTML: que Wided haya pedido menos largo y
+   más filo es el contenido de la escena, así que tiene que leerse
+   sin JS y con prefers-reduced-motion. La animación les quita el
+   estado al arrancar y lo devuelve a su tiempo. */
+.bb-chip {
+  border: 1px solid var(--color-bb-green-2);
+  border-radius: 12px;
+  background: rgba(250, 246, 238, 0.04);
+  color: var(--color-bb-sage);
+  transition:
+    color 0.4s var(--ease-bb),
+    border-color 0.4s var(--ease-bb),
+    background-color 0.4s var(--ease-bb);
+}
+
+.bb-chip.is-on {
+  border-color: var(--color-bb-lime);
+  background: rgba(166, 184, 76, 0.14);
+  color: var(--color-bb-lime-soft);
+  font-weight: 500;
+}
+
+/* Chips neutras sobre el fondo de la pieza (las reglas de la capa cultural) */
+.bb-chip-quiet {
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  background: var(--color-panel);
+  color: var(--color-secondary);
+}
+
+/* ── Animaciones CSS ───────────────────────────────────────────── */
+
+@keyframes bb-pulse {
+  0%   { transform: scale(1); }
+  34%  { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bb-nudge {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+
+@keyframes bb-live {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* La marca: las pupilas miran y los ojos parpadean (components/Mark.tsx de bb) */
+@keyframes bb-look {
+  0%, 100% { transform: translateX(0); }
+  30%      { transform: translateX(-11%); }
+  60%      { transform: translateX(9%); }
+}
+
+@keyframes bb-blink-loop {
+  0%, 91%, 100% { transform: scaleY(1); }
+  94%           { transform: scaleY(0.08); }
+}
+
+/* Loops decorativos: solo si el usuario no pidió menos movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  .bb-nudge {
+    animation: bb-nudge 2.6s ease-in-out infinite;
+  }
+
+  .bb-live-dot {
+    animation: bb-live 2.2s ease-in-out infinite;
+  }
+
+  .marca-ojo[data-gaze="looking"] {
+    animation: bb-blink-loop 6.4s ease-in-out infinite;
+  }
+
+  .marca-ojo[data-gaze="looking"] .marca-pupila {
+    animation: bb-look 5.6s ease-in-out infinite;
+  }
+}

@@ -119,6 +119,19 @@ export const prerender = false;
 
       <div class="casos-destacados">
 
+        <!-- bb. — featured card -->
+        <a href="/en/portfolio/bb" class="caso-card">
+          <div class="caso-media caso-media-bb">
+            <PortadaEmbed file="portada-bb.html" title="bb." bg="#0f2018" />
+          </div>
+          <div class="caso-info">
+            <p class="caso-meta">JS80 · 2026 · Applied AI</p>
+            <h2 class="caso-titulo">bb.</h2>
+            <p class="caso-desc">An AI reflection tool for people who live between cultures. The model's voice designed with a test behind every decision.</p>
+            <p class="caso-cta">View case →</p>
+          </div>
+        </a>
+
         <!-- Fin de mes (PFM) — featured card -->
         <a href="/portfolio/fin-de-mes" class="caso-card">
           <div class="caso-media caso-media-pfm">
@@ -481,10 +494,10 @@ export const prerender = false;
 
   .publicos-header { margin-bottom: 1.5rem; }
 
-  /* ── Cards destacadas: 2 columnas en desktop ── */
+  /* ── Cards destacadas: 2 columnas en desktop (cuatro casos, 2×2) ── */
   .casos-destacados {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
@@ -497,6 +510,7 @@ export const prerender = false;
   .caso-media-aure { background: #212A45; aspect-ratio: 16 / 9; display: block; }
 
   .caso-media-pfm     { background: #141312; aspect-ratio: 16 / 9; display: block; }
+  .caso-media-bb      { background: #0f2018; aspect-ratio: 16 / 9; display: block; }
 
   .casos-destacados .caso-info { padding: 1.5rem; }
   .casos-destacados .caso-titulo { font-size: 1.125rem; margin-top: 0.5rem; }

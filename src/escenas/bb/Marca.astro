@@ -1,0 +1,92 @@
+---
+/**
+ * src/escenas/bb/Marca.astro
+ *
+ * La marca de bb.: la gota con las dos b minúsculas y sus pupilas.
+ * Port de components/Mark.tsx (juansebarrio/bb) a HTML+CSS puro.
+ *
+ * gaze:
+ *  - looking: las pupilas miran (bb-look) y los ojos parpadean (bb-blink-loop)
+ *  - still:   quieta
+ *  - wink:    el ojo derecho cerrado
+ *  - closed:  los dos cerrados (pantalla de crisis)
+ * field: gradiente de la home (oliva → lima); sin field, oliva → dorado.
+ */
+interface Props {
+  /** Lado de la gota, en px */
+  size: number;
+  /** Tamaño de la b, en px */
+  eyes: number;
+  gaze?: 'looking' | 'still' | 'wink' | 'closed';
+  field?: boolean;
+  class?: string;
+}
+const { size, eyes, gaze = 'still', field = false, class: className } = Astro.props;
+
+const from = field ? '#4f5b32' : '#5d6b3a';
+const to = field ? '#a6b84c' : '#8a6a32';
+const leftShut = gaze === 'closed';
+const rightShut = gaze === 'closed' || gaze === 'wink';
+---
+
+<span
+  class:list={['marca', className]}
+  aria-hidden="true"
+  style={`--marca-size:${size}px; --ojo:${eyes}px; --marca-from:${from}; --marca-to:${to}`}
+>
+  <span class="marca-ojos">
+    <span class="marca-ojo" data-gaze={gaze}>
+      <span class="marca-b">b</span>
+      {!leftShut && <span class="marca-pupila"></span>}
+    </span>
+    <span class="marca-ojo" data-gaze={gaze}>
+      <span class="marca-b">b</span>
+      {!rightShut && <span class="marca-pupila"></span>}
+    </span>
+  </span>
+</span>
+
+<style>
+  .marca {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: var(--marca-size);
+    height: var(--marca-size);
+    background: linear-gradient(152deg, var(--marca-from) 0%, var(--marca-to) 100%);
+    border-radius: 78% 22% 64% 36% / 40% 72% 28% 60%;
+  }
+
+  .marca-ojos {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: calc(var(--ojo) * 0.035);
+    line-height: 1;
+  }
+
+  .marca-ojo {
+    position: relative;
+    display: inline-block;
+    width: calc(var(--ojo) * 0.575);
+    height: var(--ojo);
+    transform-origin: 50% 60%;
+  }
+
+  .marca-b {
+    display: block;
+    font: 600 var(--ojo) / 1 "Instrument Sans", system-ui, sans-serif;
+    color: #faf6ee;
+    letter-spacing: 0;
+  }
+
+  .marca-pupila {
+    position: absolute;
+    left: calc(var(--ojo) * 0.19);
+    top: calc(var(--ojo) * 0.545);
+    width: calc(var(--ojo) * 0.136);
+    height: calc(var(--ojo) * 0.136);
+    border-radius: 50%;
+    background: #13261d;
+  }
+</style>
