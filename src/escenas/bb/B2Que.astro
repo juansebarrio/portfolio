@@ -1,0 +1,55 @@
+---
+/**
+ * src/escenas/bb/B2Que.astro — E2 · Qué es bb.
+ *
+ * La definición del producto en un h2 y cuatro constataciones numeradas.
+ * Cada fila se enciende cuando queda en el centro de la pantalla
+ * (data-focus-row: el número pasa a musgo y el texto a tinta), así que la
+ * lectura avanza con el scroll en vez de entregarse toda junta. Debajo,
+ * una nota tertiary. Igual que A2Pedido de AURE.
+ */
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e2;
+---
+
+<section
+  id="e2"
+  data-scene="1"
+  data-screen-label="E2 · Qué es bb."
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(30px,4vw,52px)]"
+>
+  <h2 data-reveal class="max-w-[24ch] text-h2 text-pretty">{c.h2}</h2>
+
+  <div class="flex max-w-[960px] flex-col">
+    {
+      c.rows.map((texto, i) => (
+        <div
+          data-focus-row
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.18).toFixed(2)}
+          class:list={[
+            'bb-row gap-[clamp(16px,3vw,36px)] py-[clamp(18px,2.4vw,26px)]',
+            i === c.rows.length - 1 && 'border-b border-hairline',
+          ]}
+        >
+          <span class="font-money text-[13px] text-tertiary">{String(i + 1).padStart(2, '0')}</span>
+          <span class="text-item text-pretty">{texto}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <p
+    data-reveal
+    data-reveal-delay="0.8"
+    class="max-w-[60ch] text-[clamp(15px,1.7vw,18px)]/[1.5] text-tertiary text-pretty"
+  >
+    {c.note}
+  </p>
+</section>

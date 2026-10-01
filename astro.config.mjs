@@ -51,11 +51,11 @@ export default defineConfig({
   integrations: [
     redirectsTrailingSlash(),
     sitemap({
-      // Fuera del sitemap: páginas utilitarias, casos bajo NDA y el caso AURE
+      // Fuera del sitemap: páginas utilitarias, casos bajo NDA y los casos AURE y bb.
       // (los tres grupos van con noindex, así que no tienen que anunciarse)
       filter: (page) =>
         !/\/(acceso|port)\/?$/.test(page) &&
-        !/\/portfolio\/(csat-semantico|pfm|rediseno-cuentas|upgrade|aure)\/?$/.test(page),
+        !/\/portfolio\/(csat-semantico|pfm|rediseno-cuentas|upgrade|aure|bb)\/?$/.test(page),
       i18n: {
         defaultLocale: 'es',
         locales: {

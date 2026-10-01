@@ -1,0 +1,50 @@
+---
+/**
+ * src/escenas/bb/B1Portada.astro — E1 · Portada.
+ *
+ * Patrón para el resto de las escenas: lee su copy de copy.ts por `lang`,
+ * usa las utilidades de bb-caso.css y los mismos data-attributes que AURE.
+ * El título entra línea por línea y remata con la palabra en musgo.
+ */
+import Marca from './Marca.astro';
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e1;
+---
+
+<section
+  id="e1"
+  data-scene="0"
+  data-screen-label="E1 · Portada"
+  aria-label={c.aria}
+  class="bb-scene relative gap-[clamp(30px,4vw,48px)]"
+>
+  <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+
+  <div data-reveal="scale" data-reveal-delay="0.1" class="flex items-center gap-4">
+    <Marca size={60} eyes={28} gaze="looking" field />
+    <span class="text-[clamp(19px,2.8vw,26px)] font-medium tracking-[-0.01em]">{c.brand}</span>
+  </div>
+
+  <h1 class="flex max-w-[22ch] flex-col text-h1">
+    <span data-reveal data-reveal-delay="0.2">{c.h1[0]}</span>
+    <span data-reveal data-reveal-delay="0.36">{c.h1[1]}</span>
+    <span data-reveal data-reveal-delay="0.52">
+      {c.h1[2]} <span class="text-moss">{c.h1Accent}</span>
+    </span>
+  </h1>
+
+  <span data-reveal data-reveal-delay="0.8" class="bb-eyebrow">{c.attribution}</span>
+
+  <div
+    class="bb-nudge absolute bottom-[clamp(34px,6vh,64px)] left-[clamp(20px,5vw,64px)] flex items-center gap-2.5 font-money text-xs uppercase tracking-[0.18em] text-tertiary"
+    aria-hidden="true"
+  >
+    <span>{c.nudge}</span>
+    <span class="block h-[26px] w-px bg-hairline"></span>
+  </div>
+</section>

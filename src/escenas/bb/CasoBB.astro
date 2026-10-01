@@ -1,0 +1,474 @@
+---
+/**
+ * src/escenas/bb/CasoBB.astro
+ *
+ * El documento completo del caso bb., en el idioma que llega por `lang`.
+ * Lo montan dos páginas de una línea: src/pages/portfolio/bb.astro (es) y
+ * src/pages/en/portfolio/bb.astro (en). Misma estructura que
+ * src/pages/portfolio/aure.astro; el script es el de AURE con el acento
+ * cambiado (#C0A872 → #8FB38A) y los nombres de keyframes bb-*.
+ */
+import '@fontsource/rubik/400.css';
+import '@fontsource/rubik/500.css';
+import '@fontsource/rubik/600.css';
+import '@fontsource/spline-sans-mono/400.css';
+import '@fontsource/spline-sans-mono/500.css';
+// El producto recreado usa las fuentes de bb.
+import '@fontsource/instrument-sans/600.css';
+import '@fontsource/petrona/400.css';
+import '@fontsource/petrona/400-italic.css';
+import '../../styles/bb-caso.css';
+
+import { COPY, SITIO_URL, type Lang } from './copy';
+
+import B1Portada from './B1Portada.astro';
+import B2Que from './B2Que.astro';
+import B3Tesis from './B3Tesis.astro';
+import B4Encargo from './B4Encargo.astro';
+import B5Voz from './B5Voz.astro';
+import B6Medido from './B6Medido.astro';
+import B7Seguridad from './B7Seguridad.astro';
+import B8Cultural from './B8Cultural.astro';
+import B9Visual from './B9Visual.astro';
+import B10Hecho from './B10Hecho.astro';
+import B11Entrega from './B11Entrega.astro';
+import B12Cierre from './B12Cierre.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang];
+
+// Config de la pieza (props del prototipo)
+const SHOW_DOT_INDEX = true;
+const SHOW_PROGRESS = true;
+
+const SITE = 'https://juansebarrio.com';
+const path = lang === 'en' ? '/en/portfolio/bb' : '/portfolio/bb';
+const canonical = `${SITE}${path}`;
+const volverHref = lang === 'en' ? '/en/portfolio' : '/portfolio';
+
+const ESCENAS = 12;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{c.meta.title}</title>
+    <meta name="description" content={c.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={`${SITE}/portfolio/bb`} />
+    <link rel="alternate" hreflang="en" href={`${SITE}/en/portfolio/bb`} />
+    <link rel="alternate" hreflang="x-default" href={`${SITE}/portfolio/bb`} />
+    <meta name="theme-color" content="#141312" />
+    {/* [TO COMPLETE] El caso llega con noindex hasta que Wided lo vea.
+        Sacar esta línea (y el filtro del sitemap en astro.config.mjs) con su OK. */}
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={c.meta.title} />
+    <meta property="og:description" content={c.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_AR'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={c.meta.title} />
+    <meta name="twitter:description" content={c.meta.description} />
+  </head>
+
+  <body>
+    {
+      SHOW_PROGRESS && (
+        <div data-progress class="fixed inset-x-0 top-0 z-[60] h-[2px] bg-hairline" aria-hidden="true">
+          <div data-progress-fill class="h-full w-full origin-left bg-moss" style="transform: scaleX(0)" />
+        </div>
+      )
+    }
+
+    {/* Fijo sobre escenas que superan el viewport: lleva fondo propio para no
+        pisarse con el contenido que pasa por debajo. */}
+    <a
+      href={volverHref}
+      class="fixed left-[clamp(20px,5vw,64px)] top-[clamp(18px,3vh,28px)] z-[61] inline-flex items-center gap-[9px] rounded-full border border-hairline bg-bg/80 py-[9px] pl-[13px] pr-4 font-money text-xs uppercase tracking-[0.14em] text-secondary backdrop-blur-sm transition-colors hover:border-moss-deep hover:text-moss"
+    >
+      <span aria-hidden="true">←</span>
+      <span>{c.meta.volver}</span>
+    </a>
+
+    {
+      SHOW_DOT_INDEX && (
+        <nav
+          data-rail
+          aria-label={c.meta.rail}
+          class="fixed right-[22px] top-1/2 z-[60] hidden -translate-y-1/2 flex-col gap-[14px] min-[900px]:flex"
+        >
+          {Array.from({ length: ESCENAS }, (_, i) => (
+            <button
+              data-dot={i}
+              type="button"
+              aria-label={`${c.meta.escena} ${i + 1}`}
+              class="h-[7px] w-[7px] cursor-pointer rounded-full border-0 bg-hairline p-0 transition-[background-color,transform] duration-300"
+            />
+          ))}
+        </nav>
+      )
+    }
+
+    <main class="overflow-x-hidden">
+      <B1Portada lang={lang} />
+      <B2Que lang={lang} />
+      <B3Tesis lang={lang} />
+      <B4Encargo lang={lang} />
+      <B5Voz lang={lang} />
+      <B6Medido lang={lang} />
+      <B7Seguridad lang={lang} />
+      <B8Cultural lang={lang} />
+      <B9Visual lang={lang} />
+      <B10Hecho lang={lang} />
+      <B11Entrega lang={lang} />
+      <B12Cierre lang={lang} sitioUrl={SITIO_URL} />
+    </main>
+
+    <script>
+      /* ════════════════════════════════════════════════════════════
+         Animación de la pieza — sin librerías, igual que AURE:
+         IntersectionObserver para entradas y escenas, rAF para el
+         scroll. Con prefers-reduced-motion nada se mueve: el HTML ya
+         contiene cada número, ancho de barra y chip encendido.
+         ════════════════════════════════════════════════════════════ */
+      const EASE = 'cubic-bezier(0.22,0.61,0.36,1)';
+      const ACCENT = '#8FB38A';
+      const HAIRLINE = '#34302B';
+      const TERTIARY = '#7F796F';
+      const SECONDARY = '#A39D93';
+      const INK = '#F2EFE9';
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fmt = new Intl.NumberFormat(document.documentElement.lang === 'en' ? 'en-US' : 'es-AR');
+
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-scene]'));
+      const rail = document.querySelector<HTMLElement>('[data-rail]');
+      const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+      const bar = document.querySelector<HTMLElement>('[data-progress-fill]');
+
+      const timers: number[] = [];
+      const wait = (fn: () => void, ms: number) => timers.push(window.setTimeout(fn, ms));
+
+      /* ── Entradas ───────────────────────────────────────────────── */
+      const revealFrom = (el: HTMLElement) => {
+        const k = el.getAttribute('data-reveal');
+        if (k === 'scale') return 'scale(0.965)';
+        if (k === 'right') return 'translateX(28px)';
+        return 'translateY(16px)';
+      };
+
+      let revealIO: IntersectionObserver | null = null;
+
+      const initReveals = () => {
+        const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+        if (reduced) return;
+        els.forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = revealFrom(el);
+          el.style.transition = `opacity 0.7s ${EASE}, transform 0.85s ${EASE}`;
+          el.style.willChange = 'opacity, transform';
+        });
+        revealIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const el = e.target as HTMLElement;
+              revealIO?.unobserve(el);
+              wait(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                wait(() => {
+                  el.style.willChange = 'auto';
+                }, 1000);
+              }, parseFloat(el.getAttribute('data-reveal-delay') || '0') * 1000);
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        els.forEach((el) => revealIO?.observe(el));
+      };
+
+      /* ── Barras y chips: el HTML trae el estado final ──────────── */
+      const initBars = () => {
+        document.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el) => {
+          el.dataset.hbarW = el.style.width;
+          if (reduced) return;
+          el.style.transition = `width 0.9s ${EASE}`;
+          el.style.width = '0%';
+        });
+      };
+
+      const initAssistant = () => {
+        if (reduced) return;
+        document.querySelectorAll<HTMLElement>('[data-as]').forEach((el) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          el.style.transition = `opacity 0.5s ${EASE}, transform 0.6s ${EASE}`;
+        });
+        document.querySelectorAll<HTMLElement>('[data-chip]').forEach((el) => {
+          el.classList.remove('is-on');
+        });
+      };
+
+      const playAssistant = (panel: HTMLElement) => {
+        if (reduced) return;
+        panel.querySelectorAll<HTMLElement>('[data-as]').forEach((el) => {
+          wait(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          }, parseFloat(el.getAttribute('data-as') || '0'));
+        });
+        panel.querySelectorAll<HTMLElement>('[data-chip]').forEach((el) => {
+          wait(() => {
+            el.classList.add('is-on');
+            el.style.animation = 'bb-pulse 0.7s cubic-bezier(0.4,0,0.2,1) 1';
+            wait(() => {
+              el.style.animation = 'none';
+            }, 800);
+          }, parseFloat(el.getAttribute('data-chip') || '0'));
+        });
+      };
+
+      const count = (el: HTMLElement, delay: number) => {
+        const target = parseFloat(el.getAttribute('data-count') || '0');
+        const prefix = el.getAttribute('data-prefix') || '';
+        const dur = parseFloat(el.getAttribute('data-dur') || '1.2') * 1000;
+        el.textContent = prefix + fmt.format(0);
+        const t0 = performance.now() + delay * 1000;
+        const step = (now: number) => {
+          const p = Math.min(1, Math.max(0, (now - t0) / dur));
+          const e = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + fmt.format(Math.round(target * e));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      const playScene = (sec: HTMLElement) => {
+        if (reduced) return;
+        sec.querySelectorAll<HTMLElement>('[data-count]').forEach((el, i) => {
+          const at = el.getAttribute('data-at');
+          count(el, at === null ? 0.15 + i * 0.1 : parseFloat(at) / 1000);
+        });
+        sec.querySelectorAll<HTMLElement>('[data-hbar]').forEach((el, i) => {
+          wait(() => {
+            el.style.width = el.dataset.hbarW ?? '100%';
+          }, 640 + i * 90);
+        });
+        const panel = sec.querySelector<HTMLElement>('[data-assistant]');
+        if (panel) playAssistant(panel);
+        const pulse = sec.querySelector<HTMLElement>('[data-pulse]');
+        if (pulse)
+          wait(() => {
+            pulse.style.animation = 'bb-pulse 1.2s cubic-bezier(0.4,0,0.2,1) 1';
+          }, 1400);
+      };
+
+      let sceneIO: IntersectionObserver | null = null;
+      const initScenes = () => {
+        sceneIO = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              sceneIO?.unobserve(e.target);
+              playScene(e.target as HTMLElement);
+            });
+          },
+          { threshold: 0.25 }
+        );
+        sections.forEach((s) => sceneIO?.observe(s));
+      };
+
+      /* ── Efectos atados al scroll ──────────────────────────────────
+         Parallax de bloques, la tesis que se enciende palabra por
+         palabra y el foco de la fila más cercana al centro. */
+      let parallax: HTMLElement[] = [];
+      let wordGroups: HTMLElement[] = [];
+      let rowGroups: HTMLElement[][] = [];
+
+      const initScrollFx = () => {
+        if (reduced) return;
+        parallax = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+        wordGroups = Array.from(document.querySelectorAll<HTMLElement>('[data-scroll-words]'));
+        parallax.forEach((el) => {
+          el.style.willChange = 'transform';
+        });
+        wordGroups.forEach((g) =>
+          Array.from(g.children).forEach((w) => {
+            const el = w as HTMLElement;
+            el.style.opacity = '0.16';
+            el.style.transition = 'opacity 0.3s linear';
+          })
+        );
+        const map = new Map<Element, HTMLElement[]>();
+        document.querySelectorAll<HTMLElement>('[data-focus-row]').forEach((r) => {
+          const key = r.parentElement;
+          if (!key) return;
+          if (!map.has(key)) map.set(key, []);
+          map.get(key)!.push(r);
+          Array.from(r.children).forEach((c) => {
+            (c as HTMLElement).style.transition = 'color 0.4s ease';
+          });
+        });
+        rowGroups = Array.from(map.values());
+      };
+
+      const scrollFx = () => {
+        const vh = window.innerHeight;
+
+        parallax.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.bottom < -260 || r.top > vh + 260) return;
+          const f = parseFloat(el.getAttribute('data-parallax') || '0');
+          const off = Math.max(-64, Math.min(64, (vh / 2 - (r.top + r.height / 2)) * f));
+          el.style.transform = `translate3d(0,${off.toFixed(1)}px,0)`;
+        });
+
+        wordGroups.forEach((g) => {
+          const r = g.getBoundingClientRect();
+          if (r.bottom < -120 || r.top > vh + 120) return;
+          const words = Array.from(g.children) as HTMLElement[];
+          const p = Math.max(0, Math.min(1, (vh * 0.84 - r.top) / (r.height + vh * 0.32)));
+          const head = p * (words.length + 2.5);
+          words.forEach((w, i) => {
+            const local = Math.max(0, Math.min(1, (head - i) / 1.5));
+            w.style.opacity = (0.16 + 0.84 * local).toFixed(3);
+          });
+        });
+
+        rowGroups.forEach((rows) => {
+          let best: HTMLElement | null = null;
+          let bestD = Infinity;
+          rows.forEach((r) => {
+            const rect = r.getBoundingClientRect();
+            const d = Math.abs(rect.top + rect.height / 2 - vh * 0.46);
+            if (d < bestD) {
+              bestD = d;
+              best = r;
+            }
+          });
+          const near = bestD < vh * 0.34;
+          rows.forEach((r) => {
+            const on = near && r === best;
+            const num = r.children[0] as HTMLElement | undefined;
+            const txt = r.children[1] as HTMLElement | undefined;
+            if (num) num.style.color = on ? ACCENT : TERTIARY;
+            if (txt) txt.style.color = on ? INK : SECONDARY;
+          });
+        });
+      };
+
+      /* ── Progreso, punto activo y navegación ───────────────────── */
+      let nav = 0;
+      let navLocked = false;
+      let active = -1;
+      let raf = 0;
+      let tween = 0;
+
+      const syncRail = () => {
+        if (rail) rail.style.display = window.innerWidth >= 900 ? 'flex' : 'none';
+      };
+
+      const tick = () => {
+        raf = 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const y = window.scrollY;
+        if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, y / max)) : 0})`;
+        let idx = 0;
+        const mid = y + window.innerHeight * 0.4;
+        sections.forEach((s, i) => {
+          if (s.getBoundingClientRect().top + y <= mid) idx = i;
+        });
+        if (!navLocked) nav = idx;
+        if (idx !== active) {
+          active = idx;
+          dots.forEach((d, i) => {
+            const on = i === idx;
+            d.style.background = on ? ACCENT : HAIRLINE;
+            d.style.transform = on ? 'scale(1.6)' : 'scale(1)';
+          });
+        }
+        scrollFx();
+      };
+
+      const onScroll = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+
+      /* El índice de navegación es propio (no derivado del scroll al momento
+         de la tecla): con el tween en curso, derivarlo de scrollY pierde
+         pulsaciones rápidas e invierte la dirección. */
+      const goTo = (i: number) => {
+        const idx = Math.max(0, Math.min(sections.length - 1, i));
+        const sec = sections[idx];
+        if (!sec) return;
+        nav = idx;
+        const y = Math.round(sec.getBoundingClientRect().top + window.scrollY);
+        if (tween) cancelAnimationFrame(tween);
+        if (reduced) {
+          window.scrollTo(0, y);
+          navLocked = false;
+          tick();
+          return;
+        }
+        navLocked = true;
+        const start = window.scrollY;
+        const dist = y - start;
+        const dur = Math.min(760, Math.max(380, Math.abs(dist) * 0.55));
+        const t0 = performance.now();
+        const step = (now: number) => {
+          const p = Math.min(1, (now - t0) / dur);
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          window.scrollTo(0, Math.round(start + dist * e));
+          if (p < 1) tween = requestAnimationFrame(step);
+          else {
+            tween = 0;
+            navLocked = false;
+            tick();
+          }
+        };
+        tween = requestAnimationFrame(step);
+      };
+
+      initReveals();
+      initBars();
+      initAssistant();
+      initScenes();
+      initScrollFx();
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('scrollend', () => {
+        if (!tween) {
+          navLocked = false;
+          tick();
+        }
+      });
+      window.addEventListener('resize', () => {
+        syncRail();
+        tick();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        const t = e.target as HTMLElement | null;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        const fwd = ['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key);
+        const back = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key);
+        if (!fwd && !back) return;
+        e.preventDefault();
+        if (!navLocked) tick();
+        goTo(nav + (fwd ? 1 : -1));
+      });
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+      syncRail();
+      tick();
+    </script>
+  </body>
+</html>

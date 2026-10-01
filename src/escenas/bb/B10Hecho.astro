@@ -1,0 +1,75 @@
+---
+/**
+ * src/escenas/bb/B10Hecho.astro — E10 · Cómo está hecho.
+ *
+ * La arquitectura en tres cifras: cuánto cuesta una respuesta, cuántas
+ * llamadas aprovechan el prompt en caché y el techo mensual del beta.
+ * Eyebrow, h2 y copy entran con reveal; cada stat de la grilla auto-fit
+ * con su propio delay (0.10 / 0.22 / 0.34). Las cifras con `count` nacen
+ * en su valor final en el HTML (prefijo incluido) y las cuenta
+ * `data-count` al entrar en pantalla; «0,5 ¢» es texto plano. El sufijo
+ * («de 10») queda fuera del contador para que no lo pise el script.
+ */
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e10;
+
+/** Duración del conteo por cifra (segundos), como en el prototipo. */
+const DUR: Record<number, string> = {
+  8: '0.9',
+  100: '1.1',
+};
+---
+
+<section
+  id="e10"
+  data-scene="9"
+  data-screen-label="E10 · Cómo está hecho"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[24ch] text-h3 text-pretty">
+      {c.h2}
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="bb-copy max-w-[60ch]">
+      {c.copy}
+    </p>
+  </div>
+
+  {/* ── Las tres cifras de la arquitectura ── */}
+  <div
+    class="grid gap-[clamp(20px,2.6vw,36px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))]"
+  >
+    {
+      c.stats.map((stat, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.12).toFixed(2)}
+          class="flex flex-col gap-3 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="bb-nums text-stat">
+            {
+              stat.count !== null ? (
+                <>
+                  <span data-count={stat.count} data-dur={DUR[stat.count]} data-prefix={stat.prefix || undefined}>{stat.prefix}{stat.value}</span>{stat.suffix}
+                </>
+              ) : (
+                stat.value
+              )
+            }
+          </span>
+
+          <span class="text-[clamp(15px,1.6vw,17px)]/[1.45] text-secondary text-pretty">
+            {stat.text}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

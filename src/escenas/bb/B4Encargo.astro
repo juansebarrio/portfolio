@@ -1,0 +1,59 @@
+---
+/**
+ * src/escenas/bb/B4Encargo.astro — E4 · El encargo.
+ *
+ * Lo que trajo Wided: el spec ya escrito y un pedido más chico que la
+ * propuesta. Misma mecánica que A4Giro de AURE, con la cita encendida:
+ * eyebrow, título en text-h3, dos párrafos en flex-wrap (copy + secundario
+ * con border-t), cita con borde musgo y autor mono, y nota mono al pie.
+ * Todo entra con data-reveal escalonado (0.1 → 0.54).
+ */
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e4;
+---
+
+<section
+  id="e4"
+  data-scene="3"
+  data-screen-label="E4 · El encargo"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+
+  <h2 data-reveal data-reveal-delay="0.1" class="max-w-[26ch] text-h3 text-pretty">
+    {c.h2}
+  </h2>
+
+  <div class="flex max-w-[980px] flex-wrap gap-[clamp(24px,3.4vw,56px)]">
+    <p data-reveal data-reveal-delay="0.22" class="bb-copy flex-[1_1_340px]">
+      {c.copy}
+    </p>
+
+    <p
+      data-reveal
+      data-reveal-delay="0.34"
+      class="flex-[1_1_300px] border-t border-hairline pt-[clamp(16px,2vw,20px)] text-[clamp(15px,1.7vw,18px)]/[1.5] text-tertiary text-pretty"
+    >
+      {c.secondary}
+    </p>
+  </div>
+
+  <div
+    data-reveal
+    data-reveal-delay="0.44"
+    class="flex max-w-[640px] flex-col gap-2.5 border-l border-moss py-[clamp(6px,1vw,10px)] pl-[clamp(18px,2.4vw,26px)]"
+  >
+    <span class="text-[clamp(18px,2.2vw,26px)]/[1.35] text-pretty">{c.quote}</span>
+    <span class="font-money text-xs uppercase tracking-[0.14em] text-tertiary">{c.quoteBy}</span>
+  </div>
+
+  <p data-reveal data-reveal-delay="0.54" class="bb-note max-w-[62ch]">
+    {c.note}
+  </p>
+</section>

@@ -1,0 +1,41 @@
+---
+/**
+ * src/escenas/bb/B3Tesis.astro — E3 · La tesis.
+ *
+ * La frase se enciende palabra por palabra con el scroll
+ * (data-scroll-words): es el único momento de la pieza donde el
+ * movimiento sigue al dedo del lector y no a un reloj. Las palabras
+ * llegan como array (`words`) y la última, en musgo, aparte (`accent`):
+ * en inglés el acento cae en «behaves.», en español en «modelo.».
+ * Debajo, la línea (data-hbar) se extiende al entrar en pantalla y el
+ * párrafo de apoyo (bb-copy) aparece con data-reveal.
+ */
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e3;
+---
+
+<section
+  id="e3"
+  data-scene="2"
+  data-screen-label="E3 · La tesis"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(26px,3.4vw,40px)]"
+>
+  <p data-scroll-words class="flex max-w-[22ch] flex-wrap gap-x-[0.28em] gap-y-0 text-tesis">
+    {c.words.map((w) => <span>{w}</span>)}
+    <span class="text-moss">{c.accent}</span>
+  </p>
+
+  <div class="h-px max-w-[520px] bg-hairline-soft">
+    <div data-hbar class="h-full bg-hairline" style="width:100%"></div>
+  </div>
+
+  <p data-reveal data-reveal-delay="0.2" class="bb-copy max-w-[52ch]">
+    {c.copy}
+  </p>
+</section>

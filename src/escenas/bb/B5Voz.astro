@@ -1,0 +1,130 @@
+---
+/**
+ * src/escenas/bb/B5Voz.astro — E5 · La voz.
+ *
+ * La escena más larga en movimiento, calcada de A6Tokko: el panel verde
+ * se arma solo al entrar en pantalla (data-assistant + data-as). Primero
+ * la v1 del prompt con su nota, después se encienden los chips con lo que
+ * pidió Wided (data-chip), llegan la v2 y la v3 y remata la línea en lima
+ * que abre la escena siguiente. El contador «9 escenarios» corre con
+ * data-count. A la derecha, con parallax inverso, un Unpack real del set
+ * de pruebas en papel (texto del producto, inglés en ambos idiomas).
+ *
+ * Los chips y el contador nacen en su estado final en el HTML: sin JS y
+ * con prefers-reduced-motion la escena se lee igual.
+ */
+import { COPY, PRODUCT, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e5;
+
+/** Escenarios del set de pruebas del día uno (valor del contador del header). */
+const ESCENARIOS = 9;
+/** Los chips se encienden de a uno: 1500 / 1680 / 1860 ms. */
+const CHIP_AT = (i: number) => String(1500 + i * 180);
+---
+
+<section
+  id="e5"
+  data-scene="4"
+  data-screen-label="E5 · La voz"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(26px,3.4vw,42px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[20ch] text-h3 text-pretty">
+      {c.h2}
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="bb-copy max-w-[54ch]">
+      {c.copy}
+    </p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-[clamp(26px,3.6vw,48px)]">
+
+    {/* ── El panel: el prompt en tres versiones, se arma solo ── */}
+    <div data-parallax="0.04" class="min-w-0 flex-[1_1_400px]">
+      <div
+        data-assistant
+        data-reveal="scale"
+        data-reveal-delay="0.2"
+        class="bb-panel flex w-full flex-col gap-[clamp(14px,1.8vw,18px)] p-[clamp(20px,2.6vw,30px)]"
+      >
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <span class="bb-tag">{c.panelTag}</span>
+          <span class="bb-tag">
+            <span data-count={ESCENARIOS} data-at="500" data-dur="0.6" class="text-bb-lime-soft">{ESCENARIOS}</span> {c.scenarios}
+          </span>
+        </div>
+
+        {/* v1 · día uno */}
+        <div data-as="500" class="bb-card flex flex-col gap-2 px-4 py-3.5">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5">
+            <span class="bb-tag-paper">{c.v1.tag}</span>
+            <span class="bb-nums text-[clamp(14px,1.5vw,17px)] font-medium text-bb-ink">{c.v1.metric}</span>
+          </div>
+          <span class="text-[clamp(14px,1.5vw,16px)]/[1.45] text-pretty">{c.v1.text}</span>
+        </div>
+
+        {/* lo que pidió Wided: los chips nacen encendidos */}
+        <div data-as="1100" class="flex flex-col gap-[9px]">
+          <span class="bb-tag">{c.chipsLabel}</span>
+          <div class="flex flex-wrap gap-2">
+            {
+              c.chips.map((chip, i) => (
+                <span data-chip={CHIP_AT(i)} class="bb-chip is-on px-3 py-2 text-[clamp(12px,1.35vw,14px)]">
+                  {chip}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        {/* v2 */}
+        <div data-as="2300" class="bb-card flex flex-col gap-2 px-4 py-3.5">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5">
+            <span class="bb-tag-paper">{c.v2.tag}</span>
+            <span class="bb-nums text-[clamp(14px,1.5vw,17px)] font-medium text-bb-ink">{c.v2.metric}</span>
+          </div>
+          <span class="text-[clamp(14px,1.5vw,16px)]/[1.45] text-pretty">{c.v2.text}</span>
+        </div>
+
+        {/* v3 · escrita por Wided */}
+        <div data-as="2800" class="bb-card flex flex-col gap-2 px-4 py-3.5">
+          <span class="bb-tag-paper">{c.v3.tag}</span>
+          <span class="text-[clamp(14px,1.5vw,16px)]/[1.45] text-pretty">{c.v3.text}</span>
+        </div>
+
+        {/* El remate, en lima */}
+        <div
+          data-as="3400"
+          class="flex items-start gap-[9px] text-[clamp(13px,1.4vw,15px)]/[1.45] text-bb-lime-soft text-pretty"
+        >
+          <span class="mt-px flex-none" aria-hidden="true">↑</span>
+          <span>{c.remate}</span>
+        </div>
+      </div>
+    </div>
+
+    {/* ── Un Unpack del set de pruebas, en papel (texto del producto) ── */}
+    <div data-parallax="-0.07" class="min-w-0 flex-[0_1_280px]">
+      <div data-reveal="right" data-reveal-delay="0.3" class="flex flex-col gap-3.5">
+        <div class="bb-paper flex flex-col gap-3.5 p-[clamp(20px,2.4vw,26px)]">
+          <span class="font-bb-serif text-[14px]/[1.45] italic text-bb-olive text-pretty">
+            “{PRODUCT.unpackUser}”
+          </span>
+          <span class="block h-px bg-bb-paper-line" aria-hidden="true"></span>
+          <span class="font-bb-serif text-[17px]/[1.45] tracking-[-0.008em] text-pretty">
+            {PRODUCT.unpackLead}
+          </span>
+          <span class="font-bb-serif text-[14px]/[1.6] text-pretty">{PRODUCT.unpackP}</span>
+        </div>
+        <span class="bb-note">{c.unpackCaption}</span>
+      </div>
+    </div>
+  </div>
+</section>

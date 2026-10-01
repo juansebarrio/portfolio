@@ -1,0 +1,83 @@
+---
+/**
+ * src/escenas/bb/B12Cierre.astro — E12 · Cierre.
+ *
+ * El estado de la entrega con el punto musgo latiendo, la nota del agente
+ * de voz y una sola salida: bb. en vivo.
+ */
+import Marca from './Marca.astro';
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+  /** Destino del botón de cierre. */
+  sitioUrl: string;
+}
+const { lang, sitioUrl } = Astro.props;
+const c = COPY[lang].e12;
+
+const DOT: Record<string, string> = {
+  live: 'bb-live-dot bg-moss',
+  moss: 'bg-moss',
+  amber: 'bg-amber',
+};
+---
+
+<section
+  id="e12"
+  data-scene="11"
+  data-screen-label="E12 · Cierre"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(30px,4vw,46px)]"
+>
+  <div data-reveal="scale" class="flex items-center">
+    <Marca size={52} eyes={24} gaze="wink" field />
+  </div>
+
+  <h2 data-reveal data-reveal-delay="0.08" class="max-w-[15ch] text-h1-cierre text-pretty">
+    {c.h2}
+  </h2>
+
+  <div
+    data-reveal
+    data-reveal-delay="0.14"
+    class="flex flex-col gap-3 font-money text-[clamp(12px,1.5vw,15px)] tracking-[0.12em]"
+  >
+    {
+      c.status.map((s, i) => (
+        <span class:list={['flex items-center gap-3', i === 0 ? 'text-ink' : 'text-secondary']}>
+          <span class:list={['block h-[7px] w-[7px] flex-none rounded-full', DOT[s.dot]]} aria-hidden="true" />
+          <span>{s.text}</span>
+        </span>
+      ))
+    }
+  </div>
+
+  <p
+    data-reveal
+    data-reveal-delay="0.2"
+    class="max-w-[56ch] text-[clamp(15px,1.7vw,18px)]/[1.5] text-secondary text-pretty"
+  >
+    {c.voice}
+  </p>
+
+  <a
+    data-reveal
+    data-reveal-delay="0.28"
+    href={sitioUrl}
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center gap-2.5 self-start rounded-xl bg-moss px-[26px] py-4 text-[clamp(16px,1.9vw,20px)] font-semibold text-bg transition-colors hover:bg-moss-soft hover:text-bg"
+  >
+    <span>{c.cta}</span>
+    <span class="font-money" aria-hidden="true">↗</span>
+  </a>
+
+  <p
+    data-reveal
+    data-reveal-delay="0.4"
+    class="font-money text-[clamp(12px,1.4vw,14px)] uppercase tracking-[0.14em] text-tertiary"
+  >
+    {c.footer}
+  </p>
+</section>

@@ -1,0 +1,77 @@
+---
+/**
+ * src/escenas/bb/B6Medido.astro — E6 · Medido.
+ *
+ * Tres cifras «antes → después» en una grilla auto-fit: cada problema de
+ * la voz medido y arreglado. Eyebrow, h2 y copy entran con reveal; cada
+ * stat con su propio delay (0.10 / 0.22 / 0.34). El «después» de la fila
+ * que tiene `count` nace en su valor final y lo cuenta `data-count` al
+ * entrar en pantalla; las otras son texto plano. Nota mono al pie.
+ */
+import { COPY, type Lang } from './copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = COPY[lang].e6;
+---
+
+<section
+  id="e6"
+  data-scene="5"
+  data-screen-label="E6 · Medido"
+  aria-label={c.aria}
+  class="bb-scene gap-[clamp(28px,3.6vw,44px)]"
+>
+  <div class="flex flex-col gap-[clamp(14px,1.8vw,20px)]">
+    <span data-reveal class="bb-eyebrow">{c.eyebrow}</span>
+    <h2 data-reveal data-reveal-delay="0.1" class="max-w-[22ch] text-h3 text-pretty">
+      {c.h2}
+    </h2>
+    <p data-reveal data-reveal-delay="0.18" class="bb-copy max-w-[60ch]">
+      {c.copy}
+    </p>
+  </div>
+
+  {/* ── Las tres cifras: antes → después ── */}
+  <div
+    class="grid gap-[clamp(20px,2.6vw,36px)] [grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))]"
+  >
+    {
+      c.stats.map((stat, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={(0.1 + i * 0.12).toFixed(2)}
+          class="flex flex-col gap-3 border-t border-hairline pt-[clamp(14px,1.8vw,18px)]"
+        >
+          <span class="bb-eyebrow">{stat.label}</span>
+
+          {/* Solo la tercera fila (los rangos) envuelve, como en el prototipo */}
+          <span
+            class:list={[
+              'bb-nums flex items-baseline gap-3 font-medium leading-none',
+              i === 2 && 'flex-wrap',
+            ]}
+          >
+            <span class="text-[clamp(22px,3vw,34px)] text-tertiary">{stat.before}</span>
+            <span aria-hidden="true" class="text-[clamp(18px,2.4vw,26px)] text-moss">→</span>
+            {
+              stat.count !== null ? (
+                <span data-count={stat.count} data-at="400" data-dur="1.1" class="text-stat text-ink">{stat.after}</span>
+              ) : (
+                <span class="text-stat text-ink">{stat.after}</span>
+              )
+            }
+          </span>
+
+          <span class="text-[clamp(15px,1.6vw,17px)]/[1.45] text-secondary text-pretty">
+            {stat.text}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+
+  <p data-reveal data-reveal-delay="0.46" class="bb-note">{c.note}</p>
+</section>
